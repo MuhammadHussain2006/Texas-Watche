@@ -3,17 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Texas Watche Cartier</title>
+  <title id="pageTitle">Texas Watches Rolex</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Swiper CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 <body>
   <div class="topHeaderDiv">
@@ -24,8 +20,8 @@
         <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
         <a href="login.html">Log In</a>
         <a href="createaccount.html">Register</a>
-         <a href="login.html">My Account</a>
-         <a href="shoppingcart.html">Shopping Cart</a>
+        <a href="login.html">My Account</a>
+        <a href="shoppingcart.html">Shopping Cart</a>
       </div>
     </div>
   </div>
@@ -38,8 +34,8 @@
     </div>
     <div class="header-icons">
       <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <button type="submit"><i class="fas fa-search"></i></button>
+        <input type="text" placeholder="Search..." id="searchInput">
+        <button type="submit" onclick="filterProducts()"><i class="fas fa-search"></i></button>
       </div>
       <div class="cart-icon">
         <i class="fas fa-shopping-bag"></i>
@@ -48,272 +44,357 @@
     </div>
   </div>
 
-
   <div>
     <ul class="HeaderMenu">
-      <li><a href="index.html"style="text-decoration: none; color: black;">HOME</a></li>
-      <li><a href="rolex.html"style="text-decoration: none; color: black;">ROLEX</a></li>
-      <li><a href="omega.html"style="text-decoration: none; color: black;">OMEGA</a></li>
-      <li><a href="cartier.html"style="text-decoration: none; color: black;">CARTIER</a></li>
-      <li><a href="patek-philippe.html"style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
-     <li><a href="breitling.html"style="text-decoration: none; color: black;">BREITLING</a></li>
+      <li><a href="index.html" style="text-decoration: none; color: black;">HOME</a></li>
+      <li><a href="rolex.html" style="text-decoration: none; color: black;">ROLEX</a></li>
+      <li><a href="omega.html" style="text-decoration: none; color: black;">OMEGA</a></li>
+      <li><a href="cartier.html" style="text-decoration: none; color: black;">CARTIER</a></li>
+      <li><a href="patek-philippe.html" style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
+      <li><a href="breitling.html" style="text-decoration: none; color: black;">BREITLING</a></li>
     </ul>
   </div>
 
+  <div class="sort-pagination-bar">
+    <div class="section-title" id="brandTitle">ROLEX</div>
 
- <div class="sort-pagination-bar">
-  <div class="section-title">CARTIER</div>
+    <div class="sort-and-pagination">
+      <div class="sort-options">
+        <button class="sort-button active" onclick="sortProducts('popular')"><span class="icon">👍</span> Popular</button>
+        <button class="sort-button" onclick="sortProducts('price-low')"><span class="icon">$</span> Price ↑</button>
+        <button class="sort-button" onclick="sortProducts('price-high')"><span class="icon">$</span> Price ↓</button>
+        <button class="sort-button" onclick="sortProducts('bestsellers')"><span class="icon">📈</span> Bestsellers</button>
+        <button class="sort-button" onclick="sortProducts('new')"><span class="icon">🕒</span> New</button>
+      </div>
 
-  <div class="sort-and-pagination">
-    <div class="sort-options">
-      <button class="sort-button active"><span class="icon">👍</span> Popular</button>
-      <button class="sort-button"><span class="icon">$</span> Price ↑</button>
-      <button class="sort-button"><span class="icon">$</span> Price ↓</button>
-      <button class="sort-button"><span class="icon">📈</span> Bestsellers</button>
-      <button class="sort-button"><span class="icon">🕒</span> New</button>
-    </div>
-
-    <div class="pagination-controls">
-      <span class="page-button active">1</span>
-      <a href="#" class="page-button">2</a>
-      <a href="#" class="page-button">3</a>
-      <a href="#" class="page-button">4</a>
-      <a href="#" class="page-button">5</a>
-      <span class="ellipsis">...</span>
-      <a href="#" class="page-button">[Next »]</a>
+      <div class="pagination-controls" id="topPagination">
+        <!-- Pagination will be generated dynamically -->
+      </div>
     </div>
   </div>
-</div>
 
-
-
-      <div class="product-page-container">
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="sidebar-box">
-      <h3>CATEGORIES</h3>
-      <ul class="category-list">
-        <li><a href="rolex.html">Rolex</a></li>
-        <li><a href="omega.html">Omega</a></li>
-        <li><a href="cartier.html">Cartier</a></li>
-        <li><a href="patek-philippe.html">Patek Philippe</a></li>
-        <li><a href="breitling.html">Breitling</a></li>
-      </ul>
-    </div>
-
-    <div class="sidebar-box">
-      <h3>NEW PRODUCTS [MORE]</h3>
-      <div class="product-small">
-        <img src="./images/cartier 1 side.jpg" alt="Product">
-        <p>Rolex Datejust Blue Dial</p>
-        <strong>$270.00</strong>
+  <div class="product-page-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-box">
+        <h3>CATEGORIES</h3>
+        <ul class="category-list">
+          <li><a href="rolex.html">Rolex</a></li>
+          <li><a href="omega.html">Omega</a></li>
+          <li><a href="cartier.html">Cartier</a></li>
+          <li><a href="patek-philippe.html">Patek Philippe</a></li>
+          <li><a href="breitling.html">Breitling</a></li>
+        </ul>
       </div>
 
-      <div class="product-small">
-        <img src="./images/cartier 2 side.jpg" alt="Product">
-        <p>Rolex Datejust Blue Dial</p>
-        <strong>$270.00</strong>
+      <div class="sidebar-box">
+        <h3>NEW PRODUCTS [MORE]</h3>
+        <div id="sidebarProducts">
+          <!-- Sidebar products will be loaded dynamically -->
+        </div>
       </div>
+    </aside>
 
-      <div class="product-small">
-        <img src="./images/cartier 3 side.jpg" alt="Product">
-        <p>Rolex Datejust Blue Dial</p>
-        <strong>$270.00</strong>
+    <!-- Main Product Grid -->
+    <main class="product-main">
+      <div id="loadingMessage" style="text-align: center; padding: 20px; font-size: 1.2rem; color: #666;">
+        Loading products...
       </div>
-
-      <div class="product-small">
-        <img src="./images/cartier 4 side.jpg" alt="Product">
-        <p>Rolex Datejust Blue Dial</p>
-        <strong>$270.00</strong>
-      </div>
-
-      <div class="product-small">
-        <img src="./images/cartier 5 side.jpg" alt="Product">
-        <p>Rolex Datejust Blue Dial</p>
-        <strong>$270.00</strong>
-      </div>
-
-      <div class="product-small">
-        <img src="./images/cartier 6 side.jpg" alt="Product">
-        <p>Rolex Datejust Blue Dial</p>
-        <strong>$270.00</strong>
-      </div>
-
-      <!-- Repeat for more products -->
-    </div>
-  </aside>
-
-  <!-- Main Product Grid -->
-  <main class="product-main">
-    <div class="product-grid">
-      <!-- Product Box -->
-      <div class="product-card">
-        <img src="./images/cartier new 1.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-
-      <div class="product-card">
-        <img src="./images/cartier new 2.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-
-      <div class="product-card">
-        <img src="./images/cartier new 3.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-
-      <div class="product-card">
-        <img src="./images/cartier new 4.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-
-      <div class="product-card">
-        <img src="./images/cartier new 5.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-      <div class="product-card">
-        <img src="./images/cartier new 6.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-      <div class="product-card">
-        <img src="./images/cartier new 7.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-      <div class="product-card">
-        <img src="./images/cartier new 8.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-      <div class="product-card">
-        <img src="./images/cartier new 9.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-      <div class="product-card">
-        <img src="./images/cartier new 10.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-      <div class="product-card">
-        <img src="./images/cartier new 11.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
-      <div class="product-card">
-        <img src="./images/cartier new 12.jpg" alt="Watch">
-        <p class="product-name">Rolex Datejust Steel 36mm White Dial</p>
-        <div class="stars">★★★★★</div>
-        <p class="product-price">$270.00</p>
-      </div>
-
       
-      <!-- Repeat product-card for all items -->
-    </div>
+      <div class="product-grid" id="productGrid">
+        <!-- Products will be loaded dynamically -->
+      </div>
 
-    
-     <div class="pagination-bar">
-  <div class="pagination-info">
-    Displaying <strong>1 to 12</strong> (of <strong>487</strong> products)
+      <div class="pagination-bar" id="bottomPagination">
+        <div class="pagination-info" id="paginationInfo">
+          Displaying <strong>1 to 12</strong> (of <strong>0</strong> products)
+        </div>
+        <div class="pagination-links" id="paginationLinks">
+          <!-- Pagination links will be generated dynamically -->
+        </div>
+      </div>
+    </main>
   </div>
-  <div class="pagination-links">
-    <span class="page current">1</span>
-    <a href="#" class="page">2</a>
-    <a href="#" class="page">3</a>
-    <a href="#" class="page">4</a>
-    <a href="#" class="page">5</a>
-    <span class="ellipsis">...</span>
-    <a href="#" class="page next">[Next »]</a>
-  </div>
-</div>
-
-
-  </main>
-</div>
-
-
-
-
 
   <!-- Font Awesome (for social and card icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-column">
-      <h4>OUR COMPANY</h4>
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="shippingreturns.html">Shipping & Returns</a></li>
-        <li><a href="privacypolicy.html">Privacy Policy</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>CUSTOMER SERVICE</h4>
-      <ul>
-        <li><a href="contactus.html">Contact Us</a></li>
-        <li><a href="payment.html">Payment</a></li>
-        <li><a href="sitemap.html">Site Map</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>MY ACCOUNT</h4>
-      <ul>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="login.html">My Account</a></li>
-        <li><a href="login.html">My Order</a></li>
-        <li><a href="shoppingcart.html">Shopping Cart</a></li>
-      </ul>
-    </div>
-    <div class="footer-icons">
-      <div class="payment-icons">
-        <img src="./images/payment_icons.png" alt="Visa">
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>OUR COMPANY</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="shippingreturns.html">Shipping & Returns</a></li>
+          <li><a href="privacypolicy.html">Privacy Policy</a></li>
+        </ul>
       </div>
-      <div class="social-icons">
-        <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
+      <div class="footer-column">
+        <h4>CUSTOMER SERVICE</h4>
+        <ul>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="payment.html">Payment</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>MY ACCOUNT</h4>
+        <ul>
+          <li><a href="login.html">Log In</a></li>
+          <li><a href="login.html">My Account</a></li>
+          <li><a href="login.html">My Order</a></li>
+          <li><a href="shoppingcart.html">Shopping Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-icons">
+        <div class="payment-icons">
+          <img src="./images/payment_icons.png" alt="Visa">
+        </div>
+        <div class="social-icons">
+          <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
+        </ul>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
-  </div>
-</footer>
+    <div class="footer-bottom">
+      <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
+    </div>
+  </footer>
 
+  <script>
+    let productsData = [];
+    let currentBrand = '';
+    let currentPage = 1;
+    let productsPerPage = 12;
+    let currentSort = 'popular';
+    let filteredProducts = [];
 
+    // Get brand from URL
+    function getBrandFromURL() {
+      const path = window.location.pathname;
+      const filename = path.split('/').pop();
+      const brand = filename.replace('.html', '');
+      return brand;
+    }
 
+    // Load products from JSON
+    async function loadProductsFromJSON() {
+      try {
+        const response = await fetch('products.json');
+        if (!response.ok) {
+          throw new Error('JSON file not found');
+        }
+        productsData = await response.json();
+        currentBrand = getBrandFromURL();
+        initializePage();
+      } catch (error) {
+        console.error('Error loading products:', error);
+        document.getElementById('loadingMessage').innerHTML = 'Error loading products.';
+      }
+    }
 
-<script src="script.js"></script>  
+    // Initialize page based on brand
+    function initializePage() {
+      // Update page title and brand title
+      const brandName = currentBrand.replace('-', ' ').toUpperCase();
+      document.getElementById('pageTitle').textContent = `Texas Watches ${brandName}`;
+      document.getElementById('brandTitle').textContent = brandName;
+
+      // Filter products for current brand
+      filteredProducts = productsData.filter(product => 
+        product.brand === currentBrand || 
+        (product.brand === currentBrand && product.page === currentBrand)
+      );
+
+      // Load sidebar products (new products for this brand)
+      loadSidebarProducts();
+      
+      // Render main products
+      renderProducts();
+    }
+
+    // Create product HTML for main grid
+    function createProductHTML(product) {
+      return `
+        <div class="product-card">
+          <a href="product-detail.html?id=${product.id}">
+            <img src="${product.image}" alt="${product.name}">
+            <p class="product-name">${product.name}</p>
+            <div class="stars">★★★★★</div>
+            <p class="product-price">${product.newPrice}.00</p>
+          </a>
+        </div>
+      `;
+    }
+
+    // Create sidebar product HTML
+    function createSidebarProductHTML(product) {
+      return `
+        <div class="product-small">
+          <a href="product-detail.html?id=${product.id}" style="text-decoration: none; color: inherit;">
+            <img src="${product.image}" alt="${product.name}">
+            <p>${product.name.length > 50 ? product.name.substring(0, 50) + '...' : product.name}</p>
+            <strong>${product.newPrice}.00</strong>
+          </a>
+        </div>
+      `;
+    }
+
+    // Load sidebar products
+    function loadSidebarProducts() {
+      const sidebarProducts = filteredProducts
+        .filter(product => product.isNew)
+        .slice(0, 6);
+      
+      const sidebarContainer = document.getElementById('sidebarProducts');
+      sidebarContainer.innerHTML = sidebarProducts
+        .map(product => createSidebarProductHTML(product))
+        .join('');
+    }
+
+    // Sort products
+    function sortProducts(sortType) {
+      currentSort = sortType;
+      
+      // Update active sort button
+      document.querySelectorAll('.sort-button').forEach(btn => btn.classList.remove('active'));
+      event.target.closest('.sort-button').classList.add('active');
+
+      let sortedProducts = [...filteredProducts];
+      
+      switch(sortType) {
+        case 'price-low':
+          sortedProducts.sort((a, b) => a.newPrice - b.newPrice);
+          break;
+        case 'price-high':
+          sortedProducts.sort((a, b) => b.newPrice - a.newPrice);
+          break;
+        case 'new':
+          sortedProducts.sort((a, b) => b.isNew - a.isNew);
+          break;
+        case 'bestsellers':
+        case 'popular':
+        default:
+          // Keep original order for popular/bestsellers
+          break;
+      }
+      
+      filteredProducts = sortedProducts;
+      currentPage = 1;
+      renderProducts();
+    }
+
+    // Search products
+    function filterProducts() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      
+      if (searchTerm) {
+        const searchResults = productsData.filter(product => 
+          product.brand === currentBrand &&
+          (product.name.toLowerCase().includes(searchTerm) ||
+           product.brand.toLowerCase().includes(searchTerm))
+        );
+        filteredProducts = searchResults;
+      } else {
+        filteredProducts = productsData.filter(product => product.brand === currentBrand);
+      }
+      
+      currentPage = 1;
+      renderProducts();
+    }
+
+    // Render products with pagination
+    function renderProducts() {
+      const startIndex = (currentPage - 1) * productsPerPage;
+      const endIndex = startIndex + productsPerPage;
+      const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
+      
+      const productGrid = document.getElementById('productGrid');
+      const loadingMessage = document.getElementById('loadingMessage');
+      
+      loadingMessage.style.display = 'none';
+      
+      if (paginatedProducts.length === 0) {
+        productGrid.innerHTML = '<div style="text-align: center; padding: 40px;">No products found.</div>';
+        return;
+      }
+      
+      productGrid.innerHTML = paginatedProducts
+        .map(product => createProductHTML(product))
+        .join('');
+      
+      updatePagination();
+    }
+
+    // Update pagination
+    function updatePagination() {
+      const totalProducts = filteredProducts.length;
+      const totalPages = Math.ceil(totalProducts / productsPerPage);
+      const startItem = (currentPage - 1) * productsPerPage + 1;
+      const endItem = Math.min(currentPage * productsPerPage, totalProducts);
+      
+      // Update pagination info
+      document.getElementById('paginationInfo').innerHTML = 
+        `Displaying <strong>${startItem} to ${endItem}</strong> (of <strong>${totalProducts}</strong> products)`;
+      
+      // Generate pagination links
+      let paginationHTML = '';
+      
+      if (currentPage > 1) {
+        paginationHTML += `<a href="#" class="page" onclick="changePage(${currentPage - 1}); return false;">[« Prev]</a>`;
+      }
+      
+      for (let i = 1; i <= Math.min(5, totalPages); i++) {
+        if (i === currentPage) {
+          paginationHTML += `<span class="page current">${i}</span>`;
+        } else {
+          paginationHTML += `<a href="#" class="page" onclick="changePage(${i}); return false;">${i}</a>`;
+        }
+      }
+      
+      if (totalPages > 5) {
+        paginationHTML += '<span class="ellipsis">...</span>';
+      }
+      
+      if (currentPage < totalPages) {
+        paginationHTML += `<a href="#" class="page next" onclick="changePage(${currentPage + 1}); return false;">[Next »]</a>`;
+      }
+      
+      document.getElementById('paginationLinks').innerHTML = paginationHTML;
+      
+      // Update top pagination
+      document.getElementById('topPagination').innerHTML = paginationHTML;
+    }
+
+    // Change page
+    function changePage(page) {
+      currentPage = page;
+      renderProducts();
+      window.scrollTo(0, 0);
+    }
+
+    // Real-time search
+    document.getElementById('searchInput').addEventListener('input', filterProducts);
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProductsFromJSON();
+      updateCartCount(); // Update cart count on page load
+    });
+
+    // Update cart count function
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count a');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
+      });
+    }
+  </script>
+  <script src="script.js"></script>  
 </body>
 </html>

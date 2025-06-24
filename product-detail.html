@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="productTitle">Product Details - Texas Watches</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <style>
+    /* Product Detail Page Specific CSS */
+    .product-detail-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .product-images {
+      position: relative;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+    }
+
+    .thumbnail-images {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .thumbnail:hover,
+    .thumbnail.active {
+      border-color: #333;
+    }
+
+    .product-info {
+      padding: 20px 0;
+    }
+
+    .product-breadcrumb {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .product-breadcrumb a {
+      color: #333;
+      text-decoration: none;
+    }
+
+    .product-breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .product-name {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .product-brand {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stars {
+      color: #ffd700;
+      font-size: 1.2rem;
+    }
+
+    .rating-text {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .product-price {
+      margin-bottom: 30px;
+    }
+
+    .current-price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #e74c3c;
+      margin-right: 20px;
+    }
+
+    .original-price {
+      font-size: 1.5rem;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .discount-badge {
+      background: #e74c3c;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-left: 15px;
+    }
+
+    .product-description {
+      margin-bottom: 30px;
+    }
+
+    .product-description h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .product-description p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .product-features {
+      background: #f8f8f8;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .product-features h4 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .features-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .features-list li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .feature-value {
+      color: #666;
+    }
+
+    .product-actions {
+      margin-bottom: 30px;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .quantity-selector label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .quantity-input {
+      width: 80px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      min-width: 150px;
+    }
+
+    .btn-primary {
+      background: #333;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #555;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #333;
+      border: 2px solid #333;
+    }
+
+    .btn-secondary:hover {
+      background: #333;
+      color: white;
+    }
+
+    .btn-wishlist {
+      background: #f8f8f8;
+      color: #333;
+      border: 1px solid #ddd;
+      padding: 15px;
+      width: 50px;
+    }
+
+    .btn-wishlist:hover {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .shipping-info {
+      background: #e8f5e8;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .shipping-info h4 {
+      color: #27ae60;
+      margin-bottom: 10px;
+    }
+
+    .shipping-info p {
+      color: #27ae60;
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+
+    .related-products {
+      margin-top: 60px;
+      padding: 40px 20px;
+      background: #f8f8f8;
+    }
+
+    .related-products h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .related-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .related-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .related-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .related-card-info {
+      padding: 20px;
+    }
+
+    .related-card-info h4 {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    .related-card-info .price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    .back-button {
+      margin: 20px;
+      display: inline-block;
+    }
+
+    .back-button a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-button a:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    .error {
+      text-align: center;
+      padding: 40px;
+      color: #e74c3c;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .product-detail-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+      }
+
+      .product-name {
+        font-size: 1.5rem;
+      }
+
+      .current-price {
+        font-size: 2rem;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        min-width: auto;
+      }
+
+      .quantity-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .main-image {
+        height: 300px;
+      }
+
+      .related-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+    }
+
+    /* Image zoom effect */
+    .image-zoom {
+      position: relative;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+
+    .image-zoom img {
+      transition: transform 0.3s;
+    }
+
+    .image-zoom:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Stock status */
+    .stock-status {
+      margin: 20px 0;
+      padding: 10px 15px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .in-stock {
+      background: #e8f5e8;
+      color: #27ae60;
+    }
+
+    .out-of-stock {
+      background: #fdf2f2;
+      color: #e74c3c;
+    }
+
+    .low-stock {
+      background: #fff8e1;
+      color: #f39c12;
+    }
+  </style>
+</head>
+<body>
+  <div class="topHeaderDiv">
+    <div>Save Up to 90% Off * Free Shipping All Order.</div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">My Account ▼</button>
+      <div class="dropdown-content">
+        <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
+        <a href="login.html">Log In</a>
+        <a href="createaccount.html">Register</a>
+        <a href="login.html">My Account</a>
+        <a href="shoppingcart.html">Shopping Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="headermid">
+    <div class="headermidSecondDiv">
+      <h1><a href="index.html" style="color: black; text-decoration: none;">Texas Watches</a></h1>
+      <p class="headermidSecondDivSecondpara">Best Luxury Watches On Sale, Up To 90% Off. <br>
+        Free Worldwide Shipping. Free Return - 30 Day Right To Return.</p>
+    </div>
+    <div class="header-icons">
+      <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="cart-icon">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count"><a href="shoppingcart.html" style="text-decoration: none;">0</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <ul class="HeaderMenu">
+      <li><a href="index.html" style="text-decoration: none; color: black;">HOME</a></li>
+      <li><a href="rolex.html" style="text-decoration: none; color: black;">ROLEX</a></li>
+      <li><a href="omega.html" style="text-decoration: none; color: black;">OMEGA</a></li>
+      <li><a href="cartier.html" style="text-decoration: none; color: black;">CARTIER</a></li>
+      <li><a href="patek-philippe.html" style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
+      <li><a href="breitling.html" style="text-decoration: none; color: black;">BREITLING</a></li>
+    </ul>
+  </div>
+
+  <div class="back-button">
+    <a href="javascript:history.back()"><i class="fas fa-arrow-left"></i> Back to Products</a>
+  </div>
+
+  <div id="loadingMessage" class="loading">Loading product details...</div>
+  <div id="errorMessage" class="error" style="display: none;">Product not found!</div>
+
+  <div id="productContainer" style="display: none;">
+    <div class="product-detail-container">
+      <!-- Product Images -->
+      <div class="product-images">
+        <div class="image-zoom">
+          <img id="mainImage" class="main-image" src="" alt="Product Image">
+        </div>
+        <div class="thumbnail-images" id="thumbnailImages">
+          <!-- Thumbnails will be generated dynamically -->
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <div class="product-breadcrumb" id="breadcrumb">
+          <!-- Breadcrumb will be generated dynamically -->
+        </div>
+
+        <div class="product-brand" id="productBrand"></div>
+        <h1 class="product-name" id="productName"></h1>
+
+        <div class="product-rating">
+          <div class="stars" id="productStars"></div>
+          <span class="rating-text">(5 out of 5 stars)</span>
+        </div>
+
+        <div class="stock-status in-stock" id="stockStatus">
+          <i class="fas fa-check-circle"></i> In Stock - Ready to Ship
+        </div>
+
+        <div class="product-price">
+          <span class="current-price" id="currentPrice"></span>
+          <span class="original-price" id="originalPrice"></span>
+          <span class="discount-badge" id="discountBadge"></span>
+        </div>
+
+        <div class="product-description">
+          <h3>Product Description</h3>
+          <p id="productDescription"></p>
+          <p>This luxury watch represents the pinnacle of craftsmanship and precision. Each timepiece is carefully assembled by skilled artisans, ensuring exceptional quality and reliability.</p>
+        </div>
+
+        <div class="product-features">
+          <h4>Product Specifications</h4>
+          <ul class="features-list" id="productFeatures">
+            <!-- Features will be generated dynamically -->
+          </ul>
+        </div>
+
+        <div class="product-actions">
+          <div class="quantity-selector">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" class="quantity-input" value="1" min="1" max="10">
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn btn-primary" onclick="addToCart()">
+              <i class="fas fa-shopping-cart"></i> Add to Cart
+            </button>
+            <button class="btn btn-secondary" onclick="buyNow()">
+              <i class="fas fa-bolt"></i> Buy Now
+            </button>
+            <button class="btn btn-wishlist" onclick="addToWishlist()">
+              <i class="fas fa-heart"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="shipping-info">
+          <h4><i class="fas fa-shipping-fast"></i> Free Worldwide Shipping</h4>
+          <p><i class="fas fa-truck"></i> Fast delivery in 3-5 business days</p>
+          <p><i class="fas fa-undo"></i> 30-day return policy</p>
+          <p><i class="fas fa-shield-alt"></i> 2-year warranty included</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <div class="related-products" id="relatedProducts" style="display: none;">
+    <h3>You May Also Like</h3>
+    <div class="related-grid" id="relatedGrid">
+      <!-- Related products will be generated dynamically -->
+    </div>
+  </div>
+
+  <!-- Font Awesome (for social and card icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h4>OUR COMPANY</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="shippingreturns.html">Shipping & Returns</a></li>
+          <li><a href="privacypolicy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>CUSTOMER SERVICE</h4>
+        <ul>
+          <li><a href="contactus.html">Contact Us</a></li>
+          <li><a href="payment.html">Payment</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>MY ACCOUNT</h4>
+        <ul>
+          <li><a href="login.html">Log In</a></li>
+          <li><a href="login.html">My Account</a></li>
+          <li><a href="login.html">My Order</a></li>
+          <li><a href="shoppingcart.html">Shopping Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-icons">
+        <div class="payment-icons">
+          <img src="./images/payment_icons.png" alt="Visa">
+        </div>
+        <div class="social-icons">
+          <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
+          <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    let productsData = [];
+    let currentProduct = null;
+
+    // Get product ID from URL parameter
+    function getProductIdFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('id');
+    }
+
+    // Load products from JSON
+    async function loadProductsFromJSON() {
+      try {
+        const response = await fetch('products.json');
+        if (!response.ok) {
+          throw new Error('JSON file not found');
+        }
+        productsData = await response.json();
+        const productId = getProductIdFromURL();
+        if (productId) {
+          loadProduct(parseInt(productId));
+        } else {
+          showError();
+        }
+      } catch (error) {
+        console.error('Error loading products:', error);
+        showError();
+      }
+    }
+
+    // Load specific product
+    function loadProduct(productId) {
+      currentProduct = productsData.find(product => product.id === productId);
+      
+      if (currentProduct) {
+        displayProduct(currentProduct);
+        loadRelatedProducts();
+      } else {
+        showError();
+      }
+    }
+
+    // Display product details
+    function displayProduct(product) {
+      const loadingMessage = document.getElementById('loadingMessage');
+      const productContainer = document.getElementById('productContainer');
+      
+      loadingMessage.style.display = 'none';
+      productContainer.style.display = 'block';
+
+      // Update page title
+      document.getElementById('productTitle').textContent = `${product.name} - Texas Watches`;
+
+      // Update breadcrumb
+      const brandName = product.brand.replace('-', ' ').toUpperCase();
+      document.getElementById('breadcrumb').innerHTML = 
+        `<a href="index.html">Home</a> / <a href="${product.brand}.html">${brandName}</a> / ${product.name}`;
+
+      // Update product info
+      document.getElementById('productBrand').textContent = brandName;
+      document.getElementById('productName').textContent = product.name;
+      document.getElementById('productStars').textContent = '★★★★★';
+      
+      // Update prices
+      document.getElementById('currentPrice').textContent = `$${product.newPrice.toLocaleString()}`;
+      document.getElementById('originalPrice').textContent = `$${product.oldPrice.toLocaleString()}`;
+      
+      // Calculate discount percentage
+      const discountPercent = Math.round(((product.oldPrice - product.newPrice) / product.oldPrice) * 100);
+      document.getElementById('discountBadge').textContent = `${discountPercent}% OFF`;
+
+      // Update images
+      const mainImage = document.getElementById('mainImage');
+      mainImage.src = product.image;
+      mainImage.alt = product.name;
+
+      // Create thumbnail images (for demo, using same image)
+      const thumbnailContainer = document.getElementById('thumbnailImages');
+      thumbnailContainer.innerHTML = Array(4).fill().map((_, index) => 
+        `<img src="${product.image}" alt="Thumbnail ${index + 1}" class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeMainImage('${product.image}', this)">`
+      ).join('');
+
+      // Update description
+      document.getElementById('productDescription').textContent = 
+        `This exquisite ${brandName} timepiece combines traditional craftsmanship with modern innovation. ${product.name} features premium materials and precision engineering.`;
+
+      // Update features
+      const features = [
+        { label: 'Brand', value: brandName },
+        { label: 'Model', value: product.name.split(' ').slice(-2).join(' ') },
+        { label: 'Case Material', value: 'Stainless Steel' },
+        { label: 'Movement', value: 'Automatic' },
+        { label: 'Water Resistance', value: '100m' },
+        { label: 'Warranty', value: '2 Years' },
+        { label: 'Gender', value: product.category === 'men' ? 'Men\'s' : 'Women\'s' }
+      ];
+
+      document.getElementById('productFeatures').innerHTML = features.map(feature => 
+        `<li><span class="feature-label">${feature.label}:</span><span class="feature-value">${feature.value}</span></li>`
+      ).join('');
+    }
+
+    // Change main image
+    function changeMainImage(imageSrc, thumbnail) {
+      document.getElementById('mainImage').src = imageSrc;
+      document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+      thumbnail.classList.add('active');
+    }
+
+    // Load related products
+    function loadRelatedProducts() {
+      const relatedProducts = productsData
+        .filter(product => 
+          product.brand === currentProduct.brand && 
+          product.id !== currentProduct.id
+        )
+        .slice(0, 4);
+
+      if (relatedProducts.length > 0) {
+        const relatedContainer = document.getElementById('relatedProducts');
+        const relatedGrid = document.getElementById('relatedGrid');
+        
+        relatedGrid.innerHTML = relatedProducts.map(product => 
+          `<div class="related-card">
+            <a href="product-detail.html?id=${product.id}" style="text-decoration: none; color: inherit;">
+              <img src="${product.image}" alt="${product.name}">
+              <div class="related-card-info">
+                <h4>${product.name}</h4>
+                <div class="price">$${product.newPrice.toLocaleString()}</div>
+              </div>
+            </a>
+          </div>`
+        ).join('');
+        
+        relatedContainer.style.display = 'block';
+      }
+    }
+
+    // Show error message
+    function showError() {
+      document.getElementById('loadingMessage').style.display = 'none';
+      document.getElementById('errorMessage').style.display = 'block';
+    }
+
+    // Add to cart function
+    function addToCart() {
+      const quantity = parseInt(document.getElementById('quantity').value);
+      
+      // Use CartManager if available (from cart page)
+      if (window.CartManager) {
+        window.CartManager.addToCart(currentProduct.id, quantity);
+      } else {
+        // Fallback localStorage implementation
+        let cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+        const existingItem = cart.find(item => item.productId === currentProduct.id);
+        
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({
+            productId: currentProduct.id,
+            quantity: quantity,
+            addedAt: new Date().toISOString()
+          });
+        }
+        
+        localStorage.setItem('texasWatchesCart', JSON.stringify(cart));
+        updateCartCount();
+      }
+      
+      showSuccessMessage(`Added ${quantity} x ${currentProduct.name} to cart!`);
+    }
+
+    // Update cart count in header
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count a');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
+      });
+    }
+
+    // Show success message
+    function showSuccessMessage(message) {
+      // Create success message
+      const messageDiv = document.createElement('div');
+      messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #d4edda;
+        color: #155724;
+        padding: 15px 20px;
+        border-radius: 4px;
+        border: 1px solid #c3e6cb;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      `;
+      messageDiv.textContent = message;
+      
+      document.body.appendChild(messageDiv);
+      
+      // Remove message after 3 seconds
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 3000);
+    }
+
+    // Buy now function
+    function buyNow() {
+      const quantity = parseInt(document.getElementById('quantity').value);
+      
+      // Add to cart first
+      if (window.CartManager) {
+        window.CartManager.addToCart(currentProduct.id, quantity);
+      } else {
+        let cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+        const existingItem = cart.find(item => item.productId === currentProduct.id);
+        
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({
+            productId: currentProduct.id,
+            quantity: quantity,
+            addedAt: new Date().toISOString()
+          });
+        }
+        
+        localStorage.setItem('texasWatchesCart', JSON.stringify(cart));
+      }
+      
+      // Redirect to checkout
+      window.location.href = 'checkout.html';
+    }
+
+    // Add to wishlist function
+    function addToWishlist() {
+      alert(`${currentProduct.name} added to wishlist!`);
+      const wishlistBtn = document.querySelector('.btn-wishlist i');
+      wishlistBtn.style.color = '#e74c3c';
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProductsFromJSON();
+      updateCartCount(); // Update cart count on page load
+    });
+  </script>
+  <script src="script.js"></script>  
+</body>
+</html>
