@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texas Watche Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+</head>
+<body>
+    <div class="topHeaderDiv">
+    <div>Save Up to 90% Off * Free Shipping All Order.</div>
+    <div class="dropdown">
+      <button class="dropdown-toggle">My Account ▼</button>
+      <div class="dropdown-content">
+        <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
+        <a href="login.html">Log In</a>
+        <a href="createaccount.html">Register</a>
+         <a href="login.html">My Account</a>
+         <a href="shoppingcart.html">Shopping Cart</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="headermid">
+    <div class="headermidSecondDiv">
+      <h1><a href="index.html"style="text-decoration: none; color: black;">Texas Watches</a></h1>
+      <p class="headermidSecondDivSecondpara">Best Luxury Watches On Sale, Up To 90% Off. <br>
+        Free Worldwide Shipping. Free Return - 30 Day Right To Return.</p>
+    </div>
+    <div class="header-icons">
+      <div class="search-box">
+        <input type="text" placeholder="Search...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="cart-icon">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count"><a href="shoppingcart.html" style="text-decoration: none;">0</a></span>
+      </div>
+    </div>
+  </div>
+
+
+  <div>
+    <ul class="HeaderMenu">
+      <li><a href="index.html"style="text-decoration: none; color: black;">HOME</a></li>
+      <li><a href="rolex.html"style="text-decoration: none; color: black;">ROLEX</a></li>
+      <li><a href="omega.html"style="text-decoration: none; color: black;">OMEGA</a></li>
+      <li><a href="cartier.html"style="text-decoration: none; color: black;">CARTIER</a></li>
+      <li><a href="patek-philippe.html"style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
+      <li><a href="breitling.html"style="text-decoration: none; color: black;">BREITLING</a></li>
+    </ul>
+  </div>
+
+
+
+
+
+   <div class="auth-container">
+  <div class="signin-section">
+    <i class="fas fa-clock auth-icon icon-clock"></i>
+    <i class="fas fa-watch auth-icon icon-watch"></i>
+
+    <h2 class="auth-heading">WELCOME, PLEASE SIGN IN</h2>
+    <p class="auth-subtext"><b>Returning Customers, Please Log In</b></p>
+
+    <form>
+      <div class="auth-form-group">
+        <label for="signin-email">Email Address</label>
+        <input type="email" id="signin-email" name="signin-email" placeholder="Enter your email">
+      </div>
+
+      <div class="auth-form-group">
+        <label for="signin-password">Password</label>
+        <input type="password" id="signin-password" name="signin-password" placeholder="Enter your password">
+      </div>
+
+      <button type="submit" class="auth-button">SIGN IN</button>
+      <br>
+      <a href="#" class="forgot-link">Forgot your password?</a>
+    </form>
+  </div>
+
+  <div class="register-section">
+    <h2 class="auth-heading">New? Please Provide Your Billing Information</h2>
+    <p class="auth-subtext">Create a customer profile with <b>Texas Watches</b> which allows you to shop faster, track the status of your current orders and review your previous orders.</p>
+
+    <h3 class="form-title">Address Details</h3>
+    <div class="auth-radio-group">
+      <input type="radio" id="title-mr" name="title" value="Mr.">
+      <label for="title-mr">Mr.</label>
+      <input type="radio" id="title-ms" name="title" value="Ms.">
+      <label for="title-ms">Ms.</label>
+    </div>
+
+    <form>
+      <div class="auth-form-row">
+        <div class="auth-form-col">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first-name" placeholder="John">
+        </div>
+        <div class="auth-form-col">
+          <label for="last-name">Last Name</label>
+          <input type="text" id="last-name" name="last-name" placeholder="Doe">
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="address-1">Street Address</label>
+        <input type="text" id="address-1" name="address-1" placeholder="123 Main St">
+      </div>
+
+      <div class="auth-form-group">
+        <label for="address-2">Street Address 2 (Optional)</label>
+        <input type="text" id="address-2" name="address-2" placeholder="Apt, suite, etc.">
+      </div>
+
+      <div class="auth-form-row">
+        <div class="auth-form-col">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="New York">
+        </div>
+        <div class="auth-form-col">
+          <label for="state">State/Province</label>
+          <select id="state" name="state">
+            <option value="">Please select...</option>
+            <option value="AL">Alabama</option>
+            <option value="CA">California</option>
+            <option value="NY">New York</option>
+            <option value="TX">Texas</option>
+          </select>
+        </div>
+        <div class="auth-form-col">
+          <label for="zip">Postal/Zip Code</label>
+          <input type="text" id="zip" name="zip" placeholder="10001">
+        </div>
+      </div>
+
+      <div class="auth-form-group">
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="US">United States</option>
+          <option value="CA">Canada</option>
+          <option value="UK">United Kingdom</option>
+          <option value="AU">Australia</option>
+        </select>
+      </div>
+
+      <h3 class="form-title">Additional Contact Details</h3>
+      <div class="auth-form-group">
+        <label for="phone">Telephone</label>
+        <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
+      </div>
+
+      <h3 class="form-title">Login Details</h3>
+      <div class="auth-form-group">
+        <label for="register-email">Email Address</label>
+        <input type="email" id="register-email" name="register-email" placeholder="your.email@example.com">
+      </div>
+
+      <div class="auth-form-row">
+        <div class="auth-form-col">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password" name="register-password" placeholder="Create a password">
+        </div>
+        <div class="auth-form-col">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password">
+        </div>
+      </div>
+
+      <h3 class="form-title">Newsletter & Email Preferences</h3>
+      <div class="auth-checkbox-group">
+        <input type="checkbox" id="newsletter" name="newsletter">
+        <label for="newsletter">Subscribe to Our Newsletter</label>
+      </div>
+
+      <div class="auth-radio-group">
+        <input type="radio" id="html-format" name="format" value="HTML">
+        <label for="html-format">HTML</label>
+        <input type="radio" id="text-format" name="format" value="TEXT Only">
+        <label for="text-format">TEXT Only</label>
+      </div>
+
+      <button type="submit" class="auth-button submit-btn">SUBMIT THIS INFORMATION</button>
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+ <!-- Font Awesome (for social and card icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h4>OUR COMPANY</h4>
+      <ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="shippingreturns.html">Shipping & Returns</a></li>
+        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>CUSTOMER SERVICE</h4>
+      <ul>
+        <li><a href="contactus.html">Contact Us</a></li>
+        <li><a href="payment.html">Payment</a></li>
+        <li><a href="sitemap.html">Site Map</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>MY ACCOUNT</h4>
+      <ul>
+        <li><a href="login.html">Log In</a></li>
+        <li><a href="login.html">My Account</a></li>
+        <li><a href="login.html">My Order</a></li>
+        <li><a href="shoppingcart.html">Shopping Cart</a></li>
+      </ul>
+    </div>
+    <div class="footer-icons">
+      <div class="payment-icons">
+        <img src="./images/payment_icons.png" alt="Visa">
+      </div>
+      <div class="social-icons">
+        <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
+        <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
+        <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
+        <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
+        <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>
