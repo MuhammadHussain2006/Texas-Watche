@@ -2578,5 +2578,113 @@
     "rating": 5,
     "isNew": false,
     "page": "cartier"
+  },
+  {
+    "id": 216,
+    "name": "Cartier Ronde Solo XL Blue Dial Automatic Steel Mens Watch WSRN0023",
+    "brand": "cartier",
+    "image": "./images/Cartier new 30.jpg",
+    "oldPrice": 39900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 217,
+    "name": "Cartier Panthere Jumbo Steel Yellow Gold Three Row Mens Watch 30834 Box Papers",
+    "brand": "cartier",
+    "image": "./images/Cartier new 31.jpg",
+    "oldPrice": 47900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 218,
+    "name": "Cartier Ballon Bleu 36mm Silver Guilloche Dial Mens Watch W69011Z4",
+    "brand": "cartier",
+    "image": "./images/Cartier new 32.jpg",
+    "oldPrice": 46900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 219,
+    "name": "Cartier Drive de Cartier Black Dial Steel Mens Watch WSNM0009",
+    "brand": "cartier",
+    "image": "./images/Cartier new 33.jpg",
+    "oldPrice": 48900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 220,
+    "name": "Cartier Ronde Solo Large Rose Gold Steel Mens Watch W6701008 Papers",
+    "brand": "cartier",
+    "image": "./images/Cartier new 34.jpg",
+    "oldPrice": 48900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 221,
+    "name": "Cartier Drive Silver Dial Steel Mens Watch WSNM0004 Box Papers",
+    "brand": "cartier",
+    "image": "./images/Cartier new 35.jpg",
+    "oldPrice": 49900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 222,
+    "name": "Cartier Pasha 38mm Steel Yellow Gold Silver Dial Mens Watch W31035T6",
+    "brand": "cartier",
+    "image": "./images/Cartier new 36.jpg",
+    "oldPrice": 5190,
+    "newPrice": 270,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 223,
+    "name": "Cartier Ballon Bleu Blue Dial Steel Automatic Mens Watch WSBB0027",
+    "brand": "cartier",
+    "image": "./images/Cartier new 37.jpg",
+    "oldPrice": 5390,
+    "newPrice": 270,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 224,
+    "name": "Cartier Pasha 42mm Chronograph Steel Mens Watch W31085M7",
+    "brand": "cartier",
+    "image": "./images/Cartier new 38.jpg",
+    "oldPrice": 5490,
+    "newPrice": 270,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
   }
 ]
