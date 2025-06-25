@@ -2518,5 +2518,65 @@
     "rating": 5,
     "isNew": false,
     "page": "cartier"
+  },
+  {
+    "id": 211,
+    "name": "Cartier Roadster Vegas Roulette Red Green Steel Mens Watch W62002V3",
+    "brand": "cartier",
+    "image": "./images/Cartier new 25.jpg",
+    "oldPrice": 36900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 212,
+    "name": "Cartier Pasha Seatimer Stainless Steel Silver Dial Mens Watch W31080M7",
+    "brand": "cartier",
+    "image": "./images/Cartier new 26.jpg",
+    "oldPrice": 37900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 213,
+    "name": "Cartier Pasha Seatimer Black Dial Automatic Steel Mens Watch W31077M7 Box Papers",
+    "brand": "cartier",
+    "image": "./images/Cartier new 27.jpg",
+    "oldPrice": 37900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 214,
+    "name": "Cartier Pasha Seatimer Steel Black Rubber-Coated Bracelet Mens Watch W31077U2",
+    "brand": "cartier",
+    "image": "./images/Cartier new 28.jpg",
+    "oldPrice": 38900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
+  },
+  {
+    "id": 215,
+    "name": "Cartier Tank Francaise Large Automatic Steel Yellow Gold Mens Watch W51005Q4",
+    "brand": "cartier",
+    "image": "./images/Cartier new 29.jpg",
+    "oldPrice": 39900,
+    "newPrice": 250,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "cartier"
   }
 ]
