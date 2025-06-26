@@ -3118,5 +3118,29 @@
     "rating": 5,
     "isNew": false,
     "page": "omega"
+  },
+  {
+    "id": 261,
+    "name": "Omega DeVille Hour Vision Rose Gold Mens Watch 431.63.41.21.13.001 Unworn",
+    "brand": "omega",
+    "image": "./images/Omega new 74.jpg",
+    "oldPrice": 12990,
+    "newPrice": 330,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 262,
+    "name": "Omega Speedmaster Professional Snoopy MoonWatch 3578.51.00 Box Card",
+    "brand": "omega",
+    "image": "./images/Omega new 75.jpg",
+    "oldPrice": 25990,
+    "newPrice": 350,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
   }
 ]
