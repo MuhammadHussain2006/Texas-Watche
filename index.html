@@ -3,131 +3,372 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Texas Watches Home</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Texas Watches - Luxury Timepieces</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <style>
+    .hero-gradient {
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: white !important;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      width: 50px !important;
+      height: 50px !important;
+    }
+    .swiper-pagination-bullet {
+      background: white !important;
+      opacity: 0.7;
+    }
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .mobile-menu {
+      display: none;
+    }
+    .mobile-menu.active {
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+    }
+  </style>
 </head>
-<body>
-  <div class="topHeaderDiv">
-    <div>Save Up to 90% Off * Free Shipping All Order.</div>
-    <div class="dropdown">
-      <button class="dropdown-toggle">My Account ▼</button>
-      <div class="dropdown-content">
-        <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
-        <a href="login.html">Log In</a>
-        <a href="createaccount.html">Register</a>
-        <a href="login.html">My Account</a>
-        <a href="shoppingcart.html">Shopping Cart</a>
+<body class="bg-white text-black">
+  
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-shipping-fast"></i>
+        <span>Save Up to 90% Off • Free Shipping All Orders</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
+          <i class="fas fa-user"></i>
+          <span>My Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-sign-in-alt mr-2"></i>Log In
+          </a>
+          <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-user-plus mr-2"></i>Register
+          </a>
+          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-user-circle mr-2"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="headermid">
-    <div class="headermidSecondDiv">
-      <h1><a href="index.html" style="text-decoration: none; color: black;">Texas Watches</a></h1>
-      <p class="headermidSecondDivSecondpara">Best Luxury Watches On Sale, Up To 90% Off. <br>
-        Free Worldwide Shipping. Free Return - 30 Day Right To Return.</p>
-    </div>
-    <div class="header-icons">
-      <div class="search-box">
-        <input type="text" placeholder="Search..." id="searchInput">
-        <button type="submit" onclick="filterProducts()"><i class="fas fa-search"></i></button>
+  <!-- Main Header -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        
+        <!-- Logo and Tagline -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
+            <p class="text-sm text-gray-600 max-w-md">
+              Best Luxury Watches On Sale, Up To 90% Off.<br>
+              Free Worldwide Shipping • 30 Day Returns
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Cart -->
+        <div class="flex items-center space-x-6">
+          <!-- Search Box -->
+          <div class="relative hidden md:block">
+            <input 
+              type="text" 
+              placeholder="Search watches..." 
+              id="searchInput"
+              class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
+            >
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <button 
+              onclick="filterProducts()" 
+              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors"
+            >
+              Search
+            </button>
+          </div>
+
+          <!-- Cart -->
+          <div class="relative">
+            <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
+              <div class="relative">
+                <i class="fas fa-shopping-bag text-2xl"></i>
+                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+              </div>
+              <span class="hidden lg:inline font-medium">Cart</span>
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
       </div>
-      <div class="cart-icon">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count"><a href="shoppingcart.html" style="text-decoration: none;">0</a></span>
+
+      <!-- Mobile Search -->
+      <div class="md:hidden mt-4">
+        <div class="relative">
+          <input 
+            type="text" 
+            placeholder="Search watches..." 
+            id="mobileSearchInput"
+            class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
+          >
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <button 
+            onclick="filterProducts()" 
+            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm"
+          >
+            Go
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div>
-    <ul class="HeaderMenu">
-      <li><a href="index.html" style="text-decoration: none; color: black;" onclick="filterByBrand('all'); return false;">HOME</a></li>
-      <li><a href="rolex.html" style="text-decoration: none; color: black;">ROLEX</a></li>
-      <li><a href="omega.html" style="text-decoration: none; color: black;">OMEGA</a></li>
-      <li><a href="cartier.html" style="text-decoration: none; color: black;">CARTIER</a></li>
-      <li><a href="patek-philippe.html" style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
-      <li><a href="breitling.html" style="text-decoration: none; color: black;">BREITLING</a></li>
-    </ul>
-  </div>
+  <!-- Navigation -->
+  <nav class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <!-- Desktop Menu -->
+      <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
+        <li><a href="index.html" class="font-medium hover:text-gray-600 transition-colors border-b-2 border-black pb-1">HOME</a></li>
+        <li><a href="rolex.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">ROLEX</a></li>
+        <li><a href="omega.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">OMEGA</a></li>
+        <li><a href="cartier.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">CARTIER</a></li>
+        <li><a href="patek-philippe.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">PATEK PHILIPPE</a></li>
+        <li><a href="breitling.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">BREITLING</a></li>
+      </ul>
 
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="./images/slick01.jpg" alt="Slide 1"></div>
-      <div class="swiper-slide"><img src="./images/slick02.jpg" alt="Slide 2"></div>
-      <div class="swiper-slide"><img src="./images/slick03.jpg" alt="Slide 3"></div>
-      <div class="swiper-slide"><img src="./images/slick04.jpg" alt="Slide 4"></div>
-      <div class="swiper-slide"><img src="./images/slick05.jpg" alt="Slide 5"></div>
+      <!-- Mobile Menu -->
+      <div class="mobile-menu py-4" id="mobileMenu">
+        <ul class="space-y-4">
+          <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
+          <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
+          <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
+          <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
+          <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
+          <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Navigation arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-
-    <!-- Pagination dots -->
-    <div class="swiper-pagination"></div>
-  </div>
-
-  <!-- New Arrival Section -->
-  <section class="new-arrivals">
-    <h2 class="section-title">New Arrival</h2>
-    <div id="loadingMessage" style="text-align: center; padding: 20px; font-size: 1.2rem; color: #666;">
-      Loading products...
-    </div>
-    <div class="product-grid" id="productGrid">
-      <!-- Products will be dynamically loaded here -->
+  <!-- Hero Slider -->
+  <section class="relative">
+    <div class="swiper mySwiper h-96 md:h-[500px] lg:h-[600px]">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="relative h-full">
+            <img src="./images/slick01.jpg" alt="Luxury Watches" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div class="text-center text-white">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">Luxury Timepieces</h2>
+                <p class="text-xl md:text-2xl mb-6">Discover Excellence in Every Detail</p>
+                <button class="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                  Shop Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="relative h-full">
+            <img src="./images/slick02.jpg" alt="Premium Collection" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div class="text-center text-white">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">Premium Collection</h2>
+                <p class="text-xl md:text-2xl mb-6">Up to 90% Off Selected Items</p>
+                <button class="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                  Explore Collection
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="relative h-full">
+            <img src="./images/slick03.jpg" alt="Swiss Made" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+              <div class="text-center text-white">
+                <h2 class="text-4xl md:text-6xl font-bold mb-4">Swiss Craftsmanship</h2>
+                <p class="text-xl md:text-2xl mb-6">Authentic Luxury Watches</p>
+                <button class="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+                  View Collection
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
     </div>
   </section>
 
-  <!-- Font Awesome (for social and card icons) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- New Arrivals Section -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-black mb-4">New Arrivals</h2>
+        <p class="text-gray-600 text-lg">Discover our latest collection of luxury timepieces</p>
+        <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
+      </div>
 
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h4>OUR COMPANY</h4>
-        <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="shippingreturns.html">Shipping & Returns</a></li>
-          <li><a href="privacypolicy.html">Privacy Policy</a></li>
-        </ul>
+      <!-- Loading Message -->
+      <div id="loadingMessage" class="text-center py-12">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+        <p class="mt-4 text-gray-600">Loading exclusive collection...</p>
       </div>
-      <div class="footer-column">
-        <h4>CUSTOMER SERVICE</h4>
-        <ul>
-          <li><a href="contactus.html">Contact Us</a></li>
-          <li><a href="payment.html">Payment</a></li>
-          <li><a href="sitemap.html">Site Map</a></li>
-        </ul>
+
+      <!-- Product Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="productGrid">
+        <!-- Products will be dynamically loaded here -->
       </div>
-      <div class="footer-column">
-        <h4>MY ACCOUNT</h4>
-        <ul>
-          <li><a href="login.html">Log In</a></li>
-          <li><a href="login.html">My Account</a></li>
-          <li><a href="login.html">My Order</a></li>
-          <li><a href="shoppingcart.html">Shopping Cart</a></li>
-        </ul>
-      </div>
-      <div class="footer-icons">
-        <div class="payment-icons">
-          <img src="./images/payment_icons.png" alt="Visa">
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-shipping-fast text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Free Worldwide Shipping</h3>
+          <p class="text-gray-600">Complimentary shipping on all orders, no minimum required</p>
         </div>
-        <div class="social-icons">
-          <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
-          <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
-          <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
-          <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
-          <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-shield-alt text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Authenticity Guaranteed</h3>
+          <p class="text-gray-600">100% authentic luxury watches with certificate of authenticity</p>
+        </div>
+        <div class="text-center">
+          <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-undo text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">30-Day Returns</h3>
+          <p class="text-gray-600">Easy returns within 30 days of purchase, no questions asked</p>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="md:col-span-1">
+          <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
+          <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-pinterest text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Service -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
+            <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- My Account -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
+            <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
+            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
+            <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Payment Icons -->
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <div class="flex justify-center items-center space-x-4 mb-4">
+          <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+        </div>
+        <p class="text-gray-400 text-sm">
+          Copyright © 2025 Texas Watches. All Rights Reserved.
+        </p>
+      </div>
     </div>
   </footer>
 
@@ -135,6 +376,12 @@
     let productsData = [];
     let filteredProducts = [];
     let currentFilter = 'all';
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('active');
+    }
 
     // Function to load products from JSON file
     async function loadProductsFromJSON() {
@@ -148,22 +395,34 @@
         renderProducts(filteredProducts);
       } catch (error) {
         console.error('Error loading products:', error);
-        document.getElementById('loadingMessage').innerHTML = 'Error loading products. Please check if products.json exists.';
+        document.getElementById('loadingMessage').innerHTML = `
+          <div class="text-center py-12">
+            <i class="fas fa-exclamation-triangle text-4xl text-red-500 mb-4"></i>
+            <p class="text-red-600 text-lg">Error loading products. Please check if products.json exists.</p>
+          </div>
+        `;
       }
     }
 
-    // Function to create product HTML
+    // Function to create product HTML with modern card design
     function createProductHTML(product) {
       return `
-        <div class="product-card">
-          <a href="product-detail.html?id=${product.id}">
-            <img src="${product.image}" alt="${product.name}" />
-            <div class="product-info">
-              <h3 class="product-name">${product.name}</h3>
-              <p class="product-price">
-                <span class="old-price">${product.oldPrice.toLocaleString()}.00</span> 
-                <span class="new-price">${product.newPrice.toLocaleString()}.00</span>
-              </p>
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden card-hover border border-gray-100">
+          <a href="product-detail.html?id=${product.id}" class="block">
+            <div class="aspect-square overflow-hidden bg-gray-50">
+              <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+            </div>
+            <div class="p-6">
+              <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2">${product.name}</h3>
+              <div class="flex items-center space-x-2">
+                <span class="text-sm text-gray-400 line-through">$${product.oldPrice.toLocaleString()}</span>
+                <span class="text-xl font-bold text-black">$${product.newPrice.toLocaleString()}</span>
+              </div>
+              <div class="mt-4">
+                <button class="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 transition-colors font-medium">
+                  View Details
+                </button>
+              </div>
             </div>
           </a>
         </div>
@@ -179,7 +438,12 @@
       loadingMessage.style.display = 'none';
       
       if (products.length === 0) {
-        productGrid.innerHTML = '<div style="text-align: center; padding: 40px; font-size: 1.2rem; color: #666;">No products found.</div>';
+        productGrid.innerHTML = `
+          <div class="col-span-full text-center py-12">
+            <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+            <p class="text-gray-600 text-lg">No products found matching your criteria.</p>
+          </div>
+        `;
         return;
       }
       
@@ -203,7 +467,8 @@
 
     // Function to search products
     function filterProducts() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase() || 
+                        document.getElementById('mobileSearchInput').value.toLowerCase();
       
       let searchResults = filteredProducts;
       
@@ -215,33 +480,36 @@
       }
       
       renderProducts(searchResults);
-    }
-
-    // Function to handle product view (optional - for demo purposes)
-    function viewProduct(productId) {
-      // Redirect to product detail page
-      window.location.href = `product-detail.html?id=${productId}`;
     }
 
     // Real-time search functionality
-    document.getElementById('searchInput').addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase();
+    function setupSearch() {
+      const searchInputs = ['searchInput', 'mobileSearchInput'];
       
-      let searchResults = filteredProducts;
-      
-      if (searchTerm) {
-        searchResults = filteredProducts.filter(product => 
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.brand.toLowerCase().includes(searchTerm)
-        );
-      } else {
-        searchResults = filteredProducts;
-      }
-      
-      renderProducts(searchResults);
-    });
+      searchInputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        if (input) {
+          input.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            let searchResults = filteredProducts;
+            
+            if (searchTerm) {
+              searchResults = filteredProducts.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.brand.toLowerCase().includes(searchTerm)
+              );
+            } else {
+              searchResults = filteredProducts;
+            }
+            
+            renderProducts(searchResults);
+          });
+        }
+      });
+    }
 
-    // Initialize Swiper
+    // Initialize Swiper with modern settings
     function initializeSwiper() {
       const swiper = new Swiper('.mySwiper', {
         slidesPerView: 1,
@@ -259,6 +527,20 @@
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
         },
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        }
+      });
+    }
+
+    // Update cart count function
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
       });
     }
 
@@ -266,19 +548,16 @@
     document.addEventListener('DOMContentLoaded', function() {
       loadProductsFromJSON();
       initializeSwiper();
-      updateCartCount(); // Update cart count on page load
+      setupSearch();
+      updateCartCount();
     });
 
-    // Update cart count function
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
-      const count = cart.reduce((total, item) => total + item.quantity, 0);
-      const cartCountElements = document.querySelectorAll('.cart-count a');
-      cartCountElements.forEach(element => {
-        element.textContent = count;
-      });
-    }
+    // Handle window resize for mobile menu
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 768) {
+        document.getElementById('mobileMenu').classList.remove('active');
+      }
+    });
   </script>
-  <script src="script.js"></script>  
 </body>
 </html>
