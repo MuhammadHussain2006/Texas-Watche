@@ -3,125 +3,592 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Texas Watche Payment</title>
-    <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>Payment Methods - Texas Watches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .mobile-menu {
+            display: none;
+        }
+        .mobile-menu.active {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .section-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+        .section-animation:nth-child(1) { animation-delay: 0.1s; }
+        .section-animation:nth-child(2) { animation-delay: 0.2s; }
+        .section-animation:nth-child(3) { animation-delay: 0.3s; }
+        .section-animation:nth-child(4) { animation-delay: 0.4s; }
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            background: #666;
+        }
+        .payment-method-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .payment-method-card:hover {
+            border-color: #000;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+        }
+    </style>
 </head>
-<body>
-    <div class="topHeaderDiv">
-    <div>Save Up to 90% Off * Free Shipping All Order.</div>
-    <div class="dropdown">
-      <button class="dropdown-toggle">My Account ▼</button>
-      <div class="dropdown-content">
-        <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
-        <a href="login.html">Log In</a>
-        <a href="createaccount.html">Register</a>
-         <a href="login.html">My Account</a>
-         <a href="shoppingcart.html">Shopping Cart</a>
-      </div>
+<body class="bg-gray-50 text-black">
+    
+    <!-- Top Header -->
+    <div class="bg-black text-white py-2 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Save Up to 90% Off • Free Shipping All Orders</span>
+            </div>
+            <div class="relative dropdown">
+                <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
+                    <i class="fas fa-user"></i>
+                    <span>My Account</span>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Log In
+                    </a>
+                    <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-user-plus mr-2"></i>Register
+                    </a>
+                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-user-circle mr-2"></i>My Account
+                    </a>
+                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="headermid">
-    <div class="headermidSecondDiv">
-      <h1><a href="index.html"style="text-decoration: none; color: black;">Texas Watches</a></h1>
-      <p class="headermidSecondDivSecondpara">Best Luxury Watches On Sale, Up To 90% Off. <br>
-        Free Worldwide Shipping. Free Return - 30 Day Right To Return.</p>
-    </div>
-    <div class="header-icons">
-      <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <button type="submit"><i class="fas fa-search"></i></button>
-      </div>
-      <div class="cart-icon">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count"><a href="shoppingcart.html" style="text-decoration: none;">0</a></span>
-      </div>
-    </div>
-  </div>
+    <!-- Main Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                
+                <!-- Logo and Tagline -->
+                <div class="flex-1">
+                    <a href="index.html" class="inline-block">
+                        <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
+                        <p class="text-sm text-gray-600 max-w-md">
+                            Best Luxury Watches On Sale, Up To 90% Off.<br>
+                            Free Worldwide Shipping • 30 Day Returns
+                        </p>
+                    </a>
+                </div>
 
+                <!-- Search and Cart -->
+                <div class="flex items-center space-x-6">
+                    <!-- Search Box -->
+                    <div class="relative hidden md:block">
+                        <input 
+                            type="text" 
+                            placeholder="Search watches..." 
+                            id="searchInput"
+                            class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
+                        >
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <button 
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors"
+                        >
+                            Search
+                        </button>
+                    </div>
 
-  <div style="border-bottom: 1px solid rgb(156, 156, 156);">
-    <ul class="HeaderMenu">
-     <li><a href="index.html"style="text-decoration: none; color: black;">HOME</a></li>
-      <li><a href="rolex.html"style="text-decoration: none; color: black;">ROLEX</a></li>
-      <li><a href="omega.html"style="text-decoration: none; color: black;">OMEGA</a></li>
-      <li><a href="cartier.html"style="text-decoration: none; color: black;">CARTIER</a></li>
-      <li><a href="patek-philippe.html"style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
-      <li><a href="breitling.html"style="text-decoration: none; color: black;">BREITLING</a></li>
-    </ul>
-  </div>
+                    <!-- Cart -->
+                    <div class="relative">
+                        <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
+                            <div class="relative">
+                                <i class="fas fa-shopping-bag text-2xl"></i>
+                                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                            </div>
+                            <span class="hidden lg:inline font-medium">Cart</span>
+                        </a>
+                    </div>
 
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
 
-  <div style="margin-left: 110px; padding-bottom: 70px;">
-    <h3>Payment</h3>
-    <br>
-    <p>We currently accept payment through the following ways:</p>
-    <p>We accept Paypal and Credit Card online payment; Enjoy your shopping!</p>
+            <!-- Mobile Search -->
+            <div class="md:hidden mt-4">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        placeholder="Search watches..." 
+                        id="mobileSearchInput"
+                        class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
+                    >
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <button 
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm"
+                    >
+                        Go
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <h5>Credit Card : VISA or Master Card</h5>
-    <p>1.1  VISA Card <br> We are through the VISA Card Company to accept your payment! When you create the order information on our site, you could choose to pay the bill via Visa, which is absolutely secure. You could check on www.visa.com to make sure its security. <br> (1) NOTE: <br> If returned as DECLINED, please call your bank and tell them to unblock your deal. VISA Card is easy and safe to make an online purchase with. Please feel free to contact us if you need further help. <br> (2) Possible reasons for payment declined: <br> 1. Guests did not correctly fill out payment information <br> 2. Issuing bank does not support online shopping <br> 3. Guest card balance is not enough <br> 4. Guests have an adverse payment records which did not pass the VISA Card filtration system (non-payment, document deception etc.) <br> 1.2  Master Card <br> Master Card is also a very easy and quick way to send and receive money when doing transactions. You could pay the bill via Master Card,which is absolutely secure. You could check on www.mastercard.com to make sure its security.</p>
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Desktop Menu -->
+            <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
+                <li><a href="index.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">HOME</a></li>
+                <li><a href="rolex.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">ROLEX</a></li>
+                <li><a href="omega.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">OMEGA</a></li>
+                <li><a href="cartier.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">CARTIER</a></li>
+                <li><a href="patek-philippe.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">PATEK PHILIPPE</a></li>
+                <li><a href="breitling.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">BREITLING</a></li>
+            </ul>
 
-    <h5>We guaranteed:</h5>
-    <p>1. Free Shipping on all orders, 15-25 days to worldwide.  <br> 2. 100% Satisfaction and Money Back Guarantee. <br> 3. We accept Paypal, credit card. <br> 4. Any questions you have, please contact our customer service. <br> 5. Email to us: Email, will reply you within 24 hours,Or Live Chat <br> 6. Actual photo, you will get is same as the picture, all makings are exact!  Our team will control the quality and the authenticity of this item before shipping it to you. <br> 7. Within 72 hours, we will give you the tracking number to your email.</p>
-  </div>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu py-4" id="mobileMenu">
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
+                    <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
+                    <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
+                    <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
+                    <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
+                    <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-6xl font-bold mb-6">Payment Methods</h1>
+            <p class="text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Secure, convenient payment options for your luxury timepiece purchases. Shop with confidence.
+            </p>
+            <div class="w-32 h-1 bg-white mx-auto"></div>
+        </div>
+    </section>
 
+    <!-- Payment Methods Content -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Payment Options Overview -->
+            <div class="section-animation text-center mb-16">
+                <h2 class="text-4xl font-bold text-black mb-6">Accepted Payment Methods</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    We offer multiple secure payment options to make your luxury watch purchase convenient and safe. 
+                    All transactions are protected with bank-level security.
+                </p>
+            </div>
 
-  <!-- Font Awesome (for social and card icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+            <!-- Payment Method Cards -->
+            <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                
+                <!-- Cash on Delivery -->
+                <div class="payment-method-card rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-money-bill-wave text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-4">Cash on Delivery</h3>
+                    <p class="text-gray-600 mb-4">Pay when your watch arrives at your doorstep. Inspect before payment.</p>
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <p class="text-green-700 font-semibold text-sm">Most Popular • No Online Payment Required</p>
+                    </div>
+                </div>
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-column">
-      <h4>OUR COMPANY</h4>
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="shippingreturns.html">Shipping & Returns</a></li>
-        <li><a href="privacypolicy.html">Privacy Policy</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>CUSTOMER SERVICE</h4>
-      <ul>
-        <li><a href="contactus.html">Contact Us</a></li>
-        <li><a href="payment.html">Payment</a></li>
-        <li><a href="sitemap.html">Site Map</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>MY ACCOUNT</h4>
-      <ul>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="login.html">My Account</a></li>
-        <li><a href="login.html">My Order</a></li>
-        <li><a href="shoppingcart.html">Shopping Cart</a></li>
-      </ul>
-    </div>
-    <div class="footer-icons">
-      <div class="payment-icons">
-        <img src="./images/payment_icons.png" alt="Visa">
-      </div>
-      <div class="social-icons">
-        <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
-  </div>
-</footer>
+                <!-- Credit Cards -->
+                <div class="payment-method-card rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-credit-card text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-4">Credit Cards</h3>
+                    <p class="text-gray-600 mb-4">Visa, Mastercard, and American Express accepted worldwide.</p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <i class="fab fa-cc-visa text-3xl text-blue-600"></i>
+                        <i class="fab fa-cc-mastercard text-3xl text-red-500"></i>
+                        <i class="fab fa-cc-amex text-3xl text-green-600"></i>
+                    </div>
+                </div>
 
+                <!-- PayPal -->
+                <div class="payment-method-card rounded-2xl p-8 text-center">
+                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fab fa-paypal text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-black mb-4">PayPal</h3>
+                    <p class="text-gray-600 mb-4">Quick and secure payments with PayPal buyer protection.</p>
+                    <div class="bg-blue-50 rounded-lg p-4">
+                        <p class="text-blue-700 font-semibold text-sm">Instant Processing • Buyer Protection</p>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Detailed Payment Information -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Credit Card Details -->
+                <div class="section-animation">
+                    <div class="bg-gray-50 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-black mb-6 flex items-center">
+                            <i class="fas fa-credit-card mr-3 text-blue-500"></i>
+                            Credit Card Information
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-black mb-3">VISA Card</h4>
+                                <p class="text-gray-700 leading-relaxed mb-4">
+                                    We process VISA card payments through secure VISA company systems. Your payment information is completely protected 
+                                    with industry-standard encryption. You can verify VISA security at <a href="https://www.visa.com" class="text-blue-600 hover:text-blue-800 transition-colors">www.visa.com</a>.
+                                </p>
+                                
+                                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                                    <h5 class="font-semibold text-yellow-800 mb-2">Important Note:</h5>
+                                    <p class="text-yellow-700 text-sm">
+                                        If your payment is declined, please contact your bank to unblock international transactions. 
+                                        VISA cards provide safe and easy online shopping worldwide.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4 class="text-lg font-semibold text-black mb-3">Mastercard</h4>
+                                <p class="text-gray-700 leading-relaxed">
+                                    Mastercard offers fast and secure transactions for online shopping. All payments are processed through encrypted channels 
+                                    ensuring complete security. Verify Mastercard security at <a href="https://www.mastercard.com" class="text-blue-600 hover:text-blue-800 transition-colors">www.mastercard.com</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Troubleshooting -->
+                <div class="section-animation">
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold text-black mb-6 flex items-center">
+                            <i class="fas fa-exclamation-triangle mr-3 text-yellow-500"></i>
+                            Payment Issues
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-lg font-semibold text-black mb-3">Common Decline Reasons</h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                                        <span class="text-gray-700">Incorrect payment information entered</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                                        <span class="text-gray-700">Bank doesn't support online/international shopping</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                                        <span class="text-gray-700">Insufficient card balance</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                                        <span class="text-gray-700">Card blocked by bank security filters</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <h5 class="font-semibold text-blue-800 mb-2">Need Help?</h5>
+                                <p class="text-blue-700 text-sm">
+                                    Contact our customer service team for payment assistance. We're here to help you complete your purchase securely.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Guarantees -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="section-animation text-center mb-12">
+                <h2 class="text-4xl font-bold text-black mb-6">Our Payment Guarantees</h2>
+                <p class="text-xl text-gray-600">Your security and satisfaction are our top priorities</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shipping-fast text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Free Worldwide Shipping</h3>
+                    <p class="text-gray-600 text-sm">All orders ship free, delivered in 15-25 days worldwide</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-money-back text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Money Back Guarantee</h3>
+                    <p class="text-gray-600 text-sm">100% satisfaction guarantee with easy returns</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Authenticity Guaranteed</h3>
+                    <p class="text-gray-600 text-sm">Every watch is verified authentic before shipping</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">24/7 Customer Support</h3>
+                    <p class="text-gray-600 text-sm">Expert support team ready to assist you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Guarantees -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="section-animation bg-black text-white rounded-2xl p-12">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Additional Service Guarantees</h2>
+                    <p class="text-gray-300 text-lg">Premium service standards for every customer</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-1">Quick Response</h4>
+                                <p class="text-gray-300 text-sm">Email responses within 24 hours for all inquiries</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-1">Photo Accuracy</h4>
+                                <p class="text-gray-300 text-sm">Actual product matches website photos exactly</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-1">Quality Control</h4>
+                                <p class="text-gray-300 text-sm">Each item inspected for quality and authenticity</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-1">Fast Tracking</h4>
+                                <p class="text-gray-300 text-sm">Tracking number provided within 72 hours of payment</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-1">Multiple Payment Options</h4>
+                                <p class="text-gray-300 text-sm">PayPal, credit cards, and cash on delivery available</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold mb-1">Live Support</h4>
+                                <p class="text-gray-300 text-sm">Live chat and email support for immediate assistance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-1">
+                    <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
+                    <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-pinterest text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
+                        <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
+                        <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
+                        <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- My Account -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">My Account</h4>
+                    <ul class="space-y-2">
+                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
+                        <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
+                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
+                        <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Payment Icons -->
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <div class="flex justify-center items-center space-x-4 mb-4">
+                    <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    Copyright © 2025 Texas Watches. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Update cart count function
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+
+        // Handle window resize for mobile menu
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                document.getElementById('mobileMenu').classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>

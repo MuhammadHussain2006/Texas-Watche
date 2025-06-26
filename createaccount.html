@@ -1,232 +1,689 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Texas Watche Create Account</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Create Account - Texas Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Swiper CSS -->
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+  <style>
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .mobile-menu {
+      display: none;
+    }
+    .mobile-menu.active {
+      display: block;
+    }
+    .form-section {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .floating-label {
+      transition: all 0.3s ease;
+    }
+    .form-input:focus + .floating-label,
+    .form-input:not(:placeholder-shown) + .floating-label {
+      transform: translateY(-1.5rem) scale(0.85);
+      color: #000;
+    }
+    .custom-radio {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #d1d5db;
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .custom-radio:checked {
+      border-color: #000;
+      background-color: #000;
+    }
+    .custom-radio:checked::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: white;
+    }
+    .custom-checkbox {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #d1d5db;
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .custom-checkbox:checked {
+      border-color: #000;
+      background-color: #000;
+    }
+    .custom-checkbox:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .form-input {
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+    }
+    .form-input:focus {
+      border-color: #000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none;
+      }
+    }
+  </style>
 </head>
-<body>
-    <div class="topHeaderDiv">
-    <div>Save Up to 90% Off * Free Shipping All Order.</div>
-    <div class="dropdown">
-      <button class="dropdown-toggle">My Account ▼</button>
-      <div class="dropdown-content">
-        <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
-        <a href="login.html">Log In</a>
-        <a href="createaccount.html">Register</a>
-         <a href="login.html">My Account</a>
-         <a href="shoppingcart.html">Shopping Cart</a>
+<body class="bg-gray-50 text-black">
+  
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-shipping-fast"></i>
+        <span>Save Up to 90% Off • Free Shipping All Orders</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
+          <i class="fas fa-user"></i>
+          <span>My Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-sign-in-alt mr-2"></i>Log In
+          </a>
+          <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-user-plus mr-2"></i>Register
+          </a>
+          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-user-circle mr-2"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+            <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+          </a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="headermid">
-    <div class="headermidSecondDiv">
-      <h1><a href="index.html"style="text-decoration: none; color: black;">Texas Watches</a></h1>
-      <p class="headermidSecondDivSecondpara">Best Luxury Watches On Sale, Up To 90% Off. <br>
-        Free Worldwide Shipping. Free Return - 30 Day Right To Return.</p>
+  <!-- Main Header -->
+  <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex items-center justify-between">
+        
+        <!-- Logo and Tagline -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
+            <p class="text-sm text-gray-600 max-w-md">
+              Best Luxury Watches On Sale, Up To 90% Off.<br>
+              Free Worldwide Shipping • 30 Day Returns
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Cart -->
+        <div class="flex items-center space-x-6">
+          <!-- Search Box -->
+          <div class="relative hidden md:block">
+            <input 
+              type="text" 
+              placeholder="Search watches..." 
+              class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
+            >
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors">
+              Search
+            </button>
+          </div>
+
+          <!-- Cart -->
+          <div class="relative">
+            <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
+              <div class="relative">
+                <i class="fas fa-shopping-bag text-2xl"></i>
+                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+              </div>
+              <span class="hidden lg:inline font-medium">Cart</span>
+            </a>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button class="md:hidden" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="md:hidden mt-4">
+        <div class="relative">
+          <input 
+            type="text" 
+            placeholder="Search watches..." 
+            class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
+          >
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm">
+            Go
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="header-icons">
-      <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <button type="submit"><i class="fas fa-search"></i></button>
-      </div>
-      <div class="cart-icon">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count"><a href="shoppingcart.html" style="text-decoration: none;">0</a></span>
-      </div>
-    </div>
-  </div>
+  </header>
 
-
-  <div>
-    <ul class="HeaderMenu">
-      <li><a href="index.html"style="text-decoration: none; color: black;">HOME</a></li>
-      <li><a href="rolex.html"style="text-decoration: none; color: black;">ROLEX</a></li>
-      <li><a href="omega.html"style="text-decoration: none; color: black;">OMEGA</a></li>
-      <li><a href="cartier.html"style="text-decoration: none; color: black;">CARTIER</a></li>
-      <li><a href="patek-philippe.html"style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
-      <li><a href="breitling.html"style="text-decoration: none; color: black;">BREITLING</a></li>
-    </ul>
-  </div>
-
-
-
-
-
-
-
-
-   <div class="user-form-wrapper">
-    <h2 class="form-title">My Account Information</h2>
-    <p class="form-note">NOTE: If you already have an account with us, please login at the login page.</p>
-
-    <form>
-      <h3 class="form-section-title">Your Personal Details</h3>
-
-      <div class="form-radio-group">
-        <label>Title:</label>
-        <input type="radio" id="radio-mr" name="user-title" value="Mr.">
-        <label for="radio-mr">Mr.</label>
-        <input type="radio" id="radio-ms" name="user-title" value="Ms.">
-        <label for="radio-ms">Ms.</label>
-      </div>
-
-      <div class="form-row">
-        <label for="input-first-name" class="form-label">First Name:</label>
-        <input type="text" id="input-first-name" class="form-input" name="first-name">
-      </div>
-
-      <div class="form-row">
-        <label for="input-last-name" class="form-label">Last Name:</label>
-        <input type="text" id="input-last-name" class="form-input" name="last-name">
-      </div>
-
-      <div class="form-row">
-        <label for="input-address" class="form-label">Street Address:</label>
-        <input type="text" id="input-address" class="form-input" name="street-address">
-      </div>
-
-      <div class="form-row">
-        <label for="input-city" class="form-label">City:</label>
-        <input type="text" id="input-city" class="form-input" name="city">
-      </div>
-
-      <div class="form-row">
-        <label for="select-state" class="form-label">State/Province:</label>
-        <select id="select-state" class="form-select" name="state">
-          <option value="">Please select...</option>
-          <option value="CA">California</option>
-          <option value="NY">New York</option>
-          <option value="TX">Texas</option>
-        </select>
-      </div>
-
-      <div class="form-row">
-        <label for="input-zip" class="form-label">Zip Code:</label>
-        <input type="text" id="input-zip" class="form-input" name="zip-code">
-      </div>
-
-      <div class="form-row">
-        <label for="select-country" class="form-label">Country:</label>
-        <select id="select-country" class="form-select" name="country">
-          <option value="United States">United States</option>
-          <option value="Canada">Canada</option>
-          <option value="UK">United Kingdom</option>
-        </select>
-      </div>
-
-      <h3 class="form-section-title">Additional Contact Details</h3>
-
-      <div class="form-row">
-        <label for="input-phone" class="form-label">Telephone:</label>
-        <input type="text" id="input-phone" class="form-input" name="phone">
-      </div>
-
-      <h3 class="form-section-title">Login Details</h3>
-
-      <div class="form-row">
-        <label for="input-email" class="form-label">Email Address:</label>
-        <input type="email" id="input-email" class="form-input" name="email">
-      </div>
-
-      <div class="form-row">
-        <label for="input-password" class="form-label">Password:</label>
-        <input type="password" id="input-password" class="form-input" name="password">
-      </div>
-
-      <div class="form-row">
-        <label for="input-confirm-password" class="form-label">Confirm Password:</label>
-        <input type="password" id="input-confirm-password" class="form-input" name="confirm-password">
-      </div>
-
-      <h3 class="form-section-title">Newsletter and Email Details</h3>
-
-      <div class="form-checkbox-group">
-        <input type="checkbox" id="newsletter-opt" name="newsletter">
-        <label for="newsletter-opt">Subscribe to Our Newsletter</label>
-      </div>
-
-      <div class="form-radio-group">
-        <input type="radio" id="format-html" name="email-format" value="HTML">
-        <label for="format-html">HTML</label>
-        <input type="radio" id="format-text" name="email-format" value="Text">
-        <label for="format-text">TEXT Only</label>
-      </div>
-
-      <button type="submit" class="form-submit-btn">SUBMIT THE INFORMATION</button>
-    </form>
-  </div>
-
-
-
-
-
-
-
-
-
-
-   <!-- Font Awesome (for social and card icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-column">
-      <h4>OUR COMPANY</h4>
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="shippingreturns.html">Shipping & Returns</a></li>
-        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+  <!-- Navigation -->
+  <nav class="bg-gray-50 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <!-- Desktop Menu -->
+      <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
+        <li><a href="index.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">HOME</a></li>
+        <li><a href="rolex.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">ROLEX</a></li>
+        <li><a href="omega.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">OMEGA</a></li>
+        <li><a href="cartier.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">CARTIER</a></li>
+        <li><a href="patek-philippe.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">PATEK PHILIPPE</a></li>
+        <li><a href="breitling.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">BREITLING</a></li>
       </ul>
-    </div>
-    <div class="footer-column">
-      <h4>CUSTOMER SERVICE</h4>
-      <ul>
-        <li><a href="contactus.html">Contact Us</a></li>
-        <li><a href="payment.html">Payment</a></li>
-        <li><a href="sitemap.html">Site Map</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>MY ACCOUNT</h4>
-      <ul>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="login.html">My Account</a></li>
-        <li><a href="login.html">My Order</a></li>
-        <li><a href="shoppingcart.html">Shopping Cart</a></li>
-      </ul>
-    </div>
-    <div class="footer-icons">
-      <div class="payment-icons">
-        <img src="./images/payment_icons.png" alt="Visa">
-      </div>
-      <div class="social-icons">
-        <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu py-4" id="mobileMenu">
+        <ul class="space-y-4">
+          <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
+          <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
+          <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
+          <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
+          <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
+          <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
+        </ul>
       </div>
     </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <nav class="flex items-center space-x-2 text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">Home</a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Create Account</span>
+      </nav>
+    </div>
   </div>
-  <div class="footer-bottom">
-    <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
-  </div>
-</footer>
 
+  <!-- Main Content -->
+  <main class="py-12">
+    <div class="max-w-4xl mx-auto px-4">
+      
+      <!-- Page Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-black mb-4">Create Your Account</h1>
+        <p class="text-gray-600 text-lg">Join the Texas Watches family and enjoy exclusive benefits</p>
+        <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
+      </div>
 
+      <!-- Login Redirect Notice -->
+      <div class="bg-gray-100 border-l-4 border-black p-6 mb-8 rounded-r-lg">
+        <div class="flex items-center">
+          <i class="fas fa-info-circle text-black text-xl mr-3"></i>
+          <div>
+            <p class="text-black font-medium">Already have an account?</p>
+            <p class="text-gray-600">Please <a href="login.html" class="text-black font-medium hover:underline">login here</a> to access your account.</p>
+          </div>
+        </div>
+      </div>
 
+      <!-- Registration Form -->
+      <form class="bg-white shadow-lg rounded-lg p-8" id="registrationForm" onsubmit="handleFormSubmit(event)">
+        
+        <!-- Personal Details Section -->
+        <div class="form-section mb-8">
+          <h2 class="text-2xl font-bold text-black mb-6 flex items-center">
+            <i class="fas fa-user text-gray-600 mr-3"></i>
+            Personal Details
+          </h2>
+          
+          <!-- Title Selection -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-3">Title</label>
+            <div class="flex space-x-6">
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" name="title" value="Mr." class="custom-radio mr-2">
+                <span class="text-gray-700">Mr.</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" name="title" value="Ms." class="custom-radio mr-2">
+                <span class="text-gray-700">Ms.</span>
+              </label>
+            </div>
+          </div>
 
+          <!-- Name Fields -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div class="input-group">
+              <input 
+                type="text" 
+                id="firstName" 
+                name="firstName" 
+                class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                placeholder=" "
+                required
+              >
+              <label for="firstName" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">First Name *</label>
+            </div>
+            <div class="input-group">
+              <input 
+                type="text" 
+                id="lastName" 
+                name="lastName" 
+                class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                placeholder=" "
+                required
+              >
+              <label for="lastName" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">Last Name *</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Address Information Section -->
+        <div class="form-section mb-8">
+          <h2 class="text-2xl font-bold text-black mb-6 flex items-center">
+            <i class="fas fa-map-marker-alt text-gray-600 mr-3"></i>
+            Address Information
+          </h2>
+          
+          <div class="grid grid-cols-1 gap-6">
+            <div class="input-group">
+              <input 
+                type="text" 
+                id="streetAddress" 
+                name="streetAddress" 
+                class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                placeholder=" "
+                required
+              >
+              <label for="streetAddress" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">Street Address *</label>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="input-group">
+                <input 
+                  type="text" 
+                  id="city" 
+                  name="city" 
+                  class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                  placeholder=" "
+                  required
+                >
+                <label for="city" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">City *</label>
+              </div>
+              <div class="input-group">
+                <select 
+                  id="state" 
+                  name="state" 
+                  class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                  required
+                >
+                  <option value="">Select State/Province</option>
+                  <option value="CA">California</option>
+                  <option value="NY">New York</option>
+                  <option value="TX">Texas</option>
+                  <option value="FL">Florida</option>
+                  <option value="IL">Illinois</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="OH">Ohio</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="input-group">
+                <input 
+                  type="text" 
+                  id="zipCode" 
+                  name="zipCode" 
+                  class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                  placeholder=" "
+                  required
+                >
+                <label for="zipCode" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">Zip Code *</label>
+              </div>
+              <div class="input-group">
+                <select 
+                  id="country" 
+                  name="country" 
+                  class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                  required
+                >
+                  <option value="United States">United States</option>
+                  <option value="Canada">Canada</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Australia">Australia</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Information Section -->
+        <div class="form-section mb-8">
+          <h2 class="text-2xl font-bold text-black mb-6 flex items-center">
+            <i class="fas fa-phone text-gray-600 mr-3"></i>
+            Contact Information
+          </h2>
+          
+          <div class="input-group">
+            <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+              placeholder=" "
+            >
+            <label for="phone" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">Telephone</label>
+          </div>
+        </div>
+
+        <!-- Login Credentials Section -->
+        <div class="form-section mb-8">
+          <h2 class="text-2xl font-bold text-black mb-6 flex items-center">
+            <i class="fas fa-lock text-gray-600 mr-3"></i>
+            Login Credentials
+          </h2>
+          
+          <div class="grid grid-cols-1 gap-6">
+            <div class="input-group">
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                placeholder=" "
+                required
+              >
+              <label for="email" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">Email Address *</label>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="input-group">
+                <input 
+                  type="password" 
+                  id="password" 
+                  name="password" 
+                  class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                  placeholder=" "
+                  required
+                  minlength="8"
+                >
+                <label for="password" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">Password *</label>
+              </div>
+              <div class="input-group">
+                <input 
+                  type="password" 
+                  id="confirmPassword" 
+                  name="confirmPassword" 
+                  class="form-input w-full px-4 py-3 rounded-lg focus:outline-none" 
+                  placeholder=" "
+                  required
+                  minlength="8"
+                >
+                <label for="confirmPassword" class="floating-label absolute left-4 top-3 text-gray-500 pointer-events-none">Confirm Password *</label>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Password Requirements -->
+          <div class="mt-3 text-sm text-gray-600">
+            <p>Password must be at least 8 characters long</p>
+          </div>
+        </div>
+
+        <!-- Newsletter and Preferences Section -->
+        <div class="form-section mb-8">
+          <h2 class="text-2xl font-bold text-black mb-6 flex items-center">
+            <i class="fas fa-envelope text-gray-600 mr-3"></i>
+            Newsletter Preferences
+          </h2>
+          
+          <!-- Newsletter Subscription -->
+          <div class="mb-6">
+            <label class="flex items-center cursor-pointer">
+              <input type="checkbox" name="newsletter" class="custom-checkbox mr-3">
+              <span class="text-gray-700">Subscribe to our newsletter and get exclusive offers</span>
+            </label>
+          </div>
+
+          <!-- Email Format -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-3">Email Format</label>
+            <div class="flex space-x-6">
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" name="emailFormat" value="HTML" class="custom-radio mr-2" checked>
+                <span class="text-gray-700">HTML</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input type="radio" name="emailFormat" value="Text" class="custom-radio mr-2">
+                <span class="text-gray-700">Text Only</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terms and Conditions -->
+        <div class="mb-8">
+          <label class="flex items-start cursor-pointer">
+            <input type="checkbox" name="terms" class="custom-checkbox mr-3 mt-1" required>
+            <span class="text-gray-700">
+              I agree to the <a href="terms.html" class="text-black font-medium hover:underline">Terms and Conditions</a> 
+              and <a href="privacypolicy.html" class="text-black font-medium hover:underline">Privacy Policy</a> *
+            </span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button 
+            type="submit" 
+            class="btn-primary w-full md:w-auto px-12 py-4 text-white font-bold text-lg rounded-lg hover:shadow-lg transition-all"
+          >
+            <i class="fas fa-user-plus mr-2"></i>
+            CREATE ACCOUNT
+          </button>
+        </div>
+        
+        <!-- Login Link -->
+        <div class="text-center mt-6">
+          <p class="text-gray-600">
+            Already have an account? 
+            <a href="login.html" class="text-black font-medium hover:underline">Sign in here</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- Company Info -->
+        <div class="md:col-span-1">
+          <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
+          <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-pinterest text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <!-- Customer Service -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+            <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
+            <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- My Account -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
+            <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
+            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
+            <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Payment Icons -->
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <div class="flex justify-center items-center space-x-4 mb-4">
+          <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
+          <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+        </div>
+        <p class="text-gray-400 text-sm">
+          Copyright © 2025 Texas Watches. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('active');
+    }
+
+    // Form validation and submission
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      const formData = new FormData(form);
+      
+      // Validate password match
+      const password = formData.get('password');
+      const confirmPassword = formData.get('confirmPassword');
+      
+      if (password !== confirmPassword) {
+        alert('Passwords do not match. Please check and try again.');
+        return;
+      }
+      
+      // Validate terms acceptance
+      if (!formData.get('terms')) {
+        alert('Please accept the Terms and Conditions to continue.');
+        return;
+      }
+      
+      // Simulate form submission
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalText = submitButton.innerHTML;
+      
+      submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creating Account...';
+      submitButton.disabled = true;
+      
+      setTimeout(() => {
+        alert('Account created successfully! You will be redirected to the login page.');
+        window.location.href = 'login.html';
+      }, 2000);
+    }
+
+    // Handle window resize for mobile menu
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 768) {
+        document.getElementById('mobileMenu').classList.remove('active');
+      }
+    });
+
+    // Update cart count (if needed)
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
+      });
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+    });
+  </script>
 </body>
 </html>

@@ -3,120 +3,748 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Texas Watche Contact Us</title>
-    <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <title>Contact Us - Texas Watches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <style>
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .mobile-menu {
+            display: none;
+        }
+        .mobile-menu.active {
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .form-animation {
+            transition: all 0.3s ease;
+        }
+        .form-animation:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .form-error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+        .section-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+        .section-animation:nth-child(1) { animation-delay: 0.1s; }
+        .section-animation:nth-child(2) { animation-delay: 0.2s; }
+        .section-animation:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            background: #666;
+        }
+        .success-message {
+            animation: slideInRight 0.3s ease, fadeOut 0.3s ease 4.7s;
+        }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateX(100%); }
+        }
+        .contact-info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border: 1px solid #e5e7eb;
+        }
+        .pulse-icon {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
 </head>
-<body>
-    <div class="topHeaderDiv">
-    <div>Save Up to 90% Off * Free Shipping All Order.</div>
-    <div class="dropdown">
-      <button class="dropdown-toggle">My Account ▼</button>
-      <div class="dropdown-content">
-        <span class="close-btn" onclick="this.parentElement.style.display='none'">✕</span>
-        <a href="login.html">Log In</a>
-        <a href="createaccount.html">Register</a>
-         <a href="login.html">My Account</a>
-         <a href="shoppingcart.html">Shopping Cart</a>
-      </div>
+<body class="bg-gray-50 text-black">
+    
+    <!-- Top Header -->
+    <div class="bg-black text-white py-2 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Save Up to 90% Off • Free Shipping All Orders</span>
+            </div>
+            <div class="relative dropdown">
+                <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
+                    <i class="fas fa-user"></i>
+                    <span>My Account</span>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Log In
+                    </a>
+                    <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-user-plus mr-2"></i>Register
+                    </a>
+                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-user-circle mr-2"></i>My Account
+                    </a>
+                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="headermid">
-    <div class="headermidSecondDiv">
-      <h1><a href="index.html" style="color: black; text-decoration: none;">Texas Watches</a></h1>
-      <p class="headermidSecondDivSecondpara">Best Luxury Watches On Sale, Up To 90% Off. <br>
-        Free Worldwide Shipping. Free Return - 30 Day Right To Return.</p>
-    </div>
-    <div class="header-icons">
-      <div class="search-box">
-        <input type="text" placeholder="Search...">
-        <button type="submit"><i class="fas fa-search"></i></button>
-      </div>
-      <div class="cart-icon">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count"><a href="shoppingcart.html" style="text-decoration: none;">0</a></span>
-      </div>
-    </div>
-  </div>
+    <!-- Main Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                
+                <!-- Logo and Tagline -->
+                <div class="flex-1">
+                    <a href="index.html" class="inline-block">
+                        <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
+                        <p class="text-sm text-gray-600 max-w-md">
+                            Best Luxury Watches On Sale, Up To 90% Off.<br>
+                            Free Worldwide Shipping • 30 Day Returns
+                        </p>
+                    </a>
+                </div>
 
+                <!-- Search and Cart -->
+                <div class="flex items-center space-x-6">
+                    <!-- Search Box -->
+                    <div class="relative hidden md:block">
+                        <input 
+                            type="text" 
+                            placeholder="Search watches..." 
+                            id="searchInput"
+                            class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
+                        >
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <button 
+                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors"
+                        >
+                            Search
+                        </button>
+                    </div>
 
-  <div style="border-bottom: 1px solid rgb(156, 156, 156);">
-    <ul class="HeaderMenu">
-      <li><a href="index.html"style="text-decoration: none; color: black;">HOME</a></li>
-      <li><a href="rolex.html"style="text-decoration: none; color: black;">ROLEX</a></li>
-      <li><a href="omega.html"style="text-decoration: none; color: black;">OMEGA</a></li>
-      <li><a href="cartier.html"style="text-decoration: none; color: black;">CARTIER</a></li>
-      <li><a href="patek-philippe.html"style="text-decoration: none; color: black;">PATEK PHILIPPE</a></li>
-      <li><a href="breitling.html"style="text-decoration: none; color: black;">BREITLING</a></li>
-    </ul>
-  </div>
+                    <!-- Cart -->
+                    <div class="relative">
+                        <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
+                            <div class="relative">
+                                <i class="fas fa-shopping-bag text-2xl"></i>
+                                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                            </div>
+                            <span class="hidden lg:inline font-medium">Cart</span>
+                        </a>
+                    </div>
 
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
 
-  <div style="margin-left: 110px; padding-bottom: 70px;">
-    <h3>Contact Us</h3>
-    <br>
-    <p>Dear Customer:</p>
-    <br>
-    <p>Any questions, please contact us sales@Texas-sales.com</p>
-  </div>
+            <!-- Mobile Search -->
+            <div class="md:hidden mt-4">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        placeholder="Search watches..." 
+                        id="mobileSearchInput"
+                        class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
+                    >
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <button 
+                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm"
+                    >
+                        Go
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Desktop Menu -->
+            <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
+                <li><a href="index.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">HOME</a></li>
+                <li><a href="rolex.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">ROLEX</a></li>
+                <li><a href="omega.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">OMEGA</a></li>
+                <li><a href="cartier.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">CARTIER</a></li>
+                <li><a href="patek-philippe.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">PATEK PHILIPPE</a></li>
+                <li><a href="breitling.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">BREITLING</a></li>
+            </ul>
 
+            <!-- Mobile Menu -->
+            <div class="mobile-menu py-4" id="mobileMenu">
+                <ul class="space-y-4">
+                    <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
+                    <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
+                    <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
+                    <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
+                    <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
+                    <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Font Awesome (for social and card icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-6xl font-bold mb-6">Contact Us</h1>
+            <p class="text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Get in touch with our luxury timepiece experts. We're here to help you find the perfect watch or answer any questions.
+            </p>
+            <div class="w-32 h-1 bg-white mx-auto"></div>
+        </div>
+    </section>
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-column">
-      <h4>OUR COMPANY</h4>
-      <ul>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="shippingreturns.html">Shipping & Returns</a></li>
-        <li><a href="privacypolicy.html">Privacy Policy</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>CUSTOMER SERVICE</h4>
-      <ul>
-        <li><a href="contactus.html">Contact Us</a></li>
-        <li><a href="payment.html">Payment</a></li>
-        <li><a href="sitemap.html">Site Map</a></li>
-      </ul>
-    </div>
-    <div class="footer-column">
-      <h4>MY ACCOUNT</h4>
-      <ul>
-        <li><a href="login.html">Log In</a></li>
-        <li><a href="login.html">My Account</a></li>
-        <li><a href="login.html">My Order</a></li>
-        <li><a href="shoppingcart.html">Shopping Cart</a></li>
-      </ul>
-    </div>
-    <div class="footer-icons">
-      <div class="payment-icons">
-        <img src="./images/payment_icons.png" alt="Visa">
-      </div>
-      <div class="social-icons">
-        <i class="fa-brands fa-square-facebook" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-pinterest" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-google-plus" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-square-twitter" style="color: #ffffff;"></i>
-        <i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>Copyright © 2025 Texas Watches All Rights Reserved.</p>
-  </div>
-</footer>
+    <!-- Contact Content -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            
+            <!-- Contact Information Cards -->
+            <div class="section-animation grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="contact-info-card rounded-2xl p-8 text-center card-hover">
+                    <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mb-6 mx-auto pulse-icon">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Email Us</h3>
+                    <p class="text-gray-600 mb-4">Get expert advice and personalized recommendations</p>
+                    <a href="mailto:sales@Texas-sales.com" class="text-black font-semibold hover:text-gray-700 transition-colors">
+                        sales@Texas-sales.com
+                    </a>
+                </div>
+                
+                <div class="contact-info-card rounded-2xl p-8 text-center card-hover">
+                    <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mb-6 mx-auto pulse-icon">
+                        <i class="fas fa-phone text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Call Us</h3>
+                    <p class="text-gray-600 mb-4">Speak directly with our watch specialists</p>
+                    <a href="tel:+1-555-TEXAS-WATCH" class="text-black font-semibold hover:text-gray-700 transition-colors">
+                        +1 (555) 839-2792
+                    </a>
+                </div>
+                
+                <div class="contact-info-card rounded-2xl p-8 text-center card-hover">
+                    <div class="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center mb-6 mx-auto pulse-icon">
+                        <i class="fas fa-clock text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Business Hours</h3>
+                    <p class="text-gray-600 mb-4">We're available to assist you</p>
+                    <div class="text-black font-semibold">
+                        <div>Mon - Fri: 9:00 AM - 6:00 PM</div>
+                        <div>Sat: 10:00 AM - 4:00 PM</div>
+                        <div>Sun: Closed</div>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Contact Form and Additional Info -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Contact Form -->
+                <div class="section-animation">
+                    <div class="bg-gray-50 rounded-2xl p-8">
+                        <h2 class="text-3xl font-bold text-black mb-6">Send Us a Message</h2>
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-semibold text-black mb-2">
+                                        First Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="firstName" 
+                                        name="firstName" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
+                                        placeholder="Your first name"
+                                    >
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-black mb-2">
+                                        Last Name <span class="text-red-500">*</span>
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        id="lastName" 
+                                        name="lastName" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
+                                        placeholder="Your last name"
+                                    >
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-black mb-2">
+                                    Email Address <span class="text-red-500">*</span>
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
+                                    placeholder="your@email.com"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-black mb-2">
+                                    Phone Number (Optional)
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone"
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
+                                    placeholder="+1 (555) 123-4567"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-black mb-2">
+                                    Subject <span class="text-red-500">*</span>
+                                </label>
+                                <select 
+                                    id="subject" 
+                                    name="subject" 
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
+                                >
+                                    <option value="">Select a subject</option>
+                                    <option value="product-inquiry">Product Inquiry</option>
+                                    <option value="order-status">Order Status</option>
+                                    <option value="technical-support">Technical Support</option>
+                                    <option value="warranty-service">Warranty & Service</option>
+                                    <option value="wholesale-inquiry">Wholesale Inquiry</option>
+                                    <option value="general-question">General Question</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-semibold text-black mb-2">
+                                    Message <span class="text-red-500">*</span>
+                                </label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    required
+                                    rows="6"
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation resize-none"
+                                    placeholder="Tell us how we can help you..."
+                                ></textarea>
+                            </div>
+                            
+                            <button 
+                                type="submit" 
+                                class="w-full bg-black text-white py-4 px-6 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg"
+                            >
+                                <i class="fas fa-paper-plane mr-2"></i>Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
 
+                <!-- Additional Information -->
+                <div class="section-animation space-y-8">
+                    
+                    <!-- Why Contact Us -->
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                        <h3 class="text-2xl font-bold text-black mb-6">Why Contact Us?</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-gem text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-black mb-1">Expert Advice</h4>
+                                    <p class="text-gray-600">Get personalized recommendations from our luxury watch specialists</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-shield-alt text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-black mb-1">Authenticity Guarantee</h4>
+                                    <p class="text-gray-600">Questions about authenticity? We provide full verification and certificates</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-truck text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-black mb-1">Shipping Support</h4>
+                                    <p class="text-gray-600">Track orders, shipping questions, and delivery assistance worldwide</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                    <i class="fas fa-wrench text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-black mb-1">Service & Warranty</h4>
+                                    <p class="text-gray-600">Post-purchase support, warranty claims, and repair services</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Response Time -->
+                    <div class="bg-green-50 border border-green-200 rounded-2xl p-8">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-green-800">Quick Response Time</h3>
+                                <p class="text-green-700">We typically respond within 2-4 hours during business hours</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg p-4 border border-green-200">
+                            <ul class="space-y-2 text-green-700">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                                    Email responses within 2-4 hours
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                                    Phone support during business hours
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                                    Emergency support for urgent issues
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-black mb-6">Frequently Asked Questions</h2>
+                <p class="text-xl text-gray-600">Quick answers to common questions</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h4 class="font-bold text-black mb-3">Are all watches authentic?</h4>
+                    <p class="text-gray-600">Yes, we guarantee 100% authenticity on all timepieces with certificates and documentation.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h4 class="font-bold text-black mb-3">What's your return policy?</h4>
+                    <p class="text-gray-600">30-day return policy with free worldwide shipping on all orders, no questions asked.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h4 class="font-bold text-black mb-3">Do you offer wholesale pricing?</h4>
+                    <p class="text-gray-600">Yes, we provide B2B solutions with wholesale pricing for qualified retailers and distributors.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <h4 class="font-bold text-black mb-3">How long does shipping take?</h4>
+                    <p class="text-gray-600">Worldwide delivery typically takes 15-25 days with full tracking and insurance included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-1">
+                    <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
+                    <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-pinterest text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
+                        <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
+                        <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
+                        <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- My Account -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">My Account</h4>
+                    <ul class="space-y-2">
+                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
+                        <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
+                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
+                        <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Payment Icons -->
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <div class="flex justify-center items-center space-x-4 mb-4">
+                    <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
+                    <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    Copyright © 2025 Texas Watches. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Update cart count function
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (validateForm()) {
+                submitForm();
+            }
+        });
+
+        // Form validation
+        function validateForm() {
+            const requiredFields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldName => {
+                const field = document.getElementById(fieldName);
+                const value = field.value.trim();
+                
+                // Remove previous error styling
+                field.classList.remove('form-error');
+                const existingError = field.parentNode.querySelector('.error-message');
+                if (existingError) {
+                    existingError.remove();
+                }
+                
+                if (!value) {
+                    field.classList.add('form-error');
+                    showFieldError(field, 'This field is required');
+                    isValid = false;
+                } else if (fieldName === 'email' && !isValidEmail(value)) {
+                    field.classList.add('form-error');
+                    showFieldError(field, 'Please enter a valid email address');
+                    isValid = false;
+                }
+            });
+            
+            if (!isValid) {
+                // Scroll to first error
+                const firstError = document.querySelector('.form-error');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+            
+            return isValid;
+        }
+
+        // Show field error
+        function showFieldError(field, message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message text-red-500 text-sm mt-1';
+            errorDiv.textContent = message;
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        // Email validation
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Submit form
+        function submitForm() {
+            const formData = new FormData(document.getElementById('contactForm'));
+            const submitBtn = document.querySelector('button[type="submit"]');
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending Message...';
+            submitBtn.disabled = true;
+            
+            // Simulate sending (in real app, send to server)
+            setTimeout(() => {
+                // Create message object
+                const messageData = {
+                    timestamp: new Date().toISOString(),
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone') || 'Not provided',
+                    subject: formData.get('subject'),
+                    message: formData.get('message'),
+                    status: 'new'
+                };
+
+                // Save to localStorage (in real app, send to API)
+                const existingMessages = JSON.parse(localStorage.getItem('texasWatchesMessages') || '[]');
+                existingMessages.push(messageData);
+                localStorage.setItem('texasWatchesMessages', JSON.stringify(existingMessages));
+
+                console.log('Contact form submitted:', messageData);
+
+                // Show success message
+                showSuccessMessage('Thank you! Your message has been sent successfully. We\'ll get back to you within 2-4 hours.');
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                
+                // Reset button
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Send Message';
+                submitBtn.disabled = false;
+            }, 2000);
+        }
+
+        // Show success message
+        function showSuccessMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'fixed top-6 right-6 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 success-message max-w-md';
+            messageDiv.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <i class="fas fa-check-circle text-xl mt-1"></i>
+                    <span class="font-medium">${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+
+        // Handle window resize for mobile menu
+        window.addEventListener('resize', function() {
+            if (window.innerWidth >= 768) {
+                document.getElementById('mobileMenu').classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
