@@ -3022,5 +3022,101 @@
     "rating": 5,
     "isNew": false,
     "page": "cartier"
+  },
+  {
+    "id": 253,
+    "name": "Omega Planet Ocean Co-Axial Titanium Mens Watch 215.92.44.21.99.001 Box Card",
+    "brand": "omega",
+    "image": "./images/Omega new 66.jpg",
+    "oldPrice": 6690,
+    "newPrice": 270,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 254,
+    "name": "Omega Seamaster Diver Chronograph Rose Gold Watch 210.62.44.51.01.003 Box Card",
+    "brand": "omega",
+    "image": "./images/Omega new 67.jpg",
+    "oldPrice": 20990,
+    "newPrice": 350,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 255,
+    "name": "Omega Aqua Terra Steel Rose Gold Diamond Ladies Watch 231.25.39.21.55.001 Box Card",
+    "brand": "omega",
+    "image": "./images/Omega new 68.jpg",
+    "oldPrice": 11990,
+    "newPrice": 330,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 256,
+    "name": "Omega Seamaster Ploprof 1200m Steel Mens Watch 224.32.55.21.01.002 Card",
+    "brand": "omega",
+    "image": "./images/Omega new 69.jpg",
+    "oldPrice": 7990,
+    "newPrice": 270,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 257,
+    "name": "Omega Speedmaster Dark Side of the Moon Watch 311.92.44.51.01.003 Box Card",
+    "brand": "omega",
+    "image": "./images/Omega new 70.jpg",
+    "oldPrice": 9290,
+    "newPrice": 290,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 258,
+    "name": "Omega Speedmaster Apollo 8 Dark Side of the Moon Ceramic Mens Watch 311.92.44.30.01.001",
+    "brand": "omega",
+    "image": "./images/Omega new 71.jpg",
+    "oldPrice": 9990,
+    "newPrice": 290,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 259,
+    "name": "Omega Speedmaster Dark Side of the Moon Ceramic Mens Watch 311.92.44.30.01.002 Unworn",
+    "brand": "omega",
+    "image": "./images/Omega new 72.jpg",
+    "oldPrice": 10090,
+    "newPrice": 330,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
+  },
+  {
+    "id": 260,
+    "name": "Omega Speedmaster Broad Arrow Rose Gold Mens Watch 3653.80.33",
+    "brand": "omega",
+    "image": "./images/Omega new 73.jpg",
+    "oldPrice": 25990,
+    "newPrice": 350,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "omega"
   }
 ]
