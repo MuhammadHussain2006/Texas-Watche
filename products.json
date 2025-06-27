@@ -3706,5 +3706,101 @@
     "rating": 5,
     "isNew": false,
     "page": "patek-philippe"
+  },
+  {
+    "id": 310,
+    "name": "Patek Philippe Gondolo Small Seconds White Gold Blue Dial Mens Watch 5124 Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 31.jpg", 
+    "oldPrice": 21590,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 311,
+    "name": "Patek Philippe Calatrava White Gold Silver Dial Automatic Mens Watch 5296",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 32.jpg", 
+    "oldPrice": 25990,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 312,
+    "name": "Patek Philippe Calatrava 18K White Gold Silver Dial Mens Watch 5296 Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 33.jpg", 
+    "oldPrice": 27990,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 313,
+    "name": "Patek Philippe Complications Annual Calendar Yellow Gold Watch 5035 5035j Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 34.jpg", 
+    "oldPrice": 28990,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 314,
+    "name": "Patek Philippe Calatrava White Gold Black Dial Diamond Mens Watch 5297 Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 35.jpg", 
+    "oldPrice": 25790,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 315,
+    "name": "Patek Philippe Aquanaut Midsize Automatic Steel Mens Watch 5066",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 36.jpg", 
+    "oldPrice": 45990,
+    "newPrice": 390 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 316,
+    "name": "Patek Philippe Calatrava Pilot Limited Edition Steel Mens Watch 5522A",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 37.jpg", 
+    "oldPrice": 46990,
+    "newPrice": 390 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 317,
+    "name": "Patek Philippe Gondolo Yellow Gold Vintage Mens Watch 3528 Box Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 38.jpg", 
+    "oldPrice": 9990,
+    "newPrice": 290 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
   }
 ]
