@@ -3598,5 +3598,113 @@
     "rating": 5,
     "isNew": false,
     "page": "patek-philippe"
+  },
+  {
+    "id": 301,
+    "name": "Patek Philippe Nautilus White Dial Automatic Steel Mens Watch 3800 Box Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 22.jpg", 
+    "oldPrice": 74990,
+    "newPrice": 390 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 302,
+    "name": "Patek Philippe World Time Complications White Gold Chronograph Watch 5930 Unworn",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 23.jpg", 
+    "oldPrice": 82990,
+    "newPrice": 390 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 303,
+    "name": "Patek Philippe Nautilus 18K White Gold Black Strap Mens Watch 5711 Box Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 24.jpg", 
+    "oldPrice": 103990,
+    "newPrice": 390 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 304,
+    "name": "Patek Philippe Calatrava Rose Gold Vintage Mens Watch 3820 Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 25.jpg", 
+    "oldPrice": 12790,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 305,
+    "name": "Patek Philippe Gondolo Small Seconds White Gold Silver Dial Mens Watch 5111",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 26.jpg", 
+    "oldPrice": 14690,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 306,
+    "name": "Patek Philippe Calatrava White Gold Black Strap Mens Watch 5119",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 27.jpg", 
+    "oldPrice": 14990,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 307,
+    "name": "Patek Philippe Calatrava White Gold Black Strap Mens Watch 5119G Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 28.jpg", 
+    "oldPrice": 16990,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 308,
+    "name": "Patek Philippe Calatrava 18K Rose Gold Silver Dial Mens Watch 5123R",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 29.jpg", 
+    "oldPrice": 17990,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 309,
+    "name": "Patek Philippe Gondolo Rose Gold Brown Strap Mens Watch 5098 Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 30.jpg", 
+    "oldPrice": 20690,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
   }
 ]
