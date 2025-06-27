@@ -3490,5 +3490,113 @@
     "rating": 5,
     "isNew": true,
     "page": "rolex"
+  },
+  {
+    "id": 292,
+    "name": "Patek Philippe Calatrava White Gold Black Strap Mens Watch 5119",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 13.jpg",
+    "oldPrice": 14690,
+    "newPrice": 330,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 293,
+    "name": "Patek Philippe Calatrava 18k Rose Gold Black Strap Mens Watch 3919",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 14.jpg",
+    "oldPrice": 10390,
+    "newPrice": 330,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 294,
+    "name": "Patek Philippe Calatrava Officer Limited 150th Anniversary Yellow Gold Mens Watch 3960 Box",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 15.jpg",
+    "oldPrice": 23690,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 295,
+    "name": "Patek Philippe Grand Complications White Gold Mens Watch 5320 Box Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 16.jpg", 
+    "oldPrice": 75990,
+    "newPrice": 390 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 296,
+    "name": "Patek Philippe Gondolo 18k Yellow Gold Small Seconds Mens Watch 5014",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 17.jpg", 
+    "oldPrice": 12590,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 297,
+    "name": "Patek Philippe Golden Ellipse Grande Taille Rose Gold Watch 5738 Box Papers",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe-18.jpg", 
+    "oldPrice": 29590,
+    "newPrice": 350 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 298,
+    "name": "Patek Philippe 18k White Gold Silver Dial Vintage Mens Watch 3666",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 19.jpg", 
+    "oldPrice": 8790,
+    "newPrice": 290 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 299,
+    "name": "Patek Philippe Gondolo Small Seconds Yellow Gold Silver Dial Mens Watch 5111",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 20.jpg", 
+    "oldPrice": 14990,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
+  },
+  {
+    "id": 300,
+    "name": "Patek Philippe Gondolo Rectangular Rose Gold Mens Watch 5109 5109R",
+    "brand": "patek-philippe",
+    "image": "./images/patek-philippe 21.jpg", 
+    "oldPrice": 16290,
+    "newPrice": 330 ,
+    "category": "men",
+    "rating": 5,
+    "isNew": false,
+    "page": "patek-philippe"
   }
 ]
