@@ -1,119 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Texas Watches Shopping Cart</title>
+  <title>Shopping Cart - Texas Watches</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Enhanced dropdown */
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
       background: white;
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      border-radius: 8px;
-      overflow: hidden;
+      border: 1px solid #000;
     }
+
     .dropdown:hover .dropdown-content {
       display: block;
+      animation: fadeInDown 0.3s ease;
     }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
     .mobile-menu {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
     }
+
     .mobile-menu.active {
       display: block;
     }
-    @media (max-width: 768px) {
-      .desktop-menu {
-        display: none;
-      }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
     }
-    .cart-item-card {
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
       transition: all 0.3s ease;
     }
-    .cart-item-card:hover {
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
     }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Cart item card */
+    .cart-item-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+    }
+
+    .cart-item-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Quantity buttons */
     .quantity-btn {
       transition: all 0.2s ease;
+      border: 1px solid #e5e7eb;
     }
+
     .quantity-btn:hover:not(:disabled) {
-      background-color: #374151;
+      background-color: #000;
+      color: white;
+      border-color: #000;
       transform: scale(1.05);
     }
+
     .quantity-btn:active:not(:disabled) {
       transform: scale(0.95);
     }
+
     .quantity-btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;
     }
-    .success-message {
+
+    /* Success/Error message animation */
+    .toast-message {
       animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s;
     }
+
     @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
+
     @keyframes fadeOut {
-      to { opacity: 0; transform: translateX(100%); }
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
     }
+
+    /* Summary sticky */
     .summary-sticky {
       position: sticky;
       top: 2rem;
       max-height: calc(100vh - 4rem);
       overflow-y: auto;
     }
-    .promo-input-animation {
+
+    /* Promo input */
+    .promo-input {
       transition: all 0.3s ease;
     }
-    .promo-input-animation:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+    .promo-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
     }
-    .pulse-animation {
+
+    /* Remove button hover */
+    .remove-btn {
+      transition: all 0.3s ease;
+    }
+
+    .remove-btn:hover {
+      transform: translateX(-4px);
+    }
+
+    /* Loading skeleton */
+    @keyframes skeleton {
+      0% {
+        background-position: -200px 0;
+      }
+
+      100% {
+        background-position: calc(200px + 100%) 0;
+      }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #f3f4f6 0px, #e5e7eb 40px, #f3f4f6 80px);
+      background-size: 200px 100%;
+      animation: skeleton 1.2s ease-in-out infinite;
+    }
+
+    /* Checkout button pulse */
+    .checkout-pulse {
       animation: pulse 2s infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+    }
+
+    /* Badge styling */
+    .discount-badge {
+      background: #000;
+      color: white;
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Empty cart icon animation */
+    .empty-cart-icon {
+      animation: sway 3s ease-in-out infinite;
+    }
+
+    @keyframes sway {
+
+      0%,
+      100% {
+        transform: rotate(-5deg);
+      }
+
+      50% {
+        transform: rotate(5deg);
+      }
     }
   </style>
 </head>
-<body class="bg-gray-50 text-black">
-  
+
+<body class="bg-white text-black">
+
   <!-- Top Header -->
-  <div class="bg-black text-white py-2 px-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
-      <div class="flex items-center space-x-2">
-        <i class="fas fa-shipping-fast"></i>
-        <span>Save Up to 90% Off • Free Shipping All Orders</span>
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
       </div>
       <div class="relative dropdown">
-        <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
-          <i class="fas fa-user"></i>
-          <span>My Account</span>
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
           <i class="fas fa-chevron-down text-xs"></i>
         </button>
         <div class="dropdown-content">
-          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-sign-in-alt mr-2"></i>Log In
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Sign In
           </a>
-          <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-user-plus mr-2"></i>Register
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
           </a>
-          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-user-circle mr-2"></i>My Account
+          <a href="favorites.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>Favorites (<span class="favorites-count">0</span>)
           </a>
-          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Cart
           </a>
         </div>
       </div>
@@ -121,141 +297,169 @@
   </div>
 
   <!-- Main Header -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-4">
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
       <div class="flex items-center justify-between">
-        
-        <!-- Logo and Tagline -->
+
+        <!-- Logo -->
         <div class="flex-1">
           <a href="index.html" class="inline-block">
-            <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
-            <p class="text-sm text-gray-600 max-w-md">
-              Best Luxury Watches On Sale, Up To 90% Off.<br>
-              Free Worldwide Shipping • 30 Day Returns
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1>
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
             </p>
           </a>
         </div>
 
-        <!-- Search and Cart -->
-        <div class="flex items-center space-x-6">
-          <!-- Search Box -->
-          <div class="relative hidden md:block">
-            <input 
-              type="text" 
-              placeholder="Search watches..." 
-              id="searchInput"
-              class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
-            >
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            <button 
-              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors"
-            >
-              Search
-            </button>
           </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
 
           <!-- Cart -->
-          <div class="relative">
-            <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
-              <div class="relative">
-                <i class="fas fa-shopping-bag text-2xl"></i>
-                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center" id="headerCartCount">0</span>
-              </div>
-              <span class="hidden lg:inline font-medium">Cart</span>
-            </a>
-          </div>
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span id="headerCartCount"
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
 
-          <!-- Mobile Menu Button -->
-          <button class="md:hidden" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars text-2xl"></i>
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
           </button>
         </div>
       </div>
 
       <!-- Mobile Search -->
-      <div class="md:hidden mt-4">
+      <div class="lg:hidden mt-4">
         <div class="relative">
-          <input 
-            type="text" 
-            placeholder="Search watches..." 
-            id="mobileSearchInput"
-            class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
-          >
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
           <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-          <button 
-            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm"
-          >
-            Go
-          </button>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Navigation -->
-  <nav class="bg-white border-b border-gray-200">
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
     <div class="max-w-7xl mx-auto px-4">
-      <!-- Desktop Menu -->
-      <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
-        <li><a href="index.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">HOME</a></li>
-        <li><a href="rolex.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">ROLEX</a></li>
-        <li><a href="omega.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">OMEGA</a></li>
-        <li><a href="cartier.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">CARTIER</a></li>
-        <li><a href="patek-philippe.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">PATEK PHILIPPE</a></li>
-        <li><a href="breitling.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">BREITLING</a></li>
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
       </ul>
-
-      <!-- Mobile Menu -->
-      <div class="mobile-menu py-4" id="mobileMenu">
-        <ul class="space-y-4">
-          <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
-          <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
-          <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
-          <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
-          <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
-          <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Shopping Cart</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Cart Container -->
-  <div class="max-w-7xl mx-auto px-4 py-8">
-    
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+
     <!-- Cart Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-5xl font-bold text-black mb-4">Shopping Cart</h1>
-      <p class="text-xl text-gray-600">Review your luxury timepieces and proceed to checkout</p>
-      <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
+    <div class="text-center mb-8 sm:mb-12">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-black mb-2 sm:mb-4 tracking-wider">SHOPPING CART</h1>
+      <p class="text-gray-600 font-light">Review your selections and proceed to checkout</p>
+      <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
     </div>
 
     <!-- Loading State -->
     <div id="loadingMessage" class="flex items-center justify-center py-20">
       <div class="text-center">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black mb-4"></div>
-        <p class="text-gray-600 text-lg">Loading your cart...</p>
+        <div class="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-black mb-4">
+        </div>
+        <p class="text-gray-600 font-light">Loading your cart...</p>
       </div>
     </div>
 
     <!-- Empty Cart State -->
     <div id="emptyCart" class="hidden">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-16 text-center">
+      <div class="bg-white border-2 border-black p-12 sm:p-16 text-center">
         <div class="mb-8">
-          <i class="fas fa-shopping-cart text-8xl text-gray-300 mb-6"></i>
-          <h2 class="text-3xl font-bold text-gray-900 mb-4">Your Cart is Empty</h2>
-          <p class="text-xl text-gray-600 mb-8">Discover our exclusive collection of luxury timepieces</p>
+          <i class="fas fa-shopping-cart empty-cart-icon text-6xl sm:text-8xl text-gray-300 mb-6"></i>
+          <h2 class="text-2xl sm:text-3xl font-light text-gray-900 mb-4 tracking-wider">YOUR CART IS EMPTY</h2>
+          <p class="text-gray-600 font-light mb-8">Discover our exclusive collection of luxury timepieces</p>
         </div>
-        
+
         <div class="space-y-4">
-          <a href="index.html" class="inline-block bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg">
-            <i class="fas fa-watch mr-2"></i>Explore Luxury Watches
+          <a href="index.html"
+            class="inline-block bg-black text-white px-8 sm:px-10 py-3 sm:py-4 font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i>Start Shopping
           </a>
-          <div class="flex justify-center space-x-4 text-sm">
-            <a href="rolex.html" class="text-gray-600 hover:text-black transition-colors">Rolex</a>
+          <div class="flex justify-center space-x-4 text-sm mt-6">
+            <a href="rolex.html" class="text-gray-600 hover:text-black transition-colors font-light">Rolex</a>
             <span class="text-gray-300">•</span>
-            <a href="omega.html" class="text-gray-600 hover:text-black transition-colors">Omega</a>
+            <a href="omega.html" class="text-gray-600 hover:text-black transition-colors font-light">Omega</a>
             <span class="text-gray-300">•</span>
-            <a href="cartier.html" class="text-gray-600 hover:text-black transition-colors">Cartier</a>
+            <a href="cartier.html" class="text-gray-600 hover:text-black transition-colors font-light">Cartier</a>
           </div>
         </div>
       </div>
@@ -263,21 +467,22 @@
 
     <!-- Cart with Items -->
     <div id="cartWithItems" class="hidden">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+
         <!-- Cart Items Section -->
         <div class="lg:col-span-2 space-y-6">
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-            <div class="flex items-center justify-between mb-8">
-              <h2 class="text-2xl font-bold text-black">
-                Cart Items (<span id="itemCount">0</span>)
+          <div class="bg-white border-2 border-black p-6 sm:p-8">
+            <div class="flex items-center justify-between mb-6 sm:mb-8">
+              <h2 class="text-xl sm:text-2xl font-light tracking-wider">
+                CART ITEMS (<span id="itemCount">0</span>)
               </h2>
-              <button onclick="clearCart()" class="text-gray-500 hover:text-red-500 transition-colors">
-                <i class="fas fa-trash mr-2"></i>Clear Cart
+              <button onclick="clearCart()"
+                class="text-gray-500 hover:text-red-500 transition-colors font-light text-sm">
+                <i class="fas fa-trash mr-2"></i>Clear All
               </button>
             </div>
-            
-            <div id="cartItemsList" class="space-y-6">
+
+            <div id="cartItemsList" class="space-y-4 sm:space-y-6">
               <!-- Cart items will be dynamically loaded here -->
             </div>
           </div>
@@ -285,98 +490,87 @@
 
         <!-- Order Summary Section -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 summary-sticky">
-            <h2 class="text-2xl font-bold text-black mb-8">Order Summary</h2>
-            
+          <div class="bg-white border-2 border-black p-6 sm:p-8 summary-sticky">
+            <h2 class="text-xl sm:text-2xl font-light tracking-wider mb-6 sm:mb-8">ORDER SUMMARY</h2>
+
             <!-- Summary Details -->
-            <div class="space-y-4 mb-8">
+            <div class="space-y-4 mb-6 sm:mb-8">
               <div class="flex justify-between items-center">
-                <span class="text-gray-600">Subtotal</span>
-                <span class="font-semibold text-black" id="subtotal">$0.00</span>
+                <span class="text-gray-600 font-light">Subtotal</span>
+                <span class="font-light text-black" id="subtotal">$0.00</span>
               </div>
-              
+
               <div class="flex justify-between items-center" id="discountRow" style="display: none;">
-                <span class="text-gray-600">Discount</span>
-                <span class="font-semibold text-green-600" id="discount">-$0.00</span>
+                <span class="text-gray-600 font-light">Discount</span>
+                <span class="font-light text-green-600" id="discount">-$0.00</span>
               </div>
-              
+
               <div class="flex justify-between items-center">
-                <span class="text-gray-600">Tax (8%)</span>
-                <span class="font-semibold text-black" id="tax">$0.00</span>
+                <span class="text-gray-600 font-light">Tax (8%)</span>
+                <span class="font-light text-black" id="tax">$0.00</span>
               </div>
-              
+
               <!-- Free Shipping Banner -->
-              <div class="bg-green-50 border border-green-200 rounded-xl p-4 my-6">
-                <div class="flex items-center text-green-700">
+              <div class="bg-black text-white p-4 my-6">
+                <div class="flex items-center">
                   <i class="fas fa-shipping-fast text-xl mr-3"></i>
                   <div>
-                    <div class="font-semibold">Free Worldwide Shipping</div>
-                    <div class="text-sm">On all orders • No minimum required</div>
+                    <div class="font-light tracking-wider text-sm">FREE WORLDWIDE SHIPPING</div>
+                    <div class="text-xs opacity-80 font-light">On all orders • No minimum</div>
                   </div>
                 </div>
               </div>
-              
+
               <div class="border-t border-gray-200 pt-4">
                 <div class="flex justify-between items-center">
-                  <span class="text-xl font-bold text-black">Total</span>
-                  <span class="text-2xl font-bold text-black" id="total">$0.00</span>
+                  <span class="text-lg sm:text-xl font-light tracking-wider">TOTAL</span>
+                  <span class="text-xl sm:text-2xl font-light" id="total">$0.00</span>
                 </div>
               </div>
             </div>
 
             <!-- Promo Code Section -->
-            <div class="mb-8">
-              <div class="bg-gray-50 rounded-xl p-6">
-                <label class="block text-sm font-semibold text-black mb-3">
+            <div class="mb-6 sm:mb-8">
+              <div class="border border-gray-200 p-4 sm:p-6">
+                <label class="block text-sm font-light tracking-wider uppercase mb-3">
                   <i class="fas fa-tag mr-2"></i>Promo Code
                 </label>
                 <div class="flex space-x-3">
-                  <input 
-                    type="text" 
-                    id="promoCode" 
-                    placeholder="Enter code" 
-                    class="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:border-black focus:outline-none promo-input-animation"
-                  >
-                  <button 
-                    onclick="applyPromoCode()" 
-                    class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors font-semibold"
-                  >
+                  <input type="text" id="promoCode" placeholder="Enter code"
+                    class="promo-input flex-1 px-4 py-2.5 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                  <button onclick="applyPromoCode()"
+                    class="bg-black text-white px-6 py-2.5 hover:bg-gray-800 transition-colors font-light tracking-wider uppercase">
                     Apply
                   </button>
                 </div>
-                <div class="mt-3 text-xs text-gray-500">
-                  Try: WELCOME10, SAVE20, VIP30, FIRST15
+                <div class="mt-3 text-xs text-gray-500 font-light">
+                  Try: WELCOME10, SAVE20, VIP30
                 </div>
               </div>
             </div>
 
             <!-- Action Buttons -->
-            <div class="space-y-4">
-              <button 
-                id="checkoutBtn" 
-                onclick="proceedToCheckout()" 
-                class="w-full bg-black text-white py-4 px-6 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                <i class="fas fa-lock mr-2"></i>Proceed to Checkout
+            <div class="space-y-3">
+              <button id="checkoutBtn" onclick="proceedToCheckout()"
+                class="checkout-pulse w-full bg-black text-white py-3 sm:py-4 px-6 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase disabled:bg-gray-300 disabled:cursor-not-allowed">
+                <i class="fas fa-lock mr-2"></i>Secure Checkout
               </button>
-              
-              <a 
-                href="index.html" 
-                class="w-full block text-center bg-white text-black py-4 px-6 rounded-xl hover:bg-gray-50 transition-colors font-semibold border-2 border-gray-200 hover:border-black"
-              >
+
+              <a href="index.html"
+                class="w-full block text-center bg-white text-black py-3 sm:py-4 px-6 hover:bg-gray-50 transition-colors font-light text-sm tracking-wider uppercase border-2 border-black">
                 <i class="fas fa-arrow-left mr-2"></i>Continue Shopping
               </a>
             </div>
 
             <!-- Security Badges -->
-            <div class="mt-8 pt-6 border-t border-gray-200">
+            <div class="mt-6 sm:mt-8 pt-6 border-t border-gray-200">
               <div class="flex items-center justify-center space-x-4 text-gray-400">
-                <i class="fas fa-shield-alt text-2xl"></i>
-                <i class="fas fa-lock text-2xl"></i>
-                <i class="fab fa-cc-visa text-2xl"></i>
-                <i class="fab fa-cc-mastercard text-2xl"></i>
+                <i class="fas fa-shield-alt text-xl sm:text-2xl"></i>
+                <i class="fas fa-lock text-xl sm:text-2xl"></i>
+                <i class="fab fa-cc-visa text-xl sm:text-2xl"></i>
+                <i class="fab fa-cc-mastercard text-xl sm:text-2xl"></i>
               </div>
-              <p class="text-center text-xs text-gray-500 mt-2">
+              <p class="text-center text-xs text-gray-500 mt-2 font-light">
                 Secure checkout • SSL encrypted
               </p>
             </div>
@@ -387,74 +581,83 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-black text-white py-12 mt-16">
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <!-- Company Info -->
-        <div class="md:col-span-1">
-          <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
-          <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3>
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
           <div class="flex space-x-4">
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-facebook-f text-xl"></i>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-twitter text-xl"></i>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-instagram text-xl"></i>
-            </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-pinterest text-xl"></i>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
             </a>
           </div>
         </div>
 
-        <!-- Company Links -->
+        <!-- Company -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Company</h4>
           <ul class="space-y-2">
-            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-            <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
-            <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy</a></li>
+            <li><a href="terms.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms</a></li>
           </ul>
         </div>
 
-        <!-- Customer Service -->
+        <!-- Support -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Support</h4>
           <ul class="space-y-2">
-            <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
-            <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
-            <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
-            <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sitemap</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
           </ul>
         </div>
 
-        <!-- My Account -->
+        <!-- Account -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">My Account</h4>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Account</h4>
           <ul class="space-y-2">
-            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
-            <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
-            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
-            <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sign
+                In</a></li>
+            <li><a href="createaccount.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Register</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Orders</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Cart</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- Payment Icons -->
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-        <div class="flex justify-center items-center space-x-4 mb-4">
-          <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
         </div>
-        <p class="text-gray-400 text-sm">
-          Copyright © 2025 Texas Watches. All Rights Reserved.
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Texas Watches. All rights reserved.
         </p>
       </div>
     </div>
@@ -468,7 +671,25 @@
     // Mobile menu toggle
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
       mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Get favorites
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
     }
 
     // Cart Management Functions
@@ -511,7 +732,7 @@
       static updateQuantity(productId, quantity) {
         let cart = this.getCart();
         const item = cart.find(item => item.productId === productId);
-        
+
         if (item) {
           if (quantity <= 0) {
             return this.removeFromCart(productId);
@@ -555,8 +776,8 @@
         console.error('Error loading products:', error);
         document.getElementById('loadingMessage').innerHTML = `
           <div class="text-center">
-            <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
-            <p class="text-red-600 text-xl">Error loading cart data</p>
+            <i class="fas fa-exclamation-triangle text-5xl sm:text-6xl text-gray-400 mb-4"></i>
+            <p class="text-gray-600 font-light">Error loading cart data</p>
           </div>
         `;
       }
@@ -566,7 +787,7 @@
     function loadCartItems() {
       cartItems = CartManager.getCart();
       CartManager.updateCartCount();
-      
+
       const loadingMessage = document.getElementById('loadingMessage');
       const emptyCart = document.getElementById('emptyCart');
       const cartWithItems = document.getElementById('cartWithItems');
@@ -588,59 +809,65 @@
     function renderCartItems() {
       const cartItemsList = document.getElementById('cartItemsList');
       const itemCount = document.getElementById('itemCount');
-      
+
       itemCount.textContent = cartItems.length;
-      
+
       cartItemsList.innerHTML = cartItems.map(cartItem => {
         const product = productsData.find(p => p.id === cartItem.productId);
         if (!product) return '';
 
         const itemTotal = product.newPrice * cartItem.quantity;
         const brandName = product.brand.replace('-', ' ').toUpperCase();
+        const discount = Math.round(((product.oldPrice - product.newPrice) / product.oldPrice) * 100);
 
         return `
-          <div class="cart-item-card bg-gray-50 rounded-xl p-6 border border-gray-200">
-            <div class="flex flex-col lg:flex-row lg:items-center space-y-4 lg:space-y-0 lg:space-x-6">
+          <div class="cart-item-card bg-white border border-gray-200 p-4 sm:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
               
               <!-- Product Image -->
               <div class="flex-shrink-0">
-                <img src="${product.image}" alt="${product.name}" class="w-24 h-24 lg:w-32 lg:h-32 object-cover rounded-lg border border-gray-200">
+                <img src="${product.image}" alt="${product.name}" class="w-24 h-24 sm:w-32 sm:h-32 object-cover border-2 border-black">
               </div>
               
               <!-- Product Details -->
               <div class="flex-1 space-y-2">
-                <div class="text-sm font-semibold text-gray-500 uppercase tracking-wide">${brandName}</div>
-                <h3 class="text-lg font-bold text-black leading-tight">${product.name}</h3>
-                <div class="text-2xl font-bold text-black">$${product.newPrice.toLocaleString()}</div>
+                <div class="text-xs font-light text-gray-500 uppercase tracking-widest">${brandName}</div>
+                <h3 class="text-sm sm:text-base font-light text-black leading-tight">${product.name}</h3>
+                <div class="flex items-baseline space-x-3">
+                  <span class="text-xl sm:text-2xl font-light text-black">$${product.newPrice.toLocaleString()}</span>
+                  <span class="text-sm text-gray-400 line-through">$${product.oldPrice.toLocaleString()}</span>
+                  ${discount > 0 ? `<span class="discount-badge">-${discount}%</span>` : ''}
+                </div>
               </div>
               
-              <!-- Quantity Controls -->
-              <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-3 bg-white rounded-lg border border-gray-200 p-1">
+              <!-- Quantity and Actions -->
+              <div class="flex flex-row sm:flex-col items-center sm:items-end justify-between sm:justify-start space-y-0 sm:space-y-4">
+                <!-- Quantity Controls -->
+                <div class="flex items-center space-x-0 border-2 border-black">
                   <button 
-                    class="quantity-btn w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors ${cartItem.quantity <= 1 ? 'opacity-50 cursor-not-allowed' : ''}"
+                    class="quantity-btn w-10 h-10 flex items-center justify-center transition-colors ${cartItem.quantity <= 1 ? 'opacity-50 cursor-not-allowed' : ''}"
                     onclick="updateItemQuantity(${product.id}, ${cartItem.quantity - 1})" 
                     ${cartItem.quantity <= 1 ? 'disabled' : ''}
                   >
-                    <i class="fas fa-minus text-sm"></i>
+                    <i class="fas fa-minus text-xs"></i>
                   </button>
-                  <span class="w-12 text-center font-bold text-lg">${cartItem.quantity}</span>
+                  <span class="w-12 text-center font-light">${cartItem.quantity}</span>
                   <button 
-                    class="quantity-btn w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center transition-colors"
+                    class="quantity-btn w-10 h-10 flex items-center justify-center transition-colors"
                     onclick="updateItemQuantity(${product.id}, ${cartItem.quantity + 1})"
                   >
-                    <i class="fas fa-plus text-sm"></i>
+                    <i class="fas fa-plus text-xs"></i>
                   </button>
                 </div>
                 
-                <!-- Item Total -->
+                <!-- Item Total and Remove -->
                 <div class="text-right">
-                  <div class="text-2xl font-bold text-black">$${itemTotal.toLocaleString()}</div>
+                  <div class="text-xl sm:text-2xl font-light text-black mb-2">$${itemTotal.toLocaleString()}</div>
                   <button 
-                    class="text-red-500 hover:text-red-700 transition-colors mt-2"
+                    class="remove-btn text-red-500 hover:text-red-700 transition-colors text-sm font-light"
                     onclick="removeItem(${product.id})"
                   >
-                    <i class="fas fa-trash mr-1"></i>Remove
+                    <i class="fas fa-times mr-1"></i>Remove
                   </button>
                 </div>
               </div>
@@ -661,8 +888,8 @@
       cartItems = CartManager.getCart();
       renderCartItems();
       updateSummary();
-      
-      showSuccessMessage(`Quantity updated successfully!`);
+
+      showToastMessage('Quantity updated', 'success');
     }
 
     // Remove item from cart
@@ -671,34 +898,34 @@
       if (confirm(`Remove "${product.name}" from cart?`)) {
         CartManager.removeFromCart(productId);
         cartItems = CartManager.getCart();
-        
+
         if (cartItems.length === 0) {
-          loadCartItems(); // This will show empty cart state
+          loadCartItems();
         } else {
           renderCartItems();
           updateSummary();
         }
-        
-        showSuccessMessage(`${product.name} removed from cart!`);
+
+        showToastMessage('Item removed from cart', 'success');
       }
     }
 
     // Clear entire cart
     function clearCart() {
       if (cartItems.length === 0) return;
-      
-      if (confirm('Are you sure you want to clear your entire cart?')) {
+
+      if (confirm('Clear all items from your cart?')) {
         CartManager.clearCart();
         cartItems = [];
-        loadCartItems(); // This will show empty cart state
-        showSuccessMessage('Cart cleared successfully!');
+        loadCartItems();
+        showToastMessage('Cart cleared', 'success');
       }
     }
 
     // Update summary
     function updateSummary() {
       let subtotal = 0;
-      
+
       cartItems.forEach(cartItem => {
         const product = productsData.find(p => p.id === cartItem.productId);
         if (product) {
@@ -707,14 +934,13 @@
       });
 
       const discountAmount = subtotal * (promoDiscount / 100);
-      const tax = (subtotal - discountAmount) * 0.08; // 8% tax
+      const tax = (subtotal - discountAmount) * 0.08;
       const total = subtotal - discountAmount + tax;
 
       document.getElementById('subtotal').textContent = `$${subtotal.toLocaleString()}`;
       document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
       document.getElementById('total').textContent = `$${total.toFixed(2)}`;
 
-      // Show/hide discount row
       const discountRow = document.getElementById('discountRow');
       if (promoDiscount > 0) {
         discountRow.style.display = 'flex';
@@ -723,97 +949,82 @@
         discountRow.style.display = 'none';
       }
 
-      // Enable/disable checkout button
       const checkoutBtn = document.getElementById('checkoutBtn');
       checkoutBtn.disabled = cartItems.length === 0;
     }
 
     // Apply promo code
     function applyPromoCode() {
-      const promoCode = document.getElementById('promoCode').value.trim().toLowerCase();
+      const promoCode = document.getElementById('promoCode').value.trim().toUpperCase();
       const validCodes = {
-        'welcome10': 10,
-        'save20': 20,
-        'vip30': 30,
-        'first15': 15
+        'WELCOME10': 10,
+        'SAVE20': 20,
+        'VIP30': 30
       };
 
       if (validCodes[promoCode]) {
         promoDiscount = validCodes[promoCode];
         updateSummary();
-        showSuccessMessage(`Promo code applied! ${promoDiscount}% discount added.`);
+        showToastMessage(`${promoDiscount}% discount applied!`, 'success');
         document.getElementById('promoCode').value = '';
       } else {
-        showErrorMessage('Invalid promo code. Try: WELCOME10, SAVE20, VIP30, or FIRST15');
+        showToastMessage('Invalid promo code', 'error');
       }
     }
 
     // Proceed to checkout
     function proceedToCheckout() {
       if (cartItems.length === 0) {
-        showErrorMessage('Your cart is empty!');
+        showToastMessage('Your cart is empty', 'error');
         return;
       }
 
-      // Save discount if applied
       if (promoDiscount > 0) {
         localStorage.setItem('appliedDiscount', promoDiscount);
       }
 
-      // Redirect to checkout page
       window.location.href = 'checkout.html';
     }
 
-    // Show success message
-    function showSuccessMessage(message) {
+    // Show toast message
+    function showToastMessage(message, type = 'success') {
       const messageDiv = document.createElement('div');
-      messageDiv.className = 'fixed top-6 right-6 bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 success-message';
-      messageDiv.innerHTML = `
-        <div class="flex items-center space-x-3">
-          <i class="fas fa-check-circle text-xl"></i>
-          <span class="font-medium">${message}</span>
-        </div>
-      `;
-      
-      document.body.appendChild(messageDiv);
-      
-      setTimeout(() => {
-        messageDiv.remove();
-      }, 3000);
-    }
+      const bgColor = type === 'success' ? 'bg-black' : 'bg-red-500';
+      const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle';
 
-    // Show error message
-    function showErrorMessage(message) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'fixed top-6 right-6 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50 success-message';
+      messageDiv.className = `fixed top-20 right-4 sm:right-6 ${bgColor} text-white px-4 sm:px-6 py-3 sm:py-4 shadow-lg z-50 toast-message`;
       messageDiv.innerHTML = `
         <div class="flex items-center space-x-3">
-          <i class="fas fa-exclamation-triangle text-xl"></i>
-          <span class="font-medium">${message}</span>
+          <i class="fas ${icon}"></i>
+          <span class="font-light text-sm">${message}</span>
         </div>
       `;
-      
+
       document.body.appendChild(messageDiv);
-      
+
       setTimeout(() => {
         messageDiv.remove();
       }, 3000);
     }
 
     // Initialize page
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       loadProductsData();
+      updateFavoritesCount();
     });
 
-    // Handle window resize for mobile menu
-    window.addEventListener('resize', function() {
-      if (window.innerWidth >= 768) {
+    // Handle window resize
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
         document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
       }
     });
 
-    // Make CartManager globally available for other pages
+    // Make CartManager globally available
     window.CartManager = CartManager;
   </script>
 </body>
+
 </html>

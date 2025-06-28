@@ -1,124 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checkout - Texas Watches</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Enhanced dropdown */
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
       background: white;
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      border-radius: 8px;
-      overflow: hidden;
+      border: 1px solid #000;
     }
+
     .dropdown:hover .dropdown-content {
       display: block;
+      animation: fadeInDown 0.3s ease;
     }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
     .mobile-menu {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
     }
+
     .mobile-menu.active {
       display: block;
     }
-    @media (max-width: 768px) {
-      .desktop-menu {
-        display: none;
-      }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
     }
-    .form-animation {
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
       transition: all 0.3s ease;
     }
-    .form-animation:focus {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
     }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .form-input {
+      transition: all 0.3s ease;
+      border: 2px solid #e5e7eb;
+    }
+
+    .form-input:focus {
+      border-color: #000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
     .form-error {
       border-color: #ef4444 !important;
-      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
     }
+
+    /* Order summary sticky */
     .order-summary-sticky {
       position: sticky;
       top: 2rem;
       max-height: calc(100vh - 4rem);
       overflow-y: auto;
     }
+
+    /* Progress step styling */
     .progress-step {
       transition: all 0.3s ease;
     }
-    .progress-step.active {
-      color: #22c55e;
-      transform: scale(1.05);
+
+    .progress-step.active .step-circle {
+      background: #000;
+      color: white;
+      transform: scale(1.1);
     }
+
+    .progress-step.active .step-text {
+      color: #000;
+      font-weight: 500;
+    }
+
+    /* Success animation */
     .success-animation {
-      animation: bounceIn 0.6s ease;
+      animation: scaleIn 0.6s ease;
     }
-    @keyframes bounceIn {
-      0%, 20%, 40%, 60%, 80% {
-        transform: translateY(0);
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
       }
-      10%, 30%, 50%, 70%, 90% {
-        transform: translateY(-10px);
+
+      to {
+        opacity: 1;
+        transform: scale(1);
       }
     }
-    .form-section-animation {
+
+    /* Form section animation */
+    .form-section {
       opacity: 0;
       transform: translateY(20px);
       animation: slideInUp 0.6s ease forwards;
     }
-    .form-section-animation:nth-child(1) { animation-delay: 0.1s; }
-    .form-section-animation:nth-child(2) { animation-delay: 0.2s; }
-    .form-section-animation:nth-child(3) { animation-delay: 0.3s; }
-    .form-section-animation:nth-child(4) { animation-delay: 0.4s; }
+
+    .form-section:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .form-section:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .form-section:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .form-section:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
     @keyframes slideInUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
+
+    /* Section card styling */
+    .section-card {
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .section-card:hover {
+      border-color: #000;
+    }
+
+    /* COD badge */
+    .cod-badge {
+      background: #000;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Loading skeleton */
+    @keyframes skeleton {
+      0% {
+        background-position: -200px 0;
+      }
+
+      100% {
+        background-position: calc(200px + 100%) 0;
+      }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #f3f4f6 0px, #e5e7eb 40px, #f3f4f6 80px);
+      background-size: 200px 100%;
+      animation: skeleton 1.2s ease-in-out infinite;
+    }
+
+    /* Order item styling */
+    .order-item {
+      transition: all 0.3s ease;
+    }
+
+    .order-item:hover {
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+    }
+
+    /* Pulse animation for button */
     .pulse-animation {
       animation: pulse 2s infinite;
     }
+
     @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.02);
+      }
+    }
+
+    /* Security icon styling */
+    .security-icon {
+      transition: all 0.3s ease;
+    }
+
+    .security-icon:hover {
+      transform: scale(1.2) rotate(5deg);
     }
   </style>
 </head>
-<body class="bg-gray-50 text-black">
-  
+
+<body class="bg-white text-black">
+
   <!-- Top Header -->
-  <div class="bg-black text-white py-2 px-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
-      <div class="flex items-center space-x-2">
-        <i class="fas fa-shipping-fast"></i>
-        <span>Save Up to 90% Off • Free Shipping All Orders</span>
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
       </div>
       <div class="relative dropdown">
-        <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
-          <i class="fas fa-user"></i>
-          <span>My Account</span>
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
           <i class="fas fa-chevron-down text-xs"></i>
         </button>
         <div class="dropdown-content">
-          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-sign-in-alt mr-2"></i>Log In
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Sign In
           </a>
-          <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-user-plus mr-2"></i>Register
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
           </a>
-          <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-user-circle mr-2"></i>My Account
+          <a href="favorites.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>Favorites (<span class="favorites-count">0</span>)
           </a>
-          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-            <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Cart
           </a>
         </div>
       </div>
@@ -126,140 +302,169 @@
   </div>
 
   <!-- Main Header -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 py-4">
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
       <div class="flex items-center justify-between">
-        
-        <!-- Logo and Tagline -->
+
+        <!-- Logo -->
         <div class="flex-1">
           <a href="index.html" class="inline-block">
-            <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
-            <p class="text-sm text-gray-600 max-w-md">
-              Best Luxury Watches On Sale, Up To 90% Off.<br>
-              Free Worldwide Shipping • 30 Day Returns
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1>
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
             </p>
           </a>
         </div>
 
-        <!-- Search and Cart -->
-        <div class="flex items-center space-x-6">
-          <!-- Search Box -->
-          <div class="relative hidden md:block">
-            <input 
-              type="text" 
-              placeholder="Search watches..." 
-              id="searchInput"
-              class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
-            >
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
             <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            <button 
-              class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors"
-            >
-              Search
-            </button>
           </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
 
           <!-- Cart -->
-          <div class="relative">
-            <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
-              <div class="relative">
-                <i class="fas fa-shopping-bag text-2xl"></i>
-                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center" id="headerCartCount">0</span>
-              </div>
-              <span class="hidden lg:inline font-medium">Cart</span>
-            </a>
-          </div>
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span id="headerCartCount"
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
 
-          <!-- Mobile Menu Button -->
-          <button class="md:hidden" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars text-2xl"></i>
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
           </button>
         </div>
       </div>
 
       <!-- Mobile Search -->
-      <div class="md:hidden mt-4">
+      <div class="lg:hidden mt-4">
         <div class="relative">
-          <input 
-            type="text" 
-            placeholder="Search watches..." 
-            id="mobileSearchInput"
-            class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
-          >
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
           <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-          <button 
-            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm"
-          >
-            Go
-          </button>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Navigation -->
-  <nav class="bg-white border-b border-gray-200">
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
     <div class="max-w-7xl mx-auto px-4">
-      <!-- Desktop Menu -->
-      <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
-        <li><a href="index.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">HOME</a></li>
-        <li><a href="rolex.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">ROLEX</a></li>
-        <li><a href="omega.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">OMEGA</a></li>
-        <li><a href="cartier.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">CARTIER</a></li>
-        <li><a href="patek-philippe.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">PATEK PHILIPPE</a></li>
-        <li><a href="breitling.html" class="font-medium hover:text-gray-600 transition-colors hover:border-b-2 hover:border-gray-300 pb-1">BREITLING</a></li>
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
       </ul>
-
-      <!-- Mobile Menu -->
-      <div class="mobile-menu py-4" id="mobileMenu">
-        <ul class="space-y-4">
-          <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
-          <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
-          <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
-          <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
-          <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
-          <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <a href="shoppingcart.html" class="text-gray-600 hover:text-black transition-colors">Cart</a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Checkout</span>
+      </div>
+    </div>
+  </div>
+
   <!-- Checkout Container -->
-  <div class="max-w-7xl mx-auto px-4 py-8">
-    
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+
     <!-- Checkout Header -->
-    <div class="text-center mb-12">
-      <h1 class="text-5xl font-bold text-black mb-4">Secure Checkout</h1>
-      <p class="text-xl text-gray-600">Complete your luxury timepiece purchase</p>
-      <div class="w-24 h-1 bg-black mx-auto mt-4"></div>
+    <div class="text-center mb-8 sm:mb-12">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-light text-black mb-2 sm:mb-4 tracking-wider">SECURE CHECKOUT
+      </h1>
+      <p class="text-gray-600 font-light">Complete your luxury timepiece purchase</p>
+      <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
     </div>
 
     <!-- Progress Indicator -->
-    <div class="flex justify-center items-center mb-16">
-      <div class="flex items-center space-x-8">
-        <div class="progress-step flex items-center space-x-2 text-gray-400">
-          <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-            <i class="fas fa-shopping-cart"></i>
+    <div class="flex justify-center items-center mb-8 sm:mb-12">
+      <div class="flex items-center space-x-4 sm:space-x-8">
+        <div class="progress-step flex flex-col sm:flex-row items-center sm:space-x-2 text-gray-400">
+          <div class="step-circle w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center transition-all">
+            <i class="fas fa-shopping-cart text-sm"></i>
           </div>
-          <span class="font-medium">Cart</span>
+          <span class="step-text font-light text-xs sm:text-sm mt-1 sm:mt-0">Cart</span>
         </div>
-        
-        <div class="w-16 h-0.5 bg-gray-300"></div>
-        
-        <div class="progress-step active flex items-center space-x-2">
-          <div class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center">
-            <i class="fas fa-credit-card"></i>
+
+        <div class="w-8 sm:w-16 h-px bg-gray-300"></div>
+
+        <div class="progress-step active flex flex-col sm:flex-row items-center sm:space-x-2">
+          <div class="step-circle w-10 h-10 rounded-full flex items-center justify-center transition-all">
+            <i class="fas fa-credit-card text-sm"></i>
           </div>
-          <span class="font-medium">Checkout</span>
+          <span class="step-text font-light text-xs sm:text-sm mt-1 sm:mt-0">Checkout</span>
         </div>
-        
-        <div class="w-16 h-0.5 bg-gray-300"></div>
-        
-        <div class="progress-step flex items-center space-x-2 text-gray-400">
-          <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-            <i class="fas fa-check-circle"></i>
+
+        <div class="w-8 sm:w-16 h-px bg-gray-300"></div>
+
+        <div class="progress-step flex flex-col sm:flex-row items-center sm:space-x-2 text-gray-400">
+          <div class="step-circle w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center transition-all">
+            <i class="fas fa-check-circle text-sm"></i>
           </div>
-          <span class="font-medium">Confirmation</span>
+          <span class="step-text font-light text-xs sm:text-sm mt-1 sm:mt-0">Confirmation</span>
         </div>
       </div>
     </div>
@@ -267,174 +472,120 @@
     <!-- Loading State -->
     <div id="loadingMessage" class="flex items-center justify-center py-20">
       <div class="text-center">
-        <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black mb-4"></div>
-        <p class="text-gray-600 text-lg">Loading checkout...</p>
+        <div class="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-black mb-4">
+        </div>
+        <p class="text-gray-600 font-light">Loading checkout...</p>
       </div>
     </div>
 
     <!-- Checkout Content -->
     <div id="checkoutContent" class="hidden">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+
         <!-- Checkout Form -->
-        <div class="lg:col-span-2 space-y-8">
-          <form id="checkoutForm" class="space-y-8">
-            
+        <div class="lg:col-span-2 space-y-6">
+          <form id="checkoutForm" class="space-y-6">
+
             <!-- Customer Information -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 form-section-animation">
+            <div class="section-card bg-white border-2 border-black p-6 sm:p-8 form-section">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4">
-                  <i class="fas fa-user"></i>
+                  <i class="fas fa-user text-sm"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-black">Customer Information</h2>
+                <h2 class="text-xl sm:text-2xl font-light tracking-wider">CUSTOMER INFORMATION</h2>
               </div>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label class="block text-sm font-semibold text-black mb-2">
+                  <label class="block text-xs font-light tracking-wider uppercase mb-2">
                     First Name <span class="text-red-500">*</span>
                   </label>
-                  <input 
-                    type="text" 
-                    id="firstName" 
-                    name="firstName" 
-                    required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                    placeholder="Enter your first name"
-                  >
+                  <input type="text" id="firstName" name="firstName" required
+                    class="form-input w-full px-4 py-2.5 font-light focus:outline-none" placeholder="Enter first name">
                 </div>
                 <div>
-                  <label class="block text-sm font-semibold text-black mb-2">
+                  <label class="block text-xs font-light tracking-wider uppercase mb-2">
                     Last Name <span class="text-red-500">*</span>
                   </label>
-                  <input 
-                    type="text" 
-                    id="lastName" 
-                    name="lastName" 
-                    required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                    placeholder="Enter your last name"
-                  >
+                  <input type="text" id="lastName" name="lastName" required
+                    class="form-input w-full px-4 py-2.5 font-light focus:outline-none" placeholder="Enter last name">
                 </div>
                 <div>
-                  <label class="block text-sm font-semibold text-black mb-2">
+                  <label class="block text-xs font-light tracking-wider uppercase mb-2">
                     Email Address <span class="text-red-500">*</span>
                   </label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                    placeholder="your@email.com"
-                  >
+                  <input type="email" id="email" name="email" required
+                    class="form-input w-full px-4 py-2.5 font-light focus:outline-none" placeholder="your@email.com">
                 </div>
                 <div>
-                  <label class="block text-sm font-semibold text-black mb-2">
+                  <label class="block text-xs font-light tracking-wider uppercase mb-2">
                     Phone Number <span class="text-red-500">*</span>
                   </label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
-                    required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                    placeholder="+1 (555) 123-4567"
-                  >
+                  <input type="tel" id="phone" name="phone" required
+                    class="form-input w-full px-4 py-2.5 font-light focus:outline-none" placeholder="+1 (555) 123-4567">
                 </div>
               </div>
             </div>
 
             <!-- Shipping Address -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 form-section-animation">
+            <div class="section-card bg-white border-2 border-black p-6 sm:p-8 form-section">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4">
-                  <i class="fas fa-map-marker-alt"></i>
+                  <i class="fas fa-map-marker-alt text-sm"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-black">Shipping Address</h2>
+                <h2 class="text-xl sm:text-2xl font-light tracking-wider">SHIPPING ADDRESS</h2>
               </div>
-              
-              <div class="space-y-6">
+
+              <div class="space-y-4 sm:space-y-6">
                 <div>
-                  <label class="block text-sm font-semibold text-black mb-2">
+                  <label class="block text-xs font-light tracking-wider uppercase mb-2">
                     Street Address <span class="text-red-500">*</span>
                   </label>
-                  <input 
-                    type="text" 
-                    id="address" 
-                    name="address" 
-                    required
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                    placeholder="House number and street name"
-                  >
+                  <input type="text" id="address" name="address" required
+                    class="form-input w-full px-4 py-2.5 font-light focus:outline-none"
+                    placeholder="House number and street name">
                 </div>
-                
+
                 <div>
-                  <label class="block text-sm font-semibold text-black mb-2">
+                  <label class="block text-xs font-light tracking-wider uppercase mb-2">
                     Apartment, Suite, etc. (Optional)
                   </label>
-                  <input 
-                    type="text" 
-                    id="address2" 
-                    name="address2"
-                    class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                    placeholder="Apartment, suite, unit, building, floor, etc."
-                  >
+                  <input type="text" id="address2" name="address2"
+                    class="form-input w-full px-4 py-2.5 font-light focus:outline-none"
+                    placeholder="Apt, suite, unit, etc.">
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label class="block text-sm font-semibold text-black mb-2">
+                    <label class="block text-xs font-light tracking-wider uppercase mb-2">
                       City <span class="text-red-500">*</span>
                     </label>
-                    <input 
-                      type="text" 
-                      id="city" 
-                      name="city" 
-                      required
-                      class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                      placeholder="City"
-                    >
+                    <input type="text" id="city" name="city" required
+                      class="form-input w-full px-4 py-2.5 font-light focus:outline-none" placeholder="City">
                   </div>
                   <div>
-                    <label class="block text-sm font-semibold text-black mb-2">
+                    <label class="block text-xs font-light tracking-wider uppercase mb-2">
                       State/Province <span class="text-red-500">*</span>
                     </label>
-                    <input 
-                      type="text" 
-                      id="state" 
-                      name="state" 
-                      required
-                      class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                      placeholder="State/Province"
-                    >
+                    <input type="text" id="state" name="state" required
+                      class="form-input w-full px-4 py-2.5 font-light focus:outline-none" placeholder="State/Province">
                   </div>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                   <div>
-                    <label class="block text-sm font-semibold text-black mb-2">
+                    <label class="block text-xs font-light tracking-wider uppercase mb-2">
                       ZIP/Postal Code <span class="text-red-500">*</span>
                     </label>
-                    <input 
-                      type="text" 
-                      id="zipCode" 
-                      name="zipCode" 
-                      required
-                      class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                      placeholder="ZIP/Postal Code"
-                    >
+                    <input type="text" id="zipCode" name="zipCode" required
+                      class="form-input w-full px-4 py-2.5 font-light focus:outline-none" placeholder="ZIP/Postal">
                   </div>
                   <div>
-                    <label class="block text-sm font-semibold text-black mb-2">
+                    <label class="block text-xs font-light tracking-wider uppercase mb-2">
                       Country <span class="text-red-500">*</span>
                     </label>
-                    <select 
-                      id="country" 
-                      name="country" 
-                      required
-                      class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation"
-                    >
+                    <select id="country" name="country" required
+                      class="form-input w-full px-4 py-2.5 font-light focus:outline-none">
                       <option value="">Select Country</option>
                       <option value="US">United States</option>
                       <option value="CA">Canada</option>
@@ -453,69 +604,65 @@
             </div>
 
             <!-- Special Instructions -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 form-section-animation">
+            <div class="section-card bg-white border-2 border-black p-6 sm:p-8 form-section">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4">
-                  <i class="fas fa-sticky-note"></i>
+                  <i class="fas fa-sticky-note text-sm"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-black">Special Instructions</h2>
+                <h2 class="text-xl sm:text-2xl font-light tracking-wider">SPECIAL INSTRUCTIONS</h2>
               </div>
-              
+
               <div>
-                <label class="block text-sm font-semibold text-black mb-2">
+                <label class="block text-xs font-light tracking-wider uppercase mb-2">
                   Order Notes (Optional)
                 </label>
-                <textarea 
-                  id="orderNotes" 
-                  name="orderNotes"
-                  rows="4"
-                  class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-black focus:outline-none form-animation resize-none"
-                  placeholder="Any special instructions for delivery..."
-                ></textarea>
+                <textarea id="orderNotes" name="orderNotes" rows="4"
+                  class="form-input w-full px-4 py-2.5 font-light focus:outline-none resize-none"
+                  placeholder="Any special instructions for delivery..."></textarea>
               </div>
             </div>
 
             <!-- Payment Method -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 form-section-animation">
+            <div class="section-card bg-white border-2 border-black p-6 sm:p-8 form-section">
               <div class="flex items-center mb-6">
                 <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center mr-4">
-                  <i class="fas fa-credit-card"></i>
+                  <i class="fas fa-credit-card text-sm"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-black">Payment Method</h2>
+                <h2 class="text-xl sm:text-2xl font-light tracking-wider">PAYMENT METHOD</h2>
               </div>
-              
-              <div class="bg-green-50 border-2 border-green-200 rounded-xl p-6">
+
+              <div class="bg-black text-white p-6">
                 <div class="flex items-center mb-4">
-                  <div class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mr-4">
-                    <i class="fas fa-money-bill-wave text-xl"></i>
+                  <div class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-money-bill-wave text-lg"></i>
                   </div>
                   <div>
-                    <h3 class="text-xl font-bold text-green-800">Cash on Delivery (COD)</h3>
-                    <p class="text-green-700">Pay with cash when your order arrives</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider">CASH ON DELIVERY (COD)</h3>
+                    <p class="text-gray-300 font-light text-sm">Pay with cash when your order arrives</p>
                   </div>
                 </div>
-                
-                <div class="bg-white rounded-lg p-4 border border-green-200">
-                  <h4 class="font-semibold text-green-800 mb-3">COD Benefits:</h4>
-                  <ul class="space-y-2 text-green-700">
+
+                <div class="bg-white text-black p-4 border border-gray-200">
+                  <h4 class="font-light tracking-wider text-sm mb-3">COD BENEFITS:</h4>
+                  <ul class="space-y-2 text-sm font-light">
                     <li class="flex items-center">
-                      <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                      <i class="fas fa-check-circle mr-2"></i>
                       Payment in local currency
                     </li>
                     <li class="flex items-center">
-                      <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                      <i class="fas fa-check-circle mr-2"></i>
                       No online payment required
                     </li>
                     <li class="flex items-center">
-                      <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                      <i class="fas fa-check-circle mr-2"></i>
                       Inspect before payment
                     </li>
                     <li class="flex items-center">
-                      <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                      <i class="fas fa-check-circle mr-2"></i>
                       30-day return policy
                     </li>
                     <li class="flex items-center">
-                      <i class="fas fa-check-circle mr-2 text-green-500"></i>
+                      <i class="fas fa-check-circle mr-2"></i>
                       Free worldwide shipping
                     </li>
                   </ul>
@@ -524,18 +671,18 @@
             </div>
 
             <!-- Security Badges -->
-            <div class="flex justify-center space-x-8 text-gray-500 py-6">
-              <div class="flex items-center space-x-2">
-                <i class="fas fa-shield-alt text-xl"></i>
-                <span class="text-sm font-medium">Secure Checkout</span>
+            <div class="flex justify-center space-x-6 sm:space-x-8 text-gray-500 py-6">
+              <div class="flex flex-col items-center security-icon">
+                <i class="fas fa-shield-alt text-xl sm:text-2xl mb-1"></i>
+                <span class="text-xs font-light">Secure</span>
               </div>
-              <div class="flex items-center space-x-2">
-                <i class="fas fa-truck text-xl"></i>
-                <span class="text-sm font-medium">Free Delivery</span>
+              <div class="flex flex-col items-center security-icon">
+                <i class="fas fa-truck text-xl sm:text-2xl mb-1"></i>
+                <span class="text-xs font-light">Free Ship</span>
               </div>
-              <div class="flex items-center space-x-2">
-                <i class="fas fa-undo text-xl"></i>
-                <span class="text-sm font-medium">30-Day Returns</span>
+              <div class="flex flex-col items-center security-icon">
+                <i class="fas fa-undo text-xl sm:text-2xl mb-1"></i>
+                <span class="text-xs font-light">Returns</span>
               </div>
             </div>
           </form>
@@ -543,71 +690,65 @@
 
         <!-- Order Summary -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 order-summary-sticky">
-            <h2 class="text-2xl font-bold text-black mb-8">Order Summary</h2>
-            
+          <div class="bg-white border-2 border-black p-6 sm:p-8 order-summary-sticky">
+            <h2 class="text-xl sm:text-2xl font-light tracking-wider mb-6 sm:mb-8">ORDER SUMMARY</h2>
+
             <!-- Order Items -->
-            <div id="orderItems" class="space-y-4 mb-8">
+            <div id="orderItems" class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
               <!-- Order items will be loaded here -->
             </div>
-            
+
             <!-- Summary Details -->
-            <div class="space-y-4 mb-8">
+            <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
               <div class="flex justify-between items-center">
-                <span class="text-gray-600">Subtotal</span>
-                <span class="font-semibold text-black" id="subtotal">$0.00</span>
+                <span class="text-gray-600 font-light text-sm">Subtotal</span>
+                <span class="font-light text-black" id="subtotal">$0.00</span>
               </div>
-              
+
               <div class="flex justify-between items-center" id="discountRow" style="display: none;">
-                <span class="text-gray-600">Discount</span>
-                <span class="font-semibold text-green-600" id="discount">-$0.00</span>
+                <span class="text-gray-600 font-light text-sm">Discount</span>
+                <span class="font-light text-green-600" id="discount">-$0.00</span>
               </div>
-              
+
               <div class="flex justify-between items-center">
-                <span class="text-gray-600">Shipping</span>
-                <span class="font-semibold text-green-600">FREE</span>
+                <span class="text-gray-600 font-light text-sm">Shipping</span>
+                <span class="font-light text-green-600">FREE</span>
               </div>
-              
+
               <div class="flex justify-between items-center">
-                <span class="text-gray-600">Tax (8%)</span>
-                <span class="font-semibold text-black" id="tax">$0.00</span>
+                <span class="text-gray-600 font-light text-sm">Tax (8%)</span>
+                <span class="font-light text-black" id="tax">$0.00</span>
               </div>
-              
+
               <div class="border-t border-gray-200 pt-4">
                 <div class="flex justify-between items-center">
-                  <span class="text-xl font-bold text-black">Total</span>
-                  <span class="text-2xl font-bold text-black" id="total">$0.00</span>
+                  <span class="text-lg font-light tracking-wider">TOTAL</span>
+                  <span class="text-xl sm:text-2xl font-light" id="total">$0.00</span>
                 </div>
               </div>
             </div>
 
             <!-- Place Order Button -->
-            <button 
-              type="submit" 
-              form="checkoutForm" 
-              id="placeOrderBtn"
-              class="w-full bg-green-500 text-white py-4 px-6 rounded-xl hover:bg-green-600 transition-colors font-semibold text-lg disabled:bg-gray-300 disabled:cursor-not-allowed"
-            >
+            <button type="submit" form="checkoutForm" id="placeOrderBtn"
+              class="pulse-animation w-full bg-black text-white py-3 sm:py-4 px-6 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase disabled:bg-gray-300 disabled:cursor-not-allowed">
               <i class="fas fa-lock mr-2"></i>Place Order (COD)
             </button>
-            
+
             <!-- Back to Cart -->
-            <a 
-              href="shoppingcart.html" 
-              class="w-full block text-center bg-white text-black py-4 px-6 rounded-xl hover:bg-gray-50 transition-colors font-semibold border-2 border-gray-200 hover:border-black mt-4"
-            >
+            <a href="shoppingcart.html"
+              class="w-full block text-center bg-white text-black py-3 sm:py-4 px-6 hover:bg-gray-50 transition-colors font-light text-sm tracking-wider uppercase border-2 border-black mt-3">
               <i class="fas fa-arrow-left mr-2"></i>Back to Cart
             </a>
 
             <!-- Security Badges -->
-            <div class="mt-8 pt-6 border-t border-gray-200">
+            <div class="mt-6 sm:mt-8 pt-6 border-t border-gray-200">
               <div class="flex items-center justify-center space-x-4 text-gray-400">
-                <i class="fas fa-shield-alt text-2xl"></i>
-                <i class="fas fa-lock text-2xl"></i>
-                <i class="fab fa-cc-visa text-2xl"></i>
-                <i class="fab fa-cc-mastercard text-2xl"></i>
+                <i class="fas fa-shield-alt text-xl sm:text-2xl"></i>
+                <i class="fas fa-lock text-xl sm:text-2xl"></i>
+                <i class="fab fa-cc-visa text-xl sm:text-2xl"></i>
+                <i class="fab fa-cc-mastercard text-xl sm:text-2xl"></i>
               </div>
-              <p class="text-center text-xs text-gray-500 mt-2">
+              <p class="text-center text-xs text-gray-500 mt-2 font-light">
                 Secure checkout • SSL encrypted
               </p>
             </div>
@@ -618,28 +759,29 @@
 
     <!-- Order Confirmation -->
     <div id="orderConfirmation" class="hidden">
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-16 text-center">
+      <div class="bg-white border-2 border-black p-8 sm:p-16 text-center">
         <div class="success-animation">
-          <div class="w-24 h-24 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-8">
-            <i class="fas fa-check-circle text-4xl"></i>
+          <div
+            class="w-20 h-20 sm:w-24 sm:h-24 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
+            <i class="fas fa-check-circle text-3xl sm:text-4xl"></i>
           </div>
-          
-          <h2 class="text-4xl font-bold text-black mb-4">Order Placed Successfully!</h2>
-          <p class="text-xl text-gray-600 mb-8">Thank you for choosing Texas Watches. We'll contact you shortly to confirm delivery details.</p>
-          
-          <div id="confirmationDetails" class="bg-gray-50 rounded-xl p-8 text-left mb-8">
+
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-4 tracking-wider">ORDER PLACED
+            SUCCESSFULLY!</h2>
+          <p class="text-gray-600 font-light mb-6 sm:mb-8">Thank you for choosing Texas Watches. We'll contact you
+            shortly to confirm delivery details.</p>
+
+          <div id="confirmationDetails" class="bg-gray-50 border border-gray-200 p-6 sm:p-8 text-left mb-6 sm:mb-8">
             <!-- Order details will be shown here -->
           </div>
-          
+
           <div class="space-y-4">
-            <a 
-              href="index.html" 
-              class="inline-block bg-black text-white px-8 py-4 rounded-xl hover:bg-gray-800 transition-colors font-semibold text-lg"
-            >
+            <a href="index.html"
+              class="inline-block bg-black text-white px-8 sm:px-10 py-3 sm:py-4 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
               <i class="fas fa-home mr-2"></i>Continue Shopping
             </a>
-            
-            <div class="text-gray-500 text-sm">
+
+            <div class="text-gray-500 text-sm font-light">
               Order confirmation will be sent to your email address
             </div>
           </div>
@@ -649,74 +791,83 @@
   </div>
 
   <!-- Footer -->
-  <footer class="bg-black text-white py-12 mt-16">
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <!-- Company Info -->
-        <div class="md:col-span-1">
-          <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
-          <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3>
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
           <div class="flex space-x-4">
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-facebook-f text-xl"></i>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-twitter text-xl"></i>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-instagram text-xl"></i>
-            </a>
-            <a href="#" class="text-gray-300 hover:text-white transition-colors">
-              <i class="fab fa-pinterest text-xl"></i>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
             </a>
           </div>
         </div>
 
-        <!-- Company Links -->
+        <!-- Company -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Company</h4>
           <ul class="space-y-2">
-            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-            <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
-            <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy</a></li>
+            <li><a href="terms.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms</a></li>
           </ul>
         </div>
 
-        <!-- Customer Service -->
+        <!-- Support -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Support</h4>
           <ul class="space-y-2">
-            <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
-            <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
-            <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
-            <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sitemap</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
           </ul>
         </div>
 
-        <!-- My Account -->
+        <!-- Account -->
         <div>
-          <h4 class="text-lg font-semibold mb-4">My Account</h4>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Account</h4>
           <ul class="space-y-2">
-            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
-            <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
-            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
-            <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sign
+                In</a></li>
+            <li><a href="createaccount.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Register</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Orders</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Cart</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- Payment Icons -->
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-        <div class="flex justify-center items-center space-x-4 mb-4">
-          <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
-          <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
         </div>
-        <p class="text-gray-400 text-sm">
-          Copyright © 2025 Texas Watches. All Rights Reserved.
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Texas Watches. All rights reserved.
         </p>
       </div>
     </div>
@@ -730,33 +881,49 @@
     // Mobile menu toggle
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
       mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Get favorites
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
     }
 
     // Load products and cart data
     async function loadData() {
       try {
-        // Load products
         const response = await fetch('products.json');
         if (!response.ok) throw new Error('Products file not found');
         productsData = await response.json();
-        
-        // Load cart
+
         cartItems = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
-        
+
         if (cartItems.length === 0) {
           alert('Your cart is empty!');
           window.location.href = 'shoppingcart.html';
           return;
         }
-        
+
         displayCheckout();
       } catch (error) {
         console.error('Error loading data:', error);
         document.getElementById('loadingMessage').innerHTML = `
           <div class="text-center">
-            <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-4"></i>
-            <p class="text-red-600 text-xl">Error loading checkout data</p>
+            <i class="fas fa-exclamation-triangle text-5xl sm:text-6xl text-gray-400 mb-4"></i>
+            <p class="text-gray-600 font-light">Error loading checkout data</p>
           </div>
         `;
       }
@@ -766,7 +933,7 @@
     function displayCheckout() {
       document.getElementById('loadingMessage').classList.add('hidden');
       document.getElementById('checkoutContent').classList.remove('hidden');
-      
+
       updateCartCount();
       renderOrderItems();
       updateOrderSummary();
@@ -775,7 +942,7 @@
     // Render order items
     function renderOrderItems() {
       const orderItemsContainer = document.getElementById('orderItems');
-      
+
       orderItemsContainer.innerHTML = cartItems.map(cartItem => {
         const product = productsData.find(p => p.id === cartItem.productId);
         if (!product) return '';
@@ -784,14 +951,14 @@
         const brandName = product.brand.replace('-', ' ').toUpperCase();
 
         return `
-          <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-xl">
-            <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded-lg border border-gray-200">
-            <div class="flex-1">
-              <h4 class="font-semibold text-black text-sm leading-tight">${product.name}</h4>
-              <div class="text-xs text-gray-500 mt-1">${brandName} • Qty: ${cartItem.quantity}</div>
+          <div class="order-item flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gray-50 border border-gray-200">
+            <img src="${product.image}" alt="${product.name}" class="w-14 h-14 sm:w-16 sm:h-16 object-cover border border-black">
+            <div class="flex-1 min-w-0">
+              <h4 class="font-light text-xs sm:text-sm leading-tight truncate">${product.name}</h4>
+              <div class="text-xs text-gray-500 mt-1 font-light">${brandName} • Qty: ${cartItem.quantity}</div>
             </div>
             <div class="text-right">
-              <div class="font-bold text-black">$${itemTotal.toLocaleString()}</div>
+              <div class="font-light text-black text-sm sm:text-base">$${itemTotal.toLocaleString()}</div>
             </div>
           </div>
         `;
@@ -801,7 +968,7 @@
     // Update order summary
     function updateOrderSummary() {
       let subtotal = 0;
-      
+
       cartItems.forEach(cartItem => {
         const product = productsData.find(p => p.id === cartItem.productId);
         if (product) {
@@ -809,10 +976,9 @@
         }
       });
 
-      // Get discount from localStorage (if applied in cart)
       const savedDiscount = localStorage.getItem('appliedDiscount') || 0;
       const discountAmount = subtotal * (savedDiscount / 100);
-      const tax = (subtotal - discountAmount) * 0.08; // 8% tax
+      const tax = (subtotal - discountAmount) * 0.08;
       const total = subtotal - discountAmount + tax;
 
       orderTotal = total;
@@ -821,7 +987,6 @@
       document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
       document.getElementById('total').textContent = `$${total.toFixed(2)}`;
 
-      // Show discount if applied
       if (savedDiscount > 0) {
         document.getElementById('discountRow').style.display = 'flex';
         document.getElementById('discount').textContent = `-$${discountAmount.toFixed(2)}`;
@@ -835,9 +1000,9 @@
     }
 
     // Form submission
-    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+    document.getElementById('checkoutForm').addEventListener('submit', function (e) {
       e.preventDefault();
-      
+
       if (validateForm()) {
         processOrder();
       }
@@ -849,50 +1014,48 @@
         'firstName', 'lastName', 'email', 'phone',
         'address', 'city', 'state', 'zipCode', 'country'
       ];
-      
+
       let isValid = true;
-      
+
       requiredFields.forEach(fieldName => {
         const field = document.getElementById(fieldName);
         const value = field.value.trim();
-        
-        // Remove previous error styling
+
         field.classList.remove('form-error');
         const existingError = field.parentNode.querySelector('.error-message');
         if (existingError) {
           existingError.remove();
         }
-        
+
         if (!value) {
           field.classList.add('form-error');
           showFieldError(field, 'This field is required');
           isValid = false;
         } else if (fieldName === 'email' && !isValidEmail(value)) {
           field.classList.add('form-error');
-          showFieldError(field, 'Please enter a valid email address');
+          showFieldError(field, 'Please enter a valid email');
           isValid = false;
         } else if (fieldName === 'phone' && !isValidPhone(value)) {
           field.classList.add('form-error');
-          showFieldError(field, 'Please enter a valid phone number');
+          showFieldError(field, 'Please enter a valid phone');
           isValid = false;
         }
       });
-      
+
       if (!isValid) {
-        // Scroll to first error
         const firstError = document.querySelector('.form-error');
         if (firstError) {
           firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }
-      
+
       return isValid;
     }
 
     // Show field error
     function showFieldError(field, message) {
       const errorDiv = document.createElement('div');
-      errorDiv.className = 'error-message text-red-500 text-sm mt-1';
+      errorDiv.className = 'error-message text-red-500 text-xs mt-1 font-light';
       errorDiv.textContent = message;
       field.parentNode.appendChild(errorDiv);
     }
@@ -912,15 +1075,12 @@
     // Process order
     function processOrder() {
       const formData = new FormData(document.getElementById('checkoutForm'));
-      
-      // Show loading state
+
       const placeOrderBtn = document.getElementById('placeOrderBtn');
-      placeOrderBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing Order...';
+      placeOrderBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
       placeOrderBtn.disabled = true;
-      
-      // Simulate processing delay
+
       setTimeout(() => {
-        // Create order object
         const orderData = {
           orderId: 'TW' + Date.now(),
           orderDate: new Date().toISOString(),
@@ -960,29 +1120,19 @@
           status: 'pending'
         };
 
-        // Save order to localStorage (in real app, send to API)
         saveOrderToFile(orderData);
-        
-        // Show confirmation
         showOrderConfirmation(orderData);
-        
-        // Clear cart
+
         localStorage.removeItem('texasWatchesCart');
         localStorage.removeItem('appliedDiscount');
       }, 2000);
     }
 
-    // Save order to file (simulate API)
+    // Save order to file
     function saveOrderToFile(orderData) {
-      // Get existing orders
       const existingOrders = JSON.parse(localStorage.getItem('texasWatchesOrders') || '[]');
-      
-      // Add new order
       existingOrders.push(orderData);
-      
-      // Save back to localStorage
       localStorage.setItem('texasWatchesOrders', JSON.stringify(existingOrders));
-      
       console.log('Order saved:', orderData);
     }
 
@@ -990,42 +1140,37 @@
     function showOrderConfirmation(orderData) {
       document.getElementById('checkoutContent').classList.add('hidden');
       document.getElementById('orderConfirmation').classList.remove('hidden');
-      
-      // Update progress - all steps active
+
       document.querySelectorAll('.progress-step').forEach(step => {
         step.classList.add('active');
-        const circle = step.querySelector('div');
-        circle.classList.remove('bg-gray-200');
-        circle.classList.add('bg-green-500', 'text-white');
       });
-      
-      // Show order details
+
       const confirmationDetails = document.getElementById('confirmationDetails');
       confirmationDetails.innerHTML = `
         <div class="space-y-4">
-          <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             <div>
-              <span class="font-semibold text-gray-700">Order ID:</span>
-              <div class="font-bold text-black">${orderData.orderId}</div>
+              <span class="font-light text-gray-700 text-xs uppercase tracking-wider">Order ID:</span>
+              <div class="font-light text-black">${orderData.orderId}</div>
             </div>
             <div>
-              <span class="font-semibold text-gray-700">Total Amount:</span>
-              <div class="font-bold text-black">$${orderData.orderSummary.total.toFixed(2)}</div>
+              <span class="font-light text-gray-700 text-xs uppercase tracking-wider">Total Amount:</span>
+              <div class="font-light text-black">$${orderData.orderSummary.total.toFixed(2)}</div>
             </div>
             <div>
-              <span class="font-semibold text-gray-700">Payment Method:</span>
-              <div class="font-bold text-black">Cash on Delivery</div>
+              <span class="font-light text-gray-700 text-xs uppercase tracking-wider">Payment Method:</span>
+              <div class="font-light text-black">Cash on Delivery</div>
             </div>
             <div>
-              <span class="font-semibold text-gray-700">Contact:</span>
-              <div class="font-bold text-black">${orderData.customerInfo.phone}</div>
+              <span class="font-light text-gray-700 text-xs uppercase tracking-wider">Contact:</span>
+              <div class="font-light text-black">${orderData.customerInfo.phone}</div>
             </div>
           </div>
           
           <div class="border-t border-gray-200 pt-4">
-            <span class="font-semibold text-gray-700">Delivery Address:</span>
-            <div class="mt-2 text-black">
-              <div class="font-semibold">${orderData.customerInfo.firstName} ${orderData.customerInfo.lastName}</div>
+            <span class="font-light text-gray-700 text-xs uppercase tracking-wider">Delivery Address:</span>
+            <div class="mt-2 text-black font-light">
+              <div class="font-medium">${orderData.customerInfo.firstName} ${orderData.customerInfo.lastName}</div>
               <div>${orderData.shippingAddress.address}</div>
               ${orderData.shippingAddress.address2 ? `<div>${orderData.shippingAddress.address2}</div>` : ''}
               <div>${orderData.shippingAddress.city}, ${orderData.shippingAddress.state} ${orderData.shippingAddress.zipCode}</div>
@@ -1033,28 +1178,31 @@
             </div>
           </div>
           
-          <div class="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-            <div class="text-green-800 font-semibold mb-1">What's Next?</div>
-            <div class="text-green-700 text-sm">We'll contact you within 24 hours to confirm your order and delivery schedule.</div>
+          <div class="bg-black text-white p-4 text-center">
+            <div class="font-light tracking-wider text-sm mb-1">WHAT'S NEXT?</div>
+            <div class="text-xs font-light opacity-90">We'll contact you within 24 hours to confirm your order and delivery schedule.</div>
           </div>
         </div>
       `;
-      
-      // Scroll to top
+
       window.scrollTo(0, 0);
     }
 
     // Initialize page
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       loadData();
+      updateFavoritesCount();
     });
 
-    // Handle window resize for mobile menu
-    window.addEventListener('resize', function() {
-      if (window.innerWidth >= 768) {
+    // Handle window resize
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
         document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
       }
     });
   </script>
 </body>
+
 </html>

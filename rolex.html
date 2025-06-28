@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,125 +8,181 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Enhanced card hover effects */
     .card-hover {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
     }
+
     .card-hover:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: #000;
     }
+
+    /* Mobile touch-friendly card */
+    @media (max-width: 768px) {
+      .card-hover:active {
+        transform: scale(0.98);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-4px);
+      }
+    }
+
+    /* Three layout system */
+    @media (max-width: 400px) {
+      .product-card .line-clamp-2 {
+        -webkit-line-clamp: 1;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .sidebar {
+        display: none;
+      }
+
+      main {
+        width: 100% !important;
+      }
+    }
+
+    /* Professional sidebar card styling */
+    .sidebar-card {
+      transition: all 0.3s ease;
+      border: 1px solid #e5e7eb;
+    }
+
+    .sidebar-card:hover {
+      transform: translateX(4px);
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08);
+      border-color: #000;
+    }
+
+    /* Dropdown styling */
     .dropdown-content {
       display: none;
       position: absolute;
       right: 0;
       background: white;
       min-width: 220px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #f3f4f6;
+      border: 1px solid #000;
     }
+
     .dropdown:hover .dropdown-content {
       display: block;
-      animation: fadeInUp 0.3s ease;
+      animation: fadeInDown 0.3s ease;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    /* Mobile dropdown */
+    @media (max-width: 768px) {
+      .dropdown-content {
+        position: fixed;
+        right: 0;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 0;
+      }
     }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
     .mobile-menu {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
     }
+
     .mobile-menu.active {
       display: block;
     }
+
+    /* Sort button styling */
     .sort-button {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .sort-button:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+
+    .sort-button.active {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    /* Sidebar products scrollbar */
+    #sidebarProducts {
+      max-height: 600px;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #000 #f3f4f6;
+    }
+
+    #sidebarProducts::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #sidebarProducts::-webkit-scrollbar-track {
+      background: #f3f4f6;
+    }
+
+    #sidebarProducts::-webkit-scrollbar-thumb {
+      background: #000;
+      border-radius: 3px;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
       position: relative;
       overflow: hidden;
     }
-    .sort-button::before {
+
+    .hero-gradient::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
     }
-    .sort-button:hover::before {
-      left: 100%;
-    }
-    .sort-button.active {
-      background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-      color: white;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-    .brand-title {
-      background: linear-gradient(135deg, #000000 0%, #333333 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .sidebar {
-      max-height: calc(100vh - 200px);
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: #d1d5db #f9fafb;
-    }
-    .sidebar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .sidebar::-webkit-scrollbar-track {
-      background: #f9fafb;
-      border-radius: 3px;
-    }
-    .sidebar::-webkit-scrollbar-thumb {
-      background: #d1d5db;
-      border-radius: 3px;
-    }
-    .sidebar::-webkit-scrollbar-thumb:hover {
-      background: #9ca3af;
-    }
-    .glass-effect {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .hero-gradient {
-      background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-    }
-    .pulse-animation {
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    @media (max-width: 768px) {
-      .desktop-menu {
-        display: none;
-      }
-      .sidebar {
-        display: none;
-      }
-    }
-    @media (max-width: 640px) {
-      .sort-options {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      .sort-button {
-        font-size: 0.875rem;
-        padding: 0.5rem 0.75rem;
-      }
-    }
+
+    /* Navigation styling */
     .nav-link {
       position: relative;
       transition: all 0.3s ease;
     }
+
     .nav-link::after {
       content: '';
       position: absolute;
@@ -136,42 +193,173 @@
       background: #000;
       transition: width 0.3s ease;
     }
-    .nav-link.active::after {
-      width: 100%;
-    }
+
+    .nav-link.active::after,
     .nav-link:hover::after {
       width: 100%;
-      background: #666;
+    }
+
+    /* Product card enhancements */
+    .product-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0, 0, 0, 0.03));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Pagination button styling */
+    .pagination-btn {
+      transition: all 0.2s ease;
+      border: 2px solid #000;
+    }
+
+    .pagination-btn:hover:not(.active) {
+      background: #000;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .pagination-btn.active {
+      background: #000;
+      color: white;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    @media (max-width: 1023px) {
+      .desktop-menu {
+        display: none !important;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .tablet-full-width {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      .sidebar-container {
+        display: none !important;
+      }
+
+      .main-content {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .sidebar {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        bottom: 0;
+        width: 80%;
+        max-width: 320px;
+        background: white;
+        z-index: 1001;
+        transition: left 0.3s ease;
+        overflow-y: auto;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      #sidebarProducts {
+        max-height: 400px;
+      }
+
+      .card-hover:hover {
+        transform: none;
+      }
+
+      .pagination-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    /* Mobile navigation drawer */
+    .mobile-nav-header {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 10;
+      border-bottom: 2px solid #000;
     }
   </style>
 </head>
-<body class="bg-gray-50 text-black">
-  
+
+<body class="bg-white text-black">
+
   <!-- Top Header -->
-  <div class="bg-black text-white py-3 px-4">
-    <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
-      <div class="flex items-center space-x-3">
-        <i class="fas fa-shipping-fast text-yellow-400"></i>
-        <span class="font-medium">Save Up to 90% Off • Free Shipping All Orders • 30 Day Returns</span>
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
       </div>
       <div class="relative dropdown">
-        <button class="flex items-center space-x-2 hover:text-yellow-400 transition-colors font-medium">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
           <i class="fas fa-user-circle"></i>
-          <span>My Account</span>
+          <span class="hidden sm:inline">Account</span>
           <i class="fas fa-chevron-down text-xs"></i>
         </button>
         <div class="dropdown-content">
-          <a href="login.html" class="block px-5 py-3 text-black hover:bg-gray-50 transition-colors">
-            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Sign In
           </a>
-          <a href="createaccount.html" class="block px-5 py-3 text-black hover:bg-gray-50 transition-colors">
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
             <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
           </a>
-          <a href="login.html" class="block px-5 py-3 text-black hover:bg-gray-50 transition-colors">
-            <i class="fas fa-user-circle mr-3 text-gray-600"></i>My Account
+          <a href="favorites.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>Favorites (<span class="favorites-count">0</span>)
           </a>
-          <a href="shoppingcart.html" class="block px-5 py-3 text-black hover:bg-gray-50 transition-colors">
-            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Cart
           </a>
         </div>
       </div>
@@ -179,222 +367,278 @@
   </div>
 
   <!-- Main Header -->
-  <header class="bg-white border-b border-gray-200 sticky top-0 z-50 glass-effect">
-    <div class="max-w-7xl mx-auto px-4 py-6">
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
       <div class="flex items-center justify-between">
-        
-        <!-- Logo and Tagline -->
+
+        <!-- Logo -->
         <div class="flex-1">
-          <a href="index.html" class="inline-block group">
-            <h1 class="text-4xl font-bold text-black mb-2 group-hover:text-gray-700 transition-colors">Texas Watches</h1>
-            <p class="text-sm text-gray-600 max-w-md leading-relaxed">
-              Luxury Timepieces Collection • Authentic Watches<br>
-              <span class="text-black font-medium">Free Worldwide Shipping • 30 Day Returns</span>
-            </p>
+          <a href="index.html" class="inline-block">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1>
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since
+              2020</p>
           </a>
         </div>
 
-        <!-- Search and Cart -->
-        <div class="flex items-center space-x-8">
-          <!-- Search Box -->
-          <div class="relative hidden md:block">
-            <input 
-              type="text" 
-              placeholder="Search luxury watches..." 
-              id="searchInput"
-              class="w-96 px-5 py-3 pl-12 pr-14 border-2 border-gray-200 rounded-full focus:border-black focus:ring-2 focus:ring-black focus:ring-opacity-20 focus:outline-none transition-all"
-            >
-            <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-            <button 
-              onclick="filterProducts()" 
-              class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-black text-white px-5 py-1.5 rounded-full hover:bg-gray-800 transition-colors font-medium"
-            >
-              Search
-            </button>
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
           </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
 
           <!-- Cart -->
-          <div class="relative">
-            <a href="shoppingcart.html" class="flex items-center space-x-3 hover:text-gray-600 transition-colors group">
-              <div class="relative">
-                <i class="fas fa-shopping-bag text-3xl group-hover:scale-110 transition-transform"></i>
-                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-6 h-6 rounded-full flex items-center justify-center font-bold">0</span>
-              </div>
-              <div class="hidden lg:block">
-                <div class="font-semibold">Cart</div>
-                <div class="text-xs text-gray-500">View Items</div>
-              </div>
-            </a>
-          </div>
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
 
-          <!-- Mobile Menu Button -->
-          <button class="md:hidden bg-black text-white p-3 rounded-lg hover:bg-gray-800 transition-colors" onclick="toggleMobileMenu()">
-            <i class="fas fa-bars text-xl"></i>
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
           </button>
         </div>
       </div>
 
       <!-- Mobile Search -->
-      <div class="md:hidden mt-6">
+      <div class="lg:hidden mt-4">
         <div class="relative">
-          <input 
-            type="text" 
-            placeholder="Search luxury watches..." 
-            id="mobileSearchInput"
-            class="w-full px-4 py-3 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
-          >
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
           <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-          <button 
-            onclick="filterProducts()" 
-            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1.5 rounded-full text-sm"
-          >
-            Go
-          </button>
         </div>
       </div>
     </div>
   </header>
 
   <!-- Navigation -->
-  <nav class="bg-white border-b border-gray-200 shadow-sm">
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
     <div class="max-w-7xl mx-auto px-4">
       <!-- Desktop Menu -->
-      <ul class="desktop-menu flex items-center justify-center space-x-12 py-6" id="desktopNav">
-        <li><a href="index.html" class="nav-link font-semibold text-gray-700 hover:text-black transition-colors pb-2" data-page="index">HOME</a></li>
-        <li><a href="rolex.html" class="nav-link font-semibold text-gray-700 hover:text-black transition-colors pb-2" data-page="rolex">ROLEX</a></li>
-        <li><a href="omega.html" class="nav-link font-semibold text-gray-700 hover:text-black transition-colors pb-2" data-page="omega">OMEGA</a></li>
-        <li><a href="cartier.html" class="nav-link font-semibold text-gray-700 hover:text-black transition-colors pb-2" data-page="cartier">CARTIER</a></li>
-        <li><a href="patek-philippe.html" class="nav-link font-semibold text-gray-700 hover:text-black transition-colors pb-2" data-page="patek-philippe">PATEK PHILIPPE</a></li>
-        <li><a href="breitling.html" class="nav-link font-semibold text-gray-700 hover:text-black transition-colors pb-2" data-page="breitling">BREITLING</a></li>
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5" id="desktopNav">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+            data-page="index">Home</a></li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+            data-page="rolex">Rolex</a></li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+            data-page="omega">Omega</a></li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+            data-page="cartier">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+            data-page="patek-philippe">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+            data-page="breitling">Breitling</a></li>
       </ul>
-
-      <!-- Mobile Menu -->
-      <div class="mobile-menu py-6" id="mobileMenu">
-        <ul class="space-y-4" id="mobileNav">
-          <li><a href="index.html" class="block font-semibold hover:text-gray-600 transition-colors py-2" data-page="index">HOME</a></li>
-          <li><a href="rolex.html" class="block font-semibold hover:text-gray-600 transition-colors py-2" data-page="rolex">ROLEX</a></li>
-          <li><a href="omega.html" class="block font-semibold hover:text-gray-600 transition-colors py-2" data-page="omega">OMEGA</a></li>
-          <li><a href="cartier.html" class="block font-semibold hover:text-gray-600 transition-colors py-2" data-page="cartier">CARTIER</a></li>
-          <li><a href="patek-philippe.html" class="block font-semibold hover:text-gray-600 transition-colors py-2" data-page="patek-philippe">PATEK PHILIPPE</a></li>
-          <li><a href="breitling.html" class="block font-semibold hover:text-gray-600 transition-colors py-2" data-page="breitling">BREITLING</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
 
-  <!-- Brand Header and Sort Bar -->
-  <section class="hero-gradient text-white">
-    <div class="max-w-7xl mx-auto px-4 py-12">
-      <!-- Brand Title -->
-      <div class="text-center mb-8">
-        <h2 class="text-6xl font-bold mb-4" id="brandTitle">LOADING...</h2>
-        <p class="text-xl text-gray-300 mb-6">Authentic Luxury Timepieces Collection</p>
-        <div class="w-32 h-1 bg-white mx-auto"></div>
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-header p-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4" id="mobileNav">
+        <li><a href="index.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+            data-page="index">Home</a></li>
+        <li><a href="rolex.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+            data-page="rolex">Rolex</a></li>
+        <li><a href="omega.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+            data-page="omega">Omega</a></li>
+        <li><a href="cartier.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+            data-page="cartier">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+            data-page="patek-philippe">Patek Philippe</a></li>
+        <li><a href="breitling.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+            data-page="breitling">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brand Header -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 relative z-10">
+      <div class="text-center mb-6 sm:mb-10">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-2 sm:mb-4"
+          id="brandTitle">LOADING...</h2>
+        <p class="text-xs sm:text-sm tracking-widest uppercase text-gray-300">Authentic Luxury Timepieces</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto mt-4 sm:mt-6"></div>
       </div>
 
-      <!-- Sort and Pagination Controls -->
-      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-6 lg:space-y-0">
+      <!-- Sort and Pagination -->
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
         <!-- Sort Options -->
-        <div class="flex flex-wrap gap-3">
-          <button class="sort-button active px-6 py-3 bg-white bg-opacity-20 text-white rounded-lg hover:bg-opacity-30 transition-all flex items-center space-x-2 font-medium" onclick="sortProducts('popular')">
-            <i class="fas fa-fire"></i>
-            <span>Popular</span>
+        <div class="flex flex-wrap gap-2 sm:gap-3 w-full lg:w-auto">
+          <button
+            class="sort-button active px-4 sm:px-6 py-2 sm:py-2.5 bg-white text-black font-light text-xs sm:text-sm tracking-wider uppercase hover:bg-gray-100 flex-1 sm:flex-initial"
+            onclick="sortProducts('popular')">
+            Popular
           </button>
-          <button class="sort-button px-6 py-3 bg-white bg-opacity-20 text-white rounded-lg hover:bg-opacity-30 transition-all flex items-center space-x-2 font-medium" onclick="sortProducts('price-low')">
-            <i class="fas fa-sort-amount-up"></i>
-            <span>Price ↑</span>
+          <button
+            class="sort-button px-4 sm:px-6 py-2 sm:py-2.5 bg-transparent text-white border-2 border-white font-light text-xs sm:text-sm tracking-wider uppercase flex-1 sm:flex-initial"
+            onclick="sortProducts('price-low')">
+            Price ↑
           </button>
-          <button class="sort-button px-6 py-3 bg-white bg-opacity-20 text-white rounded-lg hover:bg-opacity-30 transition-all flex items-center space-x-2 font-medium" onclick="sortProducts('price-high')">
-            <i class="fas fa-sort-amount-down"></i>
-            <span>Price ↓</span>
+          <button
+            class="sort-button px-4 sm:px-6 py-2 sm:py-2.5 bg-transparent text-white border-2 border-white font-light text-xs sm:text-sm tracking-wider uppercase flex-1 sm:flex-initial"
+            onclick="sortProducts('price-high')">
+            Price ↓
           </button>
-          <button class="sort-button px-6 py-3 bg-white bg-opacity-20 text-white rounded-lg hover:bg-opacity-30 transition-all flex items-center space-x-2 font-medium" onclick="sortProducts('bestsellers')">
-            <i class="fas fa-trophy"></i>
-            <span>Bestsellers</span>
-          </button>
-          <button class="sort-button px-6 py-3 bg-white bg-opacity-20 text-white rounded-lg hover:bg-opacity-30 transition-all flex items-center space-x-2 font-medium" onclick="sortProducts('new')">
-            <i class="fas fa-sparkles"></i>
-            <span>New</span>
+          <button
+            class="sort-button px-4 sm:px-6 py-2 sm:py-2.5 bg-transparent text-white border-2 border-white font-light text-xs sm:text-sm tracking-wider uppercase flex-1 sm:flex-initial"
+            onclick="sortProducts('new')">
+            Newest
           </button>
         </div>
 
-        <!-- Top Pagination -->
-        <div class="flex items-center space-x-2" id="topPagination">
+        <!-- Top Pagination - Hidden on mobile -->
+        <div class="hidden lg:flex items-center space-x-2" id="topPagination">
           <!-- Pagination will be generated dynamically -->
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Mobile Filter Button -->
+  <div class="lg:hidden sticky top-[73px] sm:top-[89px] bg-white border-b border-gray-200 z-40">
+    <button onclick="toggleSidebar()"
+      class="w-full px-4 py-3 flex items-center justify-center space-x-2 hover:bg-gray-50 transition-colors">
+      <i class="fas fa-filter"></i>
+      <span class="font-light text-sm uppercase tracking-wider">Filters & Categories</span>
+    </button>
+  </div>
+
   <!-- Main Content -->
-  <section class="py-12">
+  <section class="py-6 sm:py-8 md:py-12 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="flex flex-col lg:flex-row gap-8">
-        
+      <div class="flex flex-col lg:flex-row gap-6 lg:gap-8">
+
         <!-- Sidebar -->
-        <aside class="lg:w-1/4 sidebar">
-          <!-- Categories -->
-          <div class="bg-white border border-gray-200 rounded-xl p-6 mb-6 shadow-sm">
-            <h3 class="text-xl font-bold mb-6 text-black flex items-center">
-              <i class="fas fa-list-ul mr-3 text-gray-600"></i>
-              CATEGORIES
-            </h3>
-            <ul class="space-y-3">
-              <li><a href="rolex.html" class="flex items-center text-gray-700 hover:text-black hover:bg-gray-50 transition-all py-2 px-3 rounded-lg group">
-                <i class="fas fa-crown mr-3 text-gray-400 group-hover:text-black"></i>
-                <span class="font-medium">Rolex</span>
-              </a></li>
-              <li><a href="omega.html" class="flex items-center text-gray-700 hover:text-black hover:bg-gray-50 transition-all py-2 px-3 rounded-lg group">
-                <i class="fas fa-watch mr-3 text-gray-400 group-hover:text-black"></i>
-                <span class="font-medium">Omega</span>
-              </a></li>
-              <li><a href="cartier.html" class="flex items-center text-gray-700 hover:text-black hover:bg-gray-50 transition-all py-2 px-3 rounded-lg group">
-                <i class="fas fa-gem mr-3 text-gray-400 group-hover:text-black"></i>
-                <span class="font-medium">Cartier</span>
-              </a></li>
-              <li><a href="patek-philippe.html" class="flex items-center text-gray-700 hover:text-black hover:bg-gray-50 transition-all py-2 px-3 rounded-lg group">
-                <i class="fas fa-star mr-3 text-gray-400 group-hover:text-black"></i>
-                <span class="font-medium">Patek Philippe</span>
-              </a></li>
-              <li><a href="breitling.html" class="flex items-center text-gray-700 hover:text-black hover:bg-gray-50 transition-all py-2 px-3 rounded-lg group">
-                <i class="fas fa-plane mr-3 text-gray-400 group-hover:text-black"></i>
-                <span class="font-medium">Breitling</span>
-              </a></li>
-            </ul>
+        <aside class="lg:w-1/4 sidebar sidebar-container" id="sidebar">
+          <!-- Mobile Sidebar Header -->
+          <div class="lg:hidden sticky top-0 bg-white p-4 border-b-2 border-black flex items-center justify-between">
+            <h3 class="text-lg font-light tracking-wider">FILTERS</h3>
+            <button onclick="toggleSidebar()" class="p-2">
+              <i class="fas fa-times text-xl"></i>
+            </button>
           </div>
 
-          <!-- New Products -->
-          <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <h3 class="text-xl font-bold mb-6 text-black flex items-center">
-              <i class="fas fa-star mr-3 text-yellow-500"></i>
-              NEW ARRIVALS
-            </h3>
-            <div id="sidebarProducts" class="space-y-4 max-h-96 overflow-y-auto">
-              <!-- Sidebar products will be loaded dynamically -->
+          <div class="p-4 lg:p-0">
+            <!-- Categories -->
+            <div class="bg-white border-2 border-black p-4 sm:p-6 mb-4 sm:mb-6">
+              <h3 class="text-sm font-light tracking-widest uppercase mb-4 sm:mb-6">Collections</h3>
+              <ul class="space-y-2 sm:space-y-3">
+                <li>
+                  <a href="rolex.html" class="group flex items-center justify-between py-2 hover:pl-2 transition-all">
+                    <span class="font-light text-sm sm:text-base">Rolex</span>
+                    <i class="fas fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="omega.html" class="group flex items-center justify-between py-2 hover:pl-2 transition-all">
+                    <span class="font-light text-sm sm:text-base">Omega</span>
+                    <i class="fas fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="cartier.html" class="group flex items-center justify-between py-2 hover:pl-2 transition-all">
+                    <span class="font-light text-sm sm:text-base">Cartier</span>
+                    <i class="fas fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="patek-philippe.html"
+                    class="group flex items-center justify-between py-2 hover:pl-2 transition-all">
+                    <span class="font-light text-sm sm:text-base">Patek Philippe</span>
+                    <i class="fas fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="breitling.html"
+                    class="group flex items-center justify-between py-2 hover:pl-2 transition-all">
+                    <span class="font-light text-sm sm:text-base">Breitling</span>
+                    <i class="fas fa-arrow-right text-xs opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- New Arrivals -->
+            <div class="bg-white border-2 border-black p-4 sm:p-6">
+              <h3 class="text-sm font-light tracking-widest uppercase mb-4 sm:mb-6">New Arrivals</h3>
+              <div id="sidebarProducts" class="space-y-3 sm:space-y-4">
+                <!-- Sidebar products will be loaded dynamically -->
+              </div>
             </div>
           </div>
         </aside>
 
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden" id="sidebarOverlay"
+          onclick="toggleSidebar()"></div>
+
         <!-- Main Product Area -->
-        <main class="lg:w-3/4">
+        <main class="lg:w-3/4 main-content tablet-full-width">
           <!-- Loading Message -->
-          <div id="loadingMessage" class="text-center py-16">
-            <div class="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-black"></div>
-            <p class="mt-6 text-gray-600 text-lg">Loading exclusive collection...</p>
+          <div id="loadingMessage" class="text-center py-12 sm:py-16">
+            <div class="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-black">
+            </div>
+            <p class="mt-4 text-gray-600 font-light text-sm sm:text-base">Loading collection...</p>
           </div>
 
           <!-- Product Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
+          <div class="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6" id="productGrid">
             <!-- Products will be loaded dynamically -->
           </div>
 
           <!-- Bottom Pagination -->
-          <div class="mt-16 bg-white border border-gray-200 rounded-xl p-6">
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div class="text-gray-600 font-medium" id="paginationInfo">
-                Displaying <strong>1 to 12</strong> (of <strong>0</strong> products)
+          <div class="mt-8 sm:mt-12 bg-white border-2 border-black p-4 sm:p-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+              <div class="text-xs sm:text-sm font-light" id="paginationInfo">
+                Showing <strong>1-12</strong> of <strong>0</strong> products
               </div>
-              <div class="flex items-center space-x-2" id="paginationLinks">
+              <div class="flex items-center space-x-1 sm:space-x-2 flex-wrap justify-center gap-2" id="paginationLinks">
                 <!-- Pagination links will be generated dynamically -->
               </div>
             </div>
@@ -405,74 +649,83 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-black text-white py-16">
+  <footer class="bg-black text-white py-12 sm:py-16">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-        <!-- Company Info -->
-        <div class="md:col-span-1">
-          <h3 class="text-2xl font-bold mb-6">Texas Watches</h3>
-          <p class="text-gray-300 mb-6 leading-relaxed">Your premier destination for authentic luxury timepieces at unbeatable prices. Experience excellence in every detail.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3>
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
           <div class="flex space-x-4">
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
               <i class="fab fa-instagram"></i>
             </a>
-            <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-gray-700 transition-colors">
-              <i class="fab fa-pinterest"></i>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
             </a>
           </div>
         </div>
 
-        <!-- Company Links -->
+        <!-- Company -->
         <div>
-          <h4 class="text-lg font-semibold mb-6">Our Company</h4>
-          <ul class="space-y-3">
-            <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-            <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
-            <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy</a></li>
+            <li><a href="terms.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms</a></li>
           </ul>
         </div>
 
-        <!-- Customer Service -->
+        <!-- Support -->
         <div>
-          <h4 class="text-lg font-semibold mb-6">Customer Service</h4>
-          <ul class="space-y-3">
-            <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
-            <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
-            <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
-            <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Support</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sitemap</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
           </ul>
         </div>
 
-        <!-- My Account -->
+        <!-- Account -->
         <div>
-          <h4 class="text-lg font-semibold mb-6">My Account</h4>
-          <ul class="space-y-3">
-            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
-            <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
-            <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
-            <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sign
+                In</a></li>
+            <li><a href="createaccount.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Register</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Orders</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Cart</a></li>
           </ul>
         </div>
       </div>
 
-      <!-- Payment Icons -->
-      <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-        <div class="flex justify-center items-center space-x-6 mb-6">
-          <i class="fab fa-cc-visa text-4xl text-gray-400 hover:text-white transition-colors"></i>
-          <i class="fab fa-cc-mastercard text-4xl text-gray-400 hover:text-white transition-colors"></i>
-          <i class="fab fa-cc-amex text-4xl text-gray-400 hover:text-white transition-colors"></i>
-          <i class="fab fa-cc-paypal text-4xl text-gray-400 hover:text-white transition-colors"></i>
-          <i class="fab fa-cc-apple-pay text-4xl text-gray-400 hover:text-white transition-colors"></i>
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
         </div>
-        <p class="text-gray-400">
-          Copyright © 2025 Texas Watches. All Rights Reserved.
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Texas Watches. All rights reserved.
         </p>
       </div>
     </div>
@@ -489,24 +742,36 @@
     // Mobile menu toggle
     function toggleMobileMenu() {
       const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
       mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     }
 
-    // Get brand from URL and update navigation
+    // Toggle sidebar on mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+      const body = document.body;
+
+      sidebar.classList.toggle('active');
+      sidebarOverlay.classList.toggle('hidden');
+      body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Get brand from URL
     function getBrandFromURL() {
       const path = window.location.pathname;
       const filename = path.split('/').pop();
       const brand = filename.replace('.html', '');
-      
-      // Update navigation active state
       updateNavigationActiveState(brand);
-      
       return brand;
     }
 
     // Update navigation active state
     function updateNavigationActiveState(currentPage) {
-      // Desktop navigation
       const desktopNavLinks = document.querySelectorAll('#desktopNav .nav-link');
       desktopNavLinks.forEach(link => {
         link.classList.remove('active');
@@ -515,7 +780,6 @@
         }
       });
 
-      // Mobile navigation
       const mobileNavLinks = document.querySelectorAll('#mobileNav a');
       mobileNavLinks.forEach(link => {
         link.classList.remove('text-black', 'font-bold');
@@ -538,101 +802,124 @@
       } catch (error) {
         console.error('Error loading products:', error);
         document.getElementById('loadingMessage').innerHTML = `
-          <div class="text-center py-16">
-            <i class="fas fa-exclamation-triangle text-6xl text-red-500 mb-6"></i>
-            <p class="text-red-600 text-xl">Error loading products. Please check if products.json exists.</p>
+          <div class="text-center py-12 sm:py-16">
+            <i class="fas fa-exclamation-triangle text-3xl sm:text-4xl text-gray-400 mb-4"></i>
+            <p class="text-gray-600 font-light text-sm sm:text-base">Unable to load products</p>
           </div>
         `;
       }
     }
 
-    // Initialize page based on brand
+    // Initialize page
     function initializePage() {
-      // Update page title and brand title
       const brandName = currentBrand.replace('-', ' ').toUpperCase();
-      document.getElementById('pageTitle').textContent = `Texas Watches ${brandName}`;
+      document.getElementById('pageTitle').textContent = `${brandName} - Texas Watches`;
       document.getElementById('brandTitle').textContent = brandName;
 
-      // Filter products for current brand
-      filteredProducts = productsData.filter(product => 
-        product.brand === currentBrand || 
+      // Adjust products per page based on screen size
+      if (window.innerWidth < 768) {
+        productsPerPage = 9; // Mobile: 3 columns x 3 rows
+      } else if (window.innerWidth < 1024) {
+        productsPerPage = 9; // Tablet: 3 columns x 3 rows
+      } else {
+        productsPerPage = 12; // Desktop: 3 columns x 4 rows with sidebar
+      }
+
+      filteredProducts = productsData.filter(product =>
+        product.brand === currentBrand ||
         (product.brand === currentBrand && product.page === currentBrand)
       );
 
-      // Load sidebar products
       loadSidebarProducts();
-      
-      // Render main products
       renderProducts();
     }
 
-    // Create product HTML for main grid with enhanced design
+    // Favorites functionality
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    function toggleFavorite(productId) {
+      let favorites = getFavorites();
+      if (favorites.includes(productId)) {
+        favorites = favorites.filter(id => id !== productId);
+      } else {
+        favorites.push(productId);
+      }
+      localStorage.setItem('texasWatchesFavorites', JSON.stringify(favorites));
+      updateFavoritesCount();
+      return favorites.includes(productId);
+    }
+
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Navigate to product detail
+    function navigateToProduct(productId) {
+      window.location.href = `product-detail.html?id=${productId}`;
+    }
+
+    // Create product HTML - FIXED VERSION
     function createProductHTML(product) {
+      const discount = Math.round(((product.oldPrice - product.newPrice) / product.oldPrice) * 100);
+      const isFav = getFavorites().includes(product.id);
+
       return `
-        <div class="bg-white rounded-2xl shadow-sm overflow-hidden card-hover border border-gray-100">
-          <a href="product-detail.html?id=${product.id}" class="block">
-            <div class="aspect-square overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 relative">
-              <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
-              <div class="absolute top-4 right-4 bg-black text-white px-3 py-1 rounded-full text-xs font-bold">
-                ${Math.round(((product.oldPrice - product.newPrice) / product.oldPrice) * 100)}% OFF
+        <div class="product-card bg-white border-2 border-transparent hover:border-black card-hover group">
+          <div class="aspect-square overflow-hidden bg-gray-50 relative cursor-pointer" onclick="navigateToProduct(${product.id})">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+            ${discount > 0 ? `
+              <div class="absolute top-2 sm:top-4 right-2 sm:right-4 bg-black text-white px-2 sm:px-3 py-1 text-xs font-light tracking-wider">
+                -${discount}%
               </div>
+            ` : ''}
+          </div>
+          <div class="p-2 xs:p-2.5 sm:p-3 md:p-4 lg:p-5">
+            <p class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest mb-1">${product.brand}</p>
+            <h3 class="font-light text-[11px] sm:text-xs md:text-sm mb-1.5 sm:mb-2 line-clamp-2 cursor-pointer hover:text-gray-600" onclick="navigateToProduct(${product.id})">${product.name}</h3>
+            <div class="flex flex-col sm:flex-row sm:items-baseline sm:space-x-2 mb-2 sm:mb-3">
+              <span class="text-sm sm:text-base md:text-lg font-light">$${product.newPrice.toLocaleString()}</span>
+              <span class="text-[10px] sm:text-xs text-gray-400 line-through">$${product.oldPrice.toLocaleString()}</span>
             </div>
-            <div class="p-6">
-              <h3 class="font-bold text-gray-900 mb-3 text-lg leading-tight">${product.name}</h3>
-              <div class="flex items-center mb-3">
-                <div class="flex text-yellow-400 mr-2">
-                  <i class="fas fa-star text-sm"></i>
-                  <i class="fas fa-star text-sm"></i>
-                  <i class="fas fa-star text-sm"></i>
-                  <i class="fas fa-star text-sm"></i>
-                  <i class="fas fa-star text-sm"></i>
-                </div>
-                <span class="text-gray-500 text-sm">(${Math.floor(Math.random() * 50) + 10} reviews)</span>
-              </div>
-              <div class="flex items-center space-x-3 mb-4">
-                <span class="text-lg text-gray-400 line-through">$${product.oldPrice.toLocaleString()}</span>
-                <span class="text-2xl font-bold text-black">$${product.newPrice.toLocaleString()}</span>
-              </div>
-              <div class="space-y-2">
-                <button class="w-full bg-black text-white py-3 px-4 rounded-xl hover:bg-gray-800 transition-colors font-semibold">
-                  View Details
-                </button>
-                <button class="w-full border-2 border-gray-200 text-gray-700 py-3 px-4 rounded-xl hover:border-black hover:text-black transition-colors font-semibold">
-                  Quick View
-                </button>
-              </div>
+            <div class="flex flex-col sm:flex-row sm:space-x-2 space-y-1.5 sm:space-y-0">
+              <button 
+                onclick="navigateToProduct(${product.id})"
+                class="flex-1 bg-black text-white py-1.5 sm:py-2 text-[10px] sm:text-xs uppercase tracking-wider hover:bg-gray-900 transition-colors"
+              >
+                View
+              </button>
+              <button 
+                onclick="event.stopPropagation(); handleFavoriteClick(${product.id}, this);" 
+                class="w-full sm:w-8 h-8 sm:h-8 md:w-10 md:h-10 border border-black sm:border-2 hover:bg-black hover:text-white transition-all flex items-center justify-center"
+              >
+                <i class="${isFav ? 'fas' : 'far'} fa-heart ${isFav ? 'text-red-500' : ''} text-xs sm:text-sm"></i>
+              </button>
             </div>
-          </a>
+          </div>
         </div>
       `;
     }
 
-    // Create sidebar product HTML with enhanced design
+    // Create sidebar product HTML
     function createSidebarProductHTML(product) {
       return `
-        <div class="flex space-x-4 p-4 border border-gray-100 rounded-xl hover:shadow-md transition-all group">
-          <a href="product-detail.html?id=${product.id}" class="flex space-x-4 text-decoration-none w-full">
-            <div class="relative">
-              <img src="${product.image}" alt="${product.name}" class="w-20 h-20 object-cover rounded-lg group-hover:scale-105 transition-transform">
-              <div class="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-                <i class="fas fa-star text-white text-xs"></i>
-              </div>
+        <a href="product-detail.html?id=${product.id}" class="sidebar-card flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-white hover:bg-gray-50 transition-all group">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 flex-shrink-0 overflow-hidden bg-gray-50">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">${product.brand}</p>
+            <h4 class="text-xs sm:text-sm font-light leading-tight mb-1 sm:mb-2 line-clamp-2">${product.name}</h4>
+            <div class="flex items-baseline space-x-2">
+              <span class="text-sm font-medium">$${product.newPrice.toLocaleString()}</span>
+              <span class="text-xs text-gray-400 line-through">$${product.oldPrice.toLocaleString()}</span>
             </div>
-            <div class="flex-1 min-w-0">
-              <p class="text-sm font-semibold text-gray-900 leading-tight mb-1">${product.name.length > 45 ? product.name.substring(0, 45) + '...' : product.name}</p>
-              <div class="flex items-center mb-2">
-                <div class="flex text-yellow-400 text-xs">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-              <p class="text-lg font-bold text-black">$${product.newPrice.toLocaleString()}</p>
-            </div>
-          </a>
-        </div>
+          </div>
+        </a>
       `;
     }
 
@@ -640,36 +927,56 @@
     function loadSidebarProducts() {
       const sidebarProducts = filteredProducts
         .filter(product => product.isNew)
-        .slice(0, 8);
-      
+        .slice(0, 12);
+
       const sidebarContainer = document.getElementById('sidebarProducts');
-      
+
       if (sidebarProducts.length === 0) {
         sidebarContainer.innerHTML = `
-          <div class="text-center py-8">
-            <i class="fas fa-clock text-3xl text-gray-300 mb-3"></i>
-            <p class="text-gray-500">No new products available.</p>
+          <div class="text-center py-6 sm:py-8">
+            <p class="text-gray-500 font-light text-sm">No new products</p>
           </div>
         `;
         return;
       }
-      
+
       sidebarContainer.innerHTML = sidebarProducts
         .map(product => createSidebarProductHTML(product))
         .join('');
     }
 
-    // Sort products with enhanced animations
+    // Handle favorite click
+    function handleFavoriteClick(productId, button) {
+      const isFav = toggleFavorite(productId);
+      const icon = button.querySelector('i');
+
+      if (isFav) {
+        icon.classList.remove('far');
+        icon.classList.add('fas', 'text-red-500');
+      } else {
+        icon.classList.remove('fas', 'text-red-500');
+        icon.classList.add('far');
+      }
+    }
+
+    // Sort products
     function sortProducts(sortType) {
       currentSort = sortType;
-      
-      // Update active sort button with animation
-      document.querySelectorAll('.sort-button').forEach(btn => btn.classList.remove('active'));
-      event.target.closest('.sort-button').classList.add('active');
+
+      document.querySelectorAll('.sort-button').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-transparent', 'text-white', 'border-2', 'border-white');
+        btn.classList.remove('bg-white', 'text-black');
+      });
+
+      const activeBtn = event.target.closest('.sort-button');
+      activeBtn.classList.add('active');
+      activeBtn.classList.remove('bg-transparent', 'text-white');
+      activeBtn.classList.add('bg-white', 'text-black');
 
       let sortedProducts = [...filteredProducts];
-      
-      switch(sortType) {
+
+      switch (sortType) {
         case 'price-low':
           sortedProducts.sort((a, b) => a.newPrice - b.newPrice);
           break;
@@ -679,176 +986,198 @@
         case 'new':
           sortedProducts.sort((a, b) => b.isNew - a.isNew);
           break;
-        case 'bestsellers':
-        case 'popular':
         default:
-          // Keep original order for popular/bestsellers
           break;
       }
-      
+
       filteredProducts = sortedProducts;
       currentPage = 1;
       renderProducts();
     }
 
-    // Search products with enhanced functionality
+    // Filter products
     function filterProducts() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase() || 
-                        document.getElementById('mobileSearchInput').value.toLowerCase();
-      
+      const searchTerm = (document.getElementById('searchInput').value ||
+        document.getElementById('mobileSearchInput').value || '').toLowerCase();
+
       if (searchTerm) {
-        const searchResults = productsData.filter(product => 
+        const searchResults = productsData.filter(product =>
           product.brand === currentBrand &&
           (product.name.toLowerCase().includes(searchTerm) ||
-           product.brand.toLowerCase().includes(searchTerm))
+            product.brand.toLowerCase().includes(searchTerm))
         );
         filteredProducts = searchResults;
       } else {
         filteredProducts = productsData.filter(product => product.brand === currentBrand);
       }
-      
+
       currentPage = 1;
       renderProducts();
     }
 
-    // Render products with enhanced pagination
+    // Render products
     function renderProducts() {
       const startIndex = (currentPage - 1) * productsPerPage;
       const endIndex = startIndex + productsPerPage;
       const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
-      
+
       const productGrid = document.getElementById('productGrid');
       const loadingMessage = document.getElementById('loadingMessage');
-      
+
       loadingMessage.style.display = 'none';
-      
+
       if (paginatedProducts.length === 0) {
         productGrid.innerHTML = `
-          <div class="col-span-full text-center py-16">
-            <i class="fas fa-search text-6xl text-gray-300 mb-6"></i>
-            <h3 class="text-2xl font-bold text-gray-600 mb-2">No products found</h3>
-            <p class="text-gray-500">Try adjusting your search criteria or browse our categories.</p>
+          <div class="col-span-full text-center py-12 sm:py-16">
+            <i class="fas fa-search text-3xl sm:text-4xl text-gray-300 mb-4"></i>
+            <p class="text-gray-600 font-light text-sm sm:text-base">No products found</p>
           </div>
         `;
         return;
       }
-      
+
       productGrid.innerHTML = paginatedProducts
         .map(product => createProductHTML(product))
         .join('');
-      
+
       updatePagination();
     }
 
-    // Enhanced pagination with better design
+    // Update pagination
     function updatePagination() {
       const totalProducts = filteredProducts.length;
       const totalPages = Math.ceil(totalProducts / productsPerPage);
       const startItem = (currentPage - 1) * productsPerPage + 1;
       const endItem = Math.min(currentPage * productsPerPage, totalProducts);
-      
-      // Update pagination info
-      document.getElementById('paginationInfo').innerHTML = 
-        `Displaying <strong>${startItem} to ${endItem}</strong> (of <strong>${totalProducts}</strong> products)`;
-      
-      // Generate pagination links with enhanced design
-      let paginationHTML = '';
-      
-      // Only show pagination if there are multiple pages
+
+      document.getElementById('paginationInfo').innerHTML =
+        `Showing <strong>${startItem}-${endItem}</strong> of <strong>${totalProducts}</strong> products`;
+
       if (totalPages <= 1) {
         document.getElementById('paginationLinks').innerHTML = '';
         document.getElementById('topPagination').innerHTML = '';
         return;
       }
-      
+
+      let paginationHTML = '';
+
       // Previous button
       if (currentPage > 1) {
-        paginationHTML += `<button class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium" onclick="changePage(${currentPage - 1})">
-          <i class="fas fa-chevron-left mr-1"></i> Previous
-        </button>`;
+        paginationHTML += `
+          <button class="pagination-btn px-3 sm:px-4 py-1.5 sm:py-2 bg-white text-black text-xs sm:text-sm font-light" onclick="changePage(${currentPage - 1})">
+            ← Prev
+          </button>
+        `;
       }
-      
-      // First page
-      if (currentPage > 3) {
-        paginationHTML += `<button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium" onclick="changePage(1)">1</button>`;
-        if (currentPage > 4) {
-          paginationHTML += '<span class="px-2 text-gray-400 font-medium">...</span>';
-        }
-      }
-      
-      // Page numbers around current page
-      const startPage = Math.max(1, currentPage - 2);
-      const endPage = Math.min(totalPages, currentPage + 2);
-      
+
+      // Page numbers - show less on mobile
+      const isMobile = window.innerWidth < 640;
+      const maxPages = isMobile ? 3 : 5;
+      const startPage = Math.max(1, currentPage - Math.floor(maxPages / 2));
+      const endPage = Math.min(totalPages, startPage + maxPages - 1);
+
       for (let i = startPage; i <= endPage; i++) {
         if (i === currentPage) {
-          paginationHTML += `<button class="px-3 py-2 bg-black text-white rounded-lg font-medium">${i}</button>`;
+          paginationHTML += `
+            <button class="pagination-btn active px-2.5 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-light">${i}</button>
+          `;
         } else {
-          paginationHTML += `<button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium" onclick="changePage(${i})">${i}</button>`;
+          paginationHTML += `
+            <button class="pagination-btn px-2.5 sm:px-3 py-1.5 sm:py-2 bg-white text-black text-xs sm:text-sm font-light" onclick="changePage(${i})">${i}</button>
+          `;
         }
       }
-      
-      // Last page
-      if (currentPage < totalPages - 2) {
-        if (currentPage < totalPages - 3) {
-          paginationHTML += '<span class="px-2 text-gray-400 font-medium">...</span>';
-        }
-        paginationHTML += `<button class="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium" onclick="changePage(${totalPages})">${totalPages}</button>`;
-      }
-      
+
       // Next button
       if (currentPage < totalPages) {
-        paginationHTML += `<button class="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors font-medium" onclick="changePage(${currentPage + 1})">
-          Next <i class="fas fa-chevron-right ml-1"></i>
-        </button>`;
+        paginationHTML += `
+          <button class="pagination-btn px-3 sm:px-4 py-1.5 sm:py-2 bg-white text-black text-xs sm:text-sm font-light" onclick="changePage(${currentPage + 1})">
+            Next →
+          </button>
+        `;
       }
-      
+
       document.getElementById('paginationLinks').innerHTML = paginationHTML;
       document.getElementById('topPagination').innerHTML = paginationHTML;
     }
 
-    // Change page with smooth scrolling
+    // Change page
     function changePage(page) {
       currentPage = page;
       renderProducts();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Scroll to top of products on mobile
+      const header = document.querySelector('header');
+      const scrollPosition = header.offsetTop + header.offsetHeight;
+      window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
     }
 
-    // Real-time search functionality
+    // Setup search
     function setupSearch() {
-      const searchInputs = ['searchInput', 'mobileSearchInput'];
-      
-      searchInputs.forEach(inputId => {
-        const input = document.getElementById(inputId);
+      ['searchInput', 'mobileSearchInput'].forEach(id => {
+        const input = document.getElementById(id);
         if (input) {
           input.addEventListener('input', filterProducts);
         }
       });
     }
 
-    // Update cart count function
+    // Update cart count
     function updateCartCount() {
       const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
       const count = cart.reduce((total, item) => total + item.quantity, 0);
-      const cartCountElements = document.querySelectorAll('.cart-count');
-      cartCountElements.forEach(element => {
-        element.textContent = count;
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
       });
     }
 
-    // Initialize page
-    document.addEventListener('DOMContentLoaded', function() {
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function () {
       loadProductsFromJSON();
       setupSearch();
       updateCartCount();
+      updateFavoritesCount();
     });
 
-    // Handle window resize for mobile menu
-    window.addEventListener('resize', function() {
-      if (window.innerWidth >= 768) {
+    // Handle resize
+    window.addEventListener('resize', function () {
+      // Adjust products per page based on layout
+      let newProductsPerPage;
+      if (window.innerWidth < 768) {
+        newProductsPerPage = 9; // Mobile: 3 columns
+      } else if (window.innerWidth < 1024) {
+        newProductsPerPage = 9; // Tablet: 3 columns
+      } else {
+        newProductsPerPage = 12; // Desktop: 3 columns with sidebar
+      }
+
+      if (newProductsPerPage !== productsPerPage) {
+        productsPerPage = newProductsPerPage;
+        currentPage = 1;
+        renderProducts();
+      }
+
+      // Close mobile menus on resize to desktop
+      if (window.innerWidth >= 1024) {
         document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.getElementById('sidebar').classList.remove('active');
+        document.getElementById('sidebarOverlay').classList.add('hidden');
+        document.body.style.overflow = '';
       }
     });
+
+    // Add Tailwind's xs breakpoint
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @media (min-width: 475px) {
+        .xs\\:grid-cols-2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
+
 </html>
