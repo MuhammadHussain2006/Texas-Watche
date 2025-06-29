@@ -1,65 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Texas Watches</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
     <style>
+        /* Professional black & white theme */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px);
+        }
+
+        /* Enhanced dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
             right: 0;
             background: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            border-radius: 8px;
-            overflow: hidden;
+            border: 1px solid #000;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
+            animation: fadeInDown 0.3s ease;
         }
-        .mobile-menu {
-            display: none;
-        }
-        .mobile-menu.active {
-            display: block;
-        }
-        @media (max-width: 768px) {
-            .desktop-menu {
-                display: none;
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
             }
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-        }
-        .section-animation {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideInUp 0.8s ease forwards;
-        }
-        .section-animation:nth-child(1) { animation-delay: 0.1s; }
-        .section-animation:nth-child(2) { animation-delay: 0.2s; }
-        .section-animation:nth-child(3) { animation-delay: 0.3s; }
-        .section-animation:nth-child(4) { animation-delay: 0.4s; }
-        .section-animation:nth-child(5) { animation-delay: 0.5s; }
-        .section-animation:nth-child(6) { animation-delay: 0.6s; }
-        .section-animation:nth-child(7) { animation-delay: 0.7s; }
-        @keyframes slideInUp {
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        /* Navigation link styling */
         .nav-link {
             position: relative;
             transition: all 0.3s ease;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -70,56 +111,158 @@
             background: #000;
             transition: width 0.3s ease;
         }
-        .nav-link.active::after {
-            width: 100%;
-        }
+
         .nav-link:hover::after {
             width: 100%;
-            background: #666;
         }
+
+        /* Professional input styling */
+        .search-input {
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Enhanced card hover */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: #000;
+        }
+
+        /* Hero text animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Section animation */
+        .section-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        .section-animation:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section-animation:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section-animation:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section-animation:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .section-animation:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .section-animation:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .section-animation:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* TOC link styling */
         .toc-link {
             transition: all 0.3s ease;
         }
+
         .toc-link:hover {
             transform: translateX(5px);
-            color: #000;
         }
+
+        /* Policy section scroll margin */
         .policy-section {
             scroll-margin-top: 100px;
         }
+
+        /* Highlight box styling */
         .highlight-box {
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             border-left: 4px solid #000;
         }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none !important;
+            }
+        }
+
+        /* TOC sticky behavior on mobile */
+        @media (max-width: 1024px) {
+            .toc-sticky {
+                position: relative !important;
+                top: auto !important;
+            }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-black">
-    
+
+<body class="bg-white text-black">
+
     <!-- Top Header -->
-    <div class="bg-black text-white py-2 px-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-shipping-fast"></i>
-                <span>Save Up to 90% Off • Free Shipping All Orders</span>
+    <div class="bg-black text-white py-2 sm:py-3 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <i class="fas fa-shipping-fast hidden sm:inline"></i>
+                <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
             </div>
             <div class="relative dropdown">
-                <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
-                    <i class="fas fa-user"></i>
-                    <span>My Account</span>
+                <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="hidden sm:inline">Account</span>
                     <i class="fas fa-chevron-down text-xs"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Log In
+                    <a href="login.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Sign In
                     </a>
-                    <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-user-plus mr-2"></i>Register
+                    <a href="createaccount.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
                     </a>
-                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-user-circle mr-2"></i>My Account
+                    <a href="favorites.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-heart mr-3 text-gray-600"></i>Favorites (<span
+                            class="favorites-count">0</span>)
                     </a>
-                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Cart
                     </a>
                 </div>
             </div>
@@ -127,175 +270,241 @@
     </div>
 
     <!-- Main Header -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-4">
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
             <div class="flex items-center justify-between">
-                
-                <!-- Logo and Tagline -->
+
+                <!-- Logo -->
                 <div class="flex-1">
                     <a href="index.html" class="inline-block">
-                        <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
-                        <p class="text-sm text-gray-600 max-w-md">
-                            Best Luxury Watches On Sale, Up To 90% Off.<br>
-                            Free Worldwide Shipping • 30 Day Returns
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES
+                        </h1>
+                        <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury
+                            Timepieces Since 2020
                         </p>
                     </a>
                 </div>
 
-                <!-- Search and Cart -->
-                <div class="flex items-center space-x-6">
-                    <!-- Search Box -->
-                    <div class="relative hidden md:block">
-                        <input 
-                            type="text" 
-                            placeholder="Search watches..." 
-                            id="searchInput"
-                            class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
-                        >
+                <!-- Search and Actions -->
+                <div class="flex items-center space-x-3 sm:space-x-6">
+                    <!-- Search - Desktop -->
+                    <div class="relative hidden lg:block">
+                        <input type="text" placeholder="Search collection..." id="searchInput"
+                            class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
                         <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <button 
-                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors"
-                        >
-                            Search
-                        </button>
                     </div>
+
+                    <!-- Favorites -->
+                    <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="far fa-heart text-xl sm:text-2xl"></i>
+                        <span
+                            class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
 
                     <!-- Cart -->
-                    <div class="relative">
-                        <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
-                            <div class="relative">
-                                <i class="fas fa-shopping-bag text-2xl"></i>
-                                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                            </div>
-                            <span class="hidden lg:inline font-medium">Cart</span>
-                        </a>
-                    </div>
+                    <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+                        <span
+                            class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
 
-                    <!-- Mobile Menu Button -->
-                    <button class="md:hidden" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars text-2xl"></i>
+                    <!-- Mobile Menu -->
+                    <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl sm:text-2xl"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Mobile Search -->
-            <div class="md:hidden mt-4">
+            <div class="lg:hidden mt-4">
                 <div class="relative">
-                    <input 
-                        type="text" 
-                        placeholder="Search watches..." 
-                        id="mobileSearchInput"
-                        class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
-                    >
+                    <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+                        class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
                     <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <button 
-                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm"
-                    >
-                        Go
-                    </button>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="bg-white border-b border-gray-200">
+    <nav class="bg-white border-b border-gray-200 hidden lg:block">
         <div class="max-w-7xl mx-auto px-4">
-            <!-- Desktop Menu -->
-            <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
-                <li><a href="index.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">HOME</a></li>
-                <li><a href="rolex.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">ROLEX</a></li>
-                <li><a href="omega.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">OMEGA</a></li>
-                <li><a href="cartier.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">CARTIER</a></li>
-                <li><a href="patek-philippe.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">PATEK PHILIPPE</a></li>
-                <li><a href="breitling.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">BREITLING</a></li>
+            <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+                <li><a href="index.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+                </li>
+                <li><a href="rolex.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+                </li>
+                <li><a href="omega.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+                </li>
+                <li><a href="cartier.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+                </li>
+                <li><a href="patek-philippe.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+                </li>
             </ul>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu py-4" id="mobileMenu">
-                <ul class="space-y-4">
-                    <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
-                    <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
-                    <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
-                    <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
-                    <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
-                    <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
-                </ul>
-            </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-light tracking-wider">MENU</h2>
+                <button onclick="toggleMobileMenu()" class="p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <ul class="space-y-4">
+                <li><a href="index.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+                <li><a href="rolex.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+                <li><a href="omega.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+                <li><a href="cartier.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+                <li><a href="patek-philippe.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Actions -->
+            <div class="mt-8 space-y-3">
+                <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">My Favorites</span>
+                    <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+                </a>
+                <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">Shopping Cart</span>
+                    <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+                </a>
+                <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">Sign In</span>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center space-x-2 text-xs sm:text-sm">
+                <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                <span class="text-black font-medium">Privacy Policy</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-6xl font-bold mb-6">Privacy Policy</h1>
-            <p class="text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Your privacy is important to us. Learn how we collect, use, and protect your personal information.
-            </p>
-            <div class="w-32 h-1 bg-white mx-auto"></div>
-            <div class="mt-8 text-gray-300">
-                <p>Last Updated: January 1, 2025</p>
+    <section class="hero-gradient text-white relative">
+        <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+            <div class="text-center hero-text">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">PRIVACY POLICY
+                </h1>
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Your privacy is
+                    important to us. Learn how we protect your information.</p>
+                <div class="w-16 sm:w-20 h-px bg-white mx-auto mb-6"></div>
+                <div class="text-gray-300">
+                    <p class="text-sm font-light">Last Updated: January 1, 2025</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Privacy Policy Content -->
-    <section class="py-20 bg-white">
+    <section class="py-12 sm:py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-                
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+
                 <!-- Table of Contents -->
                 <div class="lg:col-span-1">
-                    <div class="bg-gray-50 rounded-2xl p-8 sticky top-24">
-                        <h3 class="text-xl font-bold text-black mb-6">Table of Contents</h3>
+                    <div class="bg-white border-2 border-black p-6 sm:p-8 toc-sticky sticky top-24">
+                        <h3 class="text-lg sm:text-xl font-light text-black mb-6 tracking-wider uppercase">Table of
+                            Contents</h3>
                         <ul class="space-y-3">
-                            <li><a href="#privacy-notice" class="toc-link text-gray-600 hover:text-black transition-colors flex items-center">
-                                <i class="fas fa-shield-alt mr-2 w-4"></i>Privacy Notice
-                            </a></li>
-                            <li><a href="#information-collected" class="toc-link text-gray-600 hover:text-black transition-colors flex items-center">
-                                <i class="fas fa-database mr-2 w-4"></i>Information We Collect
-                            </a></li>
-                            <li><a href="#how-we-use" class="toc-link text-gray-600 hover:text-black transition-colors flex items-center">
-                                <i class="fas fa-cogs mr-2 w-4"></i>How We Use Information
-                            </a></li>
-                            <li><a href="#information-sharing" class="toc-link text-gray-600 hover:text-black transition-colors flex items-center">
-                                <i class="fas fa-share-alt mr-2 w-4"></i>Information Sharing
-                            </a></li>
-                            <li><a href="#security" class="toc-link text-gray-600 hover:text-black transition-colors flex items-center">
-                                <i class="fas fa-lock mr-2 w-4"></i>Security
-                            </a></li>
-                            <li><a href="#minors" class="toc-link text-gray-600 hover:text-black transition-colors flex items-center">
-                                <i class="fas fa-child mr-2 w-4"></i>Minors
-                            </a></li>
-                            <li><a href="#amendments" class="toc-link text-gray-600 hover:text-black transition-colors flex items-center">
-                                <i class="fas fa-edit mr-2 w-4"></i>Policy Updates
-                            </a></li>
+                            <li><a href="#privacy-notice"
+                                    class="toc-link text-gray-600 hover:text-black transition-colors flex items-center font-light text-sm">
+                                    <i class="fas fa-shield-alt mr-2 w-4"></i>Privacy Notice
+                                </a></li>
+                            <li><a href="#information-collected"
+                                    class="toc-link text-gray-600 hover:text-black transition-colors flex items-center font-light text-sm">
+                                    <i class="fas fa-database mr-2 w-4"></i>Information We Collect
+                                </a></li>
+                            <li><a href="#how-we-use"
+                                    class="toc-link text-gray-600 hover:text-black transition-colors flex items-center font-light text-sm">
+                                    <i class="fas fa-cogs mr-2 w-4"></i>How We Use Information
+                                </a></li>
+                            <li><a href="#information-sharing"
+                                    class="toc-link text-gray-600 hover:text-black transition-colors flex items-center font-light text-sm">
+                                    <i class="fas fa-share-alt mr-2 w-4"></i>Information Sharing
+                                </a></li>
+                            <li><a href="#security"
+                                    class="toc-link text-gray-600 hover:text-black transition-colors flex items-center font-light text-sm">
+                                    <i class="fas fa-lock mr-2 w-4"></i>Security
+                                </a></li>
+                            <li><a href="#minors"
+                                    class="toc-link text-gray-600 hover:text-black transition-colors flex items-center font-light text-sm">
+                                    <i class="fas fa-child mr-2 w-4"></i>Minors
+                                </a></li>
+                            <li><a href="#amendments"
+                                    class="toc-link text-gray-600 hover:text-black transition-colors flex items-center font-light text-sm">
+                                    <i class="fas fa-edit mr-2 w-4"></i>Policy Updates
+                                </a></li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Main Content -->
-                <div class="lg:col-span-3 space-y-12">
-                    
+                <div class="lg:col-span-3 space-y-8 sm:space-y-12">
+
                     <!-- Privacy Notice -->
                     <div id="privacy-notice" class="section-animation policy-section">
-                        <div class="bg-gray-50 rounded-2xl p-8">
+                        <div class="bg-gray-50 border-2 border-black p-6 sm:p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-shield-alt text-xl"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-black">Privacy Notice</h2>
+                                <h2 class="text-2xl sm:text-3xl font-light text-black tracking-wider">PRIVACY NOTICE
+                                </h2>
                             </div>
-                            <div class="prose prose-lg text-gray-700 leading-relaxed">
-                                <p class="mb-4">
-                                    At Texas Watches, we recognize the paramount importance of protecting the privacy of your personal information. We have instituted comprehensive policies and robust security measures to safeguard the information you entrust to us.
+                            <div class="text-gray-700 leading-relaxed">
+                                <p class="mb-4 font-light">
+                                    At Texas Watches, we recognize the paramount importance of protecting the privacy of
+                                    your personal information. We have instituted comprehensive policies and robust
+                                    security measures to safeguard the information you entrust to us.
                                 </p>
-                                <p class="mb-4">
-                                    When you register an account with us, you provide your explicit consent to process your submitted personal data in accordance with this privacy policy. This policy applies to all protected personal information collected, maintained, or used by Texas Watches in connection with our luxury timepiece services.
+                                <p class="mb-4 font-light">
+                                    When you register an account with us, you provide your explicit consent to process
+                                    your submitted personal data in accordance with this privacy policy. This policy
+                                    applies to all protected personal information collected, maintained, or used by
+                                    Texas Watches in connection with our luxury timepiece services.
                                 </p>
                                 <div class="highlight-box p-6 rounded-xl">
-                                    <h4 class="font-bold text-black mb-2">Your Rights</h4>
-                                    <p>You have the right to access, update, or delete your personal information at any time. Contact us at privacy@texas-sales.com for any privacy-related inquiries.</p>
+                                    <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Your Rights
+                                    </h4>
+                                    <p class="font-light">You have the right to access, update, or delete your personal
+                                        information at any time. Contact us at privacy@texas-sales.com for any
+                                        privacy-related inquiries.</p>
                                 </div>
                             </div>
                         </div>
@@ -303,93 +512,124 @@
 
                     <!-- Information We Collect -->
                     <div id="information-collected" class="section-animation policy-section">
-                        <div class="bg-white border border-gray-200 rounded-2xl p-8">
+                        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-database text-xl"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-black">What Information We Collect</h2>
+                                <h2 class="text-2xl sm:text-3xl font-light text-black tracking-wider">INFORMATION WE
+                                    COLLECT</h2>
                             </div>
-                            <div class="prose prose-lg text-gray-700 leading-relaxed">
-                                <p class="mb-6">We collect personal data from visitors who register their information to create an account with Texas Watches. This information may include:</p>
-                                
+                            <div class="text-gray-700 leading-relaxed">
+                                <p class="mb-6 font-light">We collect personal data from visitors who register their
+                                    information to create an account with Texas Watches. This information may include:
+                                </p>
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                    <div class="bg-gray-50 rounded-xl p-6">
-                                        <h4 class="font-bold text-black mb-3">Personal Information</h4>
+                                    <div class="bg-gray-50 border border-gray-200 p-6">
+                                        <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Personal
+                                            Information</h4>
                                         <ul class="space-y-2 text-gray-700">
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Full name</li>
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Email address</li>
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Phone number</li>
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Date of birth</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>Full name</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>Email address</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>Phone number</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>Date of birth</li>
                                         </ul>
                                     </div>
-                                    
-                                    <div class="bg-gray-50 rounded-xl p-6">
-                                        <h4 class="font-bold text-black mb-3">Address Information</h4>
+
+                                    <div class="bg-gray-50 border border-gray-200 p-6">
+                                        <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Address
+                                            Information</h4>
                                         <ul class="space-y-2 text-gray-700">
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Billing address</li>
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Shipping address</li>
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Country/Region</li>
-                                            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>ZIP/Postal code</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>Billing address</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>Shipping address</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>Country/Region</li>
+                                            <li class="flex items-center font-light"><i
+                                                    class="fas fa-check text-black mr-2"></i>ZIP/Postal code</li>
                                         </ul>
                                     </div>
                                 </div>
-                                
-                                <p>We also collect information about your interactions with our website, including browsing patterns, purchase history, and preferences to enhance your shopping experience.</p>
+
+                                <p class="font-light">We also collect information about your interactions with our
+                                    website, including browsing patterns, purchase history, and preferences to enhance
+                                    your shopping experience.</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- How We Use Information -->
                     <div id="how-we-use" class="section-animation policy-section">
-                        <div class="bg-gray-50 rounded-2xl p-8">
+                        <div class="bg-gray-50 border-2 border-black p-6 sm:p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-cogs text-xl"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-black">How We Use Your Information</h2>
+                                <h2 class="text-2xl sm:text-3xl font-light text-black tracking-wider">HOW WE USE YOUR
+                                    INFORMATION</h2>
                             </div>
-                            <div class="prose prose-lg text-gray-700 leading-relaxed">
-                                <p class="mb-6">With your explicit consent, we use your personal information for the following purposes:</p>
-                                
+                            <div class="text-gray-700 leading-relaxed">
+                                <p class="mb-6 font-light">With your explicit consent, we use your personal information
+                                    for the following purposes:</p>
+
                                 <div class="space-y-4 mb-6">
                                     <div class="flex items-start space-x-4">
-                                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                        <div
+                                            class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                             <i class="fas fa-shopping-cart text-sm"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-black mb-1">Order Processing</h4>
-                                            <p>To process and fulfill your luxury watch orders, including payment processing and shipping arrangements.</p>
+                                            <h4 class="font-light text-black mb-1 tracking-wider uppercase text-sm">
+                                                Order Processing</h4>
+                                            <p class="font-light">To process and fulfill your luxury watch orders,
+                                                including payment processing and shipping arrangements.</p>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-start space-x-4">
-                                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                        <div
+                                            class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                             <i class="fas fa-envelope text-sm"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-black mb-1">Communication</h4>
-                                            <p>To keep you informed about special events, promotions, new arrivals, and important updates about your orders.</p>
+                                            <h4 class="font-light text-black mb-1 tracking-wider uppercase text-sm">
+                                                Communication</h4>
+                                            <p class="font-light">To keep you informed about special events, promotions,
+                                                new arrivals, and important updates about your orders.</p>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-start space-x-4">
-                                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                        <div
+                                            class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                             <i class="fas fa-chart-line text-sm"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-black mb-1">Service Improvement</h4>
-                                            <p>To review our performance, improve our services, and enhance your overall shopping experience.</p>
+                                            <h4 class="font-light text-black mb-1 tracking-wider uppercase text-sm">
+                                                Service Improvement</h4>
+                                            <p class="font-light">To review our performance, improve our services, and
+                                                enhance your overall shopping experience.</p>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="flex items-start space-x-4">
-                                        <div class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                        <div
+                                            class="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                             <i class="fas fa-headset text-sm"></i>
                                         </div>
                                         <div>
-                                            <h4 class="font-bold text-black mb-1">Customer Support</h4>
-                                            <p>To provide customer service, respond to inquiries, and resolve any issues related to your purchases.</p>
+                                            <h4 class="font-light text-black mb-1 tracking-wider uppercase text-sm">
+                                                Customer Support</h4>
+                                            <p class="font-light">To provide customer service, respond to inquiries, and
+                                                resolve any issues related to your purchases.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -399,29 +639,44 @@
 
                     <!-- Information Sharing -->
                     <div id="information-sharing" class="section-animation policy-section">
-                        <div class="bg-white border border-gray-200 rounded-2xl p-8">
+                        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-share-alt text-xl"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-black">Do We Share Your Information?</h2>
+                                <h2 class="text-2xl sm:text-3xl font-light text-black tracking-wider">INFORMATION
+                                    SHARING</h2>
                             </div>
-                            <div class="prose prose-lg text-gray-700 leading-relaxed">
+                            <div class="text-gray-700 leading-relaxed">
                                 <div class="highlight-box p-6 rounded-xl mb-6">
-                                    <h4 class="font-bold text-black mb-2 text-xl">Our Commitment</h4>
-                                    <p class="text-lg">We will never sell, rent, or disclose our clients' names, addresses, email addresses, or other personal information to any third-party entity.</p>
+                                    <h4 class="font-light text-black mb-2 text-lg tracking-wider uppercase">Our
+                                        Commitment</h4>
+                                    <p class="text-lg font-light">We will never sell, rent, or disclose our clients'
+                                        names, addresses, email addresses, or other personal information to any
+                                        third-party entity.</p>
                                 </div>
-                                
-                                <p class="mb-4">
-                                    Your personal information remains confidential and is used exclusively for the purposes outlined in this privacy policy. We maintain strict internal policies to ensure your data is protected.
+
+                                <p class="mb-4 font-light">
+                                    Your personal information remains confidential and is used exclusively for the
+                                    purposes outlined in this privacy policy. We maintain strict internal policies to
+                                    ensure your data is protected.
                                 </p>
-                                
-                                <h4 class="font-bold text-black mb-3">Limited Exceptions</h4>
-                                <p class="mb-4">We may disclose your information only in the following circumstances:</p>
+
+                                <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Limited
+                                    Exceptions</h4>
+                                <p class="mb-4 font-light">We may disclose your information only in the following
+                                    circumstances:</p>
                                 <ul class="space-y-2 mb-6">
-                                    <li class="flex items-center"><i class="fas fa-gavel text-gray-600 mr-3"></i>When required by law or legal process</li>
-                                    <li class="flex items-center"><i class="fas fa-balance-scale text-gray-600 mr-3"></i>In connection with a legal claim or proceeding</li>
-                                    <li class="flex items-center"><i class="fas fa-shield-alt text-gray-600 mr-3"></i>To protect our rights, property, or safety</li>
+                                    <li class="flex items-center font-light"><i
+                                            class="fas fa-gavel text-gray-600 mr-3"></i>When required by law or legal
+                                        process</li>
+                                    <li class="flex items-center font-light"><i
+                                            class="fas fa-balance-scale text-gray-600 mr-3"></i>In connection with a
+                                        legal claim or proceeding</li>
+                                    <li class="flex items-center font-light"><i
+                                            class="fas fa-shield-alt text-gray-600 mr-3"></i>To protect our rights,
+                                        property, or safety</li>
                                 </ul>
                             </div>
                         </div>
@@ -429,49 +684,63 @@
 
                     <!-- Security -->
                     <div id="security" class="section-animation policy-section">
-                        <div class="bg-gray-50 rounded-2xl p-8">
+                        <div class="bg-gray-50 border-2 border-black p-6 sm:p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-lock text-xl"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-black">Security Measures</h2>
+                                <h2 class="text-2xl sm:text-3xl font-light text-black tracking-wider">SECURITY MEASURES
+                                </h2>
                             </div>
-                            <div class="prose prose-lg text-gray-700 leading-relaxed">
-                                <p class="mb-6">We employ industry-standard security practices to protect your personal information:</p>
-                                
+                            <div class="text-gray-700 leading-relaxed">
+                                <p class="mb-6 font-light">We employ industry-standard security practices to protect
+                                    your personal information:</p>
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                    <div class="bg-white rounded-xl p-6 border border-gray-200">
-                                        <h4 class="font-bold text-black mb-3 flex items-center">
-                                            <i class="fas fa-key mr-2 text-green-500"></i>Encryption
+                                    <div class="bg-white border border-gray-200 p-6">
+                                        <h4
+                                            class="font-light text-black mb-3 flex items-center tracking-wider uppercase text-sm">
+                                            <i class="fas fa-key mr-2 text-green-600"></i>Encryption
                                         </h4>
-                                        <p>All sensitive data is encrypted using advanced encryption standards (AES) both in transit and at rest.</p>
+                                        <p class="font-light">All sensitive data is encrypted using advanced encryption
+                                            standards (AES) both in transit and at rest.</p>
                                     </div>
-                                    
-                                    <div class="bg-white rounded-xl p-6 border border-gray-200">
-                                        <h4 class="font-bold text-black mb-3 flex items-center">
-                                            <i class="fas fa-firewall mr-2 text-green-500"></i>Firewalls
+
+                                    <div class="bg-white border border-gray-200 p-6">
+                                        <h4
+                                            class="font-light text-black mb-3 flex items-center tracking-wider uppercase text-sm">
+                                            <i class="fas fa-firewall mr-2 text-green-600"></i>Firewalls
                                         </h4>
-                                        <p>Multiple layers of firewall protection prevent unauthorized access to our systems.</p>
+                                        <p class="font-light">Multiple layers of firewall protection prevent
+                                            unauthorized access to our systems.</p>
                                     </div>
-                                    
-                                    <div class="bg-white rounded-xl p-6 border border-gray-200">
-                                        <h4 class="font-bold text-black mb-3 flex items-center">
-                                            <i class="fas fa-eye mr-2 text-green-500"></i>Access Control
+
+                                    <div class="bg-white border border-gray-200 p-6">
+                                        <h4
+                                            class="font-light text-black mb-3 flex items-center tracking-wider uppercase text-sm">
+                                            <i class="fas fa-eye mr-2 text-green-600"></i>Access Control
                                         </h4>
-                                        <p>Strict access controls ensure only authorized personnel can access customer data.</p>
+                                        <p class="font-light">Strict access controls ensure only authorized personnel
+                                            can access customer data.</p>
                                     </div>
-                                    
-                                    <div class="bg-white rounded-xl p-6 border border-gray-200">
-                                        <h4 class="font-bold text-black mb-3 flex items-center">
-                                            <i class="fas fa-trash mr-2 text-green-500"></i>Data Retention
+
+                                    <div class="bg-white border border-gray-200 p-6">
+                                        <h4
+                                            class="font-light text-black mb-3 flex items-center tracking-wider uppercase text-sm">
+                                            <i class="fas fa-trash mr-2 text-green-600"></i>Data Retention
                                         </h4>
-                                        <p>Customer data is automatically deleted after one month of successful order delivery.</p>
+                                        <p class="font-light">Customer data is automatically deleted after one month of
+                                            successful order delivery.</p>
                                     </div>
                                 </div>
-                                
-                                <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                                    <h4 class="font-bold text-blue-800 mb-2">Additional Protection</h4>
-                                    <p class="text-blue-700">We never distribute or rent your personal information to third parties unless required by law. Your privacy and security are our top priorities.</p>
+
+                                <div class="bg-blue-50 border border-blue-200 p-6">
+                                    <h4 class="font-light text-blue-800 mb-2 tracking-wider uppercase text-sm">
+                                        Additional Protection</h4>
+                                    <p class="text-blue-700 font-light">We never distribute or rent your personal
+                                        information to third parties unless required by law. Your privacy and security
+                                        are our top priorities.</p>
                                 </div>
                             </div>
                         </div>
@@ -479,29 +748,38 @@
 
                     <!-- Minors -->
                     <div id="minors" class="section-animation policy-section">
-                        <div class="bg-white border border-gray-200 rounded-2xl p-8">
+                        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-child text-xl"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-black">Protection of Minors</h2>
+                                <h2 class="text-2xl sm:text-3xl font-light text-black tracking-wider">PROTECTION OF
+                                    MINORS</h2>
                             </div>
-                            <div class="prose prose-lg text-gray-700 leading-relaxed">
-                                <p class="mb-4">
-                                    Texas Watches does not knowingly collect or maintain personal information from individuals under the legal age of 18, and no part of our website is directed toward minors.
+                            <div class="text-gray-700 leading-relaxed">
+                                <p class="mb-4 font-light">
+                                    Texas Watches does not knowingly collect or maintain personal information from
+                                    individuals under the legal age of 18, and no part of our website is directed toward
+                                    minors.
                                 </p>
-                                
-                                <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 mb-6">
-                                    <h4 class="font-bold text-yellow-800 mb-2">Important Notice for Minors</h4>
-                                    <p class="text-yellow-700">If you are under 18 years of age, please do not use or access our website at any time or in any manner.</p>
+
+                                <div class="bg-yellow-50 border border-yellow-200 p-6 mb-6">
+                                    <h4 class="font-light text-yellow-800 mb-2 tracking-wider uppercase text-sm">
+                                        Important Notice for Minors</h4>
+                                    <p class="text-yellow-700 font-light">If you are under 18 years of age, please do
+                                        not use or access our website at any time or in any manner.</p>
                                 </div>
-                                
-                                <p class="mb-4">
-                                    If we become aware that personal information from a person under 18 has been collected without proper parental or guardian consent, we will take immediate action to delete this information from our systems.
+
+                                <p class="mb-4 font-light">
+                                    If we become aware that personal information from a person under 18 has been
+                                    collected without proper parental or guardian consent, we will take immediate action
+                                    to delete this information from our systems.
                                 </p>
-                                
-                                <p>
-                                    Parents and guardians who believe their child has provided personal information to us should contact us immediately at privacy@texas-sales.com.
+
+                                <p class="font-light">
+                                    Parents and guardians who believe their child has provided personal information to
+                                    us should contact us immediately at privacy@texas-sales.com.
                                 </p>
                             </div>
                         </div>
@@ -509,29 +787,40 @@
 
                     <!-- Policy Updates -->
                     <div id="amendments" class="section-animation policy-section">
-                        <div class="bg-gray-50 rounded-2xl p-8">
+                        <div class="bg-gray-50 border-2 border-black p-6 sm:p-8 card-hover">
                             <div class="flex items-center mb-6">
-                                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                                <div
+                                    class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
                                     <i class="fas fa-edit text-xl"></i>
                                 </div>
-                                <h2 class="text-3xl font-bold text-black">Policy Updates</h2>
+                                <h2 class="text-2xl sm:text-3xl font-light text-black tracking-wider">POLICY UPDATES
+                                </h2>
                             </div>
-                            <div class="prose prose-lg text-gray-700 leading-relaxed">
-                                <p class="mb-4">
-                                    This Privacy Policy is subject to periodic review and updates to reflect changes in our practices or applicable laws. We reserve the right to modify, change, or update this policy at any time.
+                            <div class="text-gray-700 leading-relaxed">
+                                <p class="mb-4 font-light">
+                                    This Privacy Policy is subject to periodic review and updates to reflect changes in
+                                    our practices or applicable laws. We reserve the right to modify, change, or update
+                                    this policy at any time.
                                 </p>
-                                
+
                                 <div class="highlight-box p-6 rounded-xl mb-6">
-                                    <h4 class="font-bold text-black mb-2">Notification of Changes</h4>
-                                    <p>When significant changes are made to this policy, we will notify you via email and post a notice on our website. Continued use of our services after such notification constitutes acceptance of the updated policy.</p>
+                                    <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Notification
+                                        of Changes</h4>
+                                    <p class="font-light">When significant changes are made to this policy, we will
+                                        notify you via email and post a notice on our website. Continued use of our
+                                        services after such notification constitutes acceptance of the updated policy.
+                                    </p>
                                 </div>
-                                
-                                <p class="mb-4">
-                                    Any changes, updates, or modifications will be effective immediately upon posting on our website. We encourage you to review this Privacy Policy periodically to stay informed about our privacy practices.
+
+                                <p class="mb-4 font-light">
+                                    Any changes, updates, or modifications will be effective immediately upon posting on
+                                    our website. We encourage you to review this Privacy Policy periodically to stay
+                                    informed about our privacy practices.
                                 </p>
-                                
-                                <p class="font-semibold text-black">
-                                    This Privacy Policy does not create any contractual or other legal rights in or on behalf of any party.
+
+                                <p class="font-light text-black">
+                                    This Privacy Policy does not create any contractual or other legal rights in or on
+                                    behalf of any party.
                                 </p>
                             </div>
                         </div>
@@ -539,14 +828,16 @@
 
                     <!-- Contact Information -->
                     <div class="section-animation">
-                        <div class="bg-black text-white rounded-2xl p-8 text-center">
-                            <h3 class="text-2xl font-bold mb-4">Questions About This Policy?</h3>
-                            <p class="text-gray-300 mb-6">
-                                If you have any questions or concerns about our Privacy Policy, please don't hesitate to contact us.
+                        <div class="bg-black text-white p-6 sm:p-8 text-center">
+                            <h3 class="text-xl sm:text-2xl font-light mb-4 tracking-wider">QUESTIONS ABOUT THIS POLICY?
+                            </h3>
+                            <p class="text-gray-300 font-light mb-6">
+                                If you have any questions or concerns about our Privacy Policy, please don't hesitate to
+                                contact us.
                             </p>
                             <div class="space-y-2">
-                                <p><i class="fas fa-envelope mr-2"></i> privacy@texas-sales.com</p>
-                                <p><i class="fas fa-phone mr-2"></i> +1 (555) 839-2792</p>
+                                <p class="font-light"><i class="fas fa-envelope mr-2"></i> privacy@texas-sales.com</p>
+                                <p class="font-light"><i class="fas fa-phone mr-2"></i> +1 (555) 839-2792</p>
                             </div>
                         </div>
                     </div>
@@ -556,74 +847,95 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-12">
+    <footer class="bg-black text-white py-12 sm:py-16">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Company Info -->
-                <div class="md:col-span-1">
-                    <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
-                    <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="sm:col-span-2 md:col-span-1">
+                    <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3>
+                    <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+                        Your premier destination for authentic luxury timepieces.
+                    </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-facebook-f text-xl"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-twitter text-xl"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-pinterest text-xl"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Company Links -->
+                <!-- Company -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Company</h4>
                     <ul class="space-y-2">
-                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
-                        <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="about.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About</a>
+                        </li>
+                        <li><a href="shippingreturns.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping</a>
+                        </li>
+                        <li><a href="privacypolicy.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy</a>
+                        </li>
+                        <li><a href="terms.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms</a>
+                        </li>
                     </ul>
                 </div>
 
-                <!-- Customer Service -->
+                <!-- Support -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Support</h4>
                     <ul class="space-y-2">
-                        <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
-                        <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
-                        <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
-                        <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="contactus.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact</a>
+                        </li>
+                        <li><a href="payment.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a>
+                        </li>
+                        <li><a href="sitemap.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sitemap</a>
+                        </li>
+                        <li><a href="faq.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+                        </li>
                     </ul>
                 </div>
 
-                <!-- My Account -->
+                <!-- Account -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">My Account</h4>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Account</h4>
                     <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
-                        <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
-                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
-                        <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sign
+                                In</a></li>
+                        <li><a href="createaccount.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Register</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Orders</a>
+                        </li>
+                        <li><a href="shoppingcart.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Cart</a>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Payment Icons -->
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <div class="flex justify-center items-center space-x-4 mb-4">
-                    <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+            <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+                <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+                    <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
                 </div>
-                <p class="text-gray-400 text-sm">
-                    Copyright © 2025 Texas Watches. All Rights Reserved.
+                <p class="text-gray-400 text-xs font-light">
+                    © 2025 Texas Watches. All rights reserved.
                 </p>
             </div>
         </div>
@@ -633,7 +945,25 @@
         // Mobile menu toggle
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const body = document.body;
+
             mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Get favorites
+        function getFavorites() {
+            return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+        }
+
+        // Update favorites count
+        function updateFavoritesCount() {
+            const count = getFavorites().length;
+            document.querySelectorAll('.favorites-count').forEach(el => {
+                el.textContent = count;
+            });
         }
 
         // Update cart count function
@@ -647,13 +977,10 @@
         }
 
         // Smooth scrolling for table of contents links
-        document.addEventListener('DOMContentLoaded', function() {
-            updateCartCount();
-            
-            // Add smooth scrolling to table of contents links
+        function setupSmoothScrolling() {
             const tocLinks = document.querySelectorAll('.toc-link');
             tocLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
@@ -665,14 +992,24 @@
                     }
                 });
             });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount();
+            updateFavoritesCount();
+            setupSmoothScrolling();
         });
 
         // Handle window resize for mobile menu
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 768) {
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
                 document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('mobileMenuOverlay').classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     </script>
 </body>
+
 </html>

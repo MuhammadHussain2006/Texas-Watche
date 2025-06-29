@@ -1,0 +1,162 @@
+<!-- Top Header -->
+<div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+        <div class="flex items-center space-x-2 sm:space-x-3">
+            <i class="fas fa-shipping-fast hidden sm:inline"></i>
+            <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+        </div>
+        <div class="relative dropdown">
+            <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+                <i class="fas fa-user-circle"></i>
+                <span class="hidden sm:inline">Account</span>
+                <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="login.html"
+                    class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                    <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Sign In
+                </a>
+                <a href="createaccount.html"
+                    class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                    <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+                </a>
+                <a href="favorites.html"
+                    class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                    <i class="fas fa-heart mr-3 text-gray-600"></i>Favorites (<span class="favorites-count">0</span>)
+                </a>
+                <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Cart
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Header -->
+<header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+        <div class="flex items-center justify-between">
+
+            <!-- Logo -->
+            <div class="flex-1">
+                <a href="index.html" class="inline-block">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1>
+                    <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces
+                        Since 2020</p>
+                </a>
+            </div>
+
+            <!-- Search and Actions -->
+            <div class="flex items-center space-x-3 sm:space-x-6">
+                <!-- Search - Desktop -->
+                <div class="relative hidden lg:block">
+                    <input type="text" placeholder="Search collection..." id="searchInput"
+                        class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+
+                <!-- Favorites -->
+                <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+                    <i class="far fa-heart text-xl sm:text-2xl"></i>
+                    <span
+                        class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                </a>
+
+                <!-- Cart -->
+                <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+                    <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+                    <span
+                        class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                </a>
+
+                <!-- Mobile Menu -->
+                <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="lg:hidden mt-4">
+            <div class="relative">
+                <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+                    class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+        <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5" id="desktopNav">
+            <li><a href="index.html"
+                    class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+                    data-page="index">Home</a></li>
+            <li><a href="rolex.html"
+                    class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+                    data-page="rolex">Rolex</a></li>
+            <li><a href="omega.html"
+                    class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+                    data-page="omega">Omega</a></li>
+            <li><a href="cartier.html"
+                    class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+                    data-page="cartier">Cartier</a></li>
+            <li><a href="patek-philippe.html"
+                    class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+                    data-page="patek-philippe">Patek Philippe</a></li>
+            <li><a href="breitling.html"
+                    class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2"
+                    data-page="breitling">Breitling</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+        <div class="flex items-center justify-between">
+            <h2 class="text-xl font-light tracking-wider">MENU</h2>
+            <button onclick="toggleMobileMenu()" class="p-2">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+    </div>
+    <div class="p-4">
+        <ul class="space-y-4" id="mobileNav">
+            <li><a href="index.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+                    data-page="index">Home</a></li>
+            <li><a href="rolex.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+                    data-page="rolex">Rolex</a></li>
+            <li><a href="omega.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+                    data-page="omega">Omega</a></li>
+            <li><a href="cartier.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+                    data-page="cartier">Cartier</a></li>
+            <li><a href="patek-philippe.html"
+                    class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+                    data-page="patek-philippe">Patek Philippe</a></li>
+            <li><a href="breitling.html" class="block font-light uppercase tracking-wider py-3 border-b border-gray-200"
+                    data-page="breitling">Breitling</a></li>
+        </ul>
+
+        <!-- Mobile Menu Actions -->
+        <div class="mt-8 space-y-3">
+            <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                <span class="font-light">My Favorites</span>
+                <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+            </a>
+            <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                <span class="font-light">Shopping Cart</span>
+                <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+            </a>
+            <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                <span class="font-light">Sign In</span>
+                <i class="fas fa-arrow-right text-gray-400"></i>
+            </a>
+        </div>
+    </div>
+</div>

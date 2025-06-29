@@ -1,69 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Methods - Texas Watches</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
     <style>
+        /* Professional black & white theme */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px);
+        }
+
+        /* Enhanced dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
             right: 0;
             background: white;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            border-radius: 8px;
-            overflow: hidden;
+            border: 1px solid #000;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
+            animation: fadeInDown 0.3s ease;
         }
-        .mobile-menu {
-            display: none;
-        }
-        .mobile-menu.active {
-            display: block;
-        }
-        @media (max-width: 768px) {
-            .desktop-menu {
-                display: none;
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
             }
-        }
-        .hero-gradient {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-        }
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        .section-animation {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideInUp 0.8s ease forwards;
-        }
-        .section-animation:nth-child(1) { animation-delay: 0.1s; }
-        .section-animation:nth-child(2) { animation-delay: 0.2s; }
-        .section-animation:nth-child(3) { animation-delay: 0.3s; }
-        .section-animation:nth-child(4) { animation-delay: 0.4s; }
-        @keyframes slideInUp {
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        /* Navigation link styling */
         .nav-link {
             position: relative;
             transition: all 0.3s ease;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -74,55 +111,147 @@
             background: #000;
             transition: width 0.3s ease;
         }
-        .nav-link.active::after {
-            width: 100%;
-        }
+
         .nav-link:hover::after {
             width: 100%;
-            background: #666;
         }
-        .payment-method-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            border: 2px solid #e5e7eb;
+
+        /* Professional input styling */
+        .search-input {
             transition: all 0.3s ease;
         }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Enhanced card hover */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: #000;
+        }
+
+        /* Feature card styling */
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+
+        /* Hero text animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Section animation */
+        .section-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        .section-animation:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section-animation:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section-animation:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section-animation:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Payment method card styling */
+        .payment-method-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+
         .payment-method-card:hover {
             border-color: #000;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
-        .feature-icon {
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none !important;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-black">
-    
+
+<body class="bg-white text-black">
+
     <!-- Top Header -->
-    <div class="bg-black text-white py-2 px-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center text-sm">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-shipping-fast"></i>
-                <span>Save Up to 90% Off • Free Shipping All Orders</span>
+    <div class="bg-black text-white py-2 sm:py-3 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <i class="fas fa-shipping-fast hidden sm:inline"></i>
+                <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
             </div>
             <div class="relative dropdown">
-                <button class="flex items-center space-x-1 hover:text-gray-300 transition-colors">
-                    <i class="fas fa-user"></i>
-                    <span>My Account</span>
+                <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="hidden sm:inline">Account</span>
                     <i class="fas fa-chevron-down text-xs"></i>
                 </button>
                 <div class="dropdown-content">
-                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Log In
+                    <a href="login.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Sign In
                     </a>
-                    <a href="createaccount.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-user-plus mr-2"></i>Register
+                    <a href="createaccount.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
                     </a>
-                    <a href="login.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-user-circle mr-2"></i>My Account
+                    <a href="favorites.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-heart mr-3 text-gray-600"></i>Favorites (<span
+                            class="favorites-count">0</span>)
                     </a>
-                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-shopping-cart mr-2"></i>Shopping Cart
+                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Cart
                     </a>
                 </div>
             </div>
@@ -130,150 +259,204 @@
     </div>
 
     <!-- Main Header -->
-    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 py-4">
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
             <div class="flex items-center justify-between">
-                
-                <!-- Logo and Tagline -->
+
+                <!-- Logo -->
                 <div class="flex-1">
                     <a href="index.html" class="inline-block">
-                        <h1 class="text-3xl font-bold text-black mb-1">Texas Watches</h1>
-                        <p class="text-sm text-gray-600 max-w-md">
-                            Best Luxury Watches On Sale, Up To 90% Off.<br>
-                            Free Worldwide Shipping • 30 Day Returns
+                        <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES
+                        </h1>
+                        <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury
+                            Timepieces Since 2020
                         </p>
                     </a>
                 </div>
 
-                <!-- Search and Cart -->
-                <div class="flex items-center space-x-6">
-                    <!-- Search Box -->
-                    <div class="relative hidden md:block">
-                        <input 
-                            type="text" 
-                            placeholder="Search watches..." 
-                            id="searchInput"
-                            class="w-80 px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none transition-colors"
-                        >
+                <!-- Search and Actions -->
+                <div class="flex items-center space-x-3 sm:space-x-6">
+                    <!-- Search - Desktop -->
+                    <div class="relative hidden lg:block">
+                        <input type="text" placeholder="Search collection..." id="searchInput"
+                            class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
                         <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                        <button 
-                            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full hover:bg-gray-800 transition-colors"
-                        >
-                            Search
-                        </button>
                     </div>
+
+                    <!-- Favorites -->
+                    <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="far fa-heart text-xl sm:text-2xl"></i>
+                        <span
+                            class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
 
                     <!-- Cart -->
-                    <div class="relative">
-                        <a href="shoppingcart.html" class="flex items-center space-x-2 hover:text-gray-600 transition-colors">
-                            <div class="relative">
-                                <i class="fas fa-shopping-bag text-2xl"></i>
-                                <span class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                            </div>
-                            <span class="hidden lg:inline font-medium">Cart</span>
-                        </a>
-                    </div>
+                    <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+                        <span
+                            class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
 
-                    <!-- Mobile Menu Button -->
-                    <button class="md:hidden" onclick="toggleMobileMenu()">
-                        <i class="fas fa-bars text-2xl"></i>
+                    <!-- Mobile Menu -->
+                    <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl sm:text-2xl"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Mobile Search -->
-            <div class="md:hidden mt-4">
+            <div class="lg:hidden mt-4">
                 <div class="relative">
-                    <input 
-                        type="text" 
-                        placeholder="Search watches..." 
-                        id="mobileSearchInput"
-                        class="w-full px-4 py-2 pl-10 pr-12 border-2 border-gray-200 rounded-full focus:border-black focus:outline-none"
-                    >
+                    <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+                        class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
                     <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <button 
-                        class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white px-4 py-1 rounded-full text-sm"
-                    >
-                        Go
-                    </button>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Navigation -->
-    <nav class="bg-white border-b border-gray-200">
+    <nav class="bg-white border-b border-gray-200 hidden lg:block">
         <div class="max-w-7xl mx-auto px-4">
-            <!-- Desktop Menu -->
-            <ul class="desktop-menu flex items-center justify-center space-x-8 py-4">
-                <li><a href="index.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">HOME</a></li>
-                <li><a href="rolex.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">ROLEX</a></li>
-                <li><a href="omega.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">OMEGA</a></li>
-                <li><a href="cartier.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">CARTIER</a></li>
-                <li><a href="patek-philippe.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">PATEK PHILIPPE</a></li>
-                <li><a href="breitling.html" class="nav-link font-medium hover:text-gray-600 transition-colors pb-1">BREITLING</a></li>
+            <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+                <li><a href="index.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+                </li>
+                <li><a href="rolex.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+                </li>
+                <li><a href="omega.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+                </li>
+                <li><a href="cartier.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+                </li>
+                <li><a href="patek-philippe.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+                </li>
             </ul>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu py-4" id="mobileMenu">
-                <ul class="space-y-4">
-                    <li><a href="index.html" class="block font-medium hover:text-gray-600 transition-colors">HOME</a></li>
-                    <li><a href="rolex.html" class="block font-medium hover:text-gray-600 transition-colors">ROLEX</a></li>
-                    <li><a href="omega.html" class="block font-medium hover:text-gray-600 transition-colors">OMEGA</a></li>
-                    <li><a href="cartier.html" class="block font-medium hover:text-gray-600 transition-colors">CARTIER</a></li>
-                    <li><a href="patek-philippe.html" class="block font-medium hover:text-gray-600 transition-colors">PATEK PHILIPPE</a></li>
-                    <li><a href="breitling.html" class="block font-medium hover:text-gray-600 transition-colors">BREITLING</a></li>
-                </ul>
-            </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-light tracking-wider">MENU</h2>
+                <button onclick="toggleMobileMenu()" class="p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <ul class="space-y-4">
+                <li><a href="index.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+                <li><a href="rolex.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+                <li><a href="omega.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+                <li><a href="cartier.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+                <li><a href="patek-philippe.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Actions -->
+            <div class="mt-8 space-y-3">
+                <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">My Favorites</span>
+                    <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+                </a>
+                <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">Shopping Cart</span>
+                    <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+                </a>
+                <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">Sign In</span>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center space-x-2 text-xs sm:text-sm">
+                <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                <span class="text-black font-medium">Payment Methods</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero-gradient text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-6xl font-bold mb-6">Payment Methods</h1>
-            <p class="text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Secure, convenient payment options for your luxury timepiece purchases. Shop with confidence.
-            </p>
-            <div class="w-32 h-1 bg-white mx-auto"></div>
+    <section class="hero-gradient text-white relative">
+        <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+            <div class="text-center hero-text">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">PAYMENT METHODS
+                </h1>
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Secure, convenient
+                    payment options for your luxury timepiece purchases</p>
+                <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+            </div>
         </div>
     </section>
 
-    <!-- Payment Methods Content -->
-    <section class="py-20 bg-white">
+    <!-- Payment Options Overview -->
+    <section class="py-12 sm:py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4">
-            
-            <!-- Payment Options Overview -->
-            <div class="section-animation text-center mb-16">
-                <h2 class="text-4xl font-bold text-black mb-6">Accepted Payment Methods</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    We offer multiple secure payment options to make your luxury watch purchase convenient and safe. 
+
+            <!-- Overview -->
+            <div class="section-animation text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">ACCEPTED
+                    PAYMENT METHODS</h2>
+                <p class="text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+                    We offer multiple secure payment options to make your luxury watch purchase convenient and safe.
                     All transactions are protected with bank-level security.
                 </p>
+                <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
             </div>
 
             <!-- Payment Method Cards -->
-            <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                
+            <div class="section-animation grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
+
                 <!-- Cash on Delivery -->
-                <div class="payment-method-card rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-money-bill-wave text-2xl"></i>
+                <div class="payment-method-card bg-white border-2 border-gray-200 p-6 sm:p-8 text-center">
+                    <div
+                        class="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-money-bill-wave text-xl sm:text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-4">Cash on Delivery</h3>
-                    <p class="text-gray-600 mb-4">Pay when your watch arrives at your doorstep. Inspect before payment.</p>
-                    <div class="bg-green-50 rounded-lg p-4">
-                        <p class="text-green-700 font-semibold text-sm">Most Popular • No Online Payment Required</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">CASH ON DELIVERY</h3>
+                    <p class="text-gray-600 font-light mb-4 text-sm">Pay when your watch arrives at your doorstep.
+                        Inspect before payment.</p>
+                    <div class="bg-green-50 border border-green-200 p-4">
+                        <p class="text-green-700 font-light text-sm">Most Popular • No Online Payment Required</p>
                     </div>
                 </div>
 
                 <!-- Credit Cards -->
-                <div class="payment-method-card rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-credit-card text-2xl"></i>
+                <div class="payment-method-card bg-white border-2 border-gray-200 p-6 sm:p-8 text-center">
+                    <div
+                        class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-credit-card text-xl sm:text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-4">Credit Cards</h3>
-                    <p class="text-gray-600 mb-4">Visa, Mastercard, and American Express accepted worldwide.</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">CREDIT CARDS</h3>
+                    <p class="text-gray-600 font-light mb-4 text-sm">Visa, Mastercard, and American Express accepted
+                        worldwide.</p>
                     <div class="flex justify-center space-x-3 mt-4">
                         <i class="fab fa-cc-visa text-3xl text-blue-600"></i>
                         <i class="fab fa-cc-mastercard text-3xl text-red-500"></i>
@@ -282,51 +465,65 @@
                 </div>
 
                 <!-- PayPal -->
-                <div class="payment-method-card rounded-2xl p-8 text-center">
-                    <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fab fa-paypal text-2xl"></i>
+                <div class="payment-method-card bg-white border-2 border-gray-200 p-6 sm:p-8 text-center">
+                    <div
+                        class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fab fa-paypal text-xl sm:text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-black mb-4">PayPal</h3>
-                    <p class="text-gray-600 mb-4">Quick and secure payments with PayPal buyer protection.</p>
-                    <div class="bg-blue-50 rounded-lg p-4">
-                        <p class="text-blue-700 font-semibold text-sm">Instant Processing • Buyer Protection</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">PAYPAL</h3>
+                    <p class="text-gray-600 font-light mb-4 text-sm">Quick and secure payments with PayPal buyer
+                        protection.</p>
+                    <div class="bg-blue-50 border border-blue-200 p-4">
+                        <p class="text-blue-700 font-light text-sm">Instant Processing • Buyer Protection</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Detailed Payment Information -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                
+    <!-- Detailed Payment Information -->
+    <section class="py-12 sm:py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+
                 <!-- Credit Card Details -->
                 <div class="section-animation">
-                    <div class="bg-gray-50 rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold text-black mb-6 flex items-center">
+                    <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+                        <h3 class="text-xl sm:text-2xl font-light text-black mb-6 flex items-center tracking-wider">
                             <i class="fas fa-credit-card mr-3 text-blue-500"></i>
-                            Credit Card Information
+                            CREDIT CARD INFORMATION
                         </h3>
-                        
+
                         <div class="space-y-6">
                             <div>
-                                <h4 class="text-lg font-semibold text-black mb-3">VISA Card</h4>
-                                <p class="text-gray-700 leading-relaxed mb-4">
-                                    We process VISA card payments through secure VISA company systems. Your payment information is completely protected 
-                                    with industry-standard encryption. You can verify VISA security at <a href="https://www.visa.com" class="text-blue-600 hover:text-blue-800 transition-colors">www.visa.com</a>.
+                                <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">VISA Card</h4>
+                                <p class="text-gray-700 leading-relaxed mb-4 font-light">
+                                    We process VISA card payments through secure VISA company systems. Your payment
+                                    information is completely protected
+                                    with industry-standard encryption. You can verify VISA security at <a
+                                        href="https://www.visa.com"
+                                        class="text-blue-600 hover:text-blue-800 transition-colors">www.visa.com</a>.
                                 </p>
-                                
-                                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
-                                    <h5 class="font-semibold text-yellow-800 mb-2">Important Note:</h5>
-                                    <p class="text-yellow-700 text-sm">
-                                        If your payment is declined, please contact your bank to unblock international transactions. 
+
+                                <div class="bg-yellow-50 border border-yellow-200 p-4 mb-4">
+                                    <h5 class="font-light text-yellow-800 mb-2 tracking-wider uppercase text-sm">
+                                        Important Note:</h5>
+                                    <p class="text-yellow-700 text-sm font-light">
+                                        If your payment is declined, please contact your bank to unblock international
+                                        transactions.
                                         VISA cards provide safe and easy online shopping worldwide.
                                     </p>
                                 </div>
                             </div>
-                            
+
                             <div>
-                                <h4 class="text-lg font-semibold text-black mb-3">Mastercard</h4>
-                                <p class="text-gray-700 leading-relaxed">
-                                    Mastercard offers fast and secure transactions for online shopping. All payments are processed through encrypted channels 
-                                    ensuring complete security. Verify Mastercard security at <a href="https://www.mastercard.com" class="text-blue-600 hover:text-blue-800 transition-colors">www.mastercard.com</a>.
+                                <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Mastercard</h4>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    Mastercard offers fast and secure transactions for online shopping. All payments are
+                                    processed through encrypted channels
+                                    ensuring complete security. Verify Mastercard security at <a
+                                        href="https://www.mastercard.com"
+                                        class="text-blue-600 hover:text-blue-800 transition-colors">www.mastercard.com</a>.
                                 </p>
                             </div>
                         </div>
@@ -335,39 +532,45 @@
 
                 <!-- Payment Troubleshooting -->
                 <div class="section-animation">
-                    <div class="bg-white border border-gray-200 rounded-2xl p-8">
-                        <h3 class="text-2xl font-bold text-black mb-6 flex items-center">
+                    <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+                        <h3 class="text-xl sm:text-2xl font-light text-black mb-6 flex items-center tracking-wider">
                             <i class="fas fa-exclamation-triangle mr-3 text-yellow-500"></i>
-                            Payment Issues
+                            PAYMENT ISSUES
                         </h3>
-                        
+
                         <div class="space-y-6">
                             <div>
-                                <h4 class="text-lg font-semibold text-black mb-3">Common Decline Reasons</h4>
+                                <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Common Decline
+                                    Reasons</h4>
                                 <ul class="space-y-3">
                                     <li class="flex items-start space-x-3">
                                         <i class="fas fa-times-circle text-red-500 mt-1"></i>
-                                        <span class="text-gray-700">Incorrect payment information entered</span>
+                                        <span class="text-gray-700 font-light">Incorrect payment information
+                                            entered</span>
                                     </li>
                                     <li class="flex items-start space-x-3">
                                         <i class="fas fa-times-circle text-red-500 mt-1"></i>
-                                        <span class="text-gray-700">Bank doesn't support online/international shopping</span>
+                                        <span class="text-gray-700 font-light">Bank doesn't support online/international
+                                            shopping</span>
                                     </li>
                                     <li class="flex items-start space-x-3">
                                         <i class="fas fa-times-circle text-red-500 mt-1"></i>
-                                        <span class="text-gray-700">Insufficient card balance</span>
+                                        <span class="text-gray-700 font-light">Insufficient card balance</span>
                                     </li>
                                     <li class="flex items-start space-x-3">
                                         <i class="fas fa-times-circle text-red-500 mt-1"></i>
-                                        <span class="text-gray-700">Card blocked by bank security filters</span>
+                                        <span class="text-gray-700 font-light">Card blocked by bank security
+                                            filters</span>
                                     </li>
                                 </ul>
                             </div>
-                            
-                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                                <h5 class="font-semibold text-blue-800 mb-2">Need Help?</h5>
-                                <p class="text-blue-700 text-sm">
-                                    Contact our customer service team for payment assistance. We're here to help you complete your purchase securely.
+
+                            <div class="bg-blue-50 border border-blue-200 p-4">
+                                <h5 class="font-light text-blue-800 mb-2 tracking-wider uppercase text-sm">Need Help?
+                                </h5>
+                                <p class="text-blue-700 text-sm font-light">
+                                    Contact our customer service team for payment assistance. We're here to help you
+                                    complete your purchase securely.
                                 </p>
                             </div>
                         </div>
@@ -378,107 +581,122 @@
     </section>
 
     <!-- Our Guarantees -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-12 sm:py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="section-animation text-center mb-12">
-                <h2 class="text-4xl font-bold text-black mb-6">Our Payment Guarantees</h2>
-                <p class="text-xl text-gray-600">Your security and satisfaction are our top priorities</p>
+            <div class="section-animation text-center mb-8 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">OUR
+                    PAYMENT GUARANTEES</h2>
+                <p class="text-gray-600 font-light">Your security and satisfaction are our top priorities</p>
+                <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-shipping-fast text-2xl"></i>
+
+            <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="feature-card text-center">
+                    <div
+                        class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shipping-fast text-white text-xl sm:text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Free Worldwide Shipping</h3>
-                    <p class="text-gray-600 text-sm">All orders ship free, delivered in 15-25 days worldwide</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">FREE WORLDWIDE SHIPPING</h3>
+                    <p class="text-gray-600 font-light text-sm">All orders ship free, delivered in 15-25 days worldwide
+                    </p>
                 </div>
-                
-                <div class="text-center">
-                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-money-back text-2xl"></i>
+
+                <div class="feature-card text-center">
+                    <div
+                        class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-money-back text-white text-xl sm:text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Money Back Guarantee</h3>
-                    <p class="text-gray-600 text-sm">100% satisfaction guarantee with easy returns</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">MONEY BACK GUARANTEE</h3>
+                    <p class="text-gray-600 font-light text-sm">100% satisfaction guarantee with easy returns</p>
                 </div>
-                
-                <div class="text-center">
-                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-shield-alt text-2xl"></i>
+
+                <div class="feature-card text-center">
+                    <div
+                        class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-alt text-white text-xl sm:text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Authenticity Guaranteed</h3>
-                    <p class="text-gray-600 text-sm">Every watch is verified authentic before shipping</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">AUTHENTICITY GUARANTEED</h3>
+                    <p class="text-gray-600 font-light text-sm">Every watch is verified authentic before shipping</p>
                 </div>
-                
-                <div class="text-center">
-                    <div class="feature-icon w-16 h-16 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-headset text-2xl"></i>
+
+                <div class="feature-card text-center">
+                    <div
+                        class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-headset text-white text-xl sm:text-2xl"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">24/7 Customer Support</h3>
-                    <p class="text-gray-600 text-sm">Expert support team ready to assist you</p>
+                    <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">24/7 CUSTOMER SUPPORT</h3>
+                    <p class="text-gray-600 font-light text-sm">Expert support team ready to assist you</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Additional Guarantees -->
-    <section class="py-16 bg-white">
+    <section class="py-12 sm:py-16 bg-black text-white">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="section-animation bg-black text-white rounded-2xl p-12">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold mb-4">Additional Service Guarantees</h2>
-                    <p class="text-gray-300 text-lg">Premium service standards for every customer</p>
+            <div class="section-animation">
+                <div class="text-center mb-8 sm:mb-12">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 tracking-wider">ADDITIONAL
+                        SERVICE GUARANTEES</h2>
+                    <p class="text-gray-300 font-light text-lg">Premium service standards for every customer</p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-4">
                         <div class="flex items-start space-x-4">
                             <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
                             <div>
-                                <h4 class="font-semibold mb-1">Quick Response</h4>
-                                <p class="text-gray-300 text-sm">Email responses within 24 hours for all inquiries</p>
+                                <h4 class="font-light mb-1 tracking-wider uppercase text-sm">Quick Response</h4>
+                                <p class="text-gray-300 text-sm font-light">Email responses within 24 hours for all
+                                    inquiries</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start space-x-4">
                             <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
                             <div>
-                                <h4 class="font-semibold mb-1">Photo Accuracy</h4>
-                                <p class="text-gray-300 text-sm">Actual product matches website photos exactly</p>
+                                <h4 class="font-light mb-1 tracking-wider uppercase text-sm">Photo Accuracy</h4>
+                                <p class="text-gray-300 text-sm font-light">Actual product matches website photos
+                                    exactly</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start space-x-4">
                             <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
                             <div>
-                                <h4 class="font-semibold mb-1">Quality Control</h4>
-                                <p class="text-gray-300 text-sm">Each item inspected for quality and authenticity</p>
+                                <h4 class="font-light mb-1 tracking-wider uppercase text-sm">Quality Control</h4>
+                                <p class="text-gray-300 text-sm font-light">Each item inspected for quality and
+                                    authenticity</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="space-y-4">
                         <div class="flex items-start space-x-4">
                             <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
                             <div>
-                                <h4 class="font-semibold mb-1">Fast Tracking</h4>
-                                <p class="text-gray-300 text-sm">Tracking number provided within 72 hours of payment</p>
+                                <h4 class="font-light mb-1 tracking-wider uppercase text-sm">Fast Tracking</h4>
+                                <p class="text-gray-300 text-sm font-light">Tracking number provided within 72 hours of
+                                    payment</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start space-x-4">
                             <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
                             <div>
-                                <h4 class="font-semibold mb-1">Multiple Payment Options</h4>
-                                <p class="text-gray-300 text-sm">PayPal, credit cards, and cash on delivery available</p>
+                                <h4 class="font-light mb-1 tracking-wider uppercase text-sm">Multiple Payment Options
+                                </h4>
+                                <p class="text-gray-300 text-sm font-light">PayPal, credit cards, and cash on delivery
+                                    available</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start space-x-4">
                             <i class="fas fa-check-circle text-green-400 text-xl mt-1"></i>
                             <div>
-                                <h4 class="font-semibold mb-1">Live Support</h4>
-                                <p class="text-gray-300 text-sm">Live chat and email support for immediate assistance</p>
+                                <h4 class="font-light mb-1 tracking-wider uppercase text-sm">Live Support</h4>
+                                <p class="text-gray-300 text-sm font-light">Live chat and email support for immediate
+                                    assistance</p>
                             </div>
                         </div>
                     </div>
@@ -488,74 +706,95 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white py-12">
+    <footer class="bg-black text-white py-12 sm:py-16">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Company Info -->
-                <div class="md:col-span-1">
-                    <h3 class="text-xl font-bold mb-4">Texas Watches</h3>
-                    <p class="text-gray-300 mb-4">Your premier destination for authentic luxury timepieces at unbeatable prices.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="sm:col-span-2 md:col-span-1">
+                    <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3>
+                    <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+                        Your premier destination for authentic luxury timepieces.
+                    </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-facebook-f text-xl"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-twitter text-xl"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-pinterest text-xl"></i>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
                         </a>
                     </div>
                 </div>
 
-                <!-- Company Links -->
+                <!-- Company -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Our Company</h4>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Company</h4>
                     <ul class="space-y-2">
-                        <li><a href="about.html" class="text-gray-300 hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="shippingreturns.html" class="text-gray-300 hover:text-white transition-colors">Shipping & Returns</a></li>
-                        <li><a href="privacypolicy.html" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="text-gray-300 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="about.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About</a>
+                        </li>
+                        <li><a href="shippingreturns.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping</a>
+                        </li>
+                        <li><a href="privacypolicy.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy</a>
+                        </li>
+                        <li><a href="terms.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms</a>
+                        </li>
                     </ul>
                 </div>
 
-                <!-- Customer Service -->
+                <!-- Support -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">Customer Service</h4>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Support</h4>
                     <ul class="space-y-2">
-                        <li><a href="contactus.html" class="text-gray-300 hover:text-white transition-colors">Contact Us</a></li>
-                        <li><a href="payment.html" class="text-gray-300 hover:text-white transition-colors">Payment Methods</a></li>
-                        <li><a href="sitemap.html" class="text-gray-300 hover:text-white transition-colors">Site Map</a></li>
-                        <li><a href="faq.html" class="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
+                        <li><a href="contactus.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact</a>
+                        </li>
+                        <li><a href="payment.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a>
+                        </li>
+                        <li><a href="sitemap.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sitemap</a>
+                        </li>
+                        <li><a href="faq.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+                        </li>
                     </ul>
                 </div>
 
-                <!-- My Account -->
+                <!-- Account -->
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">My Account</h4>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Account</h4>
                     <ul class="space-y-2">
-                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">Sign In</a></li>
-                        <li><a href="createaccount.html" class="text-gray-300 hover:text-white transition-colors">Create Account</a></li>
-                        <li><a href="login.html" class="text-gray-300 hover:text-white transition-colors">My Orders</a></li>
-                        <li><a href="shoppingcart.html" class="text-gray-300 hover:text-white transition-colors">Shopping Cart</a></li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Sign
+                                In</a></li>
+                        <li><a href="createaccount.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Register</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Orders</a>
+                        </li>
+                        <li><a href="shoppingcart.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Cart</a>
+                        </li>
                     </ul>
                 </div>
             </div>
 
-            <!-- Payment Icons -->
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <div class="flex justify-center items-center space-x-4 mb-4">
-                    <i class="fab fa-cc-visa text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-mastercard text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-amex text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-paypal text-3xl text-gray-300"></i>
-                    <i class="fab fa-cc-apple-pay text-3xl text-gray-300"></i>
+            <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+                <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+                    <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
                 </div>
-                <p class="text-gray-400 text-sm">
-                    Copyright © 2025 Texas Watches. All Rights Reserved.
+                <p class="text-gray-400 text-xs font-light">
+                    © 2025 Texas Watches. All rights reserved.
                 </p>
             </div>
         </div>
@@ -565,7 +804,25 @@
         // Mobile menu toggle
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const body = document.body;
+
             mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Get favorites
+        function getFavorites() {
+            return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+        }
+
+        // Update favorites count
+        function updateFavoritesCount() {
+            const count = getFavorites().length;
+            document.querySelectorAll('.favorites-count').forEach(el => {
+                el.textContent = count;
+            });
         }
 
         // Update cart count function
@@ -579,16 +836,20 @@
         }
 
         // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updateCartCount();
+            updateFavoritesCount();
         });
 
         // Handle window resize for mobile menu
-        window.addEventListener('resize', function() {
-            if (window.innerWidth >= 768) {
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
                 document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('mobileMenuOverlay').classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     </script>
 </body>
+
 </html>
