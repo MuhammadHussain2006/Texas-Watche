@@ -53,15 +53,16 @@
   },
   {
     "id": 5,
-    "name": "Cartier Tortue 18k White Gold Diamond Black Strap Ladies Watch WA507231",
+    "name": "Omega Seamaster Diver 300M Blue Dial Mens Watch 210.30.42.20.03.001 Box Card",
     "brand": "cartier",
-    "image": "./images/5.jpg",
-    "oldPrice": 17990,
-    "newPrice": 330,
+    "image": "./images/Omega Seamaster Diver Display img 01.jpg",
+    "oldPrice": 4690,
+    "newPrice": 250,
     "category": "women",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Omega Seamaster Diver 1 picture.jpg", "./images/Omega Seamaster Diver 2 picture.jpg", "./images/Omega Seamaster Diver 3 picture.jpg", "./images/Omega Seamaster Diver 4 picture.jpg", "./images/Omega Seamaster Diver 5 picture.jpg", "./images/Omega Seamaster Diver 6 picture.jpg", "./images/Omega Seamaster Diver 7 picture.jpg"]
   },
   {
     "id": 6,
