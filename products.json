@@ -80,7 +80,7 @@
   {
     "id": 7,
     "name": "Rolex Datejust 36 Steel Rose Gold Black Diamond Dial Mens Watch 116231",
-    "brand": "role",
+    "brand": "rolex",
     "image": "./images/Rolex Datejust display picture 01.jpg",
     "oldPrice": 10990,
     "newPrice": 330,
@@ -92,15 +92,16 @@
   },
   {
     "id": 8,
-    "name": "Cartier Ballon Blanc Rose Gold Diamond Ladies Watch WJBL0005 Unworn",
-    "brand": "cartier",
-    "image": "./images/8.jpg",
-    "oldPrice": 3490,
-    "newPrice": 330,
-    "category": "women",
+    "name": "Rolex Air King 34mm Steel Black Dial Domed Bezel Mens Watch 14000",
+    "brand": "rolex",
+    "image": "./images/Rolex Air King Display img 01.jpg",
+    "oldPrice": 4390,
+    "newPrice": 250,
+    "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Rolex Air King 1 picture.jpg", "./images/Rolex Air King 2 picture.jpg", "./images/Rolex Air King 3 picture.jpg", "./images/Rolex Air King 4 picture.jpg", "./images/Rolex Air King 5 picture.jpg", "./images/Rolex Air King 6 picture.jpg", "./images/Rolex Air King 7 picture.jpg","./images/Rolex Air King 8 picture.jpg", "./images/Rolex Air King 9 picture.jpg", "./images/Rolex Air King 10 picture.jpg"]
   },
   {
     "id": 9,
