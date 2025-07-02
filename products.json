@@ -54,11 +54,11 @@
   {
     "id": 5,
     "name": "Omega Seamaster Diver 300M Blue Dial Mens Watch 210.30.42.20.03.001 Box Card",
-    "brand": "cartier",
+    "brand": "omega",
     "image": "./images/Omega Seamaster Diver Display img 01.jpg",
     "oldPrice": 4690,
     "newPrice": 250,
-    "category": "women",
+    "category": "men",
     "rating": 5,
     "isNew": true,
     "page": "home",
@@ -66,15 +66,16 @@
   },
   {
     "id": 6,
-    "name": "Cartier Ronde Louis White Gold Diamond Ladies Watch WR000251",
-    "brand": "cartier",
-    "image": "./images/6.1.jpg",
-    "oldPrice": 9990,
-    "newPrice": 290,
-    "category": "women",
+    "name": "Omega Seamaster Planet Ocean XL Chrono Mens Watch 2218.50.00 Box Card",
+    "brand": "omega",
+    "image": "./images/Omega Seamaster Planet Ocean display picture 01.jpg",
+    "oldPrice": 4690,
+    "newPrice": 250,
+    "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Omega Seamaster Planet Ocean 1 picture.jpg", "./images/Omega Seamaster Planet Ocean 2 picture.jpg", "./images/Omega Seamaster Planet Ocean 3 picture.jpg", "./images/Omega Seamaster Planet Ocean 4 picture.jpg", "./images/Omega Seamaster Planet Ocean 5 picture.jpg", "./images/Omega Seamaster Planet Ocean 6 picture.jpg", "./images/Omega Seamaster Planet Ocean 7 picture.jpg"]
   },
   {
     "id": 7,
