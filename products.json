@@ -23,7 +23,7 @@
     "rating": 5,
     "isNew": true,
     "page": "home",
-    "images": ["./images/2.jpg", "./images/3.jpg", "./images/4.jpg"]
+    "images": ["./images/Breitling Navitimer 1 picture.jpg", "./images/Breitling Navitimer 2 picture.jpg", "./images/Breitling Navitimer 3 picture.jpg", "./images/Breitling Navitimer 4 picture.jpg", "./images/Breitling Navitimer 5 picture.jpg", "./images/Breitling Navitimer 6 picture.jpg", "./images/Breitling Navitimer 7 picture.jpg"]
   },
   {
     "id": 3,
@@ -35,7 +35,8 @@
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Patek Philippe Calatrava 1 picture.jpg", "./images/Patek Philippe Calatrava 2 picture.jpg", "./images/Patek Philippe Calatrava 3 picture.jpg", "./images/Patek Philippe Calatrava 4 picture.jpg", "./images/Patek Philippe Calatrava 5 picture.jpg", "./images/Patek Philippe Calatrava 6 picture.jpg", "./images/Patek Philippe Calatrava 7 picture.jpg", "./images/Patek Philippe Calatrava 8 picture.jpg", "./images/Patek Philippe Calatrava 9 picture.jpg", "./images/Patek Philippe Calatrava 10 picture.jpg"]
   },
   {
     "id": 4,
