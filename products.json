@@ -79,15 +79,16 @@
   },
   {
     "id": 7,
-    "name": "Cartier Ballon Bleu Yellow Gold Diamond Bezel Ladies Watch WE9001Z3 Box Papers",
-    "brand": "cartier",
-    "image": "./images/7.1.jpg",
-    "oldPrice": 3490,
+    "name": "Rolex Datejust 36 Steel Rose Gold Black Diamond Dial Mens Watch 116231",
+    "brand": "role",
+    "image": "./images/Rolex Datejust display picture 01.jpg",
+    "oldPrice": 10990,
     "newPrice": 330,
-    "category": "women",
+    "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Rolex Datejust 36 1 picture.jpg", "./images/Rolex Datejust 36 2 picture.jpg", "./images/Rolex Datejust 36 3 picture.jpg", "./images/Rolex Datejust 36 4 picture.jpg", "./images/Rolex Datejust 36 5 picture.jpg", "./images/Rolex Datejust 36 6 picture.jpg", "./images/Rolex Datejust 36 7 picture.jpg", "./images/Rolex Datejust 36 8 picture.jpg", "./images/Rolex Datejust 36 9 picture.jpg", "./images/Rolex Datejust 36 10 picture.jpg"]
   },
   {
     "id": 8,
