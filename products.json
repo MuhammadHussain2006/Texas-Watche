@@ -10,7 +10,7 @@
     "rating": 5,
     "isNew": true,
     "page": "home",
-    "images":["./images/Breitling Superocean 1 picture.jpg", "./images/Breitling Superocean 2 picture.jpg", "./images/Breitling Superocean 3 picture.jpg", "./images/Breitling Superocean 4 picture.jpg", "./images/Breitling Superocean 5 picture.jpg", "./images/Breitling Superocean 6 picture.jpg", "./images/Breitling Superocean 7 picture.jpg", "./images/Breitling Superocean 8 picture.jpg", "./images/Breitling Superocean 9 picture.jpg", "./images/Breitling Superocean 10 picture.jpg", "./images/Breitling Superocean 11 picture.jpg"]
+    "images":["./images/Breitling Superocean 1 picture.jpg", "./images/Breitling Superocean 2 picture.jpg", "./images/Breitling Superocean 3 picture.jpg", "./images/Breitling Superocean 4 picture.jpg", "./images/Breitling Superocean 6 picture.jpg", "./images/Breitling Superocean 7 picture.jpg", "./images/Breitling Superocean 8 picture.jpg", "./images/Breitling Superocean 9 picture.jpg", "./images/Breitling Superocean 10 picture.jpg"] 
   },
   {
     "id": 2,
