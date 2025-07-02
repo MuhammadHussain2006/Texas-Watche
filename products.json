@@ -48,7 +48,8 @@
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Patek Philippe Calatrava 18k 1 picture.jpg", "./images/Patek Philippe Calatrava 18k 2 picture.jpg", "./images/Patek Philippe Calatrava 18k 3 picture.jpg", "./images/Patek Philippe Calatrava 18k 4 picture.jpg", "./images/Patek Philippe Calatrava 18k 5 picture.jpg", "./images/Patek Philippe Calatrava 18k 6 picture.jpg", "./images/Patek Philippe Calatrava 18k 7 picture.jpg", "./images/Patek Philippe Calatrava 18k 8 picture.jpg", "./images/Patek Philippe Calatrava 18k 9 picture.jpg", "./images/Patek Philippe Calatrava 18k 10 picture.jpg"]
   },
   {
     "id": 5,
