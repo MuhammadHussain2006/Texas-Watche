@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Texas Watches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+    <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+    <style>
+        /* Professional black & white theme */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px);
+        }
+
+        /* Enhanced dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border: 1px solid #000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        /* Navigation link styling */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Professional input styling */
+        .search-input {
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card hover effect */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: #000;
+        }
+
+        /* Section animation */
+        .section-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        .section-animation:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section-animation:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section-animation:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section-animation:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FAQ Accordion Styling */
+        .faq-item {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .faq-item.active {
+            border-color: #000;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .faq-question {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f9fafb;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-answer.open {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.rotated {
+            transform: rotate(45deg);
+        }
+
+        /* Search functionality */
+        .search-highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        /* Category filters */
+        .category-btn {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-btn:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+        }
+
+        .category-btn.active {
+            background: #000;
+            color: white;
+            border-color: #000;
+        }
+
+        /* Quick links sidebar */
+        .quick-link {
+            transition: all 0.3s ease;
+            padding: 0.75rem 1rem;
+            border-left: 3px solid transparent;
+        }
+
+        .quick-link:hover {
+            background-color: #f3f4f6;
+            border-left-color: #000;
+            transform: translateX(4px);
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #000;
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none !important;
+            }
+
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+        }
+
+        /* Contact CTA styling */
+        .contact-cta {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px);
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* No results message */
+        .no-results {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black">
+
+    <!-- Top Header -->
+    <div class="bg-black text-white py-2 sm:py-3 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <i class="fas fa-shipping-fast hidden sm:inline"></i>
+                <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+            </div>
+            <div class="relative dropdown">
+                <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="hidden sm:inline">Account</span>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="login.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+                    </a>
+                    <a href="createaccount.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+                    </a>
+                    <a href="login.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+                    </a>
+                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+            <div class="flex items-center justify-between">
+
+                <!-- Logo -->
+                <div class="flex-1">
+                    <a href="index.html" class="inline-block">
+                        <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+                        <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury
+                            Timepieces Since 2020</p>
+                    </a>
+                </div>
+
+                <!-- Search and Actions -->
+                <div class="flex items-center space-x-3 sm:space-x-6">
+                    <!-- Search - Desktop -->
+                    <div class="relative hidden lg:block">
+                        <input type="text" placeholder="Search collection..." id="searchInput"
+                            class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+
+                    <!-- Favorites -->
+                    <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="far fa-heart text-xl sm:text-2xl"></i>
+                        <span
+                            class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+                        <span
+                            class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
+
+                    <!-- Mobile Menu -->
+                    <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search -->
+            <div class="lg:hidden mt-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+                        class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 hidden lg:block">
+        <div class="max-w-7xl mx-auto px-4">
+            <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+                <li><a href="index.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+                </li>
+                <li><a href="rolex.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+                </li>
+                <li><a href="omega.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+                </li>
+                <li><a href="cartier.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+                </li>
+                <li><a href="patek-philippe.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-light tracking-wider">MENU</h2>
+                <button onclick="toggleMobileMenu()" class="p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <ul class="space-y-4">
+                <li><a href="index.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+                <li><a href="rolex.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+                <li><a href="omega.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+                <li><a href="cartier.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+                <li><a href="patek-philippe.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center space-x-2 text-xs sm:text-sm">
+                <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                <span class="text-black font-medium">FAQ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 sm:py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 tracking-wider">FREQUENTLY ASKED QUESTIONS</h1>
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto font-light">
+                Find answers to common questions about our luxury timepieces and services
+            </p>
+            <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- FAQ Search and Filters -->
+    <section class="py-6 sm:py-8 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- FAQ Search -->
+            <div class="section-animation mb-6">
+                <div class="max-w-2xl mx-auto">
+                    <div class="relative">
+                        <input type="text" placeholder="Search FAQ..." id="faqSearchInput"
+                            class="w-full px-6 py-4 pl-12 text-lg border-2 border-black focus:outline-none focus:ring-2 focus:ring-black font-light">
+                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="section-animation">
+                <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+                    <button class="category-btn active px-4 sm:px-6 py-2 sm:py-3 bg-black text-white font-light text-sm tracking-wider uppercase" 
+                            onclick="filterByCategory('all')">
+                        All Questions
+                    </button>
+                    <button class="category-btn px-4 sm:px-6 py-2 sm:py-3 bg-white text-black font-light text-sm tracking-wider uppercase" 
+                            onclick="filterByCategory('ordering')">
+                        Ordering
+                    </button>
+                    <button class="category-btn px-4 sm:px-6 py-2 sm:py-3 bg-white text-black font-light text-sm tracking-wider uppercase" 
+                            onclick="filterByCategory('shipping')">
+                        Shipping
+                    </button>
+                    <button class="category-btn px-4 sm:px-6 py-2 sm:py-3 bg-white text-black font-light text-sm tracking-wider uppercase" 
+                            onclick="filterByCategory('returns')">
+                        Returns
+                    </button>
+                    <button class="category-btn px-4 sm:px-6 py-2 sm:py-3 bg-white text-black font-light text-sm tracking-wider uppercase" 
+                            onclick="filterByCategory('products')">
+                        Products
+                    </button>
+                    <button class="category-btn px-4 sm:px-6 py-2 sm:py-3 bg-white text-black font-light text-sm tracking-wider uppercase" 
+                            onclick="filterByCategory('account')">
+                        Account
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="py-12 sm:py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+
+                <!-- Quick Links Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-24 bg-gray-50 border-2 border-black p-6">
+                        <h3 class="text-lg font-light tracking-wider mb-4 uppercase">Quick Links</h3>
+                        <nav class="space-y-1">
+                            <a href="#ordering" class="quick-link block text-sm font-light">Ordering & Payment</a>
+                            <a href="#shipping" class="quick-link block text-sm font-light">Shipping & Delivery</a>
+                            <a href="#returns" class="quick-link block text-sm font-light">Returns & Refunds</a>
+                            <a href="#products" class="quick-link block text-sm font-light">Product Information</a>
+                            <a href="#account" class="quick-link block text-sm font-light">Account & Support</a>
+                            <a href="contactus.html" class="quick-link block text-sm font-light text-black font-medium">
+                                <i class="fas fa-phone mr-2"></i>Contact Support
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Main FAQ Content -->
+                <div class="lg:col-span-3">
+                    <div class="space-y-6" id="faqContainer">
+
+                        <!-- Ordering & Payment -->
+                        <div class="section-animation" id="ordering">
+                            <h2 class="text-2xl sm:text-3xl font-light text-black mb-6 tracking-wider">ORDERING & PAYMENT</h2>
+                            
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="ordering">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">How do I place an order?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Placing an order is simple. Browse our collection, select your desired watch, choose any options, and click "Add to Cart". 
+                                        Review your items in the shopping cart, provide shipping information, and complete payment. You'll receive an order confirmation email immediately.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="ordering">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">What payment methods do you accept?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers. 
+                                        All payments are processed securely using SSL encryption to protect your financial information.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="ordering">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Can I modify or cancel my order?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Orders can be modified or cancelled within 24 hours of placement, provided they haven't been shipped. 
+                                        Contact our customer service team immediately at sales@texas-sales.com or +1 (555) 839-2792 for assistance.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="ordering">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Do you offer installment payments?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Currently, we require full payment at the time of order. However, we're exploring financing options for future implementation. 
+                                        Contact us for information about payment plans for high-value purchases.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping & Delivery -->
+                        <div class="section-animation" id="shipping">
+                            <h2 class="text-2xl sm:text-3xl font-light text-black mb-6 tracking-wider">SHIPPING & DELIVERY</h2>
+                            
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="shipping">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Do you offer free shipping?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Yes! We offer free worldwide shipping on all orders with no minimum purchase required. 
+                                        All shipments are fully insured and tracked for your peace of mind.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="shipping">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">How long does shipping take?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed mb-3">
+                                        Shipping times vary by destination:
+                                    </p>
+                                    <ul class="list-disc list-inside text-gray-700 font-light space-y-1">
+                                        <li><strong>Domestic (US):</strong> 3-5 business days</li>
+                                        <li><strong>International:</strong> 15-25 business days</li>
+                                        <li><strong>Processing time:</strong> 1-3 business days</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="shipping">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">How can I track my order?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        You'll receive a tracking number via email within 72 hours of shipment. 
+                                        Use this number to track your package on our website or the carrier's tracking portal. 
+                                        You'll also receive updates on delivery progress.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="shipping">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">What if my package is lost or damaged?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        All shipments are fully insured. If your package is lost or damaged during transit, 
+                                        contact us immediately. We'll work with the carrier to resolve the issue and ensure you receive your watch or a full refund.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Returns & Refunds -->
+                        <div class="section-animation" id="returns">
+                            <h2 class="text-2xl sm:text-3xl font-light text-black mb-6 tracking-wider">RETURNS & REFUNDS</h2>
+                            
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="returns">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">What is your return policy?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        We offer a 30-day return policy from the date of delivery. Items must be in original, unworn condition 
+                                        with all original packaging, tags, and documentation. Contact us before returning any item to receive return authorization.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="returns">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">How do I return an item?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed mb-3">
+                                        To return an item:
+                                    </p>
+                                    <ol class="list-decimal list-inside text-gray-700 font-light space-y-1">
+                                        <li>Contact customer service for return authorization</li>
+                                        <li>Package the item securely with all original materials</li>
+                                        <li>Use trackable, insured shipping service</li>
+                                        <li>We'll process your refund within 5-7 business days</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="returns">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Who pays for return shipping?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        For returns due to personal preference or sizing issues, the customer is responsible for return shipping costs. 
+                                        For defective or damaged items, we'll provide a prepaid return label and cover all shipping costs.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="returns">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Can I exchange an item instead of returning it?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Yes, we offer exchanges for different models or sizes, subject to availability. 
+                                        Contact our customer service team to arrange an exchange. Price differences may apply for upgraded models.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Information -->
+                        <div class="section-animation" id="products">
+                            <h2 class="text-2xl sm:text-3xl font-light text-black mb-6 tracking-wider">PRODUCT INFORMATION</h2>
+                            
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="products">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Are all watches authentic?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Absolutely! We guarantee 100% authenticity on all timepieces. Every watch comes with proper documentation, 
+                                        certificates of authenticity, and original packaging. We source directly from authorized dealers and manufacturers.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="products">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Do watches come with warranty?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Yes, all watches come with the manufacturer's warranty. Warranty terms vary by brand and model, 
+                                        typically ranging from 2-5 years. We provide warranty coordination and can facilitate service with authorized centers.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="products">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Can I see detailed specifications?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Detailed specifications are available on each product page, including case material, movement type, 
+                                        water resistance, dimensions, and features. Contact us if you need additional technical information.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="products">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Do you offer customization or engraving?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Customization options vary by brand and model. Some manufacturers offer engraving services or custom straps. 
+                                        Contact us with your specific requirements, and we'll check availability and pricing for custom options.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Account & Support -->
+                        <div class="section-animation" id="account">
+                            <h2 class="text-2xl sm:text-3xl font-light text-black mb-6 tracking-wider">ACCOUNT & SUPPORT</h2>
+                            
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="account">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Do I need to create an account to order?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        While you can checkout as a guest, creating an account allows you to track orders, 
+                                        save favorites, access order history, and receive exclusive offers. It only takes a minute to register.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="account">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">How can I contact customer service?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <div class="text-gray-700 font-light leading-relaxed">
+                                        <p class="mb-3">You can reach our customer service team through:</p>
+                                        <ul class="list-disc list-inside space-y-1">
+                                            <li><strong>Email:</strong> sales@texas-sales.com (24-hour response)</li>
+                                            <li><strong>Phone:</strong> +1 (555) 839-2792 (Mon-Fri 9AM-6PM)</li>
+                                            <li><strong>Contact Form:</strong> Available on our contact page</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="account">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Is my personal information secure?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Yes, we take privacy and security seriously. All personal and payment information is encrypted using SSL technology. 
+                                        We never share your information with third parties. Review our Privacy Policy for complete details.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="faq-item bg-white border border-gray-200 mb-4" data-category="account">
+                                <div class="faq-question p-4 sm:p-6 flex justify-between items-center" onclick="toggleFAQ(this)">
+                                    <h3 class="font-light text-base sm:text-lg">Do you offer wholesale or bulk pricing?</h3>
+                                    <i class="fas fa-plus faq-icon text-gray-400"></i>
+                                </div>
+                                <div class="faq-answer border-t border-gray-200">
+                                    <p class="text-gray-700 font-light leading-relaxed">
+                                        Yes, we offer wholesale pricing for qualified retailers and bulk orders. 
+                                        Contact our business development team at sales@texas-sales.com with your requirements for a custom quote.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- No Results Message -->
+                        <div class="no-results" id="noResults">
+                            <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
+                            <h3 class="text-xl font-light text-gray-600 mb-2">No Results Found</h3>
+                            <p class="text-gray-500 font-light">Try adjusting your search terms or browse all questions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta py-12 sm:py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-4 sm:mb-6 tracking-wider">STILL HAVE QUESTIONS?</h2>
+            <p class="text-gray-300 font-light mb-6 sm:mb-8 max-w-2xl mx-auto">
+                Our expert team is here to help. Contact us for personalized assistance with your luxury watch needs.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contactus.html"
+                    class="inline-block bg-white text-black px-8 sm:px-10 py-3 sm:py-4 hover:bg-gray-100 transition-colors font-light tracking-wider uppercase">
+                    <i class="fas fa-phone mr-2"></i>Contact Support
+                </a>
+                <a href="mailto:sales@texas-sales.com"
+                    class="inline-block bg-transparent text-white px-8 sm:px-10 py-3 sm:py-4 hover:bg-white hover:text-black transition-colors font-light tracking-wider uppercase border-2 border-white">
+                    <i class="fas fa-envelope mr-2"></i>Email Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="sm:col-span-2 md:col-span-1">
+                    <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+                    <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+                        Your premier destination for authentic luxury timepieces.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a>
+                        </li>
+                        <li><a href="shippingreturns.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a>
+                        </li>
+                        <li><a href="privacypolicy.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a>
+                        </li>
+                        <li><a href="terms&condition.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contactus.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a>
+                        </li>
+                        <li><a href="payment.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a>
+                        </li>
+                        <li><a href="sitemap.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a>
+                        </li>
+                        <li><a href="faq.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Account -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+                    <ul class="space-y-2">
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a>
+                        </li>
+                        <li><a href="shoppingcart.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+                <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+                    <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+                </div>
+                <p class="text-gray-400 text-xs font-light">
+                    © 2025 Texas Watches. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const body = document.body;
+
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Get favorites
+        function getFavorites() {
+            return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+        }
+
+        // Update favorites count
+        function updateFavoritesCount() {
+            const count = getFavorites().length;
+            document.querySelectorAll('.favorites-count').forEach(el => {
+                el.textContent = count;
+            });
+        }
+
+        // Update cart count function
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+
+        // FAQ Toggle functionality
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('open');
+                    item.querySelector('.faq-icon').classList.remove('rotated');
+                }
+            });
+            
+            // Toggle current FAQ item
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('open');
+            icon.classList.toggle('rotated');
+        }
+
+        // Category filter functionality
+        let currentCategory = 'all';
+        
+        function filterByCategory(category) {
+            currentCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-black', 'text-white');
+                btn.classList.add('bg-white', 'text-black');
+            });
+            event.target.classList.add('active', 'bg-black', 'text-white');
+            event.target.classList.remove('bg-white', 'text-black');
+            
+            // Filter FAQ items
+            filterFAQs();
+        }
+
+        // Search functionality
+        function setupFAQSearch() {
+            const searchInput = document.getElementById('faqSearchInput');
+            searchInput.addEventListener('input', function() {
+                filterFAQs();
+            });
+        }
+
+        function filterFAQs() {
+            const searchTerm = document.getElementById('faqSearchInput').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+
+            faqItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                
+                const matchesCategory = currentCategory === 'all' || category === currentCategory;
+                const matchesSearch = !searchTerm || 
+                    question.includes(searchTerm) || 
+                    answer.includes(searchTerm);
+                
+                if (matchesCategory && matchesSearch) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                    
+                    // Highlight search terms
+                    if (searchTerm) {
+                        highlightSearchTerm(item, searchTerm);
+                    } else {
+                        removeHighlight(item);
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // Show/hide no results message
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        function highlightSearchTerm(item, term) {
+            // Simple highlighting - in production, you'd want more sophisticated highlighting
+            const questionText = item.querySelector('.faq-question h3');
+            const answerText = item.querySelector('.faq-answer p');
+            
+            [questionText, answerText].forEach(element => {
+                const text = element.textContent;
+                const regex = new RegExp(`(${term})`, 'gi');
+                element.innerHTML = text.replace(regex, '<span class="search-highlight">$1</span>');
+            });
+        }
+
+        function removeHighlight(item) {
+            const questionText = item.querySelector('.faq-question h3');
+            const answerText = item.querySelector('.faq-answer p');
+            
+            [questionText, answerText].forEach(element => {
+                element.innerHTML = element.textContent;
+            });
+        }
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function handleScroll() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.scrollY > 500) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        }
+
+        // Smooth scroll for quick links
+        function setupQuickLinks() {
+            document.querySelectorAll('.quick-link[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.offsetTop;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount();
+            updateFavoritesCount();
+            setupFAQSearch();
+            setupQuickLinks();
+        });
+
+        // Handle scroll events
+        window.addEventListener('scroll', handleScroll);
+
+        // Handle window resize for mobile menu
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('mobileMenuOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

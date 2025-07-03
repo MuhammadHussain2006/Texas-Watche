@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions - Texas Watches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+    <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+    <style>
+        /* Professional black & white theme */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px);
+        }
+
+        /* Enhanced dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border: 1px solid #000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        /* Navigation link styling */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Professional input styling */
+        .search-input {
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Card hover effect */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: #000;
+        }
+
+        /* Section animation */
+        .section-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        .section-animation:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section-animation:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section-animation:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section-animation:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Table of contents styling */
+        .toc-link {
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-left: 3px solid transparent;
+        }
+
+        .toc-link:hover {
+            background-color: #f3f4f6;
+            border-left-color: #000;
+            transform: translateX(4px);
+        }
+
+        .toc-link.active {
+            background-color: #f9fafb;
+            border-left-color: #000;
+            font-weight: 500;
+        }
+
+        /* Scroll to section smooth animation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section headers styling */
+        .section-header {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 3rem;
+            height: 2px;
+            background: #000;
+        }
+
+        /* Important notice styling */
+        .important-notice {
+            border-left: 4px solid #000;
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        /* List styling */
+        .terms-list {
+            counter-reset: term-counter;
+        }
+
+        .terms-list li {
+            counter-increment: term-counter;
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .terms-list li::before {
+            content: counter(term-counter, decimal);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #000;
+            color: white;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none !important;
+            }
+        }
+
+        /* Sticky TOC */
+        .sticky-toc {
+            position: sticky;
+            top: 2rem;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black">
+
+    <!-- Top Header -->
+    <div class="bg-black text-white py-2 sm:py-3 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <i class="fas fa-shipping-fast hidden sm:inline"></i>
+                <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+            </div>
+            <div class="relative dropdown">
+                <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="hidden sm:inline">Account</span>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="login.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+                    </a>
+                    <a href="createaccount.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+                    </a>
+                    <a href="login.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+                    </a>
+                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+            <div class="flex items-center justify-between">
+
+                <!-- Logo -->
+                <div class="flex-1">
+                    <a href="index.html" class="inline-block">
+                        <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+                        <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury
+                            Timepieces Since 2020</p>
+                    </a>
+                </div>
+
+                <!-- Search and Actions -->
+                <div class="flex items-center space-x-3 sm:space-x-6">
+                    <!-- Search - Desktop -->
+                    <div class="relative hidden lg:block">
+                        <input type="text" placeholder="Search collection..." id="searchInput"
+                            class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+
+                    <!-- Favorites -->
+                    <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="far fa-heart text-xl sm:text-2xl"></i>
+                        <span
+                            class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+                        <span
+                            class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
+
+                    <!-- Mobile Menu -->
+                    <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search -->
+            <div class="lg:hidden mt-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+                        class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 hidden lg:block">
+        <div class="max-w-7xl mx-auto px-4">
+            <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+                <li><a href="index.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+                </li>
+                <li><a href="rolex.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+                </li>
+                <li><a href="omega.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+                </li>
+                <li><a href="cartier.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+                </li>
+                <li><a href="patek-philippe.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-light tracking-wider">MENU</h2>
+                <button onclick="toggleMobileMenu()" class="p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <ul class="space-y-4">
+                <li><a href="index.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+                <li><a href="rolex.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+                <li><a href="omega.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+                <li><a href="cartier.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+                <li><a href="patek-philippe.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center space-x-2 text-xs sm:text-sm">
+                <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                <span class="text-black font-medium">Terms & Conditions</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 sm:py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 tracking-wider">TERMS & CONDITIONS</h1>
+            <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto font-light">
+                Please read these terms carefully before using our services
+            </p>
+            <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+            <!-- <p class="text-sm text-gray-400 mt-4">Last updated: January 2, 2025</p> -->
+        </div>
+    </section>
+
+    <!-- Terms Content -->
+    <section class="py-12 sm:py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+
+                <!-- Table of Contents - Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="sticky-toc bg-gray-50 border-2 border-black p-6">
+                        <h3 class="text-lg font-light tracking-wider mb-4 uppercase">Table of Contents</h3>
+                        <nav class="space-y-1">
+                            <a href="#acceptance" class="toc-link block text-sm font-light hover:font-medium transition-all">1. Acceptance of Terms</a>
+                            <a href="#definitions" class="toc-link block text-sm font-light hover:font-medium transition-all">2. Definitions</a>
+                            <a href="#use-of-site" class="toc-link block text-sm font-light hover:font-medium transition-all">3. Use of Website</a>
+                            <a href="#products" class="toc-link block text-sm font-light hover:font-medium transition-all">4. Products & Services</a>
+                            <a href="#orders" class="toc-link block text-sm font-light hover:font-medium transition-all">5. Orders & Payment</a>
+                            <a href="#shipping" class="toc-link block text-sm font-light hover:font-medium transition-all">6. Shipping & Delivery</a>
+                            <a href="#returns" class="toc-link block text-sm font-light hover:font-medium transition-all">7. Returns & Refunds</a>
+                            <a href="#warranty" class="toc-link block text-sm font-light hover:font-medium transition-all">8. Warranty</a>
+                            <a href="#intellectual-property" class="toc-link block text-sm font-light hover:font-medium transition-all">9. Intellectual Property</a>
+                            <a href="#privacy" class="toc-link block text-sm font-light hover:font-medium transition-all">10. Privacy Policy</a>
+                            <a href="#limitation" class="toc-link block text-sm font-light hover:font-medium transition-all">11. Limitation of Liability</a>
+                            <a href="#modifications" class="toc-link block text-sm font-light hover:font-medium transition-all">12. Modifications</a>
+                            <a href="#contact" class="toc-link block text-sm font-light hover:font-medium transition-all">13. Contact Information</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-3">
+                    <div class="space-y-8 sm:space-y-12">
+
+                        <!-- Introduction -->
+                        <div class="section-animation">
+                            <div class="important-notice">
+                                <h3 class="font-medium text-black mb-2 flex items-center">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                                    Important Notice
+                                </h3>
+                                <p class="text-sm font-light text-gray-700">
+                                    By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. 
+                                    These terms apply to all visitors, users, and others who access or use the service.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 1: Acceptance of Terms -->
+                        <div class="section-animation" id="acceptance">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">1. ACCEPTANCE OF TERMS</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    Welcome to Texas Watches. These Terms and Conditions ("Terms", "Terms and Conditions") govern your relationship with 
+                                    our website operated by Texas Watches ("us", "we", or "our").
+                                </p>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. 
+                                    These Terms apply to all visitors, users and others who access or use the Service. By accessing or using our Service 
+                                    you agree to be bound by these Terms. If you disagree with any part of these terms then you may not access the Service.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Definitions -->
+                        <div class="section-animation" id="definitions">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">2. DEFINITIONS</h2>
+                            <div class="bg-gray-50 border border-gray-200 p-6">
+                                <ul class="space-y-3">
+                                    <li class="flex items-start space-x-3">
+                                        <span class="font-medium text-black min-w-0 flex-1">"Company"</span>
+                                        <span class="text-gray-700 font-light flex-2">refers to Texas Watches.</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="font-medium text-black min-w-0 flex-1">"Service"</span>
+                                        <span class="text-gray-700 font-light flex-2">refers to the website and all related services.</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="font-medium text-black min-w-0 flex-1">"You"</span>
+                                        <span class="text-gray-700 font-light flex-2">refers to the individual accessing or using the Service.</span>
+                                    </li>
+                                    <li class="flex items-start space-x-3">
+                                        <span class="font-medium text-black min-w-0 flex-1">"Products"</span>
+                                        <span class="text-gray-700 font-light flex-2">refers to luxury watches and timepieces sold on our platform.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Use of Website -->
+                        <div class="section-animation" id="use-of-site">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">3. USE OF WEBSITE</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    You may use our website for lawful purposes only. You agree not to use the site:
+                                </p>
+                                <ul class="terms-list space-y-2 mb-6">
+                                    <li class="text-gray-700 font-light">In any way that violates any applicable federal, state, local, or international law or regulation</li>
+                                    <li class="text-gray-700 font-light">To attempt to gain unauthorized access to any portion or feature of the site</li>
+                                    <li class="text-gray-700 font-light">To interfere with or disrupt the site or servers or networks connected to the site</li>
+                                    <li class="text-gray-700 font-light">To impersonate or attempt to impersonate the Company, a Company employee, another user, or any other person or entity</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Products & Services -->
+                        <div class="section-animation" id="products">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">4. PRODUCTS & SERVICES</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    All products displayed on our website are authentic luxury timepieces. We guarantee the authenticity of all items sold through our platform.
+                                </p>
+                                <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-4">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-shield-alt text-green-400"></i>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm text-green-700 font-light">
+                                                <strong>Authenticity Guarantee:</strong> Every watch comes with proper documentation and certificates of authenticity.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    Product descriptions, images, and specifications are provided for informational purposes and may vary slightly from actual products. 
+                                    While we strive for accuracy, we do not warrant that product descriptions or other content is accurate, complete, reliable, current, or error-free.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 5: Orders & Payment -->
+                        <div class="section-animation" id="orders">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">5. ORDERS & PAYMENT</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    When you place an order through the Service, you represent that you are authorized to use the designated payment method and authorize us to charge your order to that payment method.
+                                </p>
+                                <ul class="terms-list space-y-2 mb-6">
+                                    <li class="text-gray-700 font-light">All orders are subject to availability and confirmation of the order price</li>
+                                    <li class="text-gray-700 font-light">We reserve the right to refuse or cancel any order at any time for any reason</li>
+                                    <li class="text-gray-700 font-light">Payment must be received in full before order processing begins</li>
+                                    <li class="text-gray-700 font-light">Prices are subject to change without notice</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 6: Shipping & Delivery -->
+                        <div class="section-animation" id="shipping">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">6. SHIPPING & DELIVERY</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    We offer free worldwide shipping on all orders. Delivery times typically range from 15-25 business days depending on destination.
+                                </p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-gray-50 p-4 border border-gray-200">
+                                        <h4 class="font-medium text-black mb-2">Domestic Shipping</h4>
+                                        <p class="text-sm text-gray-700 font-light">3-5 business days within the United States</p>
+                                    </div>
+                                    <div class="bg-gray-50 p-4 border border-gray-200">
+                                        <h4 class="font-medium text-black mb-2">International Shipping</h4>
+                                        <p class="text-sm text-gray-700 font-light">15-25 business days worldwide</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    All shipments are fully insured and tracked. You will receive tracking information once your order has been processed and shipped.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 7: Returns & Refunds -->
+                        <div class="section-animation" id="returns">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">7. RETURNS & REFUNDS</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    We offer a 30-day return policy from the date of delivery. Items must be returned in original, unworn condition with all original packaging and documentation.
+                                </p>
+                                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-4">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-info-circle text-blue-400"></i>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm text-blue-700 font-light">
+                                                <strong>Return Process:</strong> Contact our customer service team before returning any item to receive return authorization and instructions.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="terms-list space-y-2">
+                                    <li class="text-gray-700 font-light">Items must be in original, resalable condition</li>
+                                    <li class="text-gray-700 font-light">All original packaging, tags, and certificates must be included</li>
+                                    <li class="text-gray-700 font-light">Customer is responsible for return shipping costs unless item is defective</li>
+                                    <li class="text-gray-700 font-light">Refunds will be processed within 5-7 business days after receiving returned item</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Section 8: Warranty -->
+                        <div class="section-animation" id="warranty">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">8. WARRANTY</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    All watches sold through Texas Watches come with the manufacturer's warranty. Warranty terms and duration vary by brand and model.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    We provide warranty service coordination but are not responsible for warranty claims beyond facilitating contact with authorized service centers. 
+                                    Warranty coverage is subject to manufacturer terms and conditions.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 9: Intellectual Property -->
+                        <div class="section-animation" id="intellectual-property">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">9. INTELLECTUAL PROPERTY</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    The Service and its original content, features and functionality are and will remain the exclusive property of Texas Watches and its licensors. 
+                                    The Service is protected by copyright, trademark, and other laws.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    You may not reproduce, distribute, modify, create derivative works of, publicly display, publicly perform, republish, 
+                                    download, store or transmit any of the material on our Service without prior written consent.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 10: Privacy Policy -->
+                        <div class="section-animation" id="privacy">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">10. PRIVACY POLICY</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your information when you use our Service.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    By using our Service, you agree to the collection and use of information in accordance with our Privacy Policy. 
+                                    Please review our Privacy Policy, which also governs your use of the Service.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 11: Limitation of Liability -->
+                        <div class="section-animation" id="limitation">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">11. LIMITATION OF LIABILITY</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm text-yellow-700 font-light">
+                                                <strong>Important Legal Notice:</strong> Please read this section carefully as it limits our liability.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    In no event shall Texas Watches, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, 
+                                    incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, 
+                                    or other intangible losses, resulting from your use of the Service.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    Our total liability to you for all claims arising out of or relating to the use of or any inability to use any portion of the Service 
+                                    shall not exceed the amount you paid us for the particular product or service.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 12: Modifications -->
+                        <div class="section-animation" id="modifications">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">12. MODIFICATIONS</h2>
+                            <div class="prose prose-gray max-w-none">
+                                <p class="text-gray-700 leading-relaxed font-light mb-4">
+                                    We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, 
+                                    we will try to provide at least 30 days notice prior to any new terms taking effect.
+                                </p>
+                                <p class="text-gray-700 leading-relaxed font-light">
+                                    What constitutes a material change will be determined at our sole discretion. By continuing to access or use our Service 
+                                    after those revisions become effective, you agree to be bound by the revised terms.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Section 13: Contact Information -->
+                        <div class="section-animation" id="contact">
+                            <h2 class="section-header text-2xl sm:text-3xl font-light text-black tracking-wider">13. CONTACT INFORMATION</h2>
+                            <div class="bg-black text-white p-6">
+                                <p class="font-light mb-4">
+                                    If you have any questions about these Terms and Conditions, please contact us:
+                                </p>
+                                <div class="space-y-2 text-sm">
+                                    <p class="flex items-center font-light">
+                                        <i class="fas fa-envelope mr-3"></i>
+                                        sales@texas-sales.com
+                                    </p>
+                                    <p class="flex items-center font-light">
+                                        <i class="fas fa-phone mr-3"></i>
+                                        +1 (555) 839-2792
+                                    </p>
+                                    <p class="flex items-center font-light">
+                                        <i class="fas fa-globe mr-3"></i>
+                                        www.texaswatches.com
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="sm:col-span-2 md:col-span-1">
+                    <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+                    <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+                        Your premier destination for authentic luxury timepieces.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a>
+                        </li>
+                        <li><a href="shippingreturns.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a>
+                        </li>
+                        <li><a href="privacypolicy.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a>
+                        </li>
+                        <li><a href="terms&condition.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contactus.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a>
+                        </li>
+                        <li><a href="payment.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a>
+                        </li>
+                        <li><a href="sitemap.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a>
+                        </li>
+                        <li><a href="faq.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Account -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+                    <ul class="space-y-2">
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a>
+                        </li>
+                        <li><a href="shoppingcart.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+                <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+                    <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+                </div>
+                <p class="text-gray-400 text-xs font-light">
+                    © 2025 Texas Watches. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const body = document.body;
+
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Get favorites
+        function getFavorites() {
+            return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+        }
+
+        // Update favorites count
+        function updateFavoritesCount() {
+            const count = getFavorites().length;
+            document.querySelectorAll('.favorites-count').forEach(el => {
+                el.textContent = count;
+            });
+        }
+
+        // Update cart count function
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+
+        // Table of contents active link functionality
+        function updateActiveLink() {
+            const links = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('[id]');
+            const scrollPosition = window.scrollY + 100;
+
+            let activeSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    activeSection = section.id;
+                }
+            });
+
+            links.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + activeSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth scroll for table of contents
+        document.querySelectorAll('.toc-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const headerOffset = 100;
+                    const elementPosition = targetElement.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount();
+            updateFavoritesCount();
+            updateActiveLink();
+        });
+
+        // Update active link on scroll
+        window.addEventListener('scroll', updateActiveLink);
+
+        // Handle window resize for mobile menu
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('mobileMenuOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

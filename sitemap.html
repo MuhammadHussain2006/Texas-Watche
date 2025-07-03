@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Map - Texas Watches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+    <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+    <style>
+        /* Professional black & white theme */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        /* Hero gradient */
+        .hero-gradient {
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(255, 255, 255, 0.03) 10px,
+                    rgba(255, 255, 255, 0.03) 20px);
+        }
+
+        /* Enhanced dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border: 1px solid #000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        /* Navigation link styling */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Professional input styling */
+        .search-input {
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Enhanced card hover */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: #000;
+        }
+
+        /* Hero text animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Section animation */
+        .section-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        .section-animation:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section-animation:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section-animation:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section-animation:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .section-animation:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .section-animation:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sitemap specific styling */
+        .sitemap-section {
+            background: white;
+            border: 2px solid #000;
+            transition: all 0.3s ease;
+        }
+
+        .sitemap-section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .sitemap-link {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #4b5563;
+            font-weight: 300;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .sitemap-link:hover {
+            color: #000;
+            background-color: #f9fafb;
+            border-left-color: #000;
+            transform: translateX(4px);
+        }
+
+        .sitemap-link i {
+            width: 20px;
+            margin-right: 0.75rem;
+            text-align: center;
+        }
+
+        /* Category headers */
+        .category-header {
+            background: #000;
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+        }
+
+        /* Search functionality */
+        .search-highlight {
+            background-color: #fbbf24;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        /* Statistics cards */
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #000;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Breadcrumb enhancement */
+        .breadcrumb-item {
+            position: relative;
+        }
+
+        .breadcrumb-item::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .breadcrumb-item:hover::after {
+            width: 100%;
+        }
+
+        /* Quick navigation */
+        .quick-nav {
+            position: sticky;
+            top: 120px;
+            z-index: 10;
+        }
+
+        .quick-nav-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-weight: 300;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .quick-nav-link:hover {
+            color: #000;
+            background-color: #f3f4f6;
+            border-left-color: #000;
+            transform: translateX(4px);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none !important;
+            }
+
+            .quick-nav {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .grid-cols-1 {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+        }
+
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black">
+
+    <!-- Top Header -->
+    <div class="bg-black text-white py-2 sm:py-3 px-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <i class="fas fa-shipping-fast hidden sm:inline"></i>
+                <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+            </div>
+            <div class="relative dropdown">
+                <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="hidden sm:inline">Account</span>
+                    <i class="fas fa-chevron-down text-xs"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="login.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+                    </a>
+                    <a href="createaccount.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+                    </a>
+                    <a href="favorites.html"
+                        class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+                        <i class="fas fa-heart mr-3 text-gray-600"></i>Favorites (<span class="favorites-count">0</span>)
+                    </a>
+                    <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+                        <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Cart
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+            <div class="flex items-center justify-between">
+
+                <!-- Logo -->
+                <div class="flex-1">
+                    <a href="index.html" class="inline-block">
+                        <img class="w-44" src="./images/wrist watch logo (1).png" alt="Texas Watches">
+                        <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury
+                            Timepieces Since 2020</p>
+                    </a>
+                </div>
+
+                <!-- Search and Actions -->
+                <div class="flex items-center space-x-3 sm:space-x-6">
+                    <!-- Search - Desktop -->
+                    <div class="relative hidden lg:block">
+                        <input type="text" placeholder="Search pages..." id="searchInput"
+                            class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none"
+                            onkeyup="searchSitemap()">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    </div>
+
+                    <!-- Favorites -->
+                    <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="far fa-heart text-xl sm:text-2xl"></i>
+                        <span
+                            class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
+
+                    <!-- Cart -->
+                    <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+                        <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+                        <span
+                            class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+                    </a>
+
+                    <!-- Mobile Menu -->
+                    <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-xl sm:text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search -->
+            <div class="lg:hidden mt-4">
+                <div class="relative">
+                    <input type="text" placeholder="Search pages..." id="mobileSearchInput"
+                        class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none"
+                        onkeyup="searchSitemap()">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-200 hidden lg:block">
+        <div class="max-w-7xl mx-auto px-4">
+            <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+                <li><a href="index.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+                </li>
+                <li><a href="rolex.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+                </li>
+                <li><a href="omega.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+                </li>
+                <li><a href="cartier.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+                </li>
+                <li><a href="patek-philippe.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+            <div class="flex items-center justify-between">
+                <h2 class="text-xl font-light tracking-wider">MENU</h2>
+                <button onclick="toggleMobileMenu()" class="p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <ul class="space-y-4">
+                <li><a href="index.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+                <li><a href="rolex.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+                <li><a href="omega.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+                <li><a href="cartier.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+                <li><a href="patek-philippe.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek
+                        Philippe</a></li>
+                <li><a href="breitling.html"
+                        class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a>
+                </li>
+            </ul>
+
+            <!-- Mobile Menu Actions -->
+            <div class="mt-8 space-y-3">
+                <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">My Favorites</span>
+                    <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+                </a>
+                <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">Shopping Cart</span>
+                    <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+                </a>
+                <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+                    <span class="font-light">Sign In</span>
+                    <i class="fas fa-arrow-right text-gray-400"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center space-x-2 text-xs sm:text-sm">
+                <a href="index.html" class="breadcrumb-item text-gray-600 hover:text-black transition-colors">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+                <span class="text-black font-medium">Site Map</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-16 sm:py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <div class="hero-text">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-4 sm:mb-6 tracking-wider">SITE MAP</h1>
+                <p class="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto font-light">
+                    Navigate our complete collection of luxury timepieces and services
+                </p>
+                <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Site Statistics -->
+    <section class="py-8 sm:py-12 bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                <div class="stat-card p-4 sm:p-6 text-center section-animation">
+                    <div class="text-2xl sm:text-3xl font-light text-black mb-2" id="totalPages">25+</div>
+                    <div class="text-xs sm:text-sm font-light text-gray-600 uppercase tracking-wider">Total Pages</div>
+                </div>
+                <div class="stat-card p-4 sm:p-6 text-center section-animation">
+                    <div class="text-2xl sm:text-3xl font-light text-black mb-2">5</div>
+                    <div class="text-xs sm:text-sm font-light text-gray-600 uppercase tracking-wider">Brand Collections</div>
+                </div>
+                <div class="stat-card p-4 sm:p-6 text-center section-animation">
+                    <div class="text-2xl sm:text-3xl font-light text-black mb-2">100+</div>
+                    <div class="text-xs sm:text-sm font-light text-gray-600 uppercase tracking-wider">Product Pages</div>
+                </div>
+                <div class="stat-card p-4 sm:p-6 text-center section-animation">
+                    <div class="text-2xl sm:text-3xl font-light text-black mb-2">24/7</div>
+                    <div class="text-xs sm:text-sm font-light text-gray-600 uppercase tracking-wider">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Sitemap Content -->
+    <section class="py-12 sm:py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12">
+
+                <!-- Quick Navigation Sidebar -->
+                <div class="lg:col-span-1">
+                    <div class="quick-nav bg-gray-50 border-2 border-black p-6">
+                        <h3 class="text-lg font-light tracking-wider mb-4 uppercase">Quick Navigation</h3>
+                        <nav class="space-y-1">
+                            <a href="#main-pages" class="quick-nav-link">Main Pages</a>
+                            <a href="#brand-collections" class="quick-nav-link">Brand Collections</a>
+                            <a href="#shopping-cart" class="quick-nav-link">Shopping & Cart</a>
+                            <a href="#customer-account" class="quick-nav-link">Customer Account</a>
+                            <a href="#customer-service" class="quick-nav-link">Customer Service</a>
+                            <a href="#company-info" class="quick-nav-link">Company Information</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Main Sitemap Grid -->
+                <div class="lg:col-span-3">
+                    <div class="space-y-8" id="sitemapContent">
+
+                        <!-- Main Pages -->
+                        <div class="section-animation sitemap-section" id="main-pages">
+                            <div class="category-header">
+                                <i class="fas fa-home mr-3"></i>Main Pages
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                    <a href="index.html" class="sitemap-link">
+                                        <i class="fas fa-home"></i>Home Page
+                                    </a>
+                                    <a href="about.html" class="sitemap-link">
+                                        <i class="fas fa-info-circle"></i>About Us
+                                    </a>
+                                    <a href="contactus.html" class="sitemap-link">
+                                        <i class="fas fa-envelope"></i>Contact Us
+                                    </a>
+                                    <a href="faq.html" class="sitemap-link">
+                                        <i class="fas fa-question-circle"></i>FAQ
+                                    </a>
+                                    <a href="sitemap.html" class="sitemap-link">
+                                        <i class="fas fa-sitemap"></i>Site Map
+                                    </a>
+                                    <a href="search.html" class="sitemap-link">
+                                        <i class="fas fa-search"></i>Search Results
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Brand Collections -->
+                        <div class="section-animation sitemap-section" id="brand-collections">
+                            <div class="category-header">
+                                <i class="fas fa-crown mr-3"></i>Brand Collections
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                    <a href="rolex.html" class="sitemap-link">
+                                        <i class="fas fa-gem"></i>Rolex Collection
+                                    </a>
+                                    <a href="omega.html" class="sitemap-link">
+                                        <i class="fas fa-star"></i>Omega Collection
+                                    </a>
+                                    <a href="cartier.html" class="sitemap-link">
+                                        <i class="fas fa-diamond"></i>Cartier Collection
+                                    </a>
+                                    <a href="patek-philippe.html" class="sitemap-link">
+                                        <i class="fas fa-award"></i>Patek Philippe Collection
+                                    </a>
+                                    <a href="breitling.html" class="sitemap-link">
+                                        <i class="fas fa-plane"></i>Breitling Collection
+                                    </a>
+                                    <a href="all-brands.html" class="sitemap-link">
+                                        <i class="fas fa-list"></i>All Brands
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shopping & Cart -->
+                        <div class="section-animation sitemap-section" id="shopping-cart">
+                            <div class="category-header">
+                                <i class="fas fa-shopping-cart mr-3"></i>Shopping & Cart
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                    <a href="shoppingcart.html" class="sitemap-link">
+                                        <i class="fas fa-shopping-cart"></i>Shopping Cart
+                                    </a>
+                                    <a href="checkout.html" class="sitemap-link">
+                                        <i class="fas fa-credit-card"></i>Checkout
+                                    </a>
+                                    <a href="favorites.html" class="sitemap-link">
+                                        <i class="fas fa-heart"></i>Favorites / Wishlist
+                                    </a>
+                                    <a href="product-detail.html" class="sitemap-link">
+                                        <i class="fas fa-eye"></i>Product Details
+                                    </a>
+                                    <a href="compare.html" class="sitemap-link">
+                                        <i class="fas fa-balance-scale"></i>Compare Products
+                                    </a>
+                                    <a href="reviews.html" class="sitemap-link">
+                                        <i class="fas fa-star"></i>Product Reviews
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Customer Account -->
+                        <div class="section-animation sitemap-section" id="customer-account">
+                            <div class="category-header">
+                                <i class="fas fa-user mr-3"></i>Customer Account
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                    <a href="login.html" class="sitemap-link">
+                                        <i class="fas fa-sign-in-alt"></i>Log In
+                                    </a>
+                                    <a href="createaccount.html" class="sitemap-link">
+                                        <i class="fas fa-user-plus"></i>Create Account
+                                    </a>
+                                    <a href="account-dashboard.html" class="sitemap-link">
+                                        <i class="fas fa-tachometer-alt"></i>Account Dashboard
+                                    </a>
+                                    <a href="order-history.html" class="sitemap-link">
+                                        <i class="fas fa-history"></i>Order History
+                                    </a>
+                                    <a href="account-settings.html" class="sitemap-link">
+                                        <i class="fas fa-cog"></i>Account Settings
+                                    </a>
+                                    <a href="address-book.html" class="sitemap-link">
+                                        <i class="fas fa-address-book"></i>Address Book
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Customer Service -->
+                        <div class="section-animation sitemap-section" id="customer-service">
+                            <div class="category-header">
+                                <i class="fas fa-headset mr-3"></i>Customer Service
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                    <a href="shippingreturns.html" class="sitemap-link">
+                                        <i class="fas fa-shipping-fast"></i>Shipping & Returns
+                                    </a>
+                                    <a href="track-order.html" class="sitemap-link">
+                                        <i class="fas fa-truck"></i>Track Your Order
+                                    </a>
+                                    <a href="warranty.html" class="sitemap-link">
+                                        <i class="fas fa-shield-alt"></i>Warranty Information
+                                    </a>
+                                    <a href="size-guide.html" class="sitemap-link">
+                                        <i class="fas fa-ruler"></i>Size Guide
+                                    </a>
+                                    <a href="care-instructions.html" class="sitemap-link">
+                                        <i class="fas fa-tools"></i>Care Instructions
+                                    </a>
+                                    <a href="authenticity.html" class="sitemap-link">
+                                        <i class="fas fa-certificate"></i>Authenticity Guarantee
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Company Information -->
+                        <div class="section-animation sitemap-section" id="company-info">
+                            <div class="category-header">
+                                <i class="fas fa-building mr-3"></i>Company Information
+                            </div>
+                            <div class="p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
+                                    <a href="privacypolicy.html" class="sitemap-link">
+                                        <i class="fas fa-user-shield"></i>Privacy Policy
+                                    </a>
+                                    <a href="terms&condition.html" class="sitemap-link">
+                                        <i class="fas fa-file-contract"></i>Terms & Conditions
+                                    </a>
+                                    <a href="payment.html" class="sitemap-link">
+                                        <i class="fas fa-credit-card"></i>Payment Methods
+                                    </a>
+                                    <a href="careers.html" class="sitemap-link">
+                                        <i class="fas fa-briefcase"></i>Careers
+                                    </a>
+                                    <a href="press.html" class="sitemap-link">
+                                        <i class="fas fa-newspaper"></i>Press & Media
+                                    </a>
+                                    <a href="partnerships.html" class="sitemap-link">
+                                        <i class="fas fa-handshake"></i>Partnerships
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- No Results Message -->
+                        <div class="hidden text-center py-12" id="noResults">
+                            <i class="fas fa-search text-4xl text-gray-300 mb-4"></i>
+                            <h3 class="text-xl font-light text-gray-600 mb-2">No Pages Found</h3>
+                            <p class="text-gray-500 font-light">Try adjusting your search terms or browse all sections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section class="py-12 sm:py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="section-animation">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-4 sm:mb-6 tracking-wider">NEED HELP FINDING SOMETHING?</h2>
+                <p class="text-gray-600 font-light mb-6 sm:mb-8 max-w-2xl mx-auto">
+                    Can't find what you're looking for? Our customer service team is here to help you navigate our site and find the perfect luxury timepiece.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="contactus.html"
+                        class="inline-block bg-black text-white px-8 sm:px-10 py-3 sm:py-4 hover:bg-gray-800 transition-colors font-light tracking-wider uppercase">
+                        <i class="fas fa-phone mr-2"></i>Contact Support
+                    </a>
+                    <a href="faq.html"
+                        class="inline-block bg-white text-black px-8 sm:px-10 py-3 sm:py-4 hover:bg-gray-50 transition-colors font-light tracking-wider uppercase border-2 border-black">
+                        <i class="fas fa-question-circle mr-2"></i>View FAQ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="sm:col-span-2 md:col-span-1">
+                    <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="Texas Watches">
+                    <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+                        Your premier destination for authentic luxury timepieces.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a>
+                        </li>
+                        <li><a href="shippingreturns.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a>
+                        </li>
+                        <li><a href="privacypolicy.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a>
+                        </li>
+                        <li><a href="terms&condition.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="contactus.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a>
+                        </li>
+                        <li><a href="payment.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a>
+                        </li>
+                        <li><a href="sitemap.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a>
+                        </li>
+                        <li><a href="faq.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Account -->
+                <div>
+                    <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+                    <ul class="space-y-2">
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a>
+                        </li>
+                        <li><a href="login.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a>
+                        </li>
+                        <li><a href="shoppingcart.html"
+                                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+                <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+                    <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+                    <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+                </div>
+                <p class="text-gray-400 text-xs font-light">
+                    © 2025 Texas Watches. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const body = document.body;
+
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Get favorites and cart count
+        function getFavorites() {
+            return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+        }
+
+        function updateFavoritesCount() {
+            const count = getFavorites().length;
+            document.querySelectorAll('.favorites-count').forEach(el => {
+                el.textContent = count;
+            });
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+
+        // Search sitemap functionality
+        function searchSitemap() {
+            const searchTerm = (document.getElementById('searchInput')?.value || 
+                              document.getElementById('mobileSearchInput')?.value || '').toLowerCase();
+            
+            const sitemapLinks = document.querySelectorAll('.sitemap-link');
+            const sitemapSections = document.querySelectorAll('.sitemap-section');
+            const noResults = document.getElementById('noResults');
+            let visibleCount = 0;
+
+            if (!searchTerm) {
+                // Show all sections and links
+                sitemapSections.forEach(section => {
+                    section.style.display = 'block';
+                });
+                sitemapLinks.forEach(link => {
+                    link.style.display = 'block';
+                    removeHighlight(link);
+                });
+                noResults.classList.add('hidden');
+                return;
+            }
+
+            // Hide all sections initially
+            sitemapSections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Search through links
+            sitemapLinks.forEach(link => {
+                const linkText = link.textContent.toLowerCase();
+                const section = link.closest('.sitemap-section');
+                
+                if (linkText.includes(searchTerm)) {
+                    link.style.display = 'block';
+                    section.style.display = 'block';
+                    visibleCount++;
+                    highlightSearchTerm(link, searchTerm);
+                } else {
+                    link.style.display = 'none';
+                    removeHighlight(link);
+                }
+            });
+
+            // Check if any section has visible links
+            sitemapSections.forEach(section => {
+                const visibleLinks = section.querySelectorAll('.sitemap-link[style*="block"]');
+                if (visibleLinks.length === 0) {
+                    section.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            noResults.classList.toggle('hidden', visibleCount > 0);
+        }
+
+        function highlightSearchTerm(element, term) {
+            const text = element.innerHTML;
+            const regex = new RegExp(`(${term})`, 'gi');
+            element.innerHTML = text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        function removeHighlight(element) {
+            const text = element.textContent;
+            element.innerHTML = element.innerHTML.replace(/<span class="search-highlight">(.*?)<\/span>/gi, '$1');
+        }
+
+        // Smooth scroll for quick navigation
+        function setupQuickNavigation() {
+            document.querySelectorAll('.quick-nav-link[href^="#"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        const headerOffset = 120;
+                        const elementPosition = targetElement.offsetTop;
+                        const offsetPosition = elementPosition - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Count total pages dynamically
+        function updatePageCount() {
+            const totalLinks = document.querySelectorAll('.sitemap-link').length;
+            document.getElementById('totalPages').textContent = `${totalLinks}+`;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount();
+            updateFavoritesCount();
+            setupQuickNavigation();
+            updatePageCount();
+        });
+
+        // Handle window resize for mobile menu
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) {
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('mobileMenuOverlay').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+
+</html>
