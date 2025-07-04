@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Care Instructions - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Enhanced card hover */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: #000;
+    }
+
+    /* Feature card styling */
+    .feature-card {
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .feature-icon {
+      transition: all 0.3s ease;
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .section-animation:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Care timeline */
+    .care-timeline {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .care-timeline::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 60px;
+      bottom: -20px;
+      width: 2px;
+      background: #e5e7eb;
+    }
+
+    .care-timeline:last-child::before {
+      display: none;
+    }
+
+    /* Expandable sections */
+    .expandable-header {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .expandable-header:hover {
+      background: #f8f9fa;
+    }
+
+    .expandable-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .expandable-content.active {
+      max-height: 1000px;
+    }
+
+    .expandable-arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .expandable-arrow.active {
+      transform: rotate(180deg);
+    }
+
+    /* Care checklist */
+    .care-checklist {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-left: 4px solid #0ea5e9;
+    }
+
+    .care-warning {
+      background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+      border-left: 4px solid #f59e0b;
+    }
+
+    .care-danger {
+      background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+      border-left: 4px solid #ef4444;
+    }
+
+    /* Interactive care guide */
+    .care-step {
+      position: relative;
+      padding: 1.5rem;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .care-step:hover {
+      border-color: #000;
+      transform: translateX(8px);
+    }
+
+    .care-step::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #000;
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .care-step:hover::before {
+      transform: scaleY(1);
+    }
+
+    /* Watch type tabs */
+    .watch-type-tab {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .watch-type-tab.active {
+      background: #000;
+      color: white;
+    }
+
+    .watch-type-tab:not(.active):hover {
+      background: #f3f4f6;
+    }
+
+    /* Care frequency indicator */
+    .frequency-indicator {
+      position: relative;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .frequency-daily {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .frequency-weekly {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .frequency-monthly {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .frequency-yearly {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* Service reminder */
+    .service-reminder {
+      background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-reminder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.05) 10px,
+          rgba(255, 255, 255, 0.05) 20px);
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .care-timeline {
+        padding-left: 2rem;
+      }
+
+      .care-timeline::before {
+        left: 15px;
+      }
+
+      .care-step {
+        padding: 1rem;
+      }
+
+      .care-step:hover {
+        transform: translateX(4px);
+      }
+    }
+
+    /* Pulse animation for important notices */
+    .pulse-gentle {
+      animation: pulse-gentle 2s infinite;
+    }
+
+    @keyframes pulse-gentle {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Care Instructions</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">CARE INSTRUCTIONS</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Preserve the legacy of your luxury timepiece</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Care Overview -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">PROTECT YOUR INVESTMENT</h2>
+        <p class="text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+          Proper care and maintenance ensure your luxury timepiece remains accurate, beautiful, and valuable for generations.
+          Follow these expert guidelines to preserve your watch's performance and appearance.
+        </p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <!-- Care Essentials -->
+      <div class="section-animation grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div class="feature-card text-center bg-gray-50 border-2 border-black p-6 sm:p-8">
+          <div class="feature-icon w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <i class="fas fa-tint text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">WATER RESISTANCE</h3>
+          <p class="text-gray-600 font-light text-sm leading-relaxed">
+            Understand your watch's water resistance rating and maintain gasket integrity
+            through regular servicing and proper crown operation.
+          </p>
+        </div>
+
+        <div class="feature-card text-center bg-gray-50 border-2 border-black p-6 sm:p-8">
+          <div class="feature-icon w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <i class="fas fa-shield-alt text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">IMPACT PROTECTION</h3>
+          <p class="text-gray-600 font-light text-sm leading-relaxed">
+            Protect your timepiece from shocks, magnetic fields, and extreme temperatures
+            to maintain accuracy and prevent damage.
+          </p>
+        </div>
+
+        <div class="feature-card text-center bg-gray-50 border-2 border-black p-6 sm:p-8">
+          <div class="feature-icon w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <i class="fas fa-tools text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">REGULAR SERVICING</h3>
+          <p class="text-gray-600 font-light text-sm leading-relaxed">
+            Schedule professional maintenance every 3-5 years to ensure optimal performance
+            and longevity of your luxury timepiece.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Daily Care Guide -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">DAILY CARE ROUTINE</h2>
+        <p class="text-gray-600 font-light">Simple habits that will keep your timepiece in pristine condition</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        <div class="space-y-6">
+          <div class="care-step bg-white border-2 border-black">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-sun text-xl"></i>
+              </div>
+              <div>
+                <div class="flex items-center space-x-3 mb-2">
+                  <h4 class="font-light text-black tracking-wider uppercase text-sm">Morning Routine</h4>
+                  <span class="frequency-indicator frequency-daily">Daily</span>
+                </div>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Wind your mechanical watch gently (25-30 turns) and check the time accuracy.
+                  Inspect the case and bracelet for any visible damage or wear.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="care-step bg-white border-2 border-black">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-hand-paper text-xl"></i>
+              </div>
+              <div>
+                <div class="flex items-center space-x-3 mb-2">
+                  <h4 class="font-light text-black tracking-wider uppercase text-sm">Handling</h4>
+                  <span class="frequency-indicator frequency-daily">Daily</span>
+                </div>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Always handle your watch with clean, dry hands. Avoid touching the crystal
+                  and operate the crown and pushers gently to prevent damage.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="care-step bg-white border-2 border-black">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-moon text-xl"></i>
+              </div>
+              <div>
+                <div class="flex items-center space-x-3 mb-2">
+                  <h4 class="font-light text-black tracking-wider uppercase text-sm">Evening Storage</h4>
+                  <span class="frequency-indicator frequency-daily">Daily</span>
+                </div>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Store your watch in a dedicated watch box or soft cloth pouch.
+                  Keep it away from magnetic fields, extreme temperatures, and direct sunlight.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="care-checklist p-6 rounded-lg">
+            <h4 class="font-light text-black mb-4 tracking-wider uppercase text-sm">Daily Care Checklist</h4>
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="daily1" class="mt-1 w-4 h-4 text-blue-600 rounded border-gray-300">
+                <label for="daily1" class="text-gray-700 font-light text-sm">Wind mechanical watch (if not worn)</label>
+              </div>
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="daily2" class="mt-1 w-4 h-4 text-blue-600 rounded border-gray-300">
+                <label for="daily2" class="text-gray-700 font-light text-sm">Check time accuracy</label>
+              </div>
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="daily3" class="mt-1 w-4 h-4 text-blue-600 rounded border-gray-300">
+                <label for="daily3" class="text-gray-700 font-light text-sm">Inspect for visible damage</label>
+              </div>
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="daily4" class="mt-1 w-4 h-4 text-blue-600 rounded border-gray-300">
+                <label for="daily4" class="text-gray-700 font-light text-sm">Wipe with soft cloth if needed</label>
+              </div>
+              <div class="flex items-start space-x-3">
+                <input type="checkbox" id="daily5" class="mt-1 w-4 h-4 text-blue-600 rounded border-gray-300">
+                <label for="daily5" class="text-gray-700 font-light text-sm">Store properly when not worn</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="care-warning p-6 rounded-lg">
+            <h4 class="font-light text-black mb-4 tracking-wider uppercase text-sm">
+              <i class="fas fa-exclamation-triangle mr-2"></i>Important Reminders
+            </h4>
+            <div class="space-y-2 text-sm">
+              <p class="text-gray-700 font-light">• Never adjust date between 9 PM and 3 AM</p>
+              <p class="text-gray-700 font-light">• Avoid extreme temperature changes</p>
+              <p class="text-gray-700 font-light">• Keep away from strong magnetic fields</p>
+              <p class="text-gray-700 font-light">• Don't operate crown underwater</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Watch Type Specific Care -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">CARE BY WATCH TYPE</h2>
+        <p class="text-gray-600 font-light">Specialized care instructions for different watch categories</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <!-- Watch Type Tabs -->
+      <div class="section-animation">
+        <div class="flex flex-wrap justify-center border-b border-gray-200 mb-8">
+          <button class="watch-type-tab active px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchWatchType('dress')">
+            <i class="fas fa-user-tie mr-2"></i>Dress Watches
+          </button>
+          <button class="watch-type-tab px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchWatchType('sport')">
+            <i class="fas fa-running mr-2"></i>Sport Watches
+          </button>
+          <button class="watch-type-tab px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchWatchType('dive')">
+            <i class="fas fa-swimmer mr-2"></i>Dive Watches
+          </button>
+          <button class="watch-type-tab px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchWatchType('chronograph')">
+            <i class="fas fa-stopwatch mr-2"></i>Chronographs
+          </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <!-- Dress Watches -->
+          <div id="dressTab" class="watch-type-content">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">DRESS WATCH CARE</h3>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-gem text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Delicate Movement:</strong> Handle with extra care</p>
+                    <p class="text-gray-600 font-light text-xs">Thin cases require gentle handling and protection from impacts</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-shield-alt text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Limited Water Resistance:</strong> Avoid water exposure</p>
+                    <p class="text-gray-600 font-light text-xs">Most dress watches are not designed for water activities</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-star text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Precious Materials:</strong> Special cleaning required</p>
+                    <p class="text-gray-600 font-light text-xs">Gold, platinum, and leather require specific care methods</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sport Watches -->
+          <div id="sportTab" class="watch-type-content hidden">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">SPORT WATCH CARE</h3>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-running text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Active Use:</strong> Clean after workouts</p>
+                    <p class="text-gray-600 font-light text-xs">Remove sweat and dirt to prevent corrosion and odor</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-tint text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Water Resistance:</strong> Maintain gasket integrity</p>
+                    <p class="text-gray-600 font-light text-xs">Regular pressure testing ensures continued water resistance</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-cog text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Robust Construction:</strong> Can handle more activity</p>
+                    <p class="text-gray-600 font-light text-xs">Built for active lifestyles but still requires proper care</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dive Watches -->
+          <div id="diveTab" class="watch-type-content hidden">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">DIVE WATCH CARE</h3>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-swimmer text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Saltwater Exposure:</strong> Rinse thoroughly after use</p>
+                    <p class="text-gray-600 font-light text-xs">Salt can corrode metal components over time</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-compress text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Pressure Testing:</strong> Annual water resistance check</p>
+                    <p class="text-gray-600 font-light text-xs">Ensure gaskets maintain proper sealing under pressure</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-cogs text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Rotating Bezel:</strong> Keep mechanism clean and lubricated</p>
+                    <p class="text-gray-600 font-light text-xs">Sand and debris can impair bezel rotation</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chronographs -->
+          <div id="chronographTab" class="watch-type-content hidden">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">CHRONOGRAPH CARE</h3>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-stopwatch text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Complex Mechanism:</strong> Use chronograph regularly</p>
+                    <p class="text-gray-600 font-light text-xs">Periodic use prevents lubricants from settling</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-hand-pointer text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Pusher Operation:</strong> Press firmly but gently</p>
+                    <p class="text-gray-600 font-light text-xs">Avoid half-presses that can damage the mechanism</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-tools text-black mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Service Frequency:</strong> More frequent servicing needed</p>
+                    <p class="text-gray-600 font-light text-xs">Complex movements require expert attention every 3-4 years</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Care Schedule -->
+          <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+            <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">MAINTENANCE SCHEDULE</h3>
+            <div class="space-y-4">
+              <div class="care-timeline">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-calendar-day text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center space-x-3 mb-1">
+                      <h4 class="font-light text-black tracking-wider uppercase text-sm">Weekly Cleaning</h4>
+                      <span class="frequency-indicator frequency-weekly">Weekly</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed font-light text-sm">
+                      Wipe case and bracelet with microfiber cloth. Check for loose links or damage.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="care-timeline">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-calendar-alt text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center space-x-3 mb-1">
+                      <h4 class="font-light text-black tracking-wider uppercase text-sm">Monthly Inspection</h4>
+                      <span class="frequency-indicator frequency-monthly">Monthly</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed font-light text-sm">
+                      Deep clean bracelet, check crown operation, and test water resistance if applicable.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="care-timeline">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-calendar text-sm"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center space-x-3 mb-1">
+                      <h4 class="font-light text-black tracking-wider uppercase text-sm">Professional Service</h4>
+                      <span class="frequency-indicator frequency-yearly">3-5 Years</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed font-light text-sm">
+                      Complete movement service, gasket replacement, and accuracy regulation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cleaning Guide -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">PROPER CLEANING TECHNIQUES</h2>
+        <p class="text-gray-600 font-light">Safe methods to keep your timepiece sparkling clean</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation">
+        <!-- Expandable Cleaning Sections -->
+        <div class="space-y-4">
+          <div class="bg-white border-2 border-black">
+            <div class="expandable-header p-6 flex items-center justify-between" onclick="toggleSection('case')">
+              <div class="flex items-center space-x-4">
+                <i class="fas fa-circle text-xl"></i>
+                <h3 class="text-lg font-light tracking-wider">CASE CLEANING</h3>
+              </div>
+              <i class="fas fa-chevron-down expandable-arrow" id="caseArrow"></i>
+            </div>
+            <div class="expandable-content" id="caseContent">
+              <div class="p-6 pt-0 border-t border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Materials Needed</h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-600"></i>
+                        <span class="font-light">Microfiber cloth</span>
+                      </li>
+                      <li class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-600"></i>
+                        <span class="font-light">Soft-bristled toothbrush</span>
+                      </li>
+                      <li class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-600"></i>
+                        <span class="font-light">Mild soap solution</span>
+                      </li>
+                      <li class="flex items-center space-x-2">
+                        <i class="fas fa-check text-green-600"></i>
+                        <span class="font-light">Distilled water</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Step-by-Step Process</h4>
+                    <ol class="space-y-2 text-sm">
+                      <li class="font-light">1. Remove watch from wrist and ensure crown is sealed</li>
+                      <li class="font-light">2. Dampen microfiber cloth with distilled water</li>
+                      <li class="font-light">3. Gently wipe case surface in circular motions</li>
+                      <li class="font-light">4. Use soft brush for intricate areas</li>
+                      <li class="font-light">5. Dry thoroughly with clean microfiber cloth</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-black">
+            <div class="expandable-header p-6 flex items-center justify-between" onclick="toggleSection('bracelet')">
+              <div class="flex items-center space-x-4">
+                <i class="fas fa-link text-xl"></i>
+                <h3 class="text-lg font-light tracking-wider">BRACELET CLEANING</h3>
+              </div>
+              <i class="fas fa-chevron-down expandable-arrow" id="braceletArrow"></i>
+            </div>
+            <div class="expandable-content" id="braceletContent">
+              <div class="p-6 pt-0 border-t border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Metal Bracelets</h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Soak in warm soapy water for 5 minutes</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Use soft brush between links</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Rinse with distilled water</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Dry completely with soft cloth</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Leather Straps</h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Wipe with slightly damp cloth only</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Use leather conditioner monthly</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Avoid water and excessive moisture</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-arrow-right text-gray-600 mt-1"></i>
+                        <span class="font-light">Replace when worn or damaged</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-black">
+            <div class="expandable-header p-6 flex items-center justify-between" onclick="toggleSection('crystal')">
+              <div class="flex items-center space-x-4">
+                <i class="fas fa-eye text-xl"></i>
+                <h3 class="text-lg font-light tracking-wider">CRYSTAL CLEANING</h3>
+              </div>
+              <i class="fas fa-chevron-down expandable-arrow" id="crystalArrow"></i>
+            </div>
+            <div class="expandable-content" id="crystalContent">
+              <div class="p-6 pt-0 border-t border-gray-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Sapphire Crystal</h4>
+                    <p class="text-gray-700 font-light text-sm mb-3">
+                      Most luxury watches feature sapphire crystal, which is scratch-resistant but requires proper care.
+                    </p>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-check text-green-600 mt-1"></i>
+                        <span class="font-light">Use lint-free microfiber cloth</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-check text-green-600 mt-1"></i>
+                        <span class="font-light">Circular motions from center outward</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-check text-green-600 mt-1"></i>
+                        <span class="font-light">Avoid abrasive cleaners</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="care-danger p-4 rounded-lg">
+                    <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">
+                      <i class="fas fa-exclamation-circle mr-2"></i>Never Use
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-times text-red-600 mt-1"></i>
+                        <span class="font-light">Paper towels or tissues</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-times text-red-600 mt-1"></i>
+                        <span class="font-light">Household cleaners</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-times text-red-600 mt-1"></i>
+                        <span class="font-light">Abrasive compounds</span>
+                      </li>
+                      <li class="flex items-start space-x-2">
+                        <i class="fas fa-times text-red-600 mt-1"></i>
+                        <span class="font-light">Ultrasonic cleaners</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Reminder -->
+  <section class="py-12 sm:py-16 service-reminder relative">
+    <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+      <div class="section-animation">
+        <div class="pulse-gentle inline-block mb-6">
+          <i class="fas fa-bell text-4xl sm:text-5xl"></i>
+        </div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 tracking-wider">SERVICE REMINDER</h2>
+        <p class="text-gray-300 font-light mb-8 max-w-3xl mx-auto">
+          Even with perfect care, luxury watches require professional servicing every 3-5 years to maintain optimal performance.
+          Our certified technicians use genuine parts and factory-approved procedures.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+          <div class="text-center">
+            <i class="fas fa-calendar-check text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">SCHEDULE SERVICE</h3>
+            <p class="text-gray-300 font-light text-sm">Book your watch service appointment</p>
+          </div>
+
+          <div class="text-center">
+            <i class="fas fa-certificate text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">CERTIFIED TECHNICIANS</h3>
+            <p class="text-gray-300 font-light text-sm">Factory-trained watch specialists</p>
+          </div>
+
+          <div class="text-center">
+            <i class="fas fa-shield-alt text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">GENUINE PARTS</h3>
+            <p class="text-gray-300 font-light text-sm">Only authentic manufacturer parts</p>
+          </div>
+        </div>
+
+        <a href="contactus.html"
+          class="inline-block bg-white text-black px-8 sm:px-10 py-3 sm:py-4 font-light tracking-wider uppercase hover:bg-gray-100 transition-colors">
+          <i class="fas fa-tools mr-2"></i>Schedule Service
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+          <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentWatchType = 'dress';
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Switch watch type tabs
+    function switchWatchType(type) {
+      currentWatchType = type;
+      
+      // Hide all tabs
+      document.querySelectorAll('.watch-type-content').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+
+      // Show selected tab
+      document.getElementById(type + 'Tab').classList.remove('hidden');
+
+      // Update button states
+      document.querySelectorAll('.watch-type-tab').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+
+    // Toggle expandable sections
+    function toggleSection(sectionId) {
+      const content = document.getElementById(sectionId + 'Content');
+      const arrow = document.getElementById(sectionId + 'Arrow');
+      
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        arrow.classList.remove('active');
+      } else {
+        // Close all other sections
+        document.querySelectorAll('.expandable-content').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.querySelectorAll('.expandable-arrow').forEach(arrow => {
+          arrow.classList.remove('active');
+        });
+        
+        // Open selected section
+        content.classList.add('active');
+        arrow.classList.add('active');
+      }
+    }
+
+    // Checkbox functionality for care checklist
+    function initializeCheckboxes() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const label = this.nextElementSibling;
+          if (this.checked) {
+            label.style.textDecoration = 'line-through';
+            label.style.opacity = '0.6';
+          } else {
+            label.style.textDecoration = 'none';
+            label.style.opacity = '1';
+          }
+        });
+      });
+    }
+
+    // Get favorites
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count function
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
+      });
+    }
+
+    // Care reminder system
+    function initializeCareReminders() {
+      const lastService = localStorage.getItem('lastWatchService');
+      const currentDate = new Date();
+      
+      if (lastService) {
+        const serviceDate = new Date(lastService);
+        const monthsSinceService = (currentDate - serviceDate) / (1000 * 60 * 60 * 24 * 30);
+        
+        if (monthsSinceService >= 36) { // 3 years
+          showServiceReminder();
+        }
+      }
+    }
+
+    // Show service reminder notification
+    function showServiceReminder() {
+      const reminderDiv = document.createElement('div');
+      reminderDiv.className = 'fixed top-20 right-6 bg-yellow-500 text-black px-6 py-4 shadow-lg z-50 max-w-md';
+      reminderDiv.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <i class="fas fa-bell text-xl mt-1"></i>
+          <div>
+            <p class="font-light text-sm">
+              <strong>Service Reminder:</strong> Your watch may be due for professional servicing.
+            </p>
+            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-xs underline mt-2">
+              Dismiss
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(reminderDiv);
+
+      setTimeout(() => {
+        if (reminderDiv.parentElement) {
+          reminderDiv.remove();
+        }
+      }, 10000);
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCartCount();
+      updateFavoritesCount();
+      initializeCheckboxes();
+      initializeCareReminders();
+    });
+
+    // Handle window resize for mobile menu
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
