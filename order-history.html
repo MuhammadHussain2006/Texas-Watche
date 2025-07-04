@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order History - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Order card styling */
+    .order-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+    }
+
+    .order-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Status badge styling */
+    .status-pending {
+      background: #fbbf24;
+      color: #92400e;
+    }
+
+    .status-processing {
+      background: #60a5fa;
+      color: #1e40af;
+    }
+
+    .status-shipped {
+      background: #34d399;
+      color: #047857;
+    }
+
+    .status-delivered {
+      background: #10b981;
+      color: #065f46;
+    }
+
+    .status-cancelled {
+      background: #f87171;
+      color: #dc2626;
+    }
+
+    /* Filter button styling */
+    .filter-btn {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .filter-btn:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    /* Progress bar styling */
+    .progress-bar {
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #000;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    /* Order details modal */
+    .order-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .order-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 2px solid #000;
+    }
+
+    /* Timeline styling */
+    .timeline-item {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: -1.5rem;
+      width: 2px;
+      background: #e5e7eb;
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #000;
+    }
+
+    .timeline-dot.active {
+      background: #10b981;
+    }
+
+    /* Empty state styling */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      color: #d1d5db;
+      margin-bottom: 1rem;
+    }
+
+    /* Loading skeleton */
+    @keyframes skeleton {
+      0% {
+        background-position: -200px 0;
+      }
+
+      100% {
+        background-position: calc(200px + 100%) 0;
+      }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #f3f4f6 0px, #e5e7eb 40px, #f3f4f6 80px);
+      background-size: 200px 100%;
+      animation: skeleton 1.2s ease-in-out infinite;
+    }
+
+    /* Notification styling */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      animation: slideInRight 0.3s ease;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .modal-content {
+        width: 95%;
+        max-height: 95vh;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+              <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search orders..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search orders..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <a href="login.html" class="text-gray-600 hover:text-black transition-colors">Account</a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Order History</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 relative z-10">
+      <div class="text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">ORDER HISTORY</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Track and manage your luxury timepiece orders</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order History Container -->
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Welcome Message -->
+    <div class="bg-white border-2 border-black p-6 sm:p-8 mb-8">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-light tracking-wider mb-2">Welcome back, <span id="customerName">John Doe</span>!</h2>
+          <p class="text-gray-600 font-light">Here's an overview of your recent orders and purchases.</p>
+        </div>
+        <div class="hidden sm:block">
+          <div class="text-right">
+            <div class="text-2xl sm:text-3xl font-light" id="totalOrders">0</div>
+            <div class="text-xs text-gray-500 font-light uppercase tracking-widest">Total Orders</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="bg-white border-2 border-black p-6 sm:p-8 mb-8">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+        
+        <!-- Status Filters -->
+        <div class="flex flex-wrap gap-2 sm:gap-3">
+          <button class="filter-btn active px-4 sm:px-6 py-2 sm:py-2.5 bg-black text-white font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterOrders('all')">
+            All Orders
+          </button>
+          <button class="filter-btn px-4 sm:px-6 py-2 sm:py-2.5 bg-white text-black border-2 border-black font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterOrders('processing')">
+            Processing
+          </button>
+          <button class="filter-btn px-4 sm:px-6 py-2 sm:py-2.5 bg-white text-black border-2 border-black font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterOrders('shipped')">
+            Shipped
+          </button>
+          <button class="filter-btn px-4 sm:px-6 py-2 sm:py-2.5 bg-white text-black border-2 border-black font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterOrders('delivered')">
+            Delivered
+          </button>
+        </div>
+
+        <!-- Date Range Selector -->
+        <div class="flex items-center space-x-3">
+          <select id="dateRange" class="px-4 py-2 border-2 border-black focus:outline-none font-light text-sm">
+            <option value="all">All Time</option>
+            <option value="30">Last 30 Days</option>
+            <option value="90">Last 3 Months</option>
+            <option value="365">Last Year</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="space-y-6">
+      <div class="bg-white border-2 border-black p-6 sm:p-8">
+        <div class="flex items-center justify-center py-12">
+          <div class="text-center">
+            <div class="inline-block animate-spin rounded-full h-10 w-10 sm:h-12 sm:w-12 border-b-2 border-black mb-4"></div>
+            <p class="text-gray-600 font-light">Loading your orders...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden">
+      <div class="bg-white border-2 border-black p-12 sm:p-16 text-center">
+        <div class="empty-state">
+          <i class="fas fa-box-open empty-icon"></i>
+          <h2 class="text-2xl sm:text-3xl font-light text-gray-900 mb-4 tracking-wider">NO ORDERS FOUND</h2>
+          <p class="text-gray-600 font-light mb-8">You haven't placed any orders yet. Explore our luxury timepiece collection!</p>
+          <a href="index.html"
+            class="inline-block bg-black text-white px-8 sm:px-10 py-3 sm:py-4 font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            <i class="fas fa-shopping-bag mr-2"></i>Start Shopping
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders List -->
+    <div id="ordersList" class="hidden space-y-6">
+      <!-- Orders will be dynamically populated here -->
+    </div>
+
+    <!-- Load More Button -->
+    <div id="loadMoreSection" class="hidden text-center mt-8">
+      <button onclick="loadMoreOrders()" 
+              class="bg-white text-black border-2 border-black px-8 py-3 hover:bg-black hover:text-white transition-colors font-light tracking-wider uppercase">
+        <i class="fas fa-plus mr-2"></i>Load More Orders
+      </button>
+    </div>
+  </div>
+
+  <!-- Order Details Modal -->
+  <div class="order-modal" id="orderModal">
+    <div class="modal-content">
+      <div class="sticky top-0 bg-white p-6 border-b-2 border-black">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-light tracking-wider">ORDER DETAILS</h2>
+          <button onclick="closeOrderModal()" class="p-2">
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      <div id="modalContent" class="p-6 sm:p-8">
+        <!-- Modal content will be populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+
+          <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mock data for orders - in real app, this would come from API
+    const mockOrders = [
+      {
+        id: 'TW-2024-001',
+        orderNumber: 'TW-2024-001',
+        date: '2024-01-15',
+        status: 'delivered',
+        total: 12500,
+        items: [
+          {
+            id: 1,
+            name: 'Rolex Submariner Date',
+            brand: 'Rolex',
+            price: 12500,
+            quantity: 1,
+            image: './images/rolex-submariner.jpg'
+          }
+        ],
+        shippingAddress: {
+          name: 'John Doe',
+          street: '123 Main Street',
+          city: 'New York',
+          state: 'NY',
+          zip: '10001',
+          country: 'USA'
+        },
+        trackingNumber: 'TRK123456789',
+        timeline: [
+          { date: '2024-01-15', status: 'Order Placed', completed: true },
+          { date: '2024-01-16', status: 'Payment Confirmed', completed: true },
+          { date: '2024-01-17', status: 'Processing', completed: true },
+          { date: '2024-01-18', status: 'Shipped', completed: true },
+          { date: '2024-01-22', status: 'Delivered', completed: true }
+        ]
+      },
+      {
+        id: 'TW-2024-002',
+        orderNumber: 'TW-2024-002',
+        date: '2024-01-20',
+        status: 'shipped',
+        total: 8500,
+        items: [
+          {
+            id: 2,
+            name: 'Omega Speedmaster Professional',
+            brand: 'Omega',
+            price: 8500,
+            quantity: 1,
+            image: './images/omega-speedmaster.jpg'
+          }
+        ],
+        shippingAddress: {
+          name: 'John Doe',
+          street: '123 Main Street',
+          city: 'New York',
+          state: 'NY',
+          zip: '10001',
+          country: 'USA'
+        },
+        trackingNumber: 'TRK987654321',
+        timeline: [
+          { date: '2024-01-20', status: 'Order Placed', completed: true },
+          { date: '2024-01-21', status: 'Payment Confirmed', completed: true },
+          { date: '2024-01-22', status: 'Processing', completed: true },
+          { date: '2024-01-23', status: 'Shipped', completed: true },
+          { date: '2024-01-27', status: 'Delivered', completed: false }
+        ]
+      },
+      {
+        id: 'TW-2024-003',
+        orderNumber: 'TW-2024-003',
+        date: '2024-01-25',
+        status: 'processing',
+        total: 15000,
+        items: [
+          {
+            id: 3,
+            name: 'Cartier Santos',
+            brand: 'Cartier',
+            price: 15000,
+            quantity: 1,
+            image: './images/cartier-santos.jpg'
+          }
+        ],
+        shippingAddress: {
+          name: 'John Doe',
+          street: '123 Main Street',
+          city: 'New York',
+          state: 'NY',
+          zip: '10001',
+          country: 'USA'
+        },
+        trackingNumber: null,
+        timeline: [
+          { date: '2024-01-25', status: 'Order Placed', completed: true },
+          { date: '2024-01-26', status: 'Payment Confirmed', completed: true },
+          { date: '2024-01-27', status: 'Processing', completed: true },
+          { date: '2024-01-28', status: 'Shipped', completed: false },
+          { date: '2024-02-01', status: 'Delivered', completed: false }
+        ]
+      }
+    ];
+
+    let allOrders = [];
+    let filteredOrders = [];
+    let currentFilter = 'all';
+    let currentDateRange = 'all';
+    let ordersPerPage = 10;
+    let currentPage = 1;
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      initializePage();
+    });
+
+    function initializePage() {
+      // Simulate loading
+      setTimeout(() => {
+        loadOrders();
+        updateCounters();
+        updateFavoritesCount();
+        updateCartCount();
+      }, 1000);
+    }
+
+    function loadOrders() {
+      // In real app, this would fetch from API
+      allOrders = mockOrders;
+      filteredOrders = [...allOrders];
+      
+      document.getElementById('loadingState').classList.add('hidden');
+      
+      if (allOrders.length === 0) {
+        document.getElementById('emptyState').classList.remove('hidden');
+      } else {
+        document.getElementById('ordersList').classList.remove('hidden');
+        renderOrders();
+      }
+    }
+
+    function renderOrders() {
+      const ordersContainer = document.getElementById('ordersList');
+      
+      if (filteredOrders.length === 0) {
+        ordersContainer.innerHTML = `
+          <div class="bg-white border-2 border-black p-12 text-center">
+            <i class="fas fa-search text-5xl text-gray-400 mb-4"></i>
+            <h3 class="text-xl font-light text-gray-900 mb-2">No orders found</h3>
+            <p class="text-gray-600 font-light">Try adjusting your filters</p>
+          </div>
+        `;
+        return;
+      }
+
+      ordersContainer.innerHTML = filteredOrders.map(order => createOrderCard(order)).join('');
+    }
+
+    function createOrderCard(order) {
+      const statusColors = {
+        'pending': 'status-pending',
+        'processing': 'status-processing',
+        'shipped': 'status-shipped',
+        'delivered': 'status-delivered',
+        'cancelled': 'status-cancelled'
+      };
+
+      const progressPercentage = calculateProgress(order.status);
+      const formattedDate = formatDate(order.date);
+      const formattedTotal = formatCurrency(order.total);
+
+      return `
+        <div class="order-card bg-white border-2 border-transparent p-6 sm:p-8" onclick="openOrderModal('${order.id}')">
+          <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+            
+            <!-- Order Info -->
+            <div class="flex-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-light tracking-wider mb-1">Order #${order.orderNumber}</h3>
+                  <p class="text-gray-600 font-light text-sm">Placed on ${formattedDate}</p>
+                </div>
+                <div class="flex items-center space-x-4 mt-2 sm:mt-0">
+                  <span class="px-3 py-1 text-xs font-light tracking-wider uppercase rounded-full ${statusColors[order.status]}">
+                    ${order.status}
+                  </span>
+                  <span class="text-xl sm:text-2xl font-light">${formattedTotal}</span>
+                </div>
+              </div>
+
+              <!-- Progress Bar -->
+              <div class="mb-4">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                </div>
+              </div>
+
+              <!-- Items Preview -->
+              <div class="flex items-center space-x-4 mb-4">
+                <div class="flex -space-x-2">
+                  ${order.items.slice(0, 3).map(item => `
+                    <div class="w-12 h-12 bg-gray-100 border-2 border-white rounded-lg overflow-hidden">
+                      <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                    </div>
+                  `).join('')}
+                  ${order.items.length > 3 ? `
+                    <div class="w-12 h-12 bg-gray-800 text-white border-2 border-white rounded-lg flex items-center justify-center">
+                      <span class="text-xs font-light">+${order.items.length - 3}</span>
+                    </div>
+                  ` : ''}
+                </div>
+                <div>
+                  <p class="text-sm font-light text-gray-600">
+                    ${order.items.length} ${order.items.length === 1 ? 'item' : 'items'}
+                  </p>
+                  ${order.trackingNumber ? `
+                    <p class="text-xs text-gray-500 font-light">Tracking: ${order.trackingNumber}</p>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex space-x-3 lg:ml-6">
+              <button 
+                onclick="event.stopPropagation(); viewOrderDetails('${order.id}')"
+                class="flex-1 lg:flex-initial bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                View Details
+              </button>
+              ${order.status === 'delivered' ? `
+                <button 
+                  onclick="event.stopPropagation(); reorderItems('${order.id}')"
+                  class="flex-1 lg:flex-initial bg-white text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+                  Reorder
+                </button>
+              ` : ''}
+              ${order.trackingNumber ? `
+                <button 
+                  onclick="event.stopPropagation(); trackOrder('${order.trackingNumber}')"
+                  class="flex-1 lg:flex-initial bg-white text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+                  Track
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function calculateProgress(status) {
+      const progressMap = {
+        'pending': 20,
+        'processing': 40,
+        'shipped': 80,
+        'delivered': 100,
+        'cancelled': 0
+      };
+      return progressMap[status] || 0;
+    }
+
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    function formatCurrency(amount) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(amount);
+    }
+
+    function filterOrders(status) {
+      currentFilter = status;
+      
+      // Update filter buttons
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-white', 'text-black', 'border-2', 'border-black');
+        btn.classList.remove('bg-black', 'text-white');
+      });
+      
+      event.target.classList.add('active');
+      event.target.classList.remove('bg-white', 'text-black');
+      event.target.classList.add('bg-black', 'text-white');
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      filteredOrders = allOrders.filter(order => {
+        // Status filter
+        if (currentFilter !== 'all' && order.status !== currentFilter) {
+          return false;
+        }
+        
+        // Date range filter
+        if (currentDateRange !== 'all') {
+          const orderDate = new Date(order.date);
+          const daysAgo = new Date();
+          daysAgo.setDate(daysAgo.getDate() - parseInt(currentDateRange));
+          if (orderDate < daysAgo) {
+            return false;
+          }
+        }
+        
+        // Search filter
+        const searchTerm = (document.getElementById('searchInput').value || 
+                           document.getElementById('mobileSearchInput').value).toLowerCase();
+        if (searchTerm) {
+          return order.orderNumber.toLowerCase().includes(searchTerm) ||
+                 order.items.some(item => item.name.toLowerCase().includes(searchTerm) ||
+                                         item.brand.toLowerCase().includes(searchTerm));
+        }
+        
+        return true;
+      });
+      
+      renderOrders();
+    }
+
+    function openOrderModal(orderId) {
+      const order = allOrders.find(o => o.id === orderId);
+      if (!order) return;
+      
+      const modal = document.getElementById('orderModal');
+      const modalContent = document.getElementById('modalContent');
+      
+      modalContent.innerHTML = createOrderDetailsHTML(order);
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function createOrderDetailsHTML(order) {
+      const statusColors = {
+        'pending': 'status-pending',
+        'processing': 'status-processing',
+        'shipped': 'status-shipped',
+        'delivered': 'status-delivered',
+        'cancelled': 'status-cancelled'
+      };
+
+      return `
+        <div class="space-y-8">
+          <!-- Order Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 class="text-2xl font-light tracking-wider mb-2">Order #${order.orderNumber}</h3>
+              <p class="text-gray-600 font-light">Placed on ${formatDate(order.date)}</p>
+            </div>
+            <div class="flex items-center space-x-4 mt-4 sm:mt-0">
+              <span class="px-4 py-2 text-sm font-light tracking-wider uppercase rounded-full ${statusColors[order.status]}">
+                ${order.status}
+              </span>
+              <span class="text-2xl font-light">${formatCurrency(order.total)}</span>
+            </div>
+          </div>
+
+          <!-- Order Timeline -->
+          <div class="bg-gray-50 border border-gray-200 p-6">
+            <h4 class="text-lg font-light tracking-wider mb-6">Order Timeline</h4>
+            <div class="space-y-4">
+              ${order.timeline.map(item => `
+                <div class="timeline-item">
+                  <div class="timeline-dot ${item.completed ? 'active' : ''}"></div>
+                  <div class="flex justify-between items-center">
+                    <div>
+                      <h5 class="font-light text-black">${item.status}</h5>
+                      <p class="text-sm text-gray-600 font-light">${formatDate(item.date)}</p>
+                    </div>
+                    ${item.completed ? '<i class="fas fa-check text-green-600"></i>' : ''}
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Items -->
+          <div>
+            <h4 class="text-lg font-light tracking-wider mb-6">Items (${order.items.length})</h4>
+            <div class="space-y-4">
+              ${order.items.map(item => `
+                <div class="flex items-center space-x-4 p-4 border border-gray-200">
+                  <div class="w-16 h-16 bg-gray-100 overflow-hidden">
+                    <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                  </div>
+                  <div class="flex-1">
+                    <h5 class="font-light text-black">${item.name}</h5>
+                    <p class="text-sm text-gray-600 font-light">${item.brand}</p>
+                    <p class="text-sm text-gray-600 font-light">Quantity: ${item.quantity}</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-lg font-light">${formatCurrency(item.price)}</span>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Shipping Address -->
+          <div>
+            <h4 class="text-lg font-light tracking-wider mb-4">Shipping Address</h4>
+            <div class="bg-gray-50 border border-gray-200 p-4">
+              <p class="font-light text-black">${order.shippingAddress.name}</p>
+              <p class="text-sm text-gray-600 font-light">${order.shippingAddress.street}</p>
+              <p class="text-sm text-gray-600 font-light">${order.shippingAddress.city}, ${order.shippingAddress.state} ${order.shippingAddress.zip}</p>
+              <p class="text-sm text-gray-600 font-light">${order.shippingAddress.country}</p>
+            </div>
+          </div>
+
+          <!-- Tracking Information -->
+          ${order.trackingNumber ? `
+            <div>
+              <h4 class="text-lg font-light tracking-wider mb-4">Tracking Information</h4>
+              <div class="bg-gray-50 border border-gray-200 p-4">
+                <p class="font-light text-black mb-2">Tracking Number: ${order.trackingNumber}</p>
+                <button onclick="trackOrder('${order.trackingNumber}')" 
+                        class="bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                  Track Package
+                </button>
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+            ${order.status === 'delivered' ? `
+              <button onclick="reorderItems('${order.id}')" 
+                      class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                <i class="fas fa-redo mr-2"></i>Reorder Items
+              </button>
+            ` : ''}
+            <button onclick="downloadInvoice('${order.id}')" 
+                    class="bg-white text-black border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-download mr-2"></i>Download Invoice
+            </button>
+            <button onclick="contactSupport('${order.id}')" 
+                    class="bg-white text-black border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-headset mr-2"></i>Contact Support
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function closeOrderModal() {
+      const modal = document.getElementById('orderModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function viewOrderDetails(orderId) {
+      openOrderModal(orderId);
+    }
+
+    function trackOrder(trackingNumber) {
+      // In real app, this would open tracking page or external tracking
+      showNotification(`Tracking order with number: ${trackingNumber}`, 'info');
+    }
+
+    function reorderItems(orderId) {
+      const order = allOrders.find(o => o.id === orderId);
+      if (!order) return;
+      
+      // In real app, this would add items to cart
+      showNotification(`${order.items.length} item(s) added to cart for reorder`, 'success');
+    }
+
+    function downloadInvoice(orderId) {
+      // In real app, this would generate and download PDF invoice
+      showNotification('Invoice download started', 'success');
+    }
+
+    function contactSupport(orderId) {
+      // In real app, this would open support chat or form
+      window.location.href = `contactus.html?order=${orderId}`;
+    }
+
+    function updateCounters() {
+      document.getElementById('totalOrders').textContent = allOrders.length;
+    }
+
+    function showNotification(message, type = 'success') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i>
+          <span class="font-light">${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+
+    // Search functionality
+    function setupSearch() {
+      ['searchInput', 'mobileSearchInput'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('input', applyFilters);
+        }
+      });
+    }
+
+    // Date range filter
+    document.getElementById('dateRange').addEventListener('change', function() {
+      currentDateRange = this.value;
+      applyFilters();
+    });
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const favorites = JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+      const count = favorites.length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Initialize search when page loads
+    document.addEventListener('DOMContentLoaded', setupSearch);
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('orderModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeOrderModal();
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeOrderModal();
+      }
+    });
+  </script>
+</body>
+
+</html>
