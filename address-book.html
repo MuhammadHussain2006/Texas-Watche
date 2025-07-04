@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address Book - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form styling */
+    .form-input {
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .form-success {
+      border-color: #10b981 !important;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    /* Address card styling */
+    .address-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .address-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .address-card.default {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.02);
+    }
+
+    .address-card.default::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #059669);
+    }
+
+    /* Address card actions */
+    .address-actions {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    .address-card:hover .address-actions {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Filter buttons */
+    .filter-btn {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .filter-btn:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 2px solid #000;
+      margin: 2rem;
+    }
+
+    /* Address type badges */
+    .address-type-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .address-type-badge.home {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .address-type-badge.office {
+      background: #f3e8ff;
+      color: #7c3aed;
+    }
+
+    .address-type-badge.other {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    /* Search and filter bar */
+    .search-filter-bar {
+      background: white;
+      border: 2px solid #000;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    /* Empty state styling */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      color: #d1d5db;
+      margin-bottom: 1rem;
+    }
+
+    /* Loading skeleton */
+    @keyframes skeleton {
+      0% {
+        background-position: -200px 0;
+      }
+
+      100% {
+        background-position: calc(200px + 100%) 0;
+      }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #f3f4f6 0px, #e5e7eb 40px, #f3f4f6 80px);
+      background-size: 200px 100%;
+      animation: skeleton 1.2s ease-in-out infinite;
+    }
+
+    /* Notification styling */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      animation: slideInRight 0.3s ease;
+    }
+
+    .notification.success {
+      background: #10b981;
+    }
+
+    .notification.error {
+      background: #ef4444;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Bulk actions */
+    .bulk-actions {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .bulk-actions.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Address validation indicator */
+    .validation-indicator {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #10b981;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .validation-indicator.unverified {
+      background: #f59e0b;
+    }
+
+    .validation-indicator.invalid {
+      background: #ef4444;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .modal-content {
+        width: 95%;
+        margin: 1rem;
+      }
+
+      .address-actions {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Custom scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #000;
+      border-radius: 3px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #333;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown" id="accountDropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity" onclick="toggleAccountDropdown()">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content" id="accountDropdownContent">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+            <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search addresses..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search addresses..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <a href="account-settings.html" class="text-gray-600 hover:text-black transition-colors">Account</a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Address Book</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 relative z-10">
+      <div class="text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">ADDRESS BOOK</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Manage your shipping addresses</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Address Book Container -->
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Search and Filter Bar -->
+    <div class="search-filter-bar p-6 sm:p-8 mb-8">
+      <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+        
+        <!-- Left side - Stats and Add Button -->
+        <div class="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-light tracking-wider">
+              <span id="addressCount">0</span> Addresses
+            </h2>
+            <p class="text-gray-600 font-light text-sm">Manage all your shipping locations</p>
+          </div>
+          <button onclick="openAddressModal()" 
+                  class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+            <i class="fas fa-plus mr-2"></i>Add New Address
+          </button>
+        </div>
+
+        <!-- Right side - Filters -->
+        <div class="flex flex-wrap gap-2 sm:gap-3">
+          <button class="filter-btn active px-4 py-2 bg-black text-white font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterAddresses('all')">
+            All
+          </button>
+          <button class="filter-btn px-4 py-2 bg-white text-black border-2 border-black font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterAddresses('home')">
+            Home
+          </button>
+          <button class="filter-btn px-4 py-2 bg-white text-black border-2 border-black font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterAddresses('office')">
+            Office
+          </button>
+          <button class="filter-btn px-4 py-2 bg-white text-black border-2 border-black font-light text-xs sm:text-sm tracking-wider uppercase"
+                  onclick="filterAddresses('default')">
+            Default
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Actions Bar -->
+    <div class="bulk-actions p-4 mb-6 hidden" id="bulkActionsBar">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <span class="text-sm font-light">
+            <span id="selectedCount">0</span> address(es) selected
+          </span>
+          <button onclick="selectAllAddresses()" class="text-sm text-black hover:text-gray-600 font-light">
+            Select All
+          </button>
+          <button onclick="deselectAllAddresses()" class="text-sm text-black hover:text-gray-600 font-light">
+            Deselect All
+          </button>
+        </div>
+        <div class="flex items-center space-x-3">
+          <button onclick="bulkDelete()" class="bg-red-500 text-white px-4 py-2 hover:bg-red-600 transition-colors font-light text-sm">
+            <i class="fas fa-trash mr-2"></i>Delete Selected
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white border-2 border-gray-200 p-6 skeleton h-64"></div>
+      <div class="bg-white border-2 border-gray-200 p-6 skeleton h-64"></div>
+      <div class="bg-white border-2 border-gray-200 p-6 skeleton h-64"></div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="hidden">
+      <div class="bg-white border-2 border-black p-12 sm:p-16 text-center">
+        <div class="empty-state">
+          <i class="fas fa-map-marker-alt empty-icon"></i>
+          <h2 class="text-2xl sm:text-3xl font-light text-gray-900 mb-4 tracking-wider">NO ADDRESSES FOUND</h2>
+          <p class="text-gray-600 font-light mb-8">Start by adding your first shipping address</p>
+          <button onclick="openAddressModal()"
+            class="bg-black text-white px-8 sm:px-10 py-3 sm:py-4 font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            <i class="fas fa-plus mr-2"></i>Add Your First Address
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Address Grid -->
+    <div id="addressGrid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Address cards will be populated here -->
+    </div>
+  </div>
+
+  <!-- Add/Edit Address Modal -->
+  <div class="modal" id="addressModal">
+    <div class="modal-content">
+      <div class="sticky top-0 bg-white p-6 border-b-2 border-black">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-light tracking-wider" id="modalTitle">ADD NEW ADDRESS</h2>
+          <button onclick="closeAddressModal()" class="p-2">
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-6 sm:p-8">
+        <form id="addressForm" class="space-y-6">
+          <input type="hidden" id="addressId" name="addressId">
+          
+          <!-- Address Type -->
+          <div>
+            <label class="block text-sm font-light text-black mb-3 tracking-wider uppercase">
+              Address Type <span class="text-red-500">*</span>
+            </label>
+            <div class="flex space-x-4">
+              <label class="flex items-center space-x-2">
+                <input type="radio" name="addressType" value="home" checked class="w-4 h-4">
+                <span class="font-light">Home</span>
+              </label>
+              <label class="flex items-center space-x-2">
+                <input type="radio" name="addressType" value="office" class="w-4 h-4">
+                <span class="font-light">Office</span>
+              </label>
+              <label class="flex items-center space-x-2">
+                <input type="radio" name="addressType" value="other" class="w-4 h-4">
+                <span class="font-light">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Personal Information -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                First Name <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="firstName" name="firstName" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                Last Name <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="lastName" name="lastName" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+          </div>
+
+          <!-- Contact Information -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                Phone Number <span class="text-red-500">*</span>
+              </label>
+              <input type="tel" id="phone" name="phone" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                Email Address
+              </label>
+              <input type="email" id="email" name="email"
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+          </div>
+
+          <!-- Address Information -->
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Address Line 1 <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="address1" name="address1" required
+              class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light"
+              placeholder="Street number and name">
+          </div>
+
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Address Line 2
+            </label>
+            <input type="text" id="address2" name="address2"
+              class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light"
+              placeholder="Apartment, suite, unit, building, floor, etc.">
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                City <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="city" name="city" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                State/Province <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="state" name="state" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                ZIP/Postal Code <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="zipCode" name="zipCode" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Country <span class="text-red-500">*</span>
+            </label>
+            <select id="country" name="country" required
+              class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+              <option value="">Select Country</option>
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+              <option value="GB">United Kingdom</option>
+              <option value="AU">Australia</option>
+              <option value="DE">Germany</option>
+              <option value="FR">France</option>
+              <option value="JP">Japan</option>
+              <option value="KR">South Korea</option>
+              <option value="CN">China</option>
+              <option value="IN">India</option>
+            </select>
+          </div>
+
+          <!-- Additional Options -->
+          <div class="space-y-3">
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" id="isDefault" name="isDefault" class="w-4 h-4">
+              <span class="text-sm font-light text-black">Set as default shipping address</span>
+            </label>
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" id="isBilling" name="isBilling" class="w-4 h-4">
+              <span class="text-sm font-light text-black">Also use as billing address</span>
+            </label>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6">
+            <button type="button" onclick="closeAddressModal()"
+              class="bg-white text-black border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+              Cancel
+            </button>
+            <button type="submit"
+              class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-save mr-2"></i>Save Address
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal" id="deleteModal">
+    <div class="modal-content max-w-md">
+      <div class="p-6 sm:p-8">
+        <div class="text-center">
+          <i class="fas fa-exclamation-triangle text-5xl text-red-500 mb-4"></i>
+          <h3 class="text-xl font-light tracking-wider mb-4">DELETE ADDRESS</h3>
+          <p class="text-gray-600 font-light mb-6">Are you sure you want to delete this address? This action cannot be undone.</p>
+          <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+            <button onclick="closeDeleteModal()"
+              class="bg-white text-black border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+              Cancel
+            </button>
+            <button onclick="confirmDelete()"
+              class="bg-red-500 text-white px-6 py-3 hover:bg-red-600 transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-trash mr-2"></i>Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mock data for addresses
+    const mockAddresses = [
+      {
+        id: 1,
+        addressType: 'home',
+        firstName: 'John',
+        lastName: 'Doe',
+        phone: '+1 (555) 123-4567',
+        email: 'john.doe@example.com',
+        address1: '123 Main Street',
+        address2: 'Apt 4B',
+        city: 'New York',
+        state: 'NY',
+        zipCode: '10001',
+        country: 'US',
+        isDefault: true,
+        isBilling: true,
+        verified: true,
+        createdAt: '2024-01-15'
+      },
+      {
+        id: 2,
+        addressType: 'office',
+        firstName: 'John',
+        lastName: 'Doe',
+        phone: '+1 (555) 987-6543',
+        email: 'john.doe@company.com',
+        address1: '456 Business Ave',
+        address2: 'Suite 200',
+        city: 'Los Angeles',
+        state: 'CA',
+        zipCode: '90210',
+        country: 'US',
+        isDefault: false,
+        isBilling: false,
+        verified: true,
+        createdAt: '2024-01-20'
+      },
+      {
+        id: 3,
+        addressType: 'other',
+        firstName: 'Jane',
+        lastName: 'Smith',
+        phone: '+1 (555) 555-5555',
+        email: 'jane.smith@example.com',
+        address1: '789 Oak Lane',
+        address2: '',
+        city: 'Chicago',
+        state: 'IL',
+        zipCode: '60601',
+        country: 'US',
+        isDefault: false,
+        isBilling: false,
+        verified: false,
+        createdAt: '2024-02-01'
+      }
+    ];
+
+    let addresses = [...mockAddresses];
+    let filteredAddresses = [...addresses];
+    let currentFilter = 'all';
+    let selectedAddresses = [];
+    let editingAddressId = null;
+    let deleteAddressId = null;
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      initializePage();
+    });
+
+    function initializePage() {
+      // Simulate loading
+      setTimeout(() => {
+        loadAddresses();
+        updateAddressCount();
+        setupSearchHandlers();
+        updateFavoritesCount();
+        updateCartCount();
+      }, 1000);
+    }
+
+    // Load and display addresses
+    function loadAddresses() {
+      document.getElementById('loadingState').classList.add('hidden');
+      
+      if (addresses.length === 0) {
+        document.getElementById('emptyState').classList.remove('hidden');
+        document.getElementById('addressGrid').classList.add('hidden');
+      } else {
+        document.getElementById('emptyState').classList.add('hidden');
+        document.getElementById('addressGrid').classList.remove('hidden');
+        renderAddresses();
+      }
+    }
+
+    function renderAddresses() {
+      const grid = document.getElementById('addressGrid');
+      
+      if (filteredAddresses.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12">
+            <i class="fas fa-search text-5xl text-gray-400 mb-4"></i>
+            <h3 class="text-xl font-light text-gray-900 mb-2">No addresses found</h3>
+            <p class="text-gray-600 font-light">Try adjusting your search or filters</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filteredAddresses.map(address => createAddressCard(address)).join('');
+    }
+
+    function createAddressCard(address) {
+      const countryName = getCountryName(address.country);
+      const typeClass = address.addressType;
+      const validationClass = address.verified ? 'validation-indicator' : 'validation-indicator unverified';
+      
+      return `
+        <div class="address-card ${address.isDefault ? 'default' : ''} bg-white p-6 relative">
+          <div class="${validationClass}" title="${address.verified ? 'Verified Address' : 'Unverified Address'}"></div>
+          
+          <!-- Selection Checkbox -->
+          <div class="absolute top-4 left-4">
+            <input type="checkbox" class="address-checkbox w-4 h-4" data-address-id="${address.id}" onchange="toggleAddressSelection(${address.id})">
+          </div>
+
+          <!-- Address Type Badge -->
+          <div class="mb-4">
+            <span class="address-type-badge ${typeClass}">
+              <i class="fas ${getTypeIcon(address.addressType)} mr-1"></i>
+              ${address.addressType}
+            </span>
+            ${address.isDefault ? '<span class="address-type-badge ml-2" style="background: #dcfce7; color: #166534;">Default</span>' : ''}
+          </div>
+
+          <!-- Name and Contact -->
+          <div class="mb-4">
+            <h3 class="text-lg font-light tracking-wider mb-1">${address.firstName} ${address.lastName}</h3>
+            <p class="text-sm text-gray-600 font-light">${address.phone}</p>
+            ${address.email ? `<p class="text-sm text-gray-600 font-light">${address.email}</p>` : ''}
+          </div>
+
+          <!-- Address Details -->
+          <div class="text-sm text-gray-600 font-light space-y-1 mb-4">
+            <p>${address.address1}</p>
+            ${address.address2 ? `<p>${address.address2}</p>` : ''}
+            <p>${address.city}, ${address.state} ${address.zipCode}</p>
+            <p>${countryName}</p>
+          </div>
+
+          <!-- Address Actions -->
+          <div class="address-actions space-y-2">
+            <div class="flex space-x-2">
+              <button onclick="editAddress(${address.id})" 
+                      class="flex-1 bg-black text-white py-2 px-4 hover:bg-gray-800 transition-colors font-light text-xs tracking-wider uppercase">
+                <i class="fas fa-edit mr-2"></i>Edit
+              </button>
+              <button onclick="duplicateAddress(${address.id})" 
+                      class="bg-white text-black border-2 border-black py-2 px-4 hover:bg-black hover:text-white transition-colors font-light text-xs tracking-wider uppercase">
+                <i class="fas fa-copy mr-2"></i>Copy
+              </button>
+            </div>
+            
+            <div class="flex space-x-2">
+              ${!address.isDefault ? `
+                <button onclick="setDefaultAddress(${address.id})" 
+                        class="flex-1 bg-green-500 text-white py-2 px-4 hover:bg-green-600 transition-colors font-light text-xs tracking-wider uppercase">
+                  <i class="fas fa-check mr-2"></i>Set Default
+                </button>
+              ` : ''}
+              <button onclick="deleteAddress(${address.id})" 
+                      class="bg-red-500 text-white py-2 px-4 hover:bg-red-600 transition-colors font-light text-xs tracking-wider uppercase">
+                <i class="fas fa-trash mr-2"></i>Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getTypeIcon(type) {
+      const icons = {
+        'home': 'fa-home',
+        'office': 'fa-building',
+        'other': 'fa-map-marker-alt'
+      };
+      return icons[type] || 'fa-map-marker-alt';
+    }
+
+    function getCountryName(code) {
+      const countries = {
+        'US': 'United States',
+        'CA': 'Canada',
+        'GB': 'United Kingdom',
+        'AU': 'Australia',
+        'DE': 'Germany',
+        'FR': 'France',
+        'JP': 'Japan',
+        'KR': 'South Korea',
+        'CN': 'China',
+        'IN': 'India'
+      };
+      return countries[code] || code;
+    }
+
+    // Address filtering
+    function filterAddresses(filterType) {
+      currentFilter = filterType;
+      
+      // Update filter buttons
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.classList.add('bg-white', 'text-black', 'border-2', 'border-black');
+        btn.classList.remove('bg-black', 'text-white');
+      });
+      
+      event.target.classList.add('active');
+      event.target.classList.remove('bg-white', 'text-black');
+      event.target.classList.add('bg-black', 'text-white');
+      
+      applyFilters();
+    }
+
+    function applyFilters() {
+      filteredAddresses = addresses.filter(address => {
+        // Type filter
+        if (currentFilter === 'default' && !address.isDefault) return false;
+        if (currentFilter !== 'all' && currentFilter !== 'default' && address.addressType !== currentFilter) return false;
+        
+        // Search filter
+        const searchTerm = (document.getElementById('searchInput').value || 
+                           document.getElementById('mobileSearchInput').value || '').toLowerCase();
+        if (searchTerm) {
+          const searchableText = `${address.firstName} ${address.lastName} ${address.address1} ${address.address2} ${address.city} ${address.state} ${address.zipCode}`.toLowerCase();
+          if (!searchableText.includes(searchTerm)) return false;
+        }
+        
+        return true;
+      });
+      
+      renderAddresses();
+      updateAddressCount();
+    }
+
+    // Search functionality
+    function setupSearchHandlers() {
+      ['searchInput', 'mobileSearchInput'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('input', applyFilters);
+        }
+      });
+    }
+
+    // Modal functions
+    function openAddressModal(addressId = null) {
+      editingAddressId = addressId;
+      const modal = document.getElementById('addressModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const form = document.getElementById('addressForm');
+      
+      if (addressId) {
+        modalTitle.textContent = 'EDIT ADDRESS';
+        populateForm(addressId);
+      } else {
+        modalTitle.textContent = 'ADD NEW ADDRESS';
+        form.reset();
+        document.getElementById('addressId').value = '';
+      }
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAddressModal() {
+      document.getElementById('addressModal').classList.remove('active');
+      document.getElementById('addressForm').reset();
+      editingAddressId = null;
+      document.body.style.overflow = '';
+    }
+
+    function populateForm(addressId) {
+      const address = addresses.find(a => a.id === addressId);
+      if (!address) return;
+      
+      Object.keys(address).forEach(key => {
+        const field = document.getElementById(key);
+        if (field) {
+          if (field.type === 'checkbox') {
+            field.checked = address[key];
+          } else if (field.type === 'radio') {
+            if (field.value === address[key]) {
+              field.checked = true;
+            }
+          } else {
+            field.value = address[key];
+          }
+        }
+      });
+    }
+
+    // Form submission
+    document.getElementById('addressForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (validateForm()) {
+        saveAddress();
+      }
+    });
+
+    function validateForm() {
+      const requiredFields = ['firstName', 'lastName', 'phone', 'address1', 'city', 'state', 'zipCode', 'country'];
+      let isValid = true;
+      
+      requiredFields.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (!field.value.trim()) {
+          field.classList.add('form-error');
+          isValid = false;
+        } else {
+          field.classList.remove('form-error');
+        }
+      });
+      
+      if (!isValid) {
+        showNotification('Please fill in all required fields', 'error');
+      }
+      
+      return isValid;
+    }
+
+    function saveAddress() {
+      const formData = new FormData(document.getElementById('addressForm'));
+      const addressData = Object.fromEntries(formData);
+      
+      // Handle radio button for address type
+      const addressType = document.querySelector('input[name="addressType"]:checked').value;
+      addressData.addressType = addressType;
+      
+      // Handle checkboxes
+      addressData.isDefault = document.getElementById('isDefault').checked;
+      addressData.isBilling = document.getElementById('isBilling').checked;
+      
+      if (editingAddressId) {
+        // Update existing address
+        const index = addresses.findIndex(a => a.id === editingAddressId);
+        if (index !== -1) {
+          addresses[index] = { ...addresses[index], ...addressData };
+          showNotification('Address updated successfully!', 'success');
+        }
+      } else {
+        // Add new address
+        const newAddress = {
+          id: addresses.length + 1,
+          ...addressData,
+          verified: false,
+          createdAt: new Date().toISOString().split('T')[0]
+        };
+        addresses.push(newAddress);
+        showNotification('Address added successfully!', 'success');
+      }
+      
+      // If setting as default, update other addresses
+      if (addressData.isDefault) {
+        addresses = addresses.map(addr => ({
+          ...addr,
+          isDefault: addr.id === (editingAddressId || addresses.length)
+        }));
+      }
+      
+      closeAddressModal();
+      applyFilters();
+    }
+
+    // Address management functions
+    function editAddress(addressId) {
+      openAddressModal(addressId);
+    }
+
+    function duplicateAddress(addressId) {
+      const address = addresses.find(a => a.id === addressId);
+      if (!address) return;
+      
+      const duplicate = {
+        ...address,
+        id: addresses.length + 1,
+        isDefault: false,
+        createdAt: new Date().toISOString().split('T')[0]
+      };
+      
+      addresses.push(duplicate);
+      applyFilters();
+      showNotification('Address duplicated successfully!', 'success');
+    }
+
+    function setDefaultAddress(addressId) {
+      addresses = addresses.map(addr => ({
+        ...addr,
+        isDefault: addr.id === addressId
+      }));
+      applyFilters();
+      showNotification('Default address updated!', 'success');
+    }
+
+    function deleteAddress(addressId) {
+      deleteAddressId = addressId;
+      document.getElementById('deleteModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').classList.remove('active');
+      deleteAddressId = null;
+      document.body.style.overflow = '';
+    }
+
+    function confirmDelete() {
+      if (deleteAddressId) {
+        const address = addresses.find(a => a.id === deleteAddressId);
+        if (address && address.isDefault && addresses.length > 1) {
+          // If deleting default address, make another one default
+          const nextAddress = addresses.find(a => a.id !== deleteAddressId);
+          if (nextAddress) {
+            nextAddress.isDefault = true;
+          }
+        }
+        
+        addresses = addresses.filter(a => a.id !== deleteAddressId);
+        selectedAddresses = selectedAddresses.filter(id => id !== deleteAddressId);
+        
+        applyFilters();
+        updateBulkActions();
+        showNotification('Address deleted successfully!', 'success');
+      }
+      closeDeleteModal();
+    }
+
+    // Bulk selection functions
+    function toggleAddressSelection(addressId) {
+      if (selectedAddresses.includes(addressId)) {
+        selectedAddresses = selectedAddresses.filter(id => id !== addressId);
+      } else {
+        selectedAddresses.push(addressId);
+      }
+      updateBulkActions();
+    }
+
+    function selectAllAddresses() {
+      selectedAddresses = filteredAddresses.map(a => a.id);
+      document.querySelectorAll('.address-checkbox').forEach(checkbox => {
+        checkbox.checked = true;
+      });
+      updateBulkActions();
+    }
+
+    function deselectAllAddresses() {
+      selectedAddresses = [];
+      document.querySelectorAll('.address-checkbox').forEach(checkbox => {
+        checkbox.checked = false;
+      });
+      updateBulkActions();
+    }
+
+    function updateBulkActions() {
+      const bulkBar = document.getElementById('bulkActionsBar');
+      const selectedCount = document.getElementById('selectedCount');
+      
+      if (selectedAddresses.length > 0) {
+        bulkBar.classList.remove('hidden');
+        bulkBar.classList.add('active');
+        selectedCount.textContent = selectedAddresses.length;
+      } else {
+        bulkBar.classList.add('hidden');
+        bulkBar.classList.remove('active');
+      }
+    }
+
+    function bulkDelete() {
+      if (selectedAddresses.length === 0) return;
+      
+      if (confirm(`Are you sure you want to delete ${selectedAddresses.length} address(es)?`)) {
+        // Check if any selected addresses are default
+        const hasDefault = selectedAddresses.some(id => 
+          addresses.find(a => a.id === id)?.isDefault
+        );
+        
+        if (hasDefault && addresses.length > selectedAddresses.length) {
+          // Set a new default if we're deleting the current default
+          const remainingAddresses = addresses.filter(a => !selectedAddresses.includes(a.id));
+          if (remainingAddresses.length > 0) {
+            remainingAddresses[0].isDefault = true;
+          }
+        }
+        
+        addresses = addresses.filter(a => !selectedAddresses.includes(a.id));
+        selectedAddresses = [];
+        
+        applyFilters();
+        updateBulkActions();
+        showNotification('Selected addresses deleted successfully!', 'success');
+      }
+    }
+
+    // Utility functions
+    function updateAddressCount() {
+      document.getElementById('addressCount').textContent = filteredAddresses.length;
+    }
+
+    function showNotification(message, type = 'success') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+          <span class="font-light">${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+
+    // Account dropdown functionality
+    function toggleAccountDropdown() {
+      const dropdown = document.getElementById('accountDropdown');
+      const dropdownContent = document.getElementById('accountDropdownContent');
+      
+      dropdown.classList.toggle('active');
+      
+      if (dropdown.classList.contains('active')) {
+        dropdownContent.style.display = 'block';
+      } else {
+        dropdownContent.style.display = 'none';
+      }
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const favorites = JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+      const count = favorites.length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close dropdowns and modals when clicking outside
+    document.addEventListener('click', function(event) {
+      // Close account dropdown
+      const dropdown = document.getElementById('accountDropdown');
+      if (dropdown && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('active');
+        document.getElementById('accountDropdownContent').style.display = 'none';
+      }
+      
+      // Close modals when clicking outside
+      const addressModal = document.getElementById('addressModal');
+      const deleteModal = document.getElementById('deleteModal');
+      
+      if (event.target === addressModal) {
+        closeAddressModal();
+      }
+      
+      if (event.target === deleteModal) {
+        closeDeleteModal();
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeAddressModal();
+        closeDeleteModal();
+        
+        // Close account dropdown
+        const dropdown = document.getElementById('accountDropdown');
+        dropdown.classList.remove('active');
+        document.getElementById('accountDropdownContent').style.display = 'none';
+      }
+      
+      // Quick add shortcut (Ctrl/Cmd + N)
+      if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+        e.preventDefault();
+        openAddressModal();
+      }
+    });
+
+    // Auto-save form data to prevent loss
+    let formAutoSaveTimer;
+    const formElements = document.querySelectorAll('#addressForm input, #addressForm select, #addressForm textarea');
+    
+    formElements.forEach(element => {
+      element.addEventListener('input', function() {
+        clearTimeout(formAutoSaveTimer);
+        formAutoSaveTimer = setTimeout(() => {
+          const formData = new FormData(document.getElementById('addressForm'));
+          const autoSaveData = Object.fromEntries(formData);
+          localStorage.setItem('addressFormAutoSave', JSON.stringify(autoSaveData));
+        }, 1000);
+      });
+    });
+
+    // Restore auto-saved form data
+    function restoreAutoSavedData() {
+      const autoSaveData = localStorage.getItem('addressFormAutoSave');
+      if (autoSaveData) {
+        const data = JSON.parse(autoSaveData);
+        Object.keys(data).forEach(key => {
+          const field = document.getElementById(key);
+          if (field && field.value === '') {
+            if (field.type === 'checkbox') {
+              field.checked = data[key] === 'on';
+            } else if (field.type === 'radio') {
+              if (field.value === data[key]) {
+                field.checked = true;
+              }
+            } else {
+              field.value = data[key];
+            }
+          }
+        });
+      }
+    }
+
+    // Clear auto-saved data when form is successfully submitted
+    function clearAutoSavedData() {
+      localStorage.removeItem('addressFormAutoSave');
+    }
+
+    // Initialize tooltips for validation indicators
+    function initializeTooltips() {
+      const indicators = document.querySelectorAll('.validation-indicator');
+      indicators.forEach(indicator => {
+        indicator.addEventListener('mouseenter', function() {
+          const tooltip = document.createElement('div');
+          tooltip.className = 'absolute bg-black text-white px-2 py-1 text-xs rounded z-50';
+          tooltip.style.bottom = '100%';
+          tooltip.style.left = '50%';
+          tooltip.style.transform = 'translateX(-50%)';
+          tooltip.style.marginBottom = '5px';
+          tooltip.textContent = this.title;
+          this.parentNode.appendChild(tooltip);
+          this.tooltipElement = tooltip;
+        });
+        
+        indicator.addEventListener('mouseleave', function() {
+          if (this.tooltipElement) {
+            this.tooltipElement.remove();
+            this.tooltipElement = null;
+          }
+        });
+      });
+    }
+
+    // Add address verification functionality
+    function verifyAddress(addressId) {
+      const address = addresses.find(a => a.id === addressId);
+      if (!address) return;
+      
+      // Simulate address verification API call
+      setTimeout(() => {
+        address.verified = true;
+        applyFilters();
+        showNotification('Address verified successfully!', 'success');
+      }, 2000);
+      
+      showNotification('Verifying address...', 'info');
+    }
+
+    // Export addresses functionality
+    function exportAddresses() {
+      const dataStr = JSON.stringify(addresses, null, 2);
+      const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+      
+      const exportFileDefaultName = 'texas_watches_addresses.json';
+      
+      const linkElement = document.createElement('a');
+      linkElement.setAttribute('href', dataUri);
+      linkElement.setAttribute('download', exportFileDefaultName);
+      linkElement.click();
+      
+      showNotification('Addresses exported successfully!', 'success');
+    }
+
+    // Import addresses functionality
+    function importAddresses() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json';
+      
+      input.onchange = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const importedAddresses = JSON.parse(e.target.result);
+            
+            // Validate imported data
+            if (Array.isArray(importedAddresses)) {
+              // Assign new IDs to avoid conflicts
+              importedAddresses.forEach(addr => {
+                addr.id = addresses.length + 1;
+                addr.isDefault = false; // Don't import default status
+                addresses.push(addr);
+              });
+              
+              applyFilters();
+              showNotification(`${importedAddresses.length} addresses imported successfully!`, 'success');
+            } else {
+              showNotification('Invalid file format', 'error');
+            }
+          } catch (error) {
+            showNotification('Error parsing file', 'error');
+          }
+        };
+        
+        reader.readAsText(file);
+      };
+      
+      input.click();
+    }
+
+    // Enhanced form validation with real-time feedback
+    function setupRealTimeValidation() {
+      const requiredFields = ['firstName', 'lastName', 'phone', 'address1', 'city', 'state', 'zipCode', 'country'];
+      
+      requiredFields.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (field) {
+          field.addEventListener('blur', function() {
+            if (this.value.trim()) {
+              this.classList.remove('form-error');
+              this.classList.add('form-success');
+            } else {
+              this.classList.remove('form-success');
+              this.classList.add('form-error');
+            }
+          });
+          
+          field.addEventListener('input', function() {
+            if (this.classList.contains('form-error') && this.value.trim()) {
+              this.classList.remove('form-error');
+            }
+          });
+        }
+      });
+    }
+
+    // Setup all event listeners when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setupRealTimeValidation();
+    });
+
+    // Update the saveAddress function to clear auto-save data
+    const originalSaveAddress = saveAddress;
+    saveAddress = function() {
+      originalSaveAddress();
+      clearAutoSavedData();
+    };
+  </script>
+</body>
+
+</html>
