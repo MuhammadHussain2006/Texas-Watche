@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Enhanced card hover */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: #000;
+    }
+
+    /* Job card styling */
+    .job-card {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .job-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .section-animation:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Form animations */
+    .form-animation {
+      transition: all 0.3s ease;
+    }
+
+    .form-animation:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    /* Success message animation */
+    .success-message {
+      animation: slideInRight 0.3s ease, fadeOut 0.3s ease 4.7s;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* Feature icon animation */
+    .feature-icon {
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* Job modal */
+    .job-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .job-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .job-modal-content {
+      background: white;
+      max-width: 800px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 2px solid #000;
+    }
+
+    /* Application form styling */
+    .application-form {
+      display: none;
+    }
+
+    .application-form.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .job-modal-content {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+      }
+    }
+
+    /* File upload styling */
+    .file-upload {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .file-upload input[type="file"] {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .file-upload-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      border: 2px dashed #d1d5db;
+      transition: all 0.3s ease;
+    }
+
+    .file-upload:hover .file-upload-text {
+      border-color: #000;
+      background: #f9fafb;
+    }
+
+    .file-uploaded {
+      border-color: #10b981;
+      background: #f0fdf4;
+    }
+
+    /* Pulse animation for icons */
+    .pulse-icon {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Careers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">JOIN OUR TEAM</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Build the future of luxury timepieces with us</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Work With Us -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">WHY Wrist Watches?</h2>
+        <p class="text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+          Join a team passionate about luxury timepieces and exceptional customer experiences. 
+          We believe in fostering talent, creativity, and innovation.
+        </p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div class="feature-card bg-white border-2 border-black p-6 sm:p-8 text-center card-hover">
+          <div class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-rocket text-white text-xl sm:text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">GROWTH OPPORTUNITIES</h3>
+          <p class="text-gray-600 font-light text-sm">Advance your career with comprehensive training programs and mentorship opportunities.</p>
+        </div>
+
+        <div class="feature-card bg-white border-2 border-black p-6 sm:p-8 text-center card-hover">
+          <div class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-users text-white text-xl sm:text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">COLLABORATIVE CULTURE</h3>
+          <p class="text-gray-600 font-light text-sm">Work alongside passionate professionals in a supportive, innovative environment.</p>
+        </div>
+
+        <div class="feature-card bg-white border-2 border-black p-6 sm:p-8 text-center card-hover">
+          <div class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-heart text-white text-xl sm:text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">COMPREHENSIVE BENEFITS</h3>
+          <p class="text-gray-600 font-light text-sm">Health insurance, retirement plans, flexible hours, and employee discounts.</p>
+        </div>
+
+        <div class="feature-card bg-white border-2 border-black p-6 sm:p-8 text-center card-hover">
+          <div class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-globe text-white text-xl sm:text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">REMOTE FRIENDLY</h3>
+          <p class="text-gray-600 font-light text-sm">Flexible work arrangements with remote and hybrid options available.</p>
+        </div>
+
+        <div class="feature-card bg-white border-2 border-black p-6 sm:p-8 text-center card-hover">
+          <div class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-graduation-cap text-white text-xl sm:text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">LEARNING & DEVELOPMENT</h3>
+          <p class="text-gray-600 font-light text-sm">Annual education budget and access to industry conferences and workshops.</p>
+        </div>
+
+        <div class="feature-card bg-white border-2 border-black p-6 sm:p-8 text-center card-hover">
+          <div class="feature-icon w-14 h-14 sm:w-16 sm:h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-gem text-white text-xl sm:text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">LUXURY INDUSTRY</h3>
+          <p class="text-gray-600 font-light text-sm">Work with world-class luxury timepieces and discerning clientele.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">OPEN POSITIONS</h2>
+        <p class="text-gray-600 font-light">Explore exciting opportunities to join our growing team</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8" id="jobListings">
+        <!-- Job listings will be populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Values -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">OUR VALUES</h2>
+        <p class="text-gray-600 font-light">The principles that guide everything we do</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div class="space-y-6 sm:space-y-8">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-award text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">EXCELLENCE</h3>
+              <p class="text-gray-600 font-light text-sm">We pursue perfection in every detail, from product curation to customer service.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-handshake text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">INTEGRITY</h3>
+              <p class="text-gray-600 font-light text-sm">Honesty and transparency in all our relationships and business practices.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-lightbulb text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">INNOVATION</h3>
+              <p class="text-gray-600 font-light text-sm">Embracing new technologies and approaches to enhance customer experience.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6 sm:space-y-8">
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-heart text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">PASSION</h3>
+              <p class="text-gray-600 font-light text-sm">Deep love for luxury timepieces and dedication to our craft.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-users text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">TEAMWORK</h3>
+              <p class="text-gray-600 font-light text-sm">Collaborative spirit and mutual support to achieve common goals.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <i class="fas fa-globe text-xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">GLOBAL MINDSET</h3>
+              <p class="text-gray-600 font-light text-sm">Serving customers worldwide with cultural sensitivity and understanding.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Job Modal -->
+  <div class="job-modal" id="jobModal">
+    <div class="job-modal-content">
+      <div class="sticky top-0 bg-white border-b-2 border-black p-6 flex items-center justify-between">
+        <h2 class="text-2xl font-light tracking-wider" id="modalJobTitle">Job Title</h2>
+        <button onclick="closeJobModal()" class="p-2 hover:bg-gray-100 transition-colors">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+      
+      <div class="p-6 sm:p-8">
+        <div id="jobContent">
+          <!-- Job content will be populated by JavaScript -->
+        </div>
+
+        <!-- Application Form -->
+        <div class="application-form mt-8 sm:mt-12" id="applicationForm">
+          <div class="border-t-2 border-gray-200 pt-8">
+            <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">APPLY FOR THIS POSITION</h3>
+            
+            <form id="jobApplicationForm" class="space-y-6">
+              <input type="hidden" id="jobId" name="jobId">
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    First Name <span class="text-red-500">*</span>
+                  </label>
+                  <input type="text" id="appFirstName" name="firstName" required
+                    class="w-full px-4 py-3 border border-gray-200 focus:border-black focus:outline-none form-animation font-light">
+                </div>
+                <div>
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    Last Name <span class="text-red-500">*</span>
+                  </label>
+                  <input type="text" id="appLastName" name="lastName" required
+                    class="w-full px-4 py-3 border border-gray-200 focus:border-black focus:outline-none form-animation font-light">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Email Address <span class="text-red-500">*</span>
+                </label>
+                <input type="email" id="appEmail" name="email" required
+                  class="w-full px-4 py-3 border border-gray-200 focus:border-black focus:outline-none form-animation font-light">
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Phone Number <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" id="appPhone" name="phone" required
+                  class="w-full px-4 py-3 border border-gray-200 focus:border-black focus:outline-none form-animation font-light">
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Resume <span class="text-red-500">*</span>
+                </label>
+                <div class="file-upload" onclick="document.getElementById('resumeFile').click()">
+                  <input type="file" id="resumeFile" name="resume" accept=".pdf,.doc,.docx" required>
+                  <div class="file-upload-text" id="resumeUploadText">
+                    <div class="text-center">
+                      <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                      <p class="text-gray-600 font-light">Click to upload your resume</p>
+                      <p class="text-xs text-gray-400">PDF, DOC, or DOCX (max 5MB)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Cover Letter (Optional)
+                </label>
+                <textarea id="appCoverLetter" name="coverLetter" rows="6"
+                  class="w-full px-4 py-3 border border-gray-200 focus:border-black focus:outline-none form-animation resize-none font-light"
+                  placeholder="Tell us why you're interested in this position..."></textarea>
+              </div>
+
+              <div class="flex space-x-4">
+                <button type="submit"
+                  class="flex-1 bg-black text-white py-3 sm:py-4 px-6 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                  <i class="fas fa-paper-plane mr-2"></i>Submit Application
+                </button>
+                <button type="button" onclick="closeJobModal()"
+                  class="px-6 py-3 sm:py-4 bg-white text-black hover:bg-gray-50 transition-colors font-light text-sm tracking-wider uppercase border-2 border-black">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Job listings data
+    const jobListings = [
+      {
+        id: 1,
+        title: 'Senior Watch Specialist',
+        department: 'Sales',
+        location: 'Dallas, TX',
+        type: 'Full-time',
+        level: 'Senior',
+        description: 'Lead our luxury watch sales team and provide expert consultation to discerning clients.',
+        requirements: [
+          '5+ years in luxury retail or watch industry',
+          'Deep knowledge of luxury watch brands and mechanisms',
+          'Excellent customer service and communication skills',
+          'Ability to work in a fast-paced, high-end environment',
+          'Sales experience with high-value items'
+        ],
+        responsibilities: [
+          'Provide expert consultation on luxury timepieces',
+          'Build and maintain relationships with VIP clients',
+          'Achieve and exceed sales targets',
+          'Train junior staff on product knowledge',
+          'Participate in watch industry events and trade shows'
+        ],
+        benefits: [
+          'Competitive salary plus commission',
+          'Comprehensive health benefits',
+          'Employee watch discount program',
+          'Professional development opportunities',
+          'Flexible work arrangements'
+        ]
+      },
+      {
+        id: 2,
+        title: 'E-commerce Developer',
+        department: 'Technology',
+        location: 'Remote',
+        type: 'Full-time',
+        level: 'Mid-level',
+        description: 'Develop and maintain our luxury e-commerce platform with a focus on user experience.',
+        requirements: [
+          '3+ years of full-stack development experience',
+          'Proficiency in React, Node.js, and modern web technologies',
+          'Experience with e-commerce platforms and payment systems',
+          'Knowledge of responsive design and mobile optimization',
+          'Understanding of luxury retail customer experience'
+        ],
+        responsibilities: [
+          'Develop and maintain e-commerce website features',
+          'Optimize site performance and user experience',
+          'Implement secure payment processing systems',
+          'Collaborate with design team on UI/UX improvements',
+          'Ensure website security and data protection'
+        ],
+        benefits: [
+          'Competitive salary',
+          'Remote work flexibility',
+          'Latest technology and equipment',
+          'Professional development budget',
+          'Health and wellness benefits'
+        ]
+      },
+      {
+        id: 3,
+        title: 'Digital Marketing Manager',
+        department: 'Marketing',
+        location: 'Austin, TX',
+        type: 'Full-time',
+        level: 'Senior',
+        description: 'Lead our digital marketing efforts to reach luxury watch enthusiasts worldwide.',
+        requirements: [
+          '4+ years in digital marketing, preferably luxury brands',
+          'Expertise in social media, PPC, and content marketing',
+          'Experience with luxury customer demographics',
+          'Strong analytical and project management skills',
+          'Creative mindset with attention to detail'
+        ],
+        responsibilities: [
+          'Develop and execute comprehensive digital marketing strategies',
+          'Manage social media presence and content creation',
+          'Oversee PPC campaigns and SEO optimization',
+          'Analyze market trends and customer behavior',
+          'Collaborate with influencers and brand partners'
+        ],
+        benefits: [
+          'Competitive salary with performance bonuses',
+          'Creative freedom and autonomy',
+          'Marketing conference attendance',
+          'Professional development opportunities',
+          'Comprehensive benefits package'
+        ]
+      },
+      {
+        id: 4,
+        title: 'Customer Service Representative',
+        department: 'Customer Service',
+        location: 'Houston, TX',
+        type: 'Full-time',
+        level: 'Entry-level',
+        description: 'Provide exceptional customer support to our luxury watch clientele.',
+        requirements: [
+          'Excellent communication and interpersonal skills',
+          'Previous customer service experience preferred',
+          'Passion for luxury timepieces and watches',
+          'Problem-solving abilities and attention to detail',
+          'Ability to work flexible hours including weekends'
+        ],
+        responsibilities: [
+          'Handle customer inquiries via phone, email, and chat',
+          'Process orders, returns, and exchanges',
+          'Provide product information and recommendations',
+          'Resolve customer issues with empathy and professionalism',
+          'Maintain accurate customer records and documentation'
+        ],
+        benefits: [
+          'Competitive hourly wage with growth potential',
+          'Comprehensive training program',
+          'Employee discount on luxury watches',
+          'Health insurance and retirement benefits',
+          'Paid time off and holidays'
+        ]
+      },
+      {
+        id: 5,
+        title: 'Watch Authentication Specialist',
+        department: 'Quality Assurance',
+        location: 'Dallas, TX',
+        type: 'Full-time',
+        level: 'Senior',
+        description: 'Ensure the authenticity and quality of all luxury timepieces in our collection.',
+        requirements: [
+          'Certified watch authentication credentials',
+          '5+ years experience in watch authentication',
+          'Deep knowledge of luxury watch brands and forgery detection',
+          'Attention to detail and precision',
+          'Ability to work with high-value items'
+        ],
+        responsibilities: [
+          'Authenticate luxury watches using specialized tools and techniques',
+          'Inspect timepieces for quality and condition',
+          'Document authentication processes and findings',
+          'Provide authentication reports and certificates',
+          'Stay updated on latest authentication methods and forgery trends'
+        ],
+        benefits: [
+          'Competitive salary reflecting specialized expertise',
+          'Continuing education and certification support',
+          'Access to latest authentication equipment',
+          'Professional development opportunities',
+          'Comprehensive benefits package'
+        ]
+      },
+      {
+        id: 6,
+        title: 'Logistics Coordinator',
+        department: 'Operations',
+        location: 'Dallas, TX',
+        type: 'Full-time',
+        level: 'Mid-level',
+        description: 'Coordinate worldwide shipping and logistics for our luxury timepiece collection.',
+        requirements: [
+          '2+ years in logistics or supply chain management',
+          'Experience with international shipping and customs',
+          'Knowledge of luxury goods handling and insurance',
+          'Strong organizational and communication skills',
+          'Proficiency in logistics software and systems'
+        ],
+        responsibilities: [
+          'Coordinate worldwide shipping and delivery',
+          'Manage relationships with shipping partners',
+          'Ensure proper insurance and security for high-value items',
+          'Handle customs documentation and international regulations',
+          'Track and resolve shipping issues and delays'
+        ],
+        benefits: [
+          'Competitive salary with performance incentives',
+          'Opportunity to work with international partners',
+          'Professional development in logistics and supply chain',
+          'Health and wellness benefits',
+          'Flexible work arrangements'
+        ]
+      }
+    ];
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Get favorites and cart
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Render job listings
+    function renderJobListings() {
+      const container = document.getElementById('jobListings');
+      
+      container.innerHTML = jobListings.map(job => `
+        <div class="job-card bg-white border-2 border-gray-200 p-6 sm:p-8" onclick="openJobModal(${job.id})">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-2">${job.title}</h3>
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="bg-black text-white px-3 py-1 text-xs font-light tracking-wider uppercase">${job.department}</span>
+                <span class="bg-gray-200 text-gray-700 px-3 py-1 text-xs font-light tracking-wider uppercase">${job.type}</span>
+                <span class="bg-gray-200 text-gray-700 px-3 py-1 text-xs font-light tracking-wider uppercase">${job.level}</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="flex items-center text-gray-600 text-sm font-light mb-1">
+                <i class="fas fa-map-marker-alt mr-2"></i>
+                ${job.location}
+              </div>
+            </div>
+          </div>
+          
+          <p class="text-gray-700 font-light mb-6 leading-relaxed">${job.description}</p>
+          
+          <div class="flex items-center justify-between">
+            <div class="text-sm font-light text-gray-600">
+              Click to view details and apply
+            </div>
+            <div class="flex items-center space-x-2">
+              <button class="bg-black text-white px-4 py-2 text-sm font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+                View Job
+              </button>
+              <i class="fas fa-arrow-right text-gray-400"></i>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Open job modal
+    function openJobModal(jobId) {
+      const job = jobListings.find(j => j.id === jobId);
+      if (!job) return;
+
+      document.getElementById('modalJobTitle').textContent = job.title;
+      document.getElementById('jobId').value = jobId;
+      
+      const content = `
+        <div class="mb-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="bg-black text-white px-3 py-1 text-xs font-light tracking-wider uppercase">${job.department}</span>
+            <span class="bg-gray-200 text-gray-700 px-3 py-1 text-xs font-light tracking-wider uppercase">${job.type}</span>
+            <span class="bg-gray-200 text-gray-700 px-3 py-1 text-xs font-light tracking-wider uppercase">${job.level}</span>
+          </div>
+          
+          <div class="flex items-center text-gray-600 text-sm font-light mb-4">
+            <i class="fas fa-map-marker-alt mr-2"></i>
+            ${job.location}
+          </div>
+          
+          <p class="text-gray-700 font-light leading-relaxed">${job.description}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h4 class="text-lg font-light tracking-wider mb-4 uppercase">Requirements</h4>
+            <ul class="space-y-2">
+              ${job.requirements.map(req => `
+                <li class="flex items-start space-x-3">
+                  <i class="fas fa-check text-black mt-1 text-sm"></i>
+                  <span class="text-gray-700 font-light text-sm">${req}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 class="text-lg font-light tracking-wider mb-4 uppercase">Responsibilities</h4>
+            <ul class="space-y-2">
+              ${job.responsibilities.map(resp => `
+                <li class="flex items-start space-x-3">
+                  <i class="fas fa-arrow-right text-gray-500 mt-1 text-sm"></i>
+                  <span class="text-gray-700 font-light text-sm">${resp}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 border border-gray-200 p-6 mb-6">
+          <h4 class="text-lg font-light tracking-wider mb-4 uppercase">Benefits & Perks</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            ${job.benefits.map(benefit => `
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-star text-black text-sm"></i>
+                <span class="text-gray-700 font-light text-sm">${benefit}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button onclick="showApplicationForm()" class="bg-black text-white px-8 py-3 font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            <i class="fas fa-paper-plane mr-2"></i>Apply Now
+          </button>
+        </div>
+      `;
+      
+      document.getElementById('jobContent').innerHTML = content;
+      document.getElementById('jobModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close job modal
+    function closeJobModal() {
+      document.getElementById('jobModal').classList.remove('active');
+      document.getElementById('applicationForm').classList.remove('active');
+      document.body.style.overflow = '';
+      
+      // Reset form
+      document.getElementById('jobApplicationForm').reset();
+      resetFileUpload();
+    }
+
+    // Show application form
+    function showApplicationForm() {
+      document.getElementById('applicationForm').classList.add('active');
+      document.getElementById('applicationForm').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+    }
+
+    // Handle file upload
+    document.getElementById('resumeFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      const uploadText = document.getElementById('resumeUploadText');
+      
+      if (file) {
+        if (file.size > 5 * 1024 * 1024) { // 5MB limit
+          alert('File size must be less than 5MB');
+          e.target.value = '';
+          return;
+        }
+        
+        uploadText.innerHTML = `
+          <div class="text-center">
+            <i class="fas fa-file-alt text-3xl text-green-600 mb-2"></i>
+            <p class="text-green-600 font-light">${file.name}</p>
+            <p class="text-xs text-gray-400">Click to change file</p>
+          </div>
+        `;
+        uploadText.classList.add('file-uploaded');
+      }
+    });
+
+    // Reset file upload
+    function resetFileUpload() {
+      document.getElementById('resumeFile').value = '';
+      const uploadText = document.getElementById('resumeUploadText');
+      uploadText.innerHTML = `
+        <div class="text-center">
+          <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+          <p class="text-gray-600 font-light">Click to upload your resume</p>
+          <p class="text-xs text-gray-400">PDF, DOC, or DOCX (max 5MB)</p>
+        </div>
+      `;
+      uploadText.classList.remove('file-uploaded');
+    }
+
+    // Handle form submission
+    document.getElementById('jobApplicationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (validateApplicationForm()) {
+        submitApplication();
+      }
+    });
+
+    // Validate application form
+    function validateApplicationForm() {
+      const requiredFields = ['firstName', 'lastName', 'email', 'phone'];
+      const resumeFile = document.getElementById('resumeFile').files[0];
+      let isValid = true;
+
+      // Clear previous errors
+      document.querySelectorAll('.form-error').forEach(el => {
+        el.classList.remove('form-error');
+      });
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.remove();
+      });
+
+      // Validate required fields
+      requiredFields.forEach(fieldName => {
+        const field = document.getElementById(`app${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}`);
+        if (!field.value.trim()) {
+          field.classList.add('form-error');
+          showFieldError(field, 'This field is required');
+          isValid = false;
+        }
+      });
+
+      // Validate email
+      const email = document.getElementById('appEmail').value.trim();
+      if (email && !isValidEmail(email)) {
+        const field = document.getElementById('appEmail');
+        field.classList.add('form-error');
+        showFieldError(field, 'Please enter a valid email address');
+        isValid = false;
+      }
+
+      // Validate resume file
+      if (!resumeFile) {
+        const uploadText = document.getElementById('resumeUploadText');
+        uploadText.classList.add('form-error');
+        showFieldError(uploadText.parentElement, 'Please upload your resume');
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    // Show field error
+    function showFieldError(field, message) {
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message text-red-500 text-sm mt-1 font-light';
+      errorDiv.textContent = message;
+      field.parentNode.appendChild(errorDiv);
+    }
+
+    // Email validation
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Submit application
+    function submitApplication() {
+      const formData = new FormData(document.getElementById('jobApplicationForm'));
+      const submitBtn = document.querySelector('#jobApplicationForm button[type="submit"]');
+      const job = jobListings.find(j => j.id === parseInt(formData.get('jobId')));
+
+      // Show loading state
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting Application...';
+      submitBtn.disabled = true;
+
+      // Simulate submission
+      setTimeout(() => {
+        // Create application object
+        const applicationData = {
+          timestamp: new Date().toISOString(),
+          jobId: formData.get('jobId'),
+          jobTitle: job.title,
+          firstName: formData.get('firstName'),
+          lastName: formData.get('lastName'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          coverLetter: formData.get('coverLetter') || '',
+          resumeFile: formData.get('resume').name,
+          status: 'submitted'
+        };
+
+        // Save to localStorage
+        const existingApplications = JSON.parse(localStorage.getItem('texasWatchesApplications') || '[]');
+        existingApplications.push(applicationData);
+        localStorage.setItem('texasWatchesApplications', JSON.stringify(existingApplications));
+
+        console.log('Job application submitted:', applicationData);
+
+        // Show success message
+        showSuccessMessage(`Thank you for your application! We've received your application for ${job.title}. We'll review it carefully and contact you within 1-2 weeks.`);
+
+        // Close modal
+        closeJobModal();
+
+        // Reset button
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Submit Application';
+        submitBtn.disabled = false;
+      }, 2000);
+    }
+
+    // Show success message
+    function showSuccessMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'fixed top-6 right-6 bg-black text-white px-6 py-4 shadow-lg z-50 success-message max-w-md';
+      messageDiv.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <i class="fas fa-check-circle text-xl mt-1"></i>
+          <span class="font-light">${message}</span>
+        </div>
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('jobModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeJobModal();
+      }
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('jobModal').classList.contains('active')) {
+        closeJobModal();
+      }
+    });
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      renderJobListings();
+      updateCartCount();
+      updateFavoritesCount();
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
