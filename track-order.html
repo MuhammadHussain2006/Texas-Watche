@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Your Order - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Tracking input styling */
+    .tracking-input {
+      transition: all 0.3s ease;
+    }
+
+    .tracking-input:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .tracking-input.error {
+      border-color: #ef4444;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    /* Status styling */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-processing {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .status-shipped {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-delivered {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .status-cancelled {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    /* Timeline styling */
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e5e7eb;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 1.5rem;
+      top: 0.5rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      background: #e5e7eb;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .timeline-dot.completed {
+      background: #10b981;
+    }
+
+    .timeline-dot.current {
+      background: #3b82f6;
+      animation: pulse 2s infinite;
+    }
+
+    .timeline-dot.pending {
+      background: #f59e0b;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Progress bar styling */
+    .progress-bar {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      border-radius: 4px;
+      transition: width 0.8s ease;
+    }
+
+    /* Order card styling */
+    .order-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+    }
+
+    .order-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Map styling */
+    .map-container {
+      position: relative;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .map-placeholder {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #f1f5f9, #e2e8f0);
+    }
+
+    /* Notification styling */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      animation: slideInRight 0.3s ease;
+    }
+
+    .notification.success {
+      background: #10b981;
+    }
+
+    .notification.error {
+      background: #ef4444;
+    }
+
+    .notification.info {
+      background: #3b82f6;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Loading animation */
+    .loading-spinner {
+      border: 3px solid #f3f4f6;
+      border-top: 3px solid #000;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Delivery truck animation */
+    .delivery-truck {
+      animation: moveRight 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes moveRight {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(20px);
+      }
+    }
+
+    /* Estimated delivery card */
+    .delivery-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .delivery-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Empty state styling */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .empty-icon {
+      font-size: 4rem;
+      color: #d1d5db;
+      margin-bottom: 1rem;
+    }
+
+    /* Carrier logo styling */
+    .carrier-logo {
+      width: 80px;
+      height: 40px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #374151;
+      font-size: 0.75rem;
+    }
+
+    /* Quick track buttons */
+    .quick-track-btn {
+      transition: all 0.3s ease;
+      border: 2px solid #e5e7eb;
+    }
+
+    .quick-track-btn:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Share tracking button */
+    .share-btn {
+      background: linear-gradient(45deg, #4f46e5, #7c3aed);
+      transition: all 0.3s ease;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .timeline::before {
+        left: 1rem;
+      }
+
+      .timeline-item {
+        padding-left: 2.5rem;
+      }
+
+      .timeline-dot {
+        left: 0.5rem;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .hero-gradient h1 {
+        font-size: 2.5rem;
+      }
+
+      .tracking-input {
+        font-size: 16px; /* Prevent zoom on iOS */
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown" id="accountDropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity" onclick="toggleAccountDropdown()">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content" id="accountDropdownContent">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Track Your Order</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 relative z-10">
+      <div class="text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">TRACK YOUR ORDER</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Monitor your luxury timepiece delivery</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Track Order Container -->
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Tracking Search Section -->
+    <div class="bg-white border-2 border-black p-6 sm:p-8 mb-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-light tracking-wider mb-4">ENTER TRACKING INFORMATION</h2>
+        <p class="text-gray-600 font-light">Enter your order number or tracking number to get real-time updates</p>
+      </div>
+
+      <div class="max-w-2xl mx-auto">
+        <form id="trackingForm" class="space-y-6">
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Order Number or Tracking Number <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="trackingNumber" name="trackingNumber" required
+              class="tracking-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light text-lg"
+              placeholder="e.g., TW-2024-001 or TRK123456789">
+            <p class="text-xs text-gray-500 mt-2 font-light">
+              You can find this in your order confirmation email
+            </p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Email Address (Optional)
+            </label>
+            <input type="email" id="email" name="email"
+              class="tracking-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light"
+              placeholder="your@email.com">
+            <p class="text-xs text-gray-500 mt-2 font-light">
+              For additional verification and updates
+            </p>
+          </div>
+
+          <div class="flex justify-center">
+            <button type="submit"
+              class="bg-black text-white px-8 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-search mr-2"></i>Track Order
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Quick Track Options -->
+      <div class="mt-8 pt-8 border-t border-gray-200">
+        <div class="text-center mb-4">
+          <h3 class="text-lg font-light tracking-wider mb-2">QUICK TRACK</h3>
+          <p class="text-gray-600 font-light text-sm">Recent orders for quick access</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3">
+          <button onclick="quickTrack('TW-2024-001')" class="quick-track-btn px-4 py-2 bg-white text-black hover:bg-gray-50 transition-colors font-light text-sm">
+            TW-2024-001
+          </button>
+          <button onclick="quickTrack('TW-2024-002')" class="quick-track-btn px-4 py-2 bg-white text-black hover:bg-gray-50 transition-colors font-light text-sm">
+            TW-2024-002
+          </button>
+          <button onclick="quickTrack('TW-2024-003')" class="quick-track-btn px-4 py-2 bg-white text-black hover:bg-gray-50 transition-colors font-light text-sm">
+            TW-2024-003
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="hidden">
+      <div class="bg-white border-2 border-black p-8 sm:p-12 text-center">
+        <div class="loading-spinner mx-auto mb-4"></div>
+        <h3 class="text-xl font-light tracking-wider mb-2">TRACKING YOUR ORDER</h3>
+        <p class="text-gray-600 font-light">Please wait while we retrieve your order information...</p>
+      </div>
+    </div>
+
+    <!-- Tracking Results -->
+    <div id="trackingResults" class="hidden space-y-8">
+      
+      <!-- Order Summary -->
+      <div class="bg-white border-2 border-black p-6 sm:p-8 order-card">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+          <div class="flex-1">
+            <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-2" id="orderNumber">Order #TW-2024-001</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+              <div>
+                <p class="text-gray-600 font-light">Order Date</p>
+                <p class="font-light" id="orderDate">January 15, 2024</p>
+              </div>
+              <div>
+                <p class="text-gray-600 font-light">Items</p>
+                <p class="font-light" id="itemCount">1 item</p>
+              </div>
+              <div>
+                <p class="text-gray-600 font-light">Total</p>
+                <p class="font-light" id="orderTotal">$12,500</p>
+              </div>
+              <div>
+                <p class="text-gray-600 font-light">Status</p>
+                <span class="status-badge status-delivered" id="orderStatus">Delivered</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex space-x-3">
+            <button onclick="shareTracking()" class="share-btn text-white px-4 py-2 hover:opacity-90 transition-opacity font-light text-sm">
+              <i class="fas fa-share mr-2"></i>Share
+            </button>
+            <button onclick="viewOrderDetails()" class="bg-white text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-white transition-colors font-light text-sm">
+              <i class="fas fa-receipt mr-2"></i>View Order
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="bg-white border-2 border-black p-6 sm:p-8">
+        <div class="mb-6">
+          <h3 class="text-lg font-light tracking-wider mb-4">ORDER PROGRESS</h3>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressBar" style="width: 100%"></div>
+          </div>
+          <div class="flex justify-between text-xs text-gray-600 mt-2">
+            <span>Ordered</span>
+            <span>Processing</span>
+            <span>Shipped</span>
+            <span>Delivered</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estimated Delivery -->
+      <div class="delivery-card p-6 sm:p-8 relative">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xl font-light tracking-wider mb-2">DELIVERY STATUS</h3>
+            <p class="text-lg font-light mb-1" id="deliveryStatus">Successfully Delivered</p>
+            <p class="text-sm opacity-90" id="deliveryDate">January 22, 2024 at 2:30 PM</p>
+          </div>
+          <div class="delivery-truck">
+            <i class="fas fa-truck text-4xl sm:text-5xl"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tracking Timeline -->
+      <div class="bg-white border-2 border-black p-6 sm:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl font-light tracking-wider">TRACKING TIMELINE</h3>
+          <div class="flex items-center space-x-3">
+            <div class="carrier-logo">DHL</div>
+            <div class="text-sm">
+              <p class="font-light">Tracking #</p>
+              <p class="font-light" id="trackingRef">TRK123456789</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline" id="trackingTimeline">
+          <!-- Timeline items will be populated here -->
+        </div>
+      </div>
+
+      <!-- Delivery Map -->
+      <div class="bg-white border-2 border-black p-6 sm:p-8">
+        <h3 class="text-xl font-light tracking-wider mb-6">DELIVERY LOCATION</h3>
+        <div class="map-container">
+          <div class="map-placeholder">
+            <div class="text-center">
+              <i class="fas fa-map-marked-alt text-5xl text-gray-400 mb-4"></i>
+              <p class="text-gray-600 font-light">Interactive delivery map</p>
+              <p class="text-sm text-gray-500 font-light">Map integration coming soon</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 p-4 bg-gray-50 border border-gray-200">
+          <div class="flex items-start space-x-3">
+            <i class="fas fa-map-marker-alt text-gray-500 mt-1"></i>
+            <div>
+              <p class="font-light text-black">Delivered to:</p>
+              <p class="text-sm text-gray-600 font-light" id="deliveryAddress">
+                John Doe<br>
+                123 Main Street, Apt 4B<br>
+                New York, NY 10001
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Items -->
+      <div class="bg-white border-2 border-black p-6 sm:p-8">
+        <h3 class="text-xl font-light tracking-wider mb-6">ORDER ITEMS</h3>
+        <div id="orderItems" class="space-y-4">
+          <!-- Order items will be populated here -->
+        </div>
+      </div>
+
+      <!-- Support Section -->
+      <div class="bg-gray-50 border-2 border-gray-200 p-6 sm:p-8">
+        <div class="text-center">
+          <h3 class="text-lg font-light tracking-wider mb-4">NEED HELP?</h3>
+          <p class="text-gray-600 font-light mb-6">
+            If you have any questions about your order or delivery, our customer service team is here to help.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
+            <button onclick="contactSupport()" class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-headset mr-2"></i>Contact Support
+            </button>
+            <button onclick="reportIssue()" class="bg-white text-black border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-exclamation-triangle mr-2"></i>Report Issue
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- No Results State -->
+    <div id="noResults" class="hidden">
+      <div class="bg-white border-2 border-black p-12 sm:p-16 text-center">
+        <div class="empty-state">
+          <i class="fas fa-search empty-icon"></i>
+          <h2 class="text-2xl sm:text-3xl font-light text-gray-900 mb-4 tracking-wider">ORDER NOT FOUND</h2>
+          <p class="text-gray-600 font-light mb-8">
+            We couldn't find an order with that tracking number. Please check your information and try again.
+          </p>
+          <div class="space-y-4">
+            <button onclick="resetSearch()" class="bg-black text-white px-8 py-3 hover:bg-gray-800 transition-colors font-light tracking-wider uppercase">
+              <i class="fas fa-search mr-2"></i>Try Again
+            </button>
+            <div class="text-sm text-gray-500 font-light">
+              <p>Need help? Contact us at:</p>
+              <p class="font-medium">support@texaswatches.com</p>
+              <p class="font-medium">+1 (555) 839-2792</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mock tracking data
+    const trackingData = {
+      'TW-2024-001': {
+        orderNumber: 'TW-2024-001',
+        orderDate: 'January 15, 2024',
+        itemCount: 1,
+        orderTotal: '$12,500',
+        status: 'delivered',
+        trackingNumber: 'TRK123456789',
+        carrier: 'DHL',
+        deliveryStatus: 'Successfully Delivered',
+        deliveryDate: 'January 22, 2024 at 2:30 PM',
+        deliveryAddress: 'John Doe<br>123 Main Street, Apt 4B<br>New York, NY 10001',
+        progress: 100,
+        timeline: [
+          {
+            date: 'January 15, 2024',
+            time: '10:30 AM',
+            status: 'Order Placed',
+            location: 'Online',
+            description: 'Your order has been successfully placed and payment confirmed.',
+            completed: true
+          },
+          {
+            date: 'January 16, 2024',
+            time: '2:15 PM',
+            status: 'Processing',
+            location: 'Texas Watches Facility',
+            description: 'Order is being prepared for shipment. Quality check in progress.',
+            completed: true
+          },
+          {
+            date: 'January 17, 2024',
+            time: '9:45 AM',
+            status: 'Shipped',
+            location: 'Dallas, TX',
+            description: 'Package has been dispatched and is on its way to you.',
+            completed: true
+          },
+          {
+            date: 'January 18, 2024',
+            time: '11:20 AM',
+            status: 'In Transit',
+            location: 'Memphis, TN',
+            description: 'Package is moving through our network.',
+            completed: true
+          },
+          {
+            date: 'January 20, 2024',
+            time: '8:30 AM',
+            status: 'Out for Delivery',
+            location: 'New York, NY',
+            description: 'Package is out for delivery and will arrive today.',
+            completed: true
+          },
+          {
+            date: 'January 22, 2024',
+            time: '2:30 PM',
+            status: 'Delivered',
+            location: 'New York, NY',
+            description: 'Package successfully delivered to recipient.',
+            completed: true
+          }
+        ],
+        items: [
+          {
+            name: 'Rolex Submariner Date',
+            image: './images/rolex-submariner.jpg',
+            price: '$12,500',
+            quantity: 1,
+            sku: 'ROL-SUB-001'
+          }
+        ]
+      },
+      'TW-2024-002': {
+        orderNumber: 'TW-2024-002',
+        orderDate: 'January 20, 2024',
+        itemCount: 1,
+        orderTotal: '$8,500',
+        status: 'shipped',
+        trackingNumber: 'TRK987654321',
+        carrier: 'UPS',
+        deliveryStatus: 'In Transit',
+        deliveryDate: 'Expected: January 27, 2024',
+        deliveryAddress: 'John Doe<br>456 Oak Avenue<br>Los Angeles, CA 90210',
+        progress: 75,
+        timeline: [
+          {
+            date: 'January 20, 2024',
+            time: '3:20 PM',
+            status: 'Order Placed',
+            location: 'Online',
+            description: 'Your order has been successfully placed and payment confirmed.',
+            completed: true
+          },
+          {
+            date: 'January 21, 2024',
+            time: '10:45 AM',
+            status: 'Processing',
+            location: 'Texas Watches Facility',
+            description: 'Order is being prepared for shipment.',
+            completed: true
+          },
+          {
+            date: 'January 23, 2024',
+            time: '1:30 PM',
+            status: 'Shipped',
+            location: 'Dallas, TX',
+            description: 'Package has been dispatched and is on its way to you.',
+            completed: true
+          },
+          {
+            date: 'January 25, 2024',
+            time: '9:15 AM',
+            status: 'In Transit',
+            location: 'Phoenix, AZ',
+            description: 'Package is moving through our network.',
+            completed: true,
+            current: true
+          },
+          {
+            date: 'January 27, 2024',
+            time: 'Expected',
+            status: 'Out for Delivery',
+            location: 'Los Angeles, CA',
+            description: 'Package will be out for delivery.',
+            completed: false
+          },
+          {
+            date: 'January 27, 2024',
+            time: 'Expected',
+            status: 'Delivered',
+            location: 'Los Angeles, CA',
+            description: 'Package will be delivered to recipient.',
+            completed: false
+          }
+        ],
+        items: [
+          {
+            name: 'Omega Speedmaster Professional',
+            image: './images/omega-speedmaster.jpg',
+            price: '$8,500',
+            quantity: 1,
+            sku: 'OMG-SPD-001'
+          }
+        ]
+      },
+      'TW-2024-003': {
+        orderNumber: 'TW-2024-003',
+        orderDate: 'January 25, 2024',
+        itemCount: 1,
+        orderTotal: '$15,000',
+        status: 'processing',
+        trackingNumber: null,
+        carrier: 'Pending',
+        deliveryStatus: 'Processing',
+        deliveryDate: 'Expected: February 1, 2024',
+        deliveryAddress: 'John Doe<br>789 Pine Street<br>Chicago, IL 60601',
+        progress: 25,
+        timeline: [
+          {
+            date: 'January 25, 2024',
+            time: '4:15 PM',
+            status: 'Order Placed',
+            location: 'Online',
+            description: 'Your order has been successfully placed and payment confirmed.',
+            completed: true
+          },
+          {
+            date: 'January 26, 2024',
+            time: '11:30 AM',
+            status: 'Processing',
+            location: 'Texas Watches Facility',
+            description: 'Order is being prepared for shipment. Quality check in progress.',
+            completed: true,
+            current: true
+          },
+          {
+            date: 'January 28, 2024',
+            time: 'Expected',
+            status: 'Shipped',
+            location: 'Dallas, TX',
+            description: 'Package will be dispatched.',
+            completed: false
+          },
+          {
+            date: 'January 30, 2024',
+            time: 'Expected',
+            status: 'In Transit',
+            location: 'Chicago, IL',
+            description: 'Package will be moving through our network.',
+            completed: false
+          },
+          {
+            date: 'February 1, 2024',
+            time: 'Expected',
+            status: 'Delivered',
+            location: 'Chicago, IL',
+            description: 'Package will be delivered to recipient.',
+            completed: false
+          }
+        ],
+        items: [
+          {
+            name: 'Cartier Santos',
+            image: './images/cartier-santos.jpg',
+            price: '$15,000',
+            quantity: 1,
+            sku: 'CAR-SAN-001'
+          }
+        ]
+      }
+    };
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      setupEventListeners();
+      updateFavoritesCount();
+      updateCartCount();
+      
+      // Check for tracking number in URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const trackingNumber = urlParams.get('tracking');
+      if (trackingNumber) {
+        document.getElementById('trackingNumber').value = trackingNumber;
+        trackOrder(trackingNumber);
+      }
+    });
+
+    function setupEventListeners() {
+      // Form submission
+      document.getElementById('trackingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const trackingNumber = document.getElementById('trackingNumber').value.trim();
+        if (trackingNumber) {
+          trackOrder(trackingNumber);
+        }
+      });
+
+      // Real-time input validation
+      document.getElementById('trackingNumber').addEventListener('input', function() {
+        this.classList.remove('error');
+      });
+    }
+
+    function trackOrder(trackingNumber) {
+      // Show loading state
+      showLoadingState();
+      
+      // Clear previous results
+      hideAllStates();
+      
+      // Simulate API call delay
+      setTimeout(() => {
+        const orderData = trackingData[trackingNumber.toUpperCase()];
+        
+        if (orderData) {
+          displayTrackingResults(orderData);
+        } else {
+          showNoResults();
+        }
+      }, 2000);
+    }
+
+    function quickTrack(orderNumber) {
+      document.getElementById('trackingNumber').value = orderNumber;
+      trackOrder(orderNumber);
+    }
+
+    function showLoadingState() {
+      hideAllStates();
+      document.getElementById('loadingState').classList.remove('hidden');
+    }
+
+    function hideAllStates() {
+      document.getElementById('loadingState').classList.add('hidden');
+      document.getElementById('trackingResults').classList.add('hidden');
+      document.getElementById('noResults').classList.add('hidden');
+    }
+
+    function displayTrackingResults(orderData) {
+      hideAllStates();
+      
+      // Update order summary
+      document.getElementById('orderNumber').textContent = `Order #${orderData.orderNumber}`;
+      document.getElementById('orderDate').textContent = orderData.orderDate;
+      document.getElementById('itemCount').textContent = `${orderData.itemCount} item${orderData.itemCount > 1 ? 's' : ''}`;
+      document.getElementById('orderTotal').textContent = orderData.orderTotal;
+      
+      // Update status badge
+      const statusBadge = document.getElementById('orderStatus');
+      statusBadge.textContent = orderData.status.charAt(0).toUpperCase() + orderData.status.slice(1);
+      statusBadge.className = `status-badge status-${orderData.status}`;
+      
+      // Update progress bar
+      document.getElementById('progressBar').style.width = `${orderData.progress}%`;
+      
+      // Update delivery information
+      document.getElementById('deliveryStatus').textContent = orderData.deliveryStatus;
+      document.getElementById('deliveryDate').textContent = orderData.deliveryDate;
+      document.getElementById('deliveryAddress').innerHTML = orderData.deliveryAddress;
+      
+      // Update tracking reference
+      if (orderData.trackingNumber) {
+        document.getElementById('trackingRef').textContent = orderData.trackingNumber;
+      } else {
+        document.getElementById('trackingRef').textContent = 'Not assigned yet';
+      }
+      
+      // Update timeline
+      renderTimeline(orderData.timeline);
+      
+      // Update order items
+      renderOrderItems(orderData.items);
+      
+      // Show results
+      document.getElementById('trackingResults').classList.remove('hidden');
+      
+      // Scroll to results
+      document.getElementById('trackingResults').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderTimeline(timeline) {
+      const timelineContainer = document.getElementById('trackingTimeline');
+      
+      timelineContainer.innerHTML = timeline.map(item => {
+        let dotClass = 'timeline-dot';
+        if (item.completed) {
+          dotClass += ' completed';
+        }
+        if (item.current) {
+          dotClass += ' current';
+        }
+        if (!item.completed && !item.current) {
+          dotClass += ' pending';
+        }
+        
+        return `
+          <div class="timeline-item">
+            <div class="${dotClass}"></div>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+              <div class="flex-1">
+                <h4 class="font-light text-black text-lg">${item.status}</h4>
+                <p class="text-sm text-gray-600 font-light">${item.location}</p>
+                <p class="text-sm text-gray-700 font-light mt-1">${item.description}</p>
+              </div>
+              <div class="text-sm text-gray-500 font-light mt-2 sm:mt-0">
+                <p>${item.date}</p>
+                <p>${item.time}</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderOrderItems(items) {
+      const itemsContainer = document.getElementById('orderItems');
+      
+      itemsContainer.innerHTML = items.map(item => `
+        <div class="flex items-center space-x-4 p-4 border border-gray-200 rounded">
+          <div class="w-16 h-16 bg-gray-100 rounded overflow-hidden">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+          </div>
+          <div class="flex-1">
+            <h4 class="font-light text-black">${item.name}</h4>
+            <p class="text-sm text-gray-600 font-light">SKU: ${item.sku}</p>
+            <p class="text-sm text-gray-600 font-light">Quantity: ${item.quantity}</p>
+          </div>
+          <div class="text-right">
+            <p class="font-light text-black">${item.price}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function showNoResults() {
+      hideAllStates();
+      document.getElementById('noResults').classList.remove('hidden');
+      document.getElementById('trackingNumber').classList.add('error');
+    }
+
+    function resetSearch() {
+      hideAllStates();
+      document.getElementById('trackingNumber').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('trackingNumber').classList.remove('error');
+      document.getElementById('trackingNumber').focus();
+    }
+
+    function shareTracking() {
+      const orderNumber = document.getElementById('orderNumber').textContent;
+      const trackingUrl = `${window.location.origin}/track-order.html?tracking=${orderNumber.replace('Order #', '')}`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'Texas Watches - Order Tracking',
+          text: `Track my order: ${orderNumber}`,
+          url: trackingUrl
+        });
+      } else {
+        // Fallback - copy to clipboard
+        navigator.clipboard.writeText(trackingUrl).then(() => {
+          showNotification('Tracking link copied to clipboard!', 'success');
+        });
+      }
+    }
+
+    function viewOrderDetails() {
+      const orderNumber = document.getElementById('orderNumber').textContent.replace('Order #', '');
+      window.location.href = `orders.html?order=${orderNumber}`;
+    }
+
+    function contactSupport() {
+      const orderNumber = document.getElementById('orderNumber').textContent.replace('Order #', '');
+      window.location.href = `contactus.html?order=${orderNumber}`;
+    }
+
+    function reportIssue() {
+      const orderNumber = document.getElementById('orderNumber').textContent.replace('Order #', '');
+      window.location.href = `contactus.html?order=${orderNumber}&issue=delivery`;
+    }
+
+    function showNotification(message, type = 'success') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-triangle' : 'fa-info-circle'}"></i>
+          <span class="font-light">${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+
+    // Account dropdown functionality
+    function toggleAccountDropdown() {
+      const dropdown = document.getElementById('accountDropdown');
+      const dropdownContent = document.getElementById('accountDropdownContent');
+      
+      dropdown.classList.toggle('active');
+      
+      if (dropdown.classList.contains('active')) {
+        dropdownContent.style.display = 'block';
+      } else {
+        dropdownContent.style.display = 'none';
+      }
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const favorites = JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+      const count = favorites.length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('accountDropdown');
+      if (dropdown && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('active');
+        document.getElementById('accountDropdownContent').style.display = 'none';
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        // Close account dropdown
+        const dropdown = document.getElementById('accountDropdown');
+        dropdown.classList.remove('active');
+        document.getElementById('accountDropdownContent').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+
+</html>
