@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Reviews - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Review card styling */
+    .review-card {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .review-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Star rating interactive */
+    .star-rating {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .star-rating .star {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: #d1d5db;
+    }
+
+    .star-rating .star:hover,
+    .star-rating .star.active {
+      color: #fbbf24;
+      transform: scale(1.1);
+    }
+
+    .star-rating .star:hover ~ .star {
+      color: #d1d5db;
+    }
+
+    /* Review statistics */
+    .rating-bar {
+      transition: width 0.8s ease;
+    }
+
+    /* Filter buttons */
+    .filter-btn {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .filter-btn:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    /* Review form styling */
+    .review-form {
+      transition: all 0.3s ease;
+    }
+
+    .review-form.expanded {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Success/Error animations */
+    .success-message,
+    .error-message {
+      animation: slideInRight 0.3s ease, fadeOut 0.3s ease 4.7s;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* Helpful buttons */
+    .helpful-btn {
+      transition: all 0.3s ease;
+    }
+
+    .helpful-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .helpful-btn.voted {
+      background: #000;
+      color: white;
+    }
+
+    /* Review images modal */
+    .image-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      cursor: zoom-out;
+    }
+
+    .image-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+
+    /* Product selector */
+    .product-selector {
+      transition: all 0.3s ease;
+      border: 2px solid #e5e7eb;
+    }
+
+    .product-selector:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-selector.selected {
+      border-color: #000;
+      background: #f9fafb;
+    }
+
+    /* Loading skeleton */
+    @keyframes skeleton {
+      0% {
+        background-position: -200px 0;
+      }
+
+      100% {
+        background-position: calc(200px + 100%) 0;
+      }
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #f3f4f6 0px, #e5e7eb 40px, #f3f4f6 80px);
+      background-size: 200px 100%;
+      animation: skeleton 1.2s ease-in-out infinite;
+    }
+
+    /* Verified purchase badge */
+    .verified-badge {
+      background: linear-gradient(45deg, #10b981, #059669);
+      color: white;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: 0.25rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Review sorting */
+    .sort-button {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .sort-button:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+
+    .sort-button.active {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .review-card:hover {
+        transform: none;
+      }
+
+      .helpful-btn:hover {
+        transform: none;
+      }
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Character counter */
+    .char-counter {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    .char-counter.warning {
+      color: #f59e0b;
+    }
+
+    .char-counter.error {
+      color: #ef4444;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search reviews..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search reviews..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Product Reviews</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">PRODUCT REVIEWS</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Authentic reviews from luxury watch enthusiasts</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Container -->
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Product Selection -->
+    <div class="section-animation mb-8 sm:mb-12">
+      <div class="bg-white border-2 border-black p-6 sm:p-8">
+        <h2 class="text-xl sm:text-2xl font-light tracking-wider mb-6">SELECT A PRODUCT TO VIEW REVIEWS</h2>
+        
+        <!-- Featured Products Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4" id="productSelectionGrid">
+          <!-- Products will be loaded dynamically -->
+        </div>
+        
+        <div class="text-center mt-6">
+          <button onclick="showAllProducts()" 
+            class="bg-gray-200 text-black px-6 py-3 hover:bg-gray-300 transition-colors font-light tracking-wider uppercase">
+            <i class="fas fa-th mr-2"></i>View All Products
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Selected Product Reviews Section -->
+    <div id="reviewsSection" class="hidden">
+      
+      <!-- Product Header -->
+      <div class="section-animation mb-8">
+        <div class="bg-white border-2 border-black p-6 sm:p-8">
+          <div class="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 lg:space-x-6" id="selectedProductHeader">
+            <!-- Product info will be loaded dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Review Statistics -->
+      <div class="section-animation mb-8">
+        <div class="bg-white border-2 border-black p-6 sm:p-8">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">CUSTOMER FEEDBACK</h3>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Overall Rating -->
+            <div class="text-center lg:text-left">
+              <div class="flex flex-col lg:flex-row items-center lg:items-start space-y-4 lg:space-y-0 lg:space-x-6">
+                <div class="text-center">
+                  <div class="text-5xl sm:text-6xl font-light mb-2" id="overallRating">4.5</div>
+                  <div class="flex justify-center mb-2" id="overallStars">
+                    <!-- Stars will be generated -->
+                  </div>
+                  <div class="text-sm text-gray-600 font-light">
+                    Based on <span id="totalReviews">0</span> reviews
+                  </div>
+                </div>
+                <div class="flex-1 w-full lg:w-auto">
+                  <div class="space-y-2" id="ratingBreakdown">
+                    <!-- Rating breakdown will be generated -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review Summary -->
+            <div>
+              <h4 class="font-light text-lg tracking-wider mb-4">REVIEW HIGHLIGHTS</h4>
+              <div class="space-y-3" id="reviewHighlights">
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center">
+                    <i class="fas fa-thumbs-up text-sm"></i>
+                  </div>
+                  <span class="font-light">Excellent build quality and craftsmanship</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center">
+                    <i class="fas fa-clock text-sm"></i>
+                  </div>
+                  <span class="font-light">Accurate timekeeping and reliable performance</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center">
+                    <i class="fas fa-gem text-sm"></i>
+                  </div>
+                  <span class="font-light">Luxurious design and premium materials</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Write Review Section -->
+      <div class="section-animation mb-8">
+        <div class="bg-white border-2 border-black p-6 sm:p-8 review-form" id="writeReviewSection">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">WRITE A REVIEW</h3>
+          
+          <form id="reviewForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Customer Name -->
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Your Name <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="reviewerName" name="reviewerName" required
+                  class="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light"
+                  placeholder="Enter your name">
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Email Address <span class="text-red-500">*</span>
+                </label>
+                <input type="email" id="reviewerEmail" name="reviewerEmail" required
+                  class="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light"
+                  placeholder="your@email.com">
+              </div>
+            </div>
+
+            <!-- Rating -->
+            <div>
+              <label class="block text-sm font-light text-black mb-3 tracking-wider uppercase">
+                Overall Rating <span class="text-red-500">*</span>
+              </label>
+              <div class="star-rating" id="reviewStarRating">
+                <i class="fas fa-star star" data-rating="1"></i>
+                <i class="fas fa-star star" data-rating="2"></i>
+                <i class="fas fa-star star" data-rating="3"></i>
+                <i class="fas fa-star star" data-rating="4"></i>
+                <i class="fas fa-star star" data-rating="5"></i>
+              </div>
+              <input type="hidden" id="selectedRating" name="rating" required>
+            </div>
+
+            <!-- Review Title -->
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                Review Title <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="reviewTitle" name="reviewTitle" required maxlength="100"
+                class="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light"
+                placeholder="Summarize your experience">
+              <div class="char-counter mt-1" id="titleCounter">0/100 characters</div>
+            </div>
+
+            <!-- Review Text -->
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                Your Review <span class="text-red-500">*</span>
+              </label>
+              <textarea id="reviewText" name="reviewText" required rows="6" maxlength="1000"
+                class="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light resize-none"
+                placeholder="Share your detailed experience with this watch..."></textarea>
+              <div class="char-counter mt-1" id="textCounter">0/1000 characters</div>
+            </div>
+
+            <!-- Pros and Cons -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  What You Liked (Optional)
+                </label>
+                <textarea id="reviewPros" name="reviewPros" rows="3" maxlength="300"
+                  class="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light resize-none"
+                  placeholder="Positive aspects..."></textarea>
+              </div>
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Areas for Improvement (Optional)
+                </label>
+                <textarea id="reviewCons" name="reviewCons" rows="3" maxlength="300"
+                  class="w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light resize-none"
+                  placeholder="Areas that could be better..."></textarea>
+              </div>
+            </div>
+
+            <!-- Purchase Verification -->
+            <div>
+              <label class="flex items-center space-x-3">
+                <input type="checkbox" id="verifiedPurchase" name="verifiedPurchase"
+                  class="w-5 h-5 text-black focus:ring-black border-2 border-gray-300">
+                <span class="font-light text-sm">I purchased this product from Texas Watches</span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit"
+                class="bg-black text-white px-8 sm:px-10 py-3 sm:py-4 hover:bg-gray-800 transition-colors font-light tracking-wider uppercase">
+                <i class="fas fa-paper-plane mr-2"></i>Submit Review
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Reviews Filter and Sort -->
+      <div class="section-animation mb-8">
+        <div class="bg-white border-2 border-black p-6 sm:p-8">
+          <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center space-y-4 lg:space-y-0">
+            
+            <!-- Filter Options -->
+            <div class="flex flex-wrap gap-2">
+              <span class="text-sm font-light text-gray-600 uppercase tracking-wider mr-2">Filter:</span>
+              <button class="filter-btn active px-4 py-2 bg-black text-white font-light text-xs tracking-wider uppercase"
+                onclick="filterReviews('all')">
+                All Reviews
+              </button>
+              <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-xs tracking-wider uppercase"
+                onclick="filterReviews(5)">
+                5 Stars
+              </button>
+              <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-xs tracking-wider uppercase"
+                onclick="filterReviews(4)">
+                4 Stars
+              </button>
+              <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-xs tracking-wider uppercase"
+                onclick="filterReviews('verified')">
+                Verified
+              </button>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="flex flex-wrap gap-2">
+              <span class="text-sm font-light text-gray-600 uppercase tracking-wider mr-2">Sort:</span>
+              <button class="sort-button active px-4 py-2 bg-black text-white font-light text-xs tracking-wider uppercase"
+                onclick="sortReviews('newest')">
+                Newest
+              </button>
+              <button class="sort-button px-4 py-2 bg-gray-200 text-black font-light text-xs tracking-wider uppercase"
+                onclick="sortReviews('oldest')">
+                Oldest
+              </button>
+              <button class="sort-button px-4 py-2 bg-gray-200 text-black font-light text-xs tracking-wider uppercase"
+                onclick="sortReviews('rating-high')">
+                Highest Rated
+              </button>
+              <button class="sort-button px-4 py-2 bg-gray-200 text-black font-light text-xs tracking-wider uppercase"
+                onclick="sortReviews('helpful')">
+                Most Helpful
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews List -->
+      <div class="section-animation">
+        <div class="space-y-6" id="reviewsList">
+          <!-- Reviews will be loaded dynamically -->
+        </div>
+
+        <!-- Load More Reviews -->
+        <div class="text-center mt-8" id="loadMoreSection">
+          <button onclick="loadMoreReviews()" 
+            class="bg-gray-200 text-black px-8 py-3 hover:bg-gray-300 transition-colors font-light tracking-wider uppercase">
+            <i class="fas fa-chevron-down mr-2"></i>Load More Reviews
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Modal -->
+  <div class="image-modal" id="imageModal" onclick="closeImageModal()">
+    <img id="modalImage" src="" alt="Review image">
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let productsData = [];
+    let selectedProduct = null;
+    let reviewsData = [];
+    let filteredReviews = [];
+    let displayedReviews = 0;
+    let reviewsPerPage = 5;
+    let currentRating = 0;
+
+    // Sample reviews data - in real app this would come from API
+    const sampleReviews = [
+      {
+        id: 1,
+        productId: 1,
+        reviewer: "Michael Johnson",
+        email: "michael@email.com",
+        rating: 5,
+        title: "Exceptional Quality and Craftsmanship",
+        text: "This watch exceeded all my expectations. The build quality is outstanding, and the attention to detail is remarkable. The automatic movement keeps perfect time, and the stainless steel case feels incredibly solid. Worth every penny for a luxury timepiece of this caliber.",
+        pros: "Excellent build quality, accurate timekeeping, beautiful design",
+        cons: "Price point is high, but justified by quality",
+        verifiedPurchase: true,
+        helpful: 15,
+        notHelpful: 2,
+        date: "2024-12-15",
+        images: []
+      },
+      {
+        id: 2,
+        productId: 1,
+        reviewer: "Sarah Williams",
+        email: "sarah@email.com",
+        rating: 4,
+        title: "Beautiful Watch, Great Investment",
+        text: "I purchased this as an investment piece and I'm very happy with the decision. The design is timeless and the quality is evident in every detail. The watch feels substantial on the wrist and receives many compliments.",
+        pros: "Timeless design, great investment value, comfortable wear",
+        cons: "Delivery took longer than expected",
+        verifiedPurchase: true,
+        helpful: 8,
+        notHelpful: 1,
+        date: "2024-12-10",
+        images: []
+      },
+      {
+        id: 3,
+        productId: 1,
+        reviewer: "James Chen",
+        email: "james@email.com",
+        rating: 5,
+        title: "Perfect for Special Occasions",
+        text: "Bought this for my wedding and it was the perfect choice. The elegance and sophistication of this piece is unmatched. The Swiss movement is incredibly precise and the sapphire crystal is flawless.",
+        pros: "Elegant design, precise movement, scratch-resistant crystal",
+        cons: "None - perfect purchase",
+        verifiedPurchase: true,
+        helpful: 12,
+        notHelpful: 0,
+        date: "2024-12-05",
+        images: []
+      }
+    ];
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Load products data
+    async function loadProductsData() {
+      try {
+        const response = await fetch('products.json');
+        if (!response.ok) {
+          throw new Error('Products file not found');
+        }
+        productsData = await response.json();
+        loadSavedReviews();
+        renderProductSelection();
+      } catch (error) {
+        console.error('Error loading products:', error);
+        showErrorMessage('Error loading products data');
+      }
+    }
+
+    // Load saved reviews from localStorage
+    function loadSavedReviews() {
+      const saved = localStorage.getItem('texasWatchesReviews');
+      reviewsData = saved ? JSON.parse(saved) : [...sampleReviews];
+    }
+
+    // Save reviews to localStorage
+    function saveReviews() {
+      localStorage.setItem('texasWatchesReviews', JSON.stringify(reviewsData));
+    }
+
+    // Render product selection grid
+    function renderProductSelection() {
+      const grid = document.getElementById('productSelectionGrid');
+      const featuredProducts = productsData.slice(0, 6); // Show first 6 products
+      
+      grid.innerHTML = featuredProducts.map(product => `
+        <div class="product-selector p-3 cursor-pointer" onclick="selectProduct(${product.id})">
+          <div class="aspect-square overflow-hidden bg-gray-50 mb-2">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+          </div>
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">${product.brand}</p>
+          <h3 class="font-light text-xs mb-1 line-clamp-2">${product.name}</h3>
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-light">$${product.newPrice.toLocaleString()}</span>
+            <div class="text-xs text-gray-500">
+              ${getProductReviewCount(product.id)} reviews
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Get review count for a product
+    function getProductReviewCount(productId) {
+      return reviewsData.filter(review => review.productId === productId).length;
+    }
+
+    // Select product to view reviews
+    function selectProduct(productId) {
+      selectedProduct = productsData.find(p => p.id === productId);
+      if (selectedProduct) {
+        document.getElementById('reviewsSection').classList.remove('hidden');
+        renderSelectedProductHeader();
+        loadProductReviews();
+        
+        // Scroll to reviews section
+        document.getElementById('reviewsSection').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }
+
+    // Render selected product header
+    function renderSelectedProductHeader() {
+      const header = document.getElementById('selectedProductHeader');
+      const productReviews = reviewsData.filter(review => review.productId === selectedProduct.id);
+      const avgRating = productReviews.length > 0 
+        ? (productReviews.reduce((sum, review) => sum + review.rating, 0) / productReviews.length).toFixed(1)
+        : 0;
+
+      header.innerHTML = `
+        <div class="w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0 overflow-hidden bg-gray-50">
+          <img src="${selectedProduct.image}" alt="${selectedProduct.name}" class="w-full h-full object-cover">
+        </div>
+        <div class="flex-1">
+          <p class="text-sm text-gray-500 uppercase tracking-widest mb-1">${selectedProduct.brand}</p>
+          <h2 class="text-xl sm:text-2xl font-light mb-2">${selectedProduct.name}</h2>
+          <div class="flex items-center space-x-4 mb-2">
+            <div class="flex items-center space-x-2">
+              ${generateStarDisplay(avgRating)}
+              <span class="text-lg font-light">${avgRating}</span>
+            </div>
+            <span class="text-sm text-gray-600">${productReviews.length} reviews</span>
+          </div>
+          <div class="flex items-baseline space-x-3">
+            <span class="text-2xl font-light">$${selectedProduct.newPrice.toLocaleString()}</span>
+            <span class="text-lg text-gray-400 line-through">$${selectedProduct.oldPrice.toLocaleString()}</span>
+          </div>
+        </div>
+        <div class="flex flex-col space-y-2">
+          <button onclick="window.location.href='product-detail.html?id=${selectedProduct.id}'"
+            class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light tracking-wider uppercase">
+            <i class="fas fa-eye mr-2"></i>View Product
+          </button>
+          <button onclick="scrollToWriteReview()"
+            class="bg-gray-200 text-black px-6 py-3 hover:bg-gray-300 transition-colors font-light tracking-wider uppercase">
+            <i class="fas fa-edit mr-2"></i>Write Review
+          </button>
+        </div>
+      `;
+    }
+
+    // Load and display product reviews
+    function loadProductReviews() {
+      const productReviews = reviewsData.filter(review => review.productId === selectedProduct.id);
+      filteredReviews = [...productReviews];
+      
+      updateReviewStatistics();
+      renderReviews();
+    }
+
+    // Update review statistics
+    function updateReviewStatistics() {
+      const productReviews = reviewsData.filter(review => review.productId === selectedProduct.id);
+      const totalReviews = productReviews.length;
+      
+      if (totalReviews === 0) {
+        document.getElementById('overallRating').textContent = '0.0';
+        document.getElementById('totalReviews').textContent = '0';
+        document.getElementById('overallStars').innerHTML = generateStarDisplay(0);
+        document.getElementById('ratingBreakdown').innerHTML = '<p class="text-gray-500">No reviews yet</p>';
+        return;
+      }
+
+      const avgRating = (productReviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews).toFixed(1);
+      
+      // Update overall rating
+      document.getElementById('overallRating').textContent = avgRating;
+      document.getElementById('totalReviews').textContent = totalReviews;
+      document.getElementById('overallStars').innerHTML = generateStarDisplay(avgRating);
+
+      // Generate rating breakdown
+      const breakdown = {};
+      for (let i = 1; i <= 5; i++) {
+        breakdown[i] = productReviews.filter(review => review.rating === i).length;
+      }
+
+      const breakdownHTML = [];
+      for (let i = 5; i >= 1; i--) {
+        const count = breakdown[i];
+        const percentage = totalReviews > 0 ? (count / totalReviews) * 100 : 0;
+        
+        breakdownHTML.push(`
+          <div class="flex items-center space-x-3">
+            <span class="text-sm w-8">${i} ★</span>
+            <div class="flex-1 bg-gray-200 h-2 relative">
+              <div class="rating-bar bg-yellow-400 h-full" style="width: ${percentage}%"></div>
+            </div>
+            <span class="text-sm w-8 text-right">${count}</span>
+          </div>
+        `);
+      }
+
+      document.getElementById('ratingBreakdown').innerHTML = breakdownHTML.join('');
+    }
+
+    // Generate star display
+    function generateStarDisplay(rating) {
+      const fullStars = Math.floor(rating);
+      const hasHalfStar = rating % 1 !== 0;
+      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+      
+      let starsHTML = '';
+      
+      // Full stars
+      for (let i = 0; i < fullStars; i++) {
+        starsHTML += '<i class="fas fa-star text-yellow-400"></i>';
+      }
+      
+      // Half star
+      if (hasHalfStar) {
+        starsHTML += '<i class="fas fa-star-half-alt text-yellow-400"></i>';
+      }
+      
+      // Empty stars
+      for (let i = 0; i < emptyStars; i++) {
+        starsHTML += '<i class="far fa-star text-gray-300"></i>';
+      }
+      
+      return starsHTML;
+    }
+
+    // Render reviews
+    function renderReviews() {
+      const reviewsList = document.getElementById('reviewsList');
+      displayedReviews = 0;
+      
+      if (filteredReviews.length === 0) {
+        reviewsList.innerHTML = `
+          <div class="bg-white border-2 border-black p-8 text-center">
+            <i class="fas fa-comments text-4xl text-gray-300 mb-4"></i>
+            <h3 class="text-xl font-light mb-2">No Reviews Found</h3>
+            <p class="text-gray-600 font-light">Be the first to review this product!</p>
+          </div>
+        `;
+        return;
+      }
+
+      const reviewsToShow = filteredReviews.slice(0, reviewsPerPage);
+      displayedReviews = reviewsToShow.length;
+      
+      reviewsList.innerHTML = reviewsToShow.map(review => createReviewHTML(review)).join('');
+      
+      // Show/hide load more button
+      const loadMoreSection = document.getElementById('loadMoreSection');
+      if (displayedReviews < filteredReviews.length) {
+        loadMoreSection.style.display = 'block';
+      } else {
+        loadMoreSection.style.display = 'none';
+      }
+    }
+
+    // Create review HTML
+    function createReviewHTML(review) {
+      const reviewDate = new Date(review.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      return `
+        <div class="review-card bg-white border-2 border-transparent p-6 sm:p-8">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 space-y-2 sm:space-y-0">
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center">
+                <span class="font-light">${review.reviewer.split(' ').map(n => n[0]).join('')}</span>
+              </div>
+              <div>
+                <h4 class="font-light text-lg">${review.reviewer}</h4>
+                <div class="flex items-center space-x-2">
+                  ${generateStarDisplay(review.rating)}
+                  ${review.verifiedPurchase ? '<span class="verified-badge">Verified Purchase</span>' : ''}
+                </div>
+              </div>
+            </div>
+            <div class="text-sm text-gray-500">${reviewDate}</div>
+          </div>
+
+          <h3 class="text-xl font-light mb-3">${review.title}</h3>
+          <p class="text-gray-700 leading-relaxed mb-4">${review.text}</p>
+
+          ${review.pros || review.cons ? `
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              ${review.pros ? `
+                <div class="bg-green-50 border border-green-200 p-4">
+                  <h5 class="font-light text-green-800 mb-2 flex items-center">
+                    <i class="fas fa-thumbs-up mr-2"></i>What I Liked
+                  </h5>
+                  <p class="text-green-700 text-sm">${review.pros}</p>
+                </div>
+              ` : ''}
+              ${review.cons ? `
+                <div class="bg-red-50 border border-red-200 p-4">
+                  <h5 class="font-light text-red-800 mb-2 flex items-center">
+                    <i class="fas fa-thumbs-down mr-2"></i>Could Be Better
+                  </h5>
+                  <p class="text-red-700 text-sm">${review.cons}</p>
+                </div>
+              ` : ''}
+            </div>
+          ` : ''}
+
+          <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+            <div class="flex items-center space-x-4">
+              <span class="text-sm text-gray-600">Was this helpful?</span>
+              <button onclick="markHelpful(${review.id}, true)" 
+                class="helpful-btn flex items-center space-x-1 px-3 py-1 border border-gray-300 hover:border-black transition-colors">
+                <i class="fas fa-thumbs-up text-xs"></i>
+                <span class="text-sm">${review.helpful}</span>
+              </button>
+              <button onclick="markHelpful(${review.id}, false)" 
+                class="helpful-btn flex items-center space-x-1 px-3 py-1 border border-gray-300 hover:border-black transition-colors">
+                <i class="fas fa-thumbs-down text-xs"></i>
+                <span class="text-sm">${review.notHelpful}</span>
+              </button>
+            </div>
+            <button onclick="reportReview(${review.id})" 
+              class="text-xs text-gray-500 hover:text-black transition-colors">
+              <i class="fas fa-flag mr-1"></i>Report
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Load more reviews
+    function loadMoreReviews() {
+      const startIndex = displayedReviews;
+      const endIndex = Math.min(startIndex + reviewsPerPage, filteredReviews.length);
+      const moreReviews = filteredReviews.slice(startIndex, endIndex);
+      
+      const reviewsList = document.getElementById('reviewsList');
+      reviewsList.innerHTML += moreReviews.map(review => createReviewHTML(review)).join('');
+      
+      displayedReviews = endIndex;
+      
+      if (displayedReviews >= filteredReviews.length) {
+        document.getElementById('loadMoreSection').style.display = 'none';
+      }
+    }
+
+    // Filter reviews
+    function filterReviews(filter) {
+      // Update filter buttons
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-black', 'text-white');
+        btn.classList.add('bg-gray-200', 'text-black');
+      });
+      
+      event.target.classList.add('active', 'bg-black', 'text-white');
+      event.target.classList.remove('bg-gray-200', 'text-black');
+
+      const productReviews = reviewsData.filter(review => review.productId === selectedProduct.id);
+      
+      switch (filter) {
+        case 'all':
+          filteredReviews = [...productReviews];
+          break;
+        case 'verified':
+          filteredReviews = productReviews.filter(review => review.verifiedPurchase);
+          break;
+        case 5:
+        case 4:
+        case 3:
+        case 2:
+        case 1:
+          filteredReviews = productReviews.filter(review => review.rating === filter);
+          break;
+        default:
+          filteredReviews = [...productReviews];
+      }
+      
+      renderReviews();
+    }
+
+    // Sort reviews
+    function sortReviews(sortType) {
+      // Update sort buttons
+      document.querySelectorAll('.sort-button').forEach(btn => {
+        btn.classList.remove('active', 'bg-black', 'text-white');
+        btn.classList.add('bg-gray-200', 'text-black');
+      });
+      
+      event.target.classList.add('active', 'bg-black', 'text-white');
+      event.target.classList.remove('bg-gray-200', 'text-black');
+
+      switch (sortType) {
+        case 'newest':
+          filteredReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
+          break;
+        case 'oldest':
+          filteredReviews.sort((a, b) => new Date(a.date) - new Date(b.date));
+          break;
+        case 'rating-high':
+          filteredReviews.sort((a, b) => b.rating - a.rating);
+          break;
+        case 'helpful':
+          filteredReviews.sort((a, b) => b.helpful - a.helpful);
+          break;
+      }
+      
+      renderReviews();
+    }
+
+    // Setup star rating interaction
+    function setupStarRating() {
+      const stars = document.querySelectorAll('#reviewStarRating .star');
+      
+      stars.forEach((star, index) => {
+        star.addEventListener('click', () => {
+          currentRating = index + 1;
+          document.getElementById('selectedRating').value = currentRating;
+          updateStarDisplay();
+        });
+        
+        star.addEventListener('mouseenter', () => {
+          highlightStars(index + 1);
+        });
+      });
+      
+      document.getElementById('reviewStarRating').addEventListener('mouseleave', () => {
+        updateStarDisplay();
+      });
+    }
+
+    // Highlight stars on hover
+    function highlightStars(rating) {
+      const stars = document.querySelectorAll('#reviewStarRating .star');
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    // Update star display
+    function updateStarDisplay() {
+      const stars = document.querySelectorAll('#reviewStarRating .star');
+      stars.forEach((star, index) => {
+        if (index < currentRating) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+    }
+
+    // Setup character counters
+    function setupCharacterCounters() {
+      const titleInput = document.getElementById('reviewTitle');
+      const textInput = document.getElementById('reviewText');
+      const titleCounter = document.getElementById('titleCounter');
+      const textCounter = document.getElementById('textCounter');
+
+      titleInput.addEventListener('input', () => {
+        const length = titleInput.value.length;
+        titleCounter.textContent = `${length}/100 characters`;
+        
+        if (length > 80) {
+          titleCounter.classList.add('warning');
+        } else {
+          titleCounter.classList.remove('warning');
+        }
+        
+        if (length > 95) {
+          titleCounter.classList.add('error');
+        } else {
+          titleCounter.classList.remove('error');
+        }
+      });
+
+      textInput.addEventListener('input', () => {
+        const length = textInput.value.length;
+        textCounter.textContent = `${length}/1000 characters`;
+        
+        if (length > 800) {
+          textCounter.classList.add('warning');
+        } else {
+          textCounter.classList.remove('warning');
+        }
+        
+        if (length > 950) {
+          textCounter.classList.add('error');
+        } else {
+          textCounter.classList.remove('error');
+        }
+      });
+    }
+
+    // Submit review
+    function submitReview(formData) {
+      const newReview = {
+        id: Date.now(),
+        productId: selectedProduct.id,
+        reviewer: formData.get('reviewerName'),
+        email: formData.get('reviewerEmail'),
+        rating: parseInt(formData.get('rating')),
+        title: formData.get('reviewTitle'),
+        text: formData.get('reviewText'),
+        pros: formData.get('reviewPros') || null,
+        cons: formData.get('reviewCons') || null,
+        verifiedPurchase: formData.has('verifiedPurchase'),
+        helpful: 0,
+        notHelpful: 0,
+        date: new Date().toISOString(),
+        images: []
+      };
+
+      reviewsData.push(newReview);
+      saveReviews();
+      
+      // Reset form
+      document.getElementById('reviewForm').reset();
+      currentRating = 0;
+      updateStarDisplay();
+      
+      // Reload reviews
+      loadProductReviews();
+      
+      showSuccessMessage('Review submitted successfully! Thank you for your feedback.');
+      
+      // Scroll to reviews list
+      setTimeout(() => {
+        document.getElementById('reviewsList').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }, 500);
+    }
+
+    // Scroll to write review section
+    function scrollToWriteReview() {
+      document.getElementById('writeReviewSection').scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      
+      // Add focus effect
+      const reviewForm = document.getElementById('writeReviewSection');
+      reviewForm.classList.add('expanded');
+      setTimeout(() => {
+        reviewForm.classList.remove('expanded');
+      }, 2000);
+    }
+
+    // Mark review as helpful
+    function markHelpful(reviewId, isHelpful) {
+      const review = reviewsData.find(r => r.id === reviewId);
+      if (!review) return;
+
+      // Check if user already voted (in real app, track by user ID)
+      const voted = localStorage.getItem(`voted_${reviewId}`);
+      if (voted) {
+        showErrorMessage('You have already voted on this review');
+        return;
+      }
+
+      if (isHelpful) {
+        review.helpful++;
+      } else {
+        review.notHelpful++;
+      }
+
+      localStorage.setItem(`voted_${reviewId}`, isHelpful ? 'helpful' : 'not_helpful');
+      saveReviews();
+      renderReviews();
+      
+      showSuccessMessage('Thank you for your feedback!');
+    }
+
+    // Report review
+    function reportReview(reviewId) {
+      if (confirm('Report this review as inappropriate?')) {
+        // In real app, send to moderation queue
+        console.log('Review reported:', reviewId);
+        showSuccessMessage('Review reported. Thank you for helping maintain quality.');
+      }
+    }
+
+    // Show all products modal
+    function showAllProducts() {
+      // In real implementation, open a modal with all products
+      showSuccessMessage('All products view - would open modal with complete product list');
+    }
+
+    // Close image modal
+    function closeImageModal() {
+      document.getElementById('imageModal').classList.remove('active');
+    }
+
+    // Utility functions
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    function showSuccessMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'fixed top-20 right-4 sm:right-6 bg-black text-white px-4 sm:px-6 py-3 sm:py-4 shadow-lg z-50 success-message';
+      messageDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-check-circle"></i>
+          <span class="font-light text-sm">${message}</span>
+        </div>
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
+
+    function showErrorMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'fixed top-20 right-4 sm:right-6 bg-red-500 text-white px-4 sm:px-6 py-3 sm:py-4 shadow-lg z-50 error-message';
+      messageDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span class="font-light text-sm">${message}</span>
+        </div>
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
+
+    // Form validation
+    function validateReviewForm(formData) {
+      const errors = [];
+
+      if (!formData.get('reviewerName').trim()) {
+        errors.push('Name is required');
+      }
+
+      if (!formData.get('reviewerEmail').trim()) {
+        errors.push('Email is required');
+      } else if (!isValidEmail(formData.get('reviewerEmail'))) {
+        errors.push('Please enter a valid email address');
+      }
+
+      if (!formData.get('rating')) {
+        errors.push('Please select a rating');
+      }
+
+      if (!formData.get('reviewTitle').trim()) {
+        errors.push('Review title is required');
+      }
+
+      if (!formData.get('reviewText').trim()) {
+        errors.push('Review text is required');
+      } else if (formData.get('reviewText').trim().length < 10) {
+        errors.push('Review must be at least 10 characters long');
+      }
+
+      return errors;
+    }
+
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Setup search functionality
+    function setupSearch() {
+      ['searchInput', 'mobileSearchInput'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm && selectedProduct) {
+              const productReviews = reviewsData.filter(review => 
+                review.productId === selectedProduct.id &&
+                (review.title.toLowerCase().includes(searchTerm) ||
+                 review.text.toLowerCase().includes(searchTerm) ||
+                 review.reviewer.toLowerCase().includes(searchTerm))
+              );
+              filteredReviews = productReviews;
+              renderReviews();
+            } else if (selectedProduct) {
+              loadProductReviews();
+            }
+          });
+        }
+      });
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function () {
+      loadProductsData();
+      setupStarRating();
+      setupCharacterCounters();
+      setupSearch();
+      updateCartCount();
+      updateFavoritesCount();
+
+      // Setup review form submission
+      document.getElementById('reviewForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!selectedProduct) {
+          showErrorMessage('Please select a product first');
+          return;
+        }
+
+        const formData = new FormData(this);
+        const errors = validateReviewForm(formData);
+
+        if (errors.length > 0) {
+          showErrorMessage(errors[0]);
+          return;
+        }
+
+        submitReview(formData);
+      });
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Handle page visibility change
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) {
+        updateFavoritesCount();
+        updateCartCount();
+      }
+    });
+
+    // URL parameter handling - load specific product if specified
+    function loadProductFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('product');
+      
+      if (productId && productsData.length > 0) {
+        const product = productsData.find(p => p.id === parseInt(productId));
+        if (product) {
+          selectProduct(product.id);
+        }
+      }
+    }
+
+    // Load product from URL when data is ready
+    let dataLoadedCheckInterval;
+    dataLoadedCheckInterval = setInterval(() => {
+      if (productsData.length > 0) {
+        loadProductFromURL();
+        clearInterval(dataLoadedCheckInterval);
+      }
+    }, 100);
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      // ESC to close modals
+      if (e.key === 'Escape') {
+        closeImageModal();
+      }
+      
+      // Ctrl+Enter to submit review form when focused
+      if (e.ctrlKey && e.key === 'Enter' && document.activeElement.form?.id === 'reviewForm') {
+        e.preventDefault();
+        document.getElementById('reviewForm').requestSubmit();
+      }
+    });
+  </script>
+</body>
+
+</html>
