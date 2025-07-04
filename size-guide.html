@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Size Guide - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Enhanced card hover */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: #000;
+    }
+
+    /* Feature card styling */
+    .feature-card {
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .feature-icon {
+      transition: all 0.3s ease;
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .section-animation:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Size calculator */
+    .size-calculator {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border: 2px solid #000;
+      transition: all 0.3s ease;
+    }
+
+    .size-calculator:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Interactive sizing tool */
+    .size-input {
+      transition: all 0.3s ease;
+    }
+
+    .size-input:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Size recommendation animation */
+    .size-recommendation {
+      animation: slideInRight 0.5s ease;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Watch size visualization */
+    .watch-size-demo {
+      position: relative;
+      display: inline-block;
+      border: 3px solid #000;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      transition: all 0.3s ease;
+    }
+
+    .watch-size-demo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .watch-size-demo::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 2px;
+      height: 60%;
+      background: #000;
+    }
+
+    .watch-size-demo::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40%;
+      height: 2px;
+      background: #000;
+    }
+
+    /* Size comparison table */
+    .size-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .size-table th,
+    .size-table td {
+      border: 1px solid #000;
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    .size-table th {
+      background: #000;
+      color: white;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .size-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    /* Measurement guide */
+    .measurement-guide {
+      position: relative;
+      background: #f8f9fa;
+      border: 2px solid #000;
+      border-radius: 8px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .measurement-guide::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid #000;
+    }
+
+    /* Interactive elements */
+    .interactive-element {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .interactive-element:hover {
+      transform: scale(1.05);
+    }
+
+    /* Wrist size visualizer */
+    .wrist-visualizer {
+      position: relative;
+      height: 200px;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem auto;
+      max-width: 300px;
+      border: 3px solid #000;
+    }
+
+    .watch-overlay {
+      position: absolute;
+      background: #000;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+      
+      .size-table {
+        font-size: 0.875rem;
+      }
+      
+      .size-table th,
+      .size-table td {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Size Guide</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">SIZE GUIDE</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Find your perfect luxury timepiece fit</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Size Calculator -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">FIND YOUR PERFECT FIT</h2>
+        <p class="text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+          Use our interactive size calculator to determine the ideal watch size for your wrist.
+          Enter your wrist measurement for personalized recommendations.
+        </p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation max-w-4xl mx-auto">
+        <div class="size-calculator p-6 sm:p-8 rounded-lg">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            
+            <!-- Input Section -->
+            <div>
+              <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">MEASURE YOUR WRIST</h3>
+              
+              <div class="space-y-6">
+                <div>
+                  <label class="block text-sm font-light text-black mb-3 tracking-wider uppercase">
+                    Wrist Circumference
+                  </label>
+                  <div class="flex items-center space-x-4">
+                    <input type="number" id="wristSize" min="130" max="250" step="1" 
+                           class="size-input flex-1 px-4 py-3 border-2 border-gray-300 focus:border-black focus:outline-none font-light"
+                           placeholder="Enter measurement" onchange="calculateSize()">
+                    <select id="unit" class="size-input px-4 py-3 border-2 border-gray-300 focus:border-black focus:outline-none font-light" onchange="calculateSize()">
+                      <option value="mm">mm</option>
+                      <option value="inches">inches</option>
+                    </select>
+                  </div>
+                  <p class="text-xs text-gray-600 mt-2 font-light">
+                    Use a flexible measuring tape or string to measure around your wrist
+                  </p>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-light text-black mb-3 tracking-wider uppercase">
+                    Preferred Fit
+                  </label>
+                  <div class="grid grid-cols-3 gap-3">
+                    <button class="fit-preference active px-4 py-3 text-sm font-light border-2 border-black bg-black text-white transition-colors" 
+                            onclick="setFitPreference('snug', this)">
+                      Snug
+                    </button>
+                    <button class="fit-preference px-4 py-3 text-sm font-light border-2 border-black hover:bg-gray-50 transition-colors" 
+                            onclick="setFitPreference('comfortable', this)">
+                      Comfortable
+                    </button>
+                    <button class="fit-preference px-4 py-3 text-sm font-light border-2 border-black hover:bg-gray-50 transition-colors" 
+                            onclick="setFitPreference('loose', this)">
+                      Loose
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Results Section -->
+            <div>
+              <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">SIZE RECOMMENDATION</h3>
+              
+              <div id="sizeResult" class="space-y-6">
+                <div class="text-center py-12 text-gray-500">
+                  <i class="fas fa-ruler text-4xl mb-4"></i>
+                  <p class="font-light">Enter your wrist measurement to get personalized recommendations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Watch Size Comparison -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">WATCH SIZE COMPARISON</h2>
+        <p class="text-gray-600 font-light">Visual comparison of different case sizes to help you choose</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation">
+        <!-- Size Visualization -->
+        <div class="flex flex-wrap justify-center items-end gap-8 mb-12">
+          <div class="text-center">
+            <div class="watch-size-demo interactive-element" style="width: 120px; height: 120px;" onclick="selectSize(36)">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xs font-light">36mm</span>
+              </div>
+            </div>
+            <p class="mt-2 text-sm font-light">Small</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="watch-size-demo interactive-element" style="width: 140px; height: 140px;" onclick="selectSize(40)">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xs font-light">40mm</span>
+              </div>
+            </div>
+            <p class="mt-2 text-sm font-light">Medium</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="watch-size-demo interactive-element" style="width: 160px; height: 160px;" onclick="selectSize(44)">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xs font-light">44mm</span>
+              </div>
+            </div>
+            <p class="mt-2 text-sm font-light">Large</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="watch-size-demo interactive-element" style="width: 180px; height: 180px;" onclick="selectSize(48)">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xs font-light">48mm</span>
+              </div>
+            </div>
+            <p class="mt-2 text-sm font-light">Extra Large</p>
+          </div>
+        </div>
+
+        <!-- Size Recommendations Table -->
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6 text-center">SIZE RECOMMENDATIONS BY WRIST SIZE</h3>
+          
+          <div class="overflow-x-auto">
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Wrist Size</th>
+                  <th>Recommended Case Size</th>
+                  <th>Watch Category</th>
+                  <th>Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-light">130-150mm<br><span class="text-xs text-gray-500">(5.1-5.9 inches)</span></td>
+                  <td class="font-light">34-38mm</td>
+                  <td class="font-light">Dress, Classic</td>
+                  <td class="font-light">Elegant, understated look</td>
+                </tr>
+                <tr>
+                  <td class="font-light">150-170mm<br><span class="text-xs text-gray-500">(5.9-6.7 inches)</span></td>
+                  <td class="font-light">36-40mm</td>
+                  <td class="font-light">Dress, Sport</td>
+                  <td class="font-light">Versatile, daily wear</td>
+                </tr>
+                <tr>
+                  <td class="font-light">170-190mm<br><span class="text-xs text-gray-500">(6.7-7.5 inches)</span></td>
+                  <td class="font-light">40-44mm</td>
+                  <td class="font-light">Sport, Dive</td>
+                  <td class="font-light">Bold, contemporary style</td>
+                </tr>
+                <tr>
+                  <td class="font-light">190-210mm<br><span class="text-xs text-gray-500">(7.5-8.3 inches)</span></td>
+                  <td class="font-light">44-48mm</td>
+                  <td class="font-light">Sport, Aviation</td>
+                  <td class="font-light">Statement piece, sporty</td>
+                </tr>
+                <tr>
+                  <td class="font-light">210mm+<br><span class="text-xs text-gray-500">(8.3+ inches)</span></td>
+                  <td class="font-light">48mm+</td>
+                  <td class="font-light">Oversized, Aviation</td>
+                  <td class="font-light">Maximum presence</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Measure -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">HOW TO MEASURE YOUR WRIST</h2>
+        <p class="text-gray-600 font-light">Step-by-step guide to get accurate measurements</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div class="space-y-6">
+          <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">1</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Use a Flexible Measuring Tape</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Wrap a flexible measuring tape around your wrist just below the wrist bone.
+                  This is where your watch will naturally sit.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">2</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Alternative: Use String</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  If you don't have a measuring tape, wrap a string around your wrist,
+                  mark the overlap, then measure the string with a ruler.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">3</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Consider Your Preference</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Add 5-10mm to your measurement if you prefer a loose fit,
+                  or subtract 2-3mm for a snug fit.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="measurement-guide">
+            <h4 class="font-light text-black mb-4 tracking-wider uppercase text-sm">Measurement Tips</h4>
+            <div class="space-y-3">
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check-circle text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Measure at the end of the day when wrist is largest</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check-circle text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Don't pull the tape too tight or too loose</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check-circle text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Measure both wrists - they may differ slightly</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check-circle text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Round to the nearest millimeter for accuracy</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wrist Visualizer -->
+          <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+            <h4 class="font-light text-black mb-4 tracking-wider uppercase text-sm text-center">Wrist Size Visualizer</h4>
+            <div class="wrist-visualizer" id="wristVisualizer">
+              <div class="watch-overlay" id="watchOverlay" style="width: 80px; height: 80px;"></div>
+              <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-xs font-light text-gray-600">
+                <span id="visualizerText">Select a watch size above</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Specific Sizing -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">BRAND-SPECIFIC SIZING</h2>
+        <p class="text-gray-600 font-light">Each luxury brand has unique sizing characteristics</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-crown text-2xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">ROLEX</h3>
+          </div>
+          <div class="space-y-3 text-sm">
+            <p class="font-light"><strong>Oyster Case:</strong> Tends to wear larger</p>
+            <p class="font-light"><strong>Submariner 40mm:</strong> Fits like 42mm</p>
+            <p class="font-light"><strong>Datejust 36mm:</strong> True to size</p>
+            <p class="font-light"><strong>Day-Date 40mm:</strong> Substantial presence</p>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-star text-2xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">OMEGA</h3>
+          </div>
+          <div class="space-y-3 text-sm">
+            <p class="font-light"><strong>Seamaster:</strong> Sports proportions</p>
+            <p class="font-light"><strong>Speedmaster:</strong> Wears true to size</p>
+            <p class="font-light"><strong>Constellation:</strong> Elegant, refined fit</p>
+            <p class="font-light"><strong>Planet Ocean:</strong> Bold, oversized feel</p>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-gem text-2xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">CARTIER</h3>
+          </div>
+          <div class="space-y-3 text-sm">
+            <p class="font-light"><strong>Tank:</strong> Rectangular, elegant</p>
+            <p class="font-light"><strong>Santos:</strong> Square case, unique fit</p>
+            <p class="font-light"><strong>Ballon Bleu:</strong> Distinctive curved case</p>
+            <p class="font-light"><strong>Panthère:</strong> Refined, jewelry-like</p>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-medal text-2xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">PATEK PHILIPPE</h3>
+          </div>
+          <div class="space-y-3 text-sm">
+            <p class="font-light"><strong>Calatrava:</strong> Classic, true sizing</p>
+            <p class="font-light"><strong>Nautilus:</strong> Integrated bracelet</p>
+            <p class="font-light"><strong>Aquanaut:</strong> Contemporary sportiness</p>
+            <p class="font-light"><strong>Complications:</strong> Varying thickness</p>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-plane text-2xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">BREITLING</h3>
+          </div>
+          <div class="space-y-3 text-sm">
+            <p class="font-light"><strong>Navitimer:</strong> Large, aviation-inspired</p>
+            <p class="font-light"><strong>Superocean:</strong> Chunky, sporty</p>
+            <p class="font-light"><strong>Premier:</strong> Refined, dress-like</p>
+            <p class="font-light"><strong>Chronomat:</strong> Bold, masculine</p>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-info-circle text-2xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">GENERAL TIPS</h3>
+          </div>
+          <div class="space-y-3 text-sm">
+            <p class="font-light"><strong>Thickness:</strong> Consider case depth</p>
+            <p class="font-light"><strong>Lug-to-lug:</strong> Affects wrist coverage</p>
+            <p class="font-light"><strong>Crown guards:</strong> Add visual bulk</p>
+            <p class="font-light"><strong>Bezel:</strong> Affects perceived size</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">SIZING FAQ</h2>
+        <p class="text-gray-600 font-light">Common questions about watch sizing</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div class="bg-white border border-gray-200 p-6 sm:p-8">
+          <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">What if I'm between sizes?</h4>
+          <p class="text-gray-600 font-light text-sm">
+            If you're between sizes, consider your lifestyle and preferences. 
+            For active wear, choose the smaller size. For a statement piece, go larger.
+          </p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 sm:p-8">
+          <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Can I adjust the bracelet?</h4>
+          <p class="text-gray-600 font-light text-sm">
+            Yes, metal bracelets can be adjusted by removing or adding links. 
+            Leather straps come in different lengths and can be shortened if needed.
+          </p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 sm:p-8">
+          <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">Do complications affect sizing?</h4>
+          <p class="text-gray-600 font-light text-sm">
+            Complications like chronographs add thickness and visual bulk. 
+            Consider this when choosing your size, especially for dress watches.
+          </p>
+        </div>
+
+        <div class="bg-white border border-gray-200 p-6 sm:p-8">
+          <h4 class="font-light text-black mb-3 tracking-wider uppercase text-sm">What about women's watches?</h4>
+          <p class="text-gray-600 font-light text-sm">
+            Women's watches typically range from 26-36mm. Consider your wrist size 
+            and personal style preferences when choosing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Support -->
+  <section class="py-12 sm:py-16 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="section-animation">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 tracking-wider">NEED SIZING HELP?</h2>
+        <p class="text-gray-300 font-light mb-8 max-w-3xl mx-auto">
+          Still unsure about sizing? Our luxury watch experts are here to help you find the perfect fit.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
+          <div class="text-center">
+            <i class="fas fa-envelope text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">EMAIL CONSULTATION</h3>
+            <p class="text-gray-300 font-light">sizing@texas-sales.com</p>
+            <p class="text-xs sm:text-sm text-gray-400 font-light">Send us your measurements</p>
+          </div>
+
+          <div class="text-center">
+            <i class="fas fa-phone text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">PHONE CONSULTATION</h3>
+            <p class="text-gray-300 font-light">+1 (555) 839-2792</p>
+            <p class="text-xs sm:text-sm text-gray-400 font-light">Mon-Fri 9AM-6PM EST</p>
+          </div>
+        </div>
+
+        <a href="contactus.html"
+          class="inline-block bg-white text-black px-8 sm:px-10 py-3 sm:py-4 font-light tracking-wider uppercase hover:bg-gray-100 transition-colors">
+          <i class="fas fa-comments mr-2"></i>Get Sizing Help
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+
+          <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentFitPreference = 'snug';
+    let selectedWatchSize = 40; // Default size
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Set fit preference
+    function setFitPreference(preference, button) {
+      currentFitPreference = preference;
+      
+      // Update button states
+      document.querySelectorAll('.fit-preference').forEach(btn => {
+        btn.classList.remove('active', 'bg-black', 'text-white');
+        btn.classList.add('hover:bg-gray-50');
+      });
+      
+      button.classList.add('active', 'bg-black', 'text-white');
+      button.classList.remove('hover:bg-gray-50');
+      
+      // Recalculate if measurement exists
+      calculateSize();
+    }
+
+    // Calculate size recommendation
+    function calculateSize() {
+      const wristSizeInput = document.getElementById('wristSize');
+      const unit = document.getElementById('unit').value;
+      const resultDiv = document.getElementById('sizeResult');
+      
+      if (!wristSizeInput.value) {
+        return;
+      }
+      
+      let wristSize = parseFloat(wristSizeInput.value);
+      
+      // Convert to mm if inches
+      if (unit === 'inches') {
+        wristSize = wristSize * 25.4;
+      }
+      
+      // Validate range
+      if (wristSize < 130 || wristSize > 250) {
+        resultDiv.innerHTML = `
+          <div class="bg-red-50 border border-red-200 p-4 rounded">
+            <p class="text-red-700 font-light">Please enter a valid wrist measurement between 130-250mm (5.1-9.8 inches)</p>
+          </div>
+        `;
+        return;
+      }
+      
+      // Calculate recommendations based on wrist size and fit preference
+      const recommendations = getRecommendations(wristSize, currentFitPreference);
+      
+      resultDiv.innerHTML = `
+        <div class="size-recommendation space-y-4">
+          <div class="bg-green-50 border-2 border-green-200 p-6 rounded">
+            <h4 class="font-light text-green-800 mb-2 tracking-wider uppercase text-sm">Recommended Size</h4>
+            <p class="text-2xl font-light text-green-900">${recommendations.recommended}</p>
+            <p class="text-sm text-green-700 font-light mt-1">${recommendations.description}</p>
+          </div>
+          
+          <div class="bg-blue-50 border border-blue-200 p-4 rounded">
+            <h5 class="font-light text-blue-800 mb-2 tracking-wider uppercase text-xs">Alternative Options</h5>
+            <p class="text-sm text-blue-700 font-light">${recommendations.alternatives}</p>
+          </div>
+          
+          <div class="bg-gray-50 border border-gray-200 p-4 rounded">
+            <h5 class="font-light text-gray-800 mb-2 tracking-wider uppercase text-xs">Style Recommendations</h5>
+            <div class="text-sm text-gray-700 font-light space-y-1">
+              ${recommendations.styles.map(style => `<p>• ${style}</p>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Get size recommendations based on wrist size and preference
+    function getRecommendations(wristSize, preference) {
+      let baseSize, alternatives, styles;
+      
+      // Base recommendations by wrist size
+      if (wristSize < 150) {
+        baseSize = { min: 34, max: 38, optimal: 36 };
+        styles = ['Dress watches', 'Classic designs', 'Thin profiles', 'Elegant complications'];
+      } else if (wristSize < 170) {
+        baseSize = { min: 36, max: 40, optimal: 38 };
+        styles = ['Versatile sport watches', 'Dress watches', 'GMT complications', 'Classic chronographs'];
+      } else if (wristSize < 190) {
+        baseSize = { min: 40, max: 44, optimal: 42 };
+        styles = ['Sport watches', 'Dive watches', 'Pilot watches', 'Bold chronographs'];
+      } else if (wristSize < 210) {
+        baseSize = { min: 44, max: 48, optimal: 46 };
+        styles = ['Large sport watches', 'Aviation watches', 'Oversized chronographs', 'Statement pieces'];
+      } else {
+        baseSize = { min: 48, max: 52, optimal: 50 };
+        styles = ['Oversized watches', 'Aviation instruments', 'Bold statement pieces', 'Military-inspired designs'];
+      }
+      
+      // Adjust for fit preference
+      let recommendedSize = baseSize.optimal;
+      if (preference === 'snug') {
+        recommendedSize = baseSize.min;
+      } else if (preference === 'loose') {
+        recommendedSize = baseSize.max;
+      }
+      
+      return {
+        recommended: `${recommendedSize}mm`,
+        description: `Perfect for a ${preference} fit on your ${Math.round(wristSize)}mm wrist`,
+        alternatives: `Also consider: ${baseSize.min}mm - ${baseSize.max}mm range`,
+        styles: styles
+      };
+    }
+
+    // Select watch size from visualization
+    function selectSize(size) {
+      selectedWatchSize = size;
+      updateWristVisualizer(size);
+    }
+
+    // Update wrist visualizer
+    function updateWristVisualizer(size) {
+      const overlay = document.getElementById('watchOverlay');
+      const text = document.getElementById('visualizerText');
+      
+      // Convert size to pixels (approximate scaling)
+      const pixelSize = size * 2;
+      
+      overlay.style.width = `${pixelSize}px`;
+      overlay.style.height = `${pixelSize}px`;
+      
+      text.textContent = `${size}mm watch preview`;
+      
+      // Add animation
+      overlay.style.transform = 'scale(1.1)';
+      setTimeout(() => {
+        overlay.style.transform = 'scale(1)';
+      }, 200);
+    }
+
+    // Get favorites
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count function
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
+      });
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCartCount();
+      updateFavoritesCount();
+      
+      // Set up input event listeners
+      const wristSizeInput = document.getElementById('wristSize');
+      const unitSelect = document.getElementById('unit');
+      
+      wristSizeInput.addEventListener('input', calculateSize);
+      unitSelect.addEventListener('change', calculateSize);
+      
+      // Initialize visualizer
+      updateWristVisualizer(selectedWatchSize);
+    });
+
+    // Handle window resize for mobile menu
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
