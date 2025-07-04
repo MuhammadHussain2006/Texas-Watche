@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warranty Information - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Enhanced card hover */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: #000;
+    }
+
+    /* Feature card styling */
+    .feature-card {
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .feature-icon {
+      transition: all 0.3s ease;
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .section-animation:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Timeline styling */
+    .timeline-item {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 60px;
+      bottom: -20px;
+      width: 2px;
+      background: #e5e7eb;
+    }
+
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    /* Warranty badge animation */
+    .warranty-badge {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Collapsible content */
+    .collapsible {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .collapsible.active {
+      max-height: 500px;
+    }
+
+    /* Tab styling */
+    .tab-button {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .tab-button.active {
+      background: #000;
+      color: white;
+    }
+
+    .tab-button:not(.active):hover {
+      background: #f3f4f6;
+    }
+
+    /* Brand-specific colors */
+    .rolex-accent { color: #1f2937; }
+    .omega-accent { color: #dc2626; }
+    .cartier-accent { color: #059669; }
+    .patek-accent { color: #7c3aed; }
+    .breitling-accent { color: #ea580c; }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+            <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Warranty Information</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">WARRANTY INFORMATION</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Complete protection for your luxury timepiece investment</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Warranty Overview -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">COMPREHENSIVE WARRANTY COVERAGE</h2>
+        <p class="text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+          Every luxury timepiece from Texas Watches comes with comprehensive warranty protection,
+          ensuring your investment is safeguarded against manufacturing defects and premature wear.
+        </p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <!-- Warranty Highlights -->
+      <div class="section-animation grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <div class="feature-card text-center bg-gray-50 border-2 border-black p-6 sm:p-8">
+          <div class="feature-icon warranty-badge w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <i class="fas fa-shield-alt text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">INTERNATIONAL WARRANTY</h3>
+          <p class="text-gray-600 font-light text-sm leading-relaxed">
+            Valid worldwide with authorized service centers in major cities globally.
+            Your warranty travels with you wherever you go.
+          </p>
+        </div>
+
+        <div class="feature-card text-center bg-gray-50 border-2 border-black p-6 sm:p-8">
+          <div class="feature-icon warranty-badge w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <i class="fas fa-calendar-check text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">2-YEAR COVERAGE</h3>
+          <p class="text-gray-600 font-light text-sm leading-relaxed">
+            Comprehensive 24-month warranty covering all manufacturing defects,
+            movement issues, and premature component failure.
+          </p>
+        </div>
+
+        <div class="feature-card text-center bg-gray-50 border-2 border-black p-6 sm:p-8">
+          <div class="feature-icon warranty-badge w-16 h-16 sm:w-20 sm:h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+            <i class="fas fa-tools text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">EXPERT SERVICE</h3>
+          <p class="text-gray-600 font-light text-sm leading-relaxed">
+            All warranty repairs performed by certified technicians using genuine parts
+            and factory-approved procedures.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand-Specific Warranty -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">BRAND-SPECIFIC WARRANTY TERMS</h2>
+        <p class="text-gray-600 font-light">Each manufacturer provides unique warranty coverage tailored to their timepieces</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <!-- Warranty Tabs -->
+      <div class="section-animation">
+        <div class="flex flex-wrap justify-center border-b border-gray-200 mb-8">
+          <button class="tab-button active px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchTab('rolex')">
+            <i class="fas fa-crown mr-2"></i>Rolex
+          </button>
+          <button class="tab-button px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchTab('omega')">
+            <i class="fas fa-star mr-2"></i>Omega
+          </button>
+          <button class="tab-button px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchTab('cartier')">
+            <i class="fas fa-gem mr-2"></i>Cartier
+          </button>
+          <button class="tab-button px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchTab('patek')">
+            <i class="fas fa-medal mr-2"></i>Patek Philippe
+          </button>
+          <button class="tab-button px-4 sm:px-6 py-3 text-sm font-light tracking-wider uppercase m-1" onclick="switchTab('breitling')">
+            <i class="fas fa-plane mr-2"></i>Breitling
+          </button>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <!-- Rolex Tab -->
+          <div id="rolexTab" class="tab-content">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-crown text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-light tracking-wider rolex-accent">ROLEX WARRANTY</h3>
+                  <p class="text-gray-600 font-light text-sm">The Crown of Achievement</p>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Duration:</strong> 5 years international warranty</p>
+                    <p class="text-gray-600 font-light text-xs">Extended coverage for Rolex certified chronometers</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Coverage:</strong> Movement, case, bracelet, and dial</p>
+                    <p class="text-gray-600 font-light text-xs">Excludes damage from accidents or normal wear</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Service:</strong> Authorized Rolex Service Centers only</p>
+                    <p class="text-gray-600 font-light text-xs">Genuine Rolex parts and certified technicians</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Omega Tab -->
+          <div id="omegaTab" class="tab-content hidden">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-star text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-light tracking-wider omega-accent">OMEGA WARRANTY</h3>
+                  <p class="text-gray-600 font-light text-sm">Excellence in Motion</p>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Duration:</strong> 2 years international warranty</p>
+                    <p class="text-gray-600 font-light text-xs">Extended to 4 years for Master Chronometer certified</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Coverage:</strong> All manufacturing defects and malfunctions</p>
+                    <p class="text-gray-600 font-light text-xs">Includes anti-magnetic protection verification</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Service:</strong> Swatch Group authorized service centers</p>
+                    <p class="text-gray-600 font-light text-xs">Specialized Omega-trained technicians</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cartier Tab -->
+          <div id="cartierTab" class="tab-content hidden">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-gem text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-light tracking-wider cartier-accent">CARTIER WARRANTY</h3>
+                  <p class="text-gray-600 font-light text-sm">Jeweler of Kings</p>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Duration:</strong> 2 years international warranty</p>
+                    <p class="text-gray-600 font-light text-xs">Covers both watchmaking and jewelry components</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Coverage:</strong> Movement, case, diamonds, and precious metals</p>
+                    <p class="text-gray-600 font-light text-xs">Includes stone setting and jewelry craftsmanship</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Service:</strong> Cartier boutiques and authorized dealers</p>
+                    <p class="text-gray-600 font-light text-xs">Richemont Group certified service network</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Patek Philippe Tab -->
+          <div id="patekTab" class="tab-content hidden">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-medal text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-light tracking-wider patek-accent">PATEK PHILIPPE WARRANTY</h3>
+                  <p class="text-gray-600 font-light text-sm">Begin Your Own Tradition</p>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Duration:</strong> 2 years international warranty</p>
+                    <p class="text-gray-600 font-light text-xs">Premium coverage for all complications and grand complications</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Coverage:</strong> All mechanical components and complications</p>
+                    <p class="text-gray-600 font-light text-xs">Includes perpetual calendars, minute repeaters, and tourbillons</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Service:</strong> Patek Philippe authorized service centers</p>
+                    <p class="text-gray-600 font-light text-xs">Master watchmakers with specialized training</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Breitling Tab -->
+          <div id="breitlingTab" class="tab-content hidden">
+            <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+              <div class="flex items-center mb-6">
+                <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center mr-4">
+                  <i class="fas fa-plane text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-light tracking-wider breitling-accent">BREITLING WARRANTY</h3>
+                  <p class="text-gray-600 font-light text-sm">Instruments for Professionals</p>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Duration:</strong> 2 years international warranty</p>
+                    <p class="text-gray-600 font-light text-xs">Extended coverage for COSC-certified chronometers</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Coverage:</strong> All chronograph and aviation complications</p>
+                    <p class="text-gray-600 font-light text-xs">Includes specialized aviation instruments and bezels</p>
+                  </div>
+                </div>
+                <div class="flex items-start space-x-3">
+                  <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                  <div>
+                    <p class="font-light text-sm"><strong>Service:</strong> Breitling authorized service partners</p>
+                    <p class="text-gray-600 font-light text-xs">Aviation-grade precision and testing standards</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Warranty Process -->
+          <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+            <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">WARRANTY CLAIM PROCESS</h3>
+            <div class="space-y-6">
+              <div class="timeline-item">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="font-light">1</span>
+                  </div>
+                  <div>
+                    <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Contact Support</h4>
+                    <p class="text-gray-700 leading-relaxed font-light text-sm">
+                      Email us at sales@texas-sales.com with your purchase details and issue description.
+                      Include clear photos of the problem if visible.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="font-light">2</span>
+                  </div>
+                  <div>
+                    <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Documentation Review</h4>
+                    <p class="text-gray-700 leading-relaxed font-light text-sm">
+                      We'll verify your warranty coverage and guide you through the claim process.
+                      Original purchase receipt and warranty card required.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="font-light">3</span>
+                  </div>
+                  <div>
+                    <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Secure Shipping</h4>
+                    <p class="text-gray-700 leading-relaxed font-light text-sm">
+                      We provide prepaid, insured shipping labels for safe transport to authorized service centers.
+                      Full tracking and insurance coverage included.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="flex items-start space-x-4">
+                  <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="font-light">4</span>
+                  </div>
+                  <div>
+                    <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Expert Repair</h4>
+                    <p class="text-gray-700 leading-relaxed font-light text-sm">
+                      Certified technicians diagnose and repair using genuine parts.
+                      Typical turnaround time: 2-4 weeks depending on complexity.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Covered / Not Covered -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">WARRANTY COVERAGE DETAILS</h2>
+        <p class="text-gray-600 font-light">Understanding what's included and excluded in your warranty coverage</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+        <!-- What's Covered -->
+        <div class="bg-green-50 border-2 border-green-200 p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-check-circle text-xl"></i>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-light tracking-wider text-green-800">WHAT'S COVERED</h3>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-check text-green-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-green-800"><strong>Manufacturing Defects</strong></p>
+                <p class="text-green-700 font-light text-xs">Faulty components, assembly errors, movement malfunctions</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-check text-green-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-green-800"><strong>Movement Issues</strong></p>
+                <p class="text-green-700 font-light text-xs">Timing problems, power reserve issues, automatic winding failures</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-check text-green-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-green-800"><strong>Crown & Pushers</strong></p>
+                <p class="text-green-700 font-light text-xs">Defective crowns, chronograph pushers, date quickset mechanisms</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-check text-green-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-green-800"><strong>Crystal & Dial</strong></p>
+                <p class="text-green-700 font-light text-xs">Sapphire crystal defects, dial printing errors, hand alignment issues</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-check text-green-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-green-800"><strong>Bracelet & Clasp</strong></p>
+                <p class="text-green-700 font-light text-xs">Faulty clasps, bracelet link failures, deployment buckle issues</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- What's Not Covered -->
+        <div class="bg-red-50 border-2 border-red-200 p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-times-circle text-xl"></i>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-light tracking-wider text-red-800">WHAT'S NOT COVERED</h3>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-times text-red-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-red-800"><strong>Accidental Damage</strong></p>
+                <p class="text-red-700 font-light text-xs">Impact damage, drops, crushing, water damage from misuse</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-times text-red-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-red-800"><strong>Normal Wear & Tear</strong></p>
+                <p class="text-red-700 font-light text-xs">Scratches, scuffs, aging of luminous material, leather strap wear</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-times text-red-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-red-800"><strong>Unauthorized Service</strong></p>
+                <p class="text-red-700 font-light text-xs">Repairs by non-authorized technicians, replacement with non-genuine parts</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-times text-red-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-red-800"><strong>Misuse & Abuse</strong></p>
+                <p class="text-red-700 font-light text-xs">Exposure beyond specifications, magnetic damage, chemical exposure</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <i class="fas fa-times text-red-600 mt-1"></i>
+              <div>
+                <p class="font-light text-sm text-red-800"><strong>Consumable Items</strong></p>
+                <p class="text-red-700 font-light text-xs">Batteries, rubber gaskets, leather straps, polish and cleaning</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Centers -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">AUTHORIZED SERVICE CENTERS</h2>
+        <p class="text-gray-600 font-light">Professional service locations worldwide for your warranty needs</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-map-marker-alt text-xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">NORTH AMERICA</h3>
+          </div>
+          <div class="space-y-2 text-sm">
+            <p class="font-light"><strong>New York:</strong> Manhattan Watch Center</p>
+            <p class="font-light"><strong>Los Angeles:</strong> Beverly Hills Service</p>
+            <p class="font-light"><strong>Chicago:</strong> Midwest Timepiece Center</p>
+            <p class="font-light"><strong>Toronto:</strong> Canadian Watch Services</p>
+            <p class="font-light"><strong>Miami:</strong> South Florida Watches</p>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-map-marker-alt text-xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">EUROPE</h3>
+          </div>
+          <div class="space-y-2 text-sm">
+            <p class="font-light"><strong>London:</strong> Hatton Garden Service</p>
+            <p class="font-light"><strong>Geneva:</strong> Swiss Watch Center</p>
+            <p class="font-light"><strong>Paris:</strong> Place Vendôme Services</p>
+            <p class="font-light"><strong>Munich:</strong> German Precision Center</p>
+            <p class="font-light"><strong>Milan:</strong> Italian Watch Services</p>
+          </div>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-map-marker-alt text-xl mr-3"></i>
+            <h3 class="text-lg font-light tracking-wider">ASIA-PACIFIC</h3>
+          </div>
+          <div class="space-y-2 text-sm">
+            <p class="font-light"><strong>Tokyo:</strong> Japan Watch Center</p>
+            <p class="font-light"><strong>Hong Kong:</strong> Asia Pacific Service</p>
+            <p class="font-light"><strong>Singapore:</strong> Southeast Asia Center</p>
+            <p class="font-light"><strong>Sydney:</strong> Australian Watch Services</p>
+            <p class="font-light"><strong>Dubai:</strong> Middle East Center</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Support -->
+  <section class="py-12 sm:py-16 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="section-animation">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 tracking-wider">WARRANTY SUPPORT</h2>
+        <p class="text-gray-300 font-light mb-8 max-w-3xl mx-auto">
+          Have questions about your warranty coverage? Our expert team is ready to assist you with any warranty-related inquiries.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
+          <div class="text-center">
+            <i class="fas fa-envelope text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">WARRANTY CLAIMS</h3>
+            <p class="text-gray-300 font-light">warranty@texas-sales.com</p>
+            <p class="text-xs sm:text-sm text-gray-400 font-light">Include purchase receipt and photos</p>
+          </div>
+
+          <div class="text-center">
+            <i class="fas fa-phone text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">TECHNICAL SUPPORT</h3>
+            <p class="text-gray-300 font-light">+1 (555) 839-2792</p>
+            <p class="text-xs sm:text-sm text-gray-400 font-light">Mon-Fri 9AM-6PM EST</p>
+          </div>
+        </div>
+
+        <a href="contactus.html"
+          class="inline-block bg-white text-black px-8 sm:px-10 py-3 sm:py-4 font-light tracking-wider uppercase hover:bg-gray-100 transition-colors">
+          <i class="fas fa-headset mr-2"></i>Contact Warranty Support
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Switch warranty tabs
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+
+      // Show selected tab
+      document.getElementById(tabName + 'Tab').classList.remove('hidden');
+
+      // Update button states
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+    }
+
+    // Get favorites
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count function
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
+      });
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCartCount();
+      updateFavoritesCount();
+    });
+
+    // Handle window resize for mobile menu
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
