@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Products - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Comparison table styling */
+    .comparison-table {
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #000 #f3f4f6;
+    }
+
+    .comparison-table::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .comparison-table::-webkit-scrollbar-track {
+      background: #f3f4f6;
+    }
+
+    .comparison-table::-webkit-scrollbar-thumb {
+      background: #000;
+      border-radius: 4px;
+    }
+
+    /* Product selector */
+    .product-selector {
+      transition: all 0.3s ease;
+      border: 2px solid #e5e7eb;
+    }
+
+    .product-selector:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-selector.selected {
+      border-color: #000;
+      background: #f9fafb;
+    }
+
+    /* Comparison highlight */
+    .highlight-better {
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 500;
+    }
+
+    .highlight-worse {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+
+    /* Empty slot styling */
+    .empty-slot {
+      border: 2px dashed #d1d5db;
+      transition: all 0.3s ease;
+    }
+
+    .empty-slot:hover {
+      border-color: #000;
+      background: #f9fafb;
+    }
+
+    /* Success message animation */
+    .success-message {
+      animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* Product search modal */
+    .product-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+    }
+
+    .product-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 90vw;
+      max-height: 80vh;
+      overflow-y: auto;
+      border: 2px solid #000;
+    }
+
+    /* Sticky comparison header */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 40;
+      border-bottom: 2px solid #000;
+    }
+
+    /* Action buttons */
+    .action-btn {
+      transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .action-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Comparison row hover */
+    .comparison-row:hover {
+      background: #f9fafb;
+    }
+
+    /* Feature icons */
+    .feature-icon {
+      transition: all 0.3s ease;
+    }
+
+    .feature-icon:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .comparison-table {
+        font-size: 0.875rem;
+      }
+
+      .product-selector:hover {
+        transform: none;
+      }
+    }
+
+    /* Rating stars */
+    .rating-stars {
+      color: #fbbf24;
+    }
+
+    /* Price comparison */
+    .price-best {
+      background: #dcfce7;
+      color: #15803d;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+    }
+
+    .price-highest {
+      background: #fef2f2;
+      color: #dc2626;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Compare Products</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">COMPARE PRODUCTS</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Side-by-side comparison of luxury timepieces</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compare Container -->
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+
+    <!-- Compare Header -->
+    <div class="section-animation text-center mb-8 sm:mb-12">
+      <h2 class="text-2xl sm:text-3xl font-light text-black mb-2 sm:mb-4 tracking-wider">SELECT PRODUCTS TO COMPARE</h2>
+      <p class="text-gray-600 font-light">Choose up to 4 luxury watches for detailed comparison</p>
+      <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+    </div>
+
+    <!-- Product Selection Slots -->
+    <div class="section-animation mb-8 sm:mb-12">
+      <div class="bg-white border-2 border-black p-6 sm:p-8">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="comparisonSlots">
+          <!-- Slots will be generated dynamically -->
+        </div>
+        
+        <div class="flex justify-center mt-6 sm:mt-8 space-x-4">
+          <button onclick="clearComparison()"
+            class="action-btn bg-gray-200 text-black px-6 py-3 hover:bg-gray-300 transition-colors font-light tracking-wider uppercase">
+            <i class="fas fa-trash mr-2"></i>Clear All
+          </button>
+          <button onclick="shareComparison()"
+            class="action-btn bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light tracking-wider uppercase">
+            <i class="fas fa-share mr-2"></i>Share Comparison
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="section-animation" id="comparisonTableSection" style="display: none;">
+      <div class="bg-white border-2 border-black">
+        <div class="sticky-header p-4 sm:p-6">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider">DETAILED COMPARISON</h3>
+        </div>
+        
+        <div class="comparison-table">
+          <table class="w-full" id="comparisonTable">
+            <!-- Table will be generated dynamically -->
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Summary -->
+    <div class="section-animation mt-8" id="comparisonSummary" style="display: none;">
+      <div class="bg-gray-50 border-2 border-black p-6 sm:p-8">
+        <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">COMPARISON SUMMARY</h3>
+        <div id="summaryContent">
+          <!-- Summary will be generated dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Selection Modal -->
+  <div class="product-modal" id="productModal">
+    <div class="modal-content w-full max-w-4xl m-4">
+      <div class="p-6">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider">SELECT A PRODUCT</h3>
+          <button onclick="closeProductModal()" class="p-2 hover:bg-gray-100 transition-colors">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        
+        <!-- Search -->
+        <div class="relative mb-6">
+          <input type="text" placeholder="Search products..." id="modalSearchInput"
+            class="w-full px-4 py-3 pl-10 border-2 border-gray-200 focus:border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+
+        <!-- Brand Filter -->
+        <div class="mb-6">
+          <div class="flex flex-wrap gap-2">
+            <button class="filter-btn active px-4 py-2 bg-black text-white font-light text-sm tracking-wider uppercase"
+              onclick="filterModalProducts('all')">
+              All Brands
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-sm tracking-wider uppercase"
+              onclick="filterModalProducts('rolex')">
+              Rolex
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-sm tracking-wider uppercase"
+              onclick="filterModalProducts('omega')">
+              Omega
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-sm tracking-wider uppercase"
+              onclick="filterModalProducts('cartier')">
+              Cartier
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-sm tracking-wider uppercase"
+              onclick="filterModalProducts('patek-philippe')">
+              Patek Philippe
+            </button>
+            <button class="filter-btn px-4 py-2 bg-gray-200 text-black font-light text-sm tracking-wider uppercase"
+              onclick="filterModalProducts('breitling')">
+              Breitling
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-96 overflow-y-auto" id="modalProductGrid">
+          <!-- Products will be loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let productsData = [];
+    let comparedProducts = [];
+    let currentSlot = 0;
+    let modalFilter = 'all';
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Load products data
+    async function loadProductsData() {
+      try {
+        const response = await fetch('products.json');
+        if (!response.ok) {
+          throw new Error('Products file not found');
+        }
+        productsData = await response.json();
+        initializeComparison();
+      } catch (error) {
+        console.error('Error loading products:', error);
+        showErrorMessage('Error loading products data');
+      }
+    }
+
+    // Initialize comparison
+    function initializeComparison() {
+      renderComparisonSlots();
+      loadModalProducts();
+    }
+
+    // Render comparison slots
+    function renderComparisonSlots() {
+      const slotsContainer = document.getElementById('comparisonSlots');
+      const slots = [];
+
+      for (let i = 0; i < 4; i++) {
+        const product = comparedProducts[i];
+        if (product) {
+          slots.push(`
+            <div class="product-selector selected p-4 cursor-pointer" onclick="openProductModal(${i})">
+              <div class="aspect-square overflow-hidden bg-gray-50 mb-3">
+                <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+              </div>
+              <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">${product.brand}</p>
+              <h3 class="font-light text-sm mb-2 line-clamp-2">${product.name}</h3>
+              <p class="text-lg font-light">$${product.newPrice.toLocaleString()}</p>
+              <button onclick="event.stopPropagation(); removeFromComparison(${i})" 
+                class="mt-2 text-red-500 hover:text-red-700 transition-colors text-xs">
+                <i class="fas fa-times mr-1"></i>Remove
+              </button>
+            </div>
+          `);
+        } else {
+          slots.push(`
+            <div class="empty-slot p-8 text-center cursor-pointer" onclick="openProductModal(${i})">
+              <i class="fas fa-plus text-3xl text-gray-400 mb-3"></i>
+              <p class="text-gray-500 font-light text-sm">Add Product</p>
+            </div>
+          `);
+        }
+      }
+
+      slotsContainer.innerHTML = slots.join('');
+      updateComparisonTable();
+    }
+
+    // Open product selection modal
+    function openProductModal(slotIndex) {
+      currentSlot = slotIndex;
+      const modal = document.getElementById('productModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Reset search and filter
+      document.getElementById('modalSearchInput').value = '';
+      modalFilter = 'all';
+      updateModalFilterButtons();
+      renderModalProducts();
+    }
+
+    // Close product modal
+    function closeProductModal() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Load products in modal
+    function loadModalProducts() {
+      renderModalProducts();
+    }
+
+    // Filter modal products
+    function filterModalProducts(brand) {
+      modalFilter = brand;
+      updateModalFilterButtons();
+      renderModalProducts();
+    }
+
+    // Update modal filter buttons
+    function updateModalFilterButtons() {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-black', 'text-white');
+        btn.classList.add('bg-gray-200', 'text-black');
+      });
+      
+      event?.target?.classList.add('active', 'bg-black', 'text-white');
+      event?.target?.classList.remove('bg-gray-200', 'text-black');
+    }
+
+    // Render modal products
+    function renderModalProducts() {
+      const grid = document.getElementById('modalProductGrid');
+      const searchTerm = document.getElementById('modalSearchInput').value.toLowerCase();
+      
+      let filteredProducts = productsData;
+      
+      // Apply brand filter
+      if (modalFilter !== 'all') {
+        filteredProducts = filteredProducts.filter(product => product.brand === modalFilter);
+      }
+      
+      // Apply search filter
+      if (searchTerm) {
+        filteredProducts = filteredProducts.filter(product =>
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.brand.toLowerCase().includes(searchTerm)
+        );
+      }
+      
+      // Exclude already compared products
+      const comparedIds = comparedProducts.map(p => p?.id).filter(Boolean);
+      filteredProducts = filteredProducts.filter(product => !comparedIds.includes(product.id));
+
+      grid.innerHTML = filteredProducts.map(product => `
+        <div class="product-selector p-3 cursor-pointer" onclick="addToComparison(${product.id})">
+          <div class="aspect-square overflow-hidden bg-gray-50 mb-2">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover">
+          </div>
+          <p class="text-xs text-gray-500 uppercase tracking-widest mb-1">${product.brand}</p>
+          <h3 class="font-light text-xs mb-1 line-clamp-2">${product.name}</h3>
+          <p class="text-sm font-light">$${product.newPrice.toLocaleString()}</p>
+        </div>
+      `).join('');
+    }
+
+    // Add product to comparison
+    function addToComparison(productId) {
+      const product = productsData.find(p => p.id === productId);
+      if (product) {
+        comparedProducts[currentSlot] = product;
+        closeProductModal();
+        renderComparisonSlots();
+        showSuccessMessage(`${product.name} added to comparison`);
+      }
+    }
+
+    // Remove from comparison
+    function removeFromComparison(slotIndex) {
+      const product = comparedProducts[slotIndex];
+      comparedProducts[slotIndex] = null;
+      renderComparisonSlots();
+      showSuccessMessage(`${product.name} removed from comparison`);
+    }
+
+    // Clear all comparisons
+    function clearComparison() {
+      if (comparedProducts.some(p => p !== null)) {
+        if (confirm('Clear all products from comparison?')) {
+          comparedProducts = [null, null, null, null];
+          renderComparisonSlots();
+          showSuccessMessage('Comparison cleared');
+        }
+      }
+    }
+
+    // Update comparison table
+    function updateComparisonTable() {
+      const validProducts = comparedProducts.filter(p => p !== null);
+      const tableSection = document.getElementById('comparisonTableSection');
+      const summarySection = document.getElementById('comparisonSummary');
+      
+      if (validProducts.length < 2) {
+        tableSection.style.display = 'none';
+        summarySection.style.display = 'none';
+        return;
+      }
+
+      tableSection.style.display = 'block';
+      summarySection.style.display = 'block';
+      
+      renderComparisonTable(validProducts);
+      renderComparisonSummary(validProducts);
+    }
+
+    // Render comparison table
+    function renderComparisonTable(products) {
+      const table = document.getElementById('comparisonTable');
+      
+      // Generate specifications for comparison
+      const specifications = [
+        { 
+          label: 'Product Image', 
+          type: 'image',
+          getValue: (product) => product.image 
+        },
+        { 
+          label: 'Product Name', 
+          type: 'text',
+          getValue: (product) => product.name 
+        },
+        { 
+          label: 'Brand', 
+          type: 'text',
+          getValue: (product) => product.brand.replace('-', ' ').toUpperCase() 
+        },
+        { 
+          label: 'Current Price', 
+          type: 'price',
+          getValue: (product) => product.newPrice 
+        },
+        { 
+          label: 'Original Price', 
+          type: 'text',
+          getValue: (product) => `$${product.oldPrice.toLocaleString()}` 
+        },
+        { 
+          label: 'Discount', 
+          type: 'percentage',
+          getValue: (product) => Math.round(((product.oldPrice - product.newPrice) / product.oldPrice) * 100) 
+        },
+        { 
+          label: 'Case Material', 
+          type: 'text',
+          getValue: () => 'Stainless Steel' 
+        },
+        { 
+          label: 'Case Diameter', 
+          type: 'text',
+          getValue: () => '42mm' 
+        },
+        { 
+          label: 'Movement', 
+          type: 'text',
+          getValue: () => 'Swiss Automatic' 
+        },
+        { 
+          label: 'Water Resistance', 
+          type: 'text',
+          getValue: () => '100m / 330ft' 
+        },
+        { 
+          label: 'Crystal', 
+          type: 'text',
+          getValue: () => 'Sapphire' 
+        },
+        { 
+          label: 'Warranty', 
+          type: 'text',
+          getValue: () => '2 Years International' 
+        },
+        { 
+          label: 'Rating', 
+          type: 'rating',
+          getValue: () => 5 
+        }
+      ];
+
+      let tableHTML = `
+        <thead class="bg-black text-white">
+          <tr>
+            <th class="px-4 py-4 text-left font-light tracking-wider uppercase text-sm">Specification</th>
+            ${products.map((product, index) => `
+              <th class="px-4 py-4 text-center font-light tracking-wider uppercase text-sm">Product ${index + 1}</th>
+            `).join('')}
+          </tr>
+        </thead>
+        <tbody>
+      `;
+
+      specifications.forEach((spec, specIndex) => {
+        tableHTML += `
+          <tr class="comparison-row border-b border-gray-200 ${specIndex % 2 === 0 ? 'bg-gray-50' : 'bg-white'}">
+            <td class="px-4 py-4 font-light text-black">${spec.label}</td>
+            ${products.map(product => {
+              const value = spec.getValue(product);
+              let cellContent = '';
+              let cellClass = 'px-4 py-4 text-center';
+              
+              switch (spec.type) {
+                case 'image':
+                  cellContent = `<img src="${value}" alt="${product.name}" class="w-16 h-16 object-cover mx-auto border border-gray-200">`;
+                  break;
+                case 'price':
+                  const prices = products.map(p => spec.getValue(p));
+                  const minPrice = Math.min(...prices);
+                  const maxPrice = Math.max(...prices);
+                  if (value === minPrice && minPrice !== maxPrice) {
+                    cellClass += ' price-best';
+                  } else if (value === maxPrice && minPrice !== maxPrice) {
+                    cellClass += ' price-highest';
+                  }
+                  cellContent = `$${value.toLocaleString()}`;
+                  break;
+                case 'percentage':
+                  cellContent = `${value}%`;
+                  break;
+                case 'rating':
+                  cellContent = `
+                    <div class="rating-stars flex justify-center">
+                      ${Array.from({length: 5}, (_, i) => 
+                        `<i class="fas fa-star ${i < value ? '' : 'text-gray-300'}"></i>`
+                      ).join('')}
+                    </div>
+                  `;
+                  break;
+                default:
+                  cellContent = value;
+              }
+              
+              return `<td class="${cellClass}">${cellContent}</td>`;
+            }).join('')}
+          </tr>
+        `;
+      });
+
+      tableHTML += `
+          <tr class="bg-black text-white">
+            <td class="px-4 py-4 font-light">Actions</td>
+            ${products.map(product => `
+              <td class="px-4 py-4 text-center">
+                <div class="flex flex-col space-y-2">
+                  <button onclick="addToCart(${product.id})" 
+                    class="bg-white text-black px-3 py-2 text-xs uppercase tracking-wider hover:bg-gray-100 transition-colors font-light">
+                    <i class="fas fa-shopping-cart mr-1"></i>Add to Cart
+                  </button>
+                  <button onclick="viewProduct(${product.id})" 
+                    class="bg-gray-600 text-white px-3 py-2 text-xs uppercase tracking-wider hover:bg-gray-700 transition-colors font-light">
+                    <i class="fas fa-eye mr-1"></i>View Details
+                  </button>
+                </div>
+              </td>
+            `).join('')}
+          </tr>
+        </tbody>
+      `;
+
+      table.innerHTML = tableHTML;
+    }
+
+    // Render comparison summary
+    function renderComparisonSummary(products) {
+      const summaryContent = document.getElementById('summaryContent');
+      
+      // Find best value and premium option
+      const prices = products.map(p => p.newPrice);
+      const minPrice = Math.min(...prices);
+      const maxPrice = Math.max(...prices);
+      
+      const bestValue = products.find(p => p.newPrice === minPrice);
+      const premium = products.find(p => p.newPrice === maxPrice);
+      
+      // Calculate average discount
+      const avgDiscount = Math.round(
+        products.reduce((sum, p) => sum + ((p.oldPrice - p.newPrice) / p.oldPrice) * 100, 0) / products.length
+      );
+
+      summaryContent.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="feature-icon w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3">
+              <i class="fas fa-star"></i>
+            </div>
+            <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Best Value</h4>
+            <p class="text-sm font-light text-gray-600">${bestValue.name}</p>
+            <p class="text-lg font-light text-green-600">$${bestValue.newPrice.toLocaleString()}</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="feature-icon w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-3">
+              <i class="fas fa-crown"></i>
+            </div>
+            <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Premium Choice</h4>
+            <p class="text-sm font-light text-gray-600">${premium.name}</p>
+            <p class="text-lg font-light text-purple-600">$${premium.newPrice.toLocaleString()}</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="feature-icon w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-3">
+              <i class="fas fa-percentage"></i>
+            </div>
+            <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Average Savings</h4>
+            <p class="text-sm font-light text-gray-600">Across all products</p>
+            <p class="text-lg font-light text-blue-600">${avgDiscount}%</p>
+          </div>
+        </div>
+        
+        <div class="mt-8 text-center">
+          <p class="text-gray-600 font-light mb-4">
+            Price difference: $${(maxPrice - minPrice).toLocaleString()} between highest and lowest
+          </p>
+          <div class="flex justify-center space-x-4">
+            <button onclick="addAllToCart()" 
+              class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light tracking-wider uppercase">
+              <i class="fas fa-shopping-cart mr-2"></i>Add All to Cart
+            </button>
+            <button onclick="saveComparison()" 
+              class="bg-gray-200 text-black px-6 py-3 hover:bg-gray-300 transition-colors font-light tracking-wider uppercase">
+              <i class="fas fa-save mr-2"></i>Save Comparison
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Add to cart
+    function addToCart(productId) {
+      let cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const existingItem = cart.find(item => item.productId === productId);
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          productId: productId,
+          quantity: 1,
+          addedAt: new Date().toISOString()
+        });
+      }
+
+      localStorage.setItem('texasWatchesCart', JSON.stringify(cart));
+      updateCartCount();
+
+      const product = productsData.find(p => p.id === productId);
+      showSuccessMessage(`${product.name} added to cart!`);
+    }
+
+    // Add all to cart
+    function addAllToCart() {
+      const validProducts = comparedProducts.filter(p => p !== null);
+      let cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      
+      validProducts.forEach(product => {
+        const existingItem = cart.find(item => item.productId === product.id);
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            productId: product.id,
+            quantity: 1,
+            addedAt: new Date().toISOString()
+          });
+        }
+      });
+
+      localStorage.setItem('texasWatchesCart', JSON.stringify(cart));
+      updateCartCount();
+      showSuccessMessage(`${validProducts.length} products added to cart!`);
+    }
+
+    // View product
+    function viewProduct(productId) {
+      window.location.href = `product-detail.html?id=${productId}`;
+    }
+
+    // Share comparison
+    function shareComparison() {
+      const validProducts = comparedProducts.filter(p => p !== null);
+      if (validProducts.length < 2) {
+        showErrorMessage('Add at least 2 products to share comparison');
+        return;
+      }
+
+      const compareUrl = `${window.location.origin}/compare.html?products=${validProducts.map(p => p.id).join(',')}`;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: 'Watch Comparison - Texas Watches',
+          text: `Compare ${validProducts.length} luxury watches`,
+          url: compareUrl
+        });
+      } else {
+        navigator.clipboard.writeText(compareUrl);
+        showSuccessMessage('Comparison link copied to clipboard!');
+      }
+    }
+
+    // Save comparison
+    function saveComparison() {
+      const validProducts = comparedProducts.filter(p => p !== null);
+      if (validProducts.length < 2) {
+        showErrorMessage('Add at least 2 products to save comparison');
+        return;
+      }
+
+      const comparison = {
+        id: Date.now(),
+        products: validProducts.map(p => p.id),
+        createdAt: new Date().toISOString(),
+        name: `Comparison of ${validProducts.length} watches`
+      };
+
+      let savedComparisons = JSON.parse(localStorage.getItem('texasWatchesComparisons') || '[]');
+      savedComparisons.push(comparison);
+      localStorage.setItem('texasWatchesComparisons', JSON.stringify(savedComparisons));
+
+      showSuccessMessage('Comparison saved successfully!');
+    }
+
+    // Utility functions
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    function showSuccessMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'fixed top-20 right-4 sm:right-6 bg-black text-white px-4 sm:px-6 py-3 sm:py-4 shadow-lg z-50 success-message';
+      messageDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-check-circle"></i>
+          <span class="font-light text-sm">${message}</span>
+        </div>
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 3000);
+    }
+
+    function showErrorMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'fixed top-20 right-4 sm:right-6 bg-red-500 text-white px-4 sm:px-6 py-3 sm:py-4 shadow-lg z-50 success-message';
+      messageDiv.innerHTML = `
+        <div class="flex items-center space-x-3">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span class="font-light text-sm">${message}</span>
+        </div>
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 3000);
+    }
+
+    // Setup modal search
+    function setupModalSearch() {
+      const modalSearchInput = document.getElementById('modalSearchInput');
+      modalSearchInput.addEventListener('input', renderModalProducts);
+    }
+
+    // Load comparison from URL
+    function loadComparisonFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productIds = urlParams.get('products');
+      
+      if (productIds) {
+        const ids = productIds.split(',').map(id => parseInt(id));
+        ids.forEach((id, index) => {
+          if (index < 4) {
+            const product = productsData.find(p => p.id === id);
+            if (product) {
+              comparedProducts[index] = product;
+            }
+          }
+        });
+        renderComparisonSlots();
+      }
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function () {
+      loadProductsData();
+      setupModalSearch();
+      updateCartCount();
+      updateFavoritesCount();
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close modal on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeProductModal();
+      }
+    });
+
+    // Initialize comparison array
+    comparedProducts = [null, null, null, null];
+  </script>
+</body>
+
+</html>
