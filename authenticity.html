@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authenticity Guarantee - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Enhanced card hover */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: #000;
+    }
+
+    /* Feature card styling */
+    .feature-card {
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .feature-icon {
+      transition: all 0.3s ease;
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .section-animation:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Authenticity seal animation */
+    .authenticity-seal {
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Verification process */
+    .verification-step {
+      position: relative;
+      padding-left: 3rem;
+    }
+
+    .verification-step::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 60px;
+      bottom: -20px;
+      width: 2px;
+      background: linear-gradient(to bottom, #000, #666);
+    }
+
+    .verification-step:last-child::before {
+      display: none;
+    }
+
+    /* Certificate showcase */
+    .certificate-showcase {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border: 3px solid #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .certificate-showcase::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 50px,
+          rgba(0, 0, 0, 0.02) 50px,
+          rgba(0, 0, 0, 0.02) 60px);
+    }
+
+    /* Trust indicators */
+    .trust-indicator {
+      position: relative;
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      overflow: hidden;
+    }
+
+    .trust-indicator::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.05) 10px,
+          rgba(255, 255, 255, 0.05) 20px);
+    }
+
+    /* Comparison table */
+    .comparison-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      border: 1px solid #000;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .comparison-table th {
+      background: #000;
+      color: white;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .comparison-table tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .comparison-table tr:hover {
+      background: #e9ecef;
+    }
+
+    .authentic-feature {
+      color: #059669;
+      font-weight: 600;
+    }
+
+    .fake-feature {
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    /* Interactive verification tool */
+    .verification-tool {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .verification-tool::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 15px,
+          rgba(255, 255, 255, 0.03) 15px,
+          rgba(255, 255, 255, 0.03) 30px);
+    }
+
+    /* Guarantee badge */
+    .guarantee-badge {
+      position: relative;
+      background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+      color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
+      animation: pulse-badge 3s infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% {
+        box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 0 12px rgba(5, 150, 105, 0.1);
+      }
+    }
+
+    /* Interactive hover effects */
+    .interactive-card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .interactive-card:hover {
+      transform: scale(1.02);
+    }
+
+    /* Serial number input */
+    .serial-input {
+      transition: all 0.3s ease;
+    }
+
+    .serial-input:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Select dropdown styling */
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1rem;
+      padding-right: 3rem;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #000;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    select option {
+      background-color: white;
+      color: black;
+      padding: 0.5rem;
+    }
+
+    select option:hover {
+      background-color: #f3f4f6;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 3px solid #000;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+      
+      .verification-step {
+        padding-left: 2rem;
+      }
+      
+      .verification-step::before {
+        left: 15px;
+      }
+      
+      .comparison-table {
+        font-size: 0.875rem;
+      }
+      
+      .comparison-table th,
+      .comparison-table td {
+        padding: 0.5rem;
+      }
+    }
+
+    /* Floating verification badge */
+    .floating-badge {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Authenticity Guarantee</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <div class="authenticity-seal w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 bg-white rounded-full flex items-center justify-center">
+          <i class="fas fa-certificate text-3xl sm:text-4xl text-black"></i>
+        </div>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">AUTHENTICITY GUARANTEE</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">100% authentic luxury timepieces with lifetime verification</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guarantee Promise -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">OUR AUTHENTICITY PROMISE</h2>
+        <p class="text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
+          Every timepiece sold by Wrist Watches is guaranteed to be 100% authentic. 
+          We stake our reputation on the legitimacy of every luxury watch in our collection.
+        </p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
+        <div class="trust-indicator p-6 sm:p-8 text-center relative z-10">
+          <div class="guarantee-badge w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 flex items-center justify-center">
+            <i class="fas fa-shield-alt text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">100% AUTHENTIC</h3>
+          <p class="text-gray-200 font-light text-sm leading-relaxed">
+            Every watch undergoes rigorous authentication by certified experts
+            using advanced verification techniques and equipment.
+          </p>
+        </div>
+
+        <div class="trust-indicator p-6 sm:p-8 text-center relative z-10">
+          <div class="guarantee-badge w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 flex items-center justify-center">
+            <i class="fas fa-certificate text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">CERTIFIED DOCUMENTATION</h3>
+          <p class="text-gray-200 font-light text-sm leading-relaxed">
+            Complete authentication certificates with detailed verification
+            reports accompany every timepiece purchase.
+          </p>
+        </div>
+
+        <div class="trust-indicator p-6 sm:p-8 text-center relative z-10">
+          <div class="guarantee-badge w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 flex items-center justify-center">
+            <i class="fas fa-infinity text-2xl sm:text-3xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2 sm:mb-4">LIFETIME GUARANTEE</h3>
+          <p class="text-gray-200 font-light text-sm leading-relaxed">
+            Our authenticity guarantee extends for the lifetime of your watch.
+            We stand behind every timepiece forever.
+          </p>
+        </div>
+      </div>
+
+      <!-- Money Back Guarantee -->
+      <div class="section-animation text-center bg-gray-50 border-2 border-black p-8 sm:p-12">
+        <h3 class="text-2xl sm:text-3xl font-light tracking-wider mb-4">MONEY BACK GUARANTEE</h3>
+        <p class="text-gray-700 font-light mb-6 max-w-2xl mx-auto">
+          If any watch purchased from Wrist Watches is ever proven to be inauthentic by an authorized dealer 
+          or manufacturer, we will provide a full refund plus 50% of the purchase price as compensation.
+        </p>
+        <div class="text-4xl sm:text-5xl font-light text-black mb-2">150%</div>
+        <p class="text-sm text-gray-600 font-light">REFUND GUARANTEE</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verification Process -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">OUR VERIFICATION PROCESS</h2>
+        <p class="text-gray-600 font-light">Multi-step authentication ensures every timepiece meets our standards</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div class="space-y-6">
+          <div class="verification-step">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">1</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Source Verification</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  We only source from authorized dealers, established collectors, and verified estate sales.
+                  Every watch's provenance is documented and verified.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="verification-step">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">2</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Physical Inspection</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Certified horologists examine every component including case, movement, dial, hands, 
+                  and crown for authenticity markers and manufacturing quality.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="verification-step">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">3</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Serial Number Verification</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  All serial numbers are cross-referenced with manufacturer databases
+                  and verified against known authentic timepieces.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="verification-step">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">4</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Advanced Testing</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Specialized equipment tests movement accuracy, water resistance, 
+                  and magnetic resistance to manufacturer specifications.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="verification-step">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="font-light">5</span>
+              </div>
+              <div>
+                <h4 class="font-light text-black mb-2 tracking-wider uppercase text-sm">Final Certification</h4>
+                <p class="text-gray-700 leading-relaxed font-light text-sm">
+                  Upon passing all tests, watches receive our authenticity certificate
+                  and are photographed for our permanent verification database.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="certificate-showcase p-6 sm:p-8 relative z-10">
+            <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6 text-center">AUTHENTICITY CERTIFICATE</h3>
+            <div class="bg-white border-2 border-black p-6 text-center">
+              <div class="text-2xl font-light mb-4">Wrist Watches</div>
+              <div class="text-sm uppercase tracking-widest mb-4">Certificate of Authenticity</div>
+              <div class="border-t border-b border-gray-300 py-4 my-4">
+                <div class="text-lg font-light">ROLEX SUBMARINER</div>
+                <div class="text-sm text-gray-600">Ref: 126610LN</div>
+                <div class="text-sm text-gray-600">Serial: S1234567</div>
+              </div>
+              <div class="text-xs text-gray-500 mb-4">
+                This timepiece has been authenticated by certified horologists
+                and is guaranteed to be 100% authentic.
+              </div>
+              <div class="flex justify-between items-center text-xs">
+                <span>Certified: Jan 15, 2025</span>
+                <span>Expert: J. Martinez</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border-2 border-black p-6 sm:p-8">
+            <h4 class="font-light text-black mb-4 tracking-wider uppercase text-sm">What's Included</h4>
+            <div class="space-y-3">
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Detailed authentication report</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">High-resolution verification photos</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Serial number documentation</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Expert certification signature</span>
+              </div>
+              <div class="flex items-center space-x-3">
+                <i class="fas fa-check text-green-600"></i>
+                <span class="text-gray-700 font-light text-sm">Lifetime authenticity guarantee</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Tools -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">PROFESSIONAL AUTHENTICATION TOOLS</h2>
+        <p class="text-gray-600 font-light">Advanced equipment and expertise ensure accurate verification</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover interactive-card">
+          <div class="text-center mb-4">
+            <i class="fas fa-microscope text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg font-light tracking-wider">MICROSCOPIC ANALYSIS</h3>
+          </div>
+          <p class="text-gray-600 font-light text-sm text-center">
+            High-powered microscopes reveal manufacturing marks, engravings, 
+            and surface treatments unique to authentic timepieces.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover interactive-card">
+          <div class="text-center mb-4">
+            <i class="fas fa-weight-hanging text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg font-light tracking-wider">PRECISION WEIGHING</h3>
+          </div>
+          <p class="text-gray-600 font-light text-sm text-center">
+            Precise measurements of weight, dimensions, and component specifications
+            are compared against manufacturer standards.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover interactive-card">
+          <div class="text-center mb-4">
+            <i class="fas fa-eye text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg font-light tracking-wider">UV LIGHT TESTING</h3>
+          </div>
+          <p class="text-gray-600 font-light text-sm text-center">
+            Ultraviolet light reveals luminous materials and fluorescent 
+            markers that confirm authentic manufacturing processes.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover interactive-card">
+          <div class="text-center mb-4">
+            <i class="fas fa-magnet text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg font-light tracking-wider">MAGNETIC TESTING</h3>
+          </div>
+          <p class="text-gray-600 font-light text-sm text-center">
+            Magnetic field testing verifies anti-magnetic properties
+            and movement specifications claimed by manufacturers.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover interactive-card">
+          <div class="text-center mb-4">
+            <i class="fas fa-database text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg font-light tracking-wider">DATABASE VERIFICATION</h3>
+          </div>
+          <p class="text-gray-600 font-light text-sm text-center">
+            Serial numbers and model references are verified against
+            comprehensive manufacturer and auction databases.
+          </p>
+        </div>
+
+        <div class="bg-white border-2 border-black p-6 sm:p-8 card-hover interactive-card">
+          <div class="text-center mb-4">
+            <i class="fas fa-heartbeat text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg font-light tracking-wider">MOVEMENT ANALYSIS</h3>
+          </div>
+          <p class="text-gray-600 font-light text-sm text-center">
+            Timing machines and movement analyzers verify mechanical
+            performance and authentic caliber specifications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentic vs Fake Comparison -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">AUTHENTIC VS COUNTERFEIT</h2>
+        <p class="text-gray-600 font-light">Key differences that separate genuine luxury watches from fakes</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation">
+        <div class="bg-white border-2 border-black p-6 sm:p-8">
+          <div class="overflow-x-auto">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th class="text-left">Feature</th>
+                  <th class="authentic-feature">Authentic</th>
+                  <th class="fake-feature">Counterfeit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-light text-left">Weight</td>
+                  <td class="authentic-feature">Substantial, precise weight</td>
+                  <td class="fake-feature">Often lighter, inconsistent</td>
+                </tr>
+                <tr>
+                  <td class="font-light text-left">Movement</td>
+                  <td class="authentic-feature">Smooth, precise sweep</td>
+                  <td class="fake-feature">Ticking, irregular motion</td>
+                </tr>
+                <tr>
+                  <td class="font-light text-left">Engravings</td>
+                  <td class="authentic-feature">Crisp, deep, perfect</td>
+                  <td class="fake-feature">Shallow, blurry, uneven</td>
+                </tr>
+                <tr>
+                  <td class="font-light text-left">Materials</td>
+                  <td class="authentic-feature">Premium metals, sapphire</td>
+                  <td class="fake-feature">Cheap alloys, mineral glass</td>
+                </tr>
+                <tr>
+                  <td class="font-light text-left">Crown</td>
+                  <td class="authentic-feature">Smooth operation, proper logo</td>
+                  <td class="fake-feature">Rough, misaligned, poor logo</td>
+                </tr>
+                <tr>
+                  <td class="font-light text-left">Dial</td>
+                  <td class="authentic-feature">Perfect printing, alignment</td>
+                  <td class="fake-feature">Smudged, crooked, faded</td>
+                </tr>
+                <tr>
+                  <td class="font-light text-left">Bracelet</td>
+                  <td class="authentic-feature">Solid links, smooth action</td>
+                  <td class="fake-feature">Hollow links, rough edges</td>
+                </tr>
+                <tr>
+                  <td class="font-light text-left">Serial Numbers</td>
+                  <td class="authentic-feature">Unique, verifiable</td>
+                  <td class="fake-feature">Duplicate, fake, missing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Verification Tool -->
+  <section class="py-12 sm:py-16 verification-tool relative">
+    <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+      <div class="section-animation">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 tracking-wider">VERIFY YOUR TIMEPIECE</h2>
+        <p class="text-gray-300 font-light mb-8 max-w-3xl mx-auto">
+          Already own a luxury watch? Use our verification tool to confirm its authenticity
+          or schedule a professional authentication appointment.
+        </p>
+
+        <div class="max-w-2xl mx-auto">
+          <div class="bg-white p-6 sm:p-8 border-2 border-gray-300">
+            <h3 class="text-xl font-light text-black mb-6 tracking-wider">AUTHENTICITY CHECKER</h3>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase text-left">
+                  Brand
+                </label>
+                <select id="brandSelect" class="w-full px-4 py-3 border-2 border-gray-300 focus:border-black focus:outline-none font-light text-black bg-white">
+                  <option value="" class="text-gray-500">Select Brand</option>
+                  <option value="rolex" class="text-black">Rolex</option>
+                  <option value="omega" class="text-black">Omega</option>
+                  <option value="cartier" class="text-black">Cartier</option>
+                  <option value="patek" class="text-black">Patek Philippe</option>
+                  <option value="breitling" class="text-black">Breitling</option>
+                  <option value="audemars" class="text-black">Audemars Piguet</option>
+                  <option value="tag" class="text-black">TAG Heuer</option>
+                  <option value="iwc" class="text-black">IWC</option>
+                  <option value="tudor" class="text-black">Tudor</option>
+                  <option value="other" class="text-black">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase text-left">
+                  Model
+                </label>
+                <input type="text" id="modelInput" placeholder="e.g., Submariner, Speedmaster" 
+                       class="serial-input w-full px-4 py-3 border-2 border-gray-300 focus:border-black focus:outline-none font-light">
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase text-left">
+                  Serial Number
+                </label>
+                <input type="text" id="serialInput" placeholder="Enter serial number" 
+                       class="serial-input w-full px-4 py-3 border-2 border-gray-300 focus:border-black focus:outline-none font-light">
+              </div>
+
+              <button onclick="verifyWatch()" 
+                      class="w-full bg-black text-white py-3 sm:py-4 px-6 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                <i class="fas fa-search mr-2"></i>Verify Authenticity
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div class="text-center">
+            <i class="fas fa-calendar-check text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">SCHEDULE AUTHENTICATION</h3>
+            <p class="text-gray-300 font-light text-sm mb-4">
+              Bring your watch to our experts for professional authentication
+            </p>
+            <a href="contactus.html" class="inline-block bg-white text-black px-6 py-3 font-light tracking-wider uppercase hover:bg-gray-100 transition-colors">
+              Book Appointment
+            </a>
+          </div>
+
+          <div class="text-center">
+            <i class="fas fa-camera text-3xl sm:text-4xl mb-4"></i>
+            <h3 class="text-lg sm:text-xl font-light mb-2 tracking-wider">PHOTO VERIFICATION</h3>
+            <p class="text-gray-300 font-light text-sm mb-4">
+              Send us detailed photos for preliminary authenticity assessment
+            </p>
+            <a href="contactus.html" class="inline-block bg-white text-black px-6 py-3 font-light tracking-wider uppercase hover:bg-gray-100 transition-colors">
+              Send Photos
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Indicators -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">TRUSTED BY COLLECTORS WORLDWIDE</h2>
+        <p class="text-gray-600 font-light">Our reputation is built on trust, expertise, and unwavering commitment to authenticity</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
+        <div class="text-center">
+          <div class="text-4xl sm:text-5xl font-light text-black mb-2">10,000+</div>
+          <p class="text-gray-600 font-light text-sm">AUTHENTICATED WATCHES</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-4xl sm:text-5xl font-light text-black mb-2">15</div>
+          <p class="text-gray-600 font-light text-sm">CERTIFIED EXPERTS</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-4xl sm:text-5xl font-light text-black mb-2">5</div>
+          <p class="text-gray-600 font-light text-sm">YEARS EXPERIENCE</p>
+        </div>
+
+        <div class="text-center">
+          <div class="text-4xl sm:text-5xl font-light text-black mb-2">0</div>
+          <p class="text-gray-600 font-light text-sm">AUTHENTICATION ERRORS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Verification Badge -->
+  <div class="floating-badge">
+    <div class="guarantee-badge w-16 h-16 flex items-center justify-center cursor-pointer" onclick="openModal()">
+      <i class="fas fa-certificate text-xl text-white"></i>
+    </div>
+  </div>
+
+  <!-- Verification Modal -->
+  <div class="modal" id="verificationModal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="p-6 sm:p-8">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider">AUTHENTICITY GUARANTEE</h3>
+          <button onclick="closeModal()" class="text-2xl">&times;</button>
+        </div>
+        
+        <div class="text-center mb-6">
+          <div class="guarantee-badge w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+            <i class="fas fa-shield-alt text-3xl"></i>
+          </div>
+          <h4 class="text-lg font-light mb-2">100% AUTHENTIC GUARANTEE</h4>
+          <p class="text-gray-600 font-light text-sm">
+            Every timepiece is authenticated by certified experts and backed by our lifetime guarantee.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-check text-green-600"></i>
+            <span class="text-sm font-light">Certified by horological experts</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-check text-green-600"></i>
+            <span class="text-sm font-light">Lifetime authenticity guarantee</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-check text-green-600"></i>
+            <span class="text-sm font-light">150% money-back guarantee</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-check text-green-600"></i>
+            <span class="text-sm font-light">Complete documentation included</span>
+          </div>
+        </div>
+
+        <div class="mt-6 text-center">
+          <a href="contactus.html" class="inline-block bg-black text-white px-6 py-3 font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Verify watch functionality
+    function verifyWatch() {
+      const brand = document.getElementById('brandSelect').value;
+      const model = document.getElementById('modelInput').value;
+      const serial = document.getElementById('serialInput').value;
+
+      if (!brand || !model || !serial) {
+        showMessage('Please fill in all fields to verify your timepiece.', 'warning');
+        return;
+      }
+
+      // Brand name mapping for display
+      const brandNames = {
+        'rolex': 'ROLEX',
+        'omega': 'OMEGA',
+        'cartier': 'CARTIER',
+        'patek': 'PATEK PHILIPPE',
+        'breitling': 'BREITLING',
+        'audemars': 'AUDEMARS PIGUET',
+        'tag': 'TAG HEUER',
+        'iwc': 'IWC',
+        'tudor': 'TUDOR',
+        'other': 'LUXURY WATCH'
+      };
+
+      const brandDisplay = brandNames[brand] || brand.toUpperCase();
+
+      // Simulate verification process
+      showMessage('Verifying your timepiece...', 'info');
+      
+      setTimeout(() => {
+        // Simulate verification result
+        const isAuthentic = Math.random() > 0.3; // 70% chance of being authentic for demo
+        
+        if (isAuthentic) {
+          showMessage(`Great news! Your ${brandDisplay} ${model} appears to have authentic characteristics. For a complete verification, please schedule an appointment with our experts.`, 'success');
+        } else {
+          showMessage(`We found some concerns with your ${brandDisplay} ${model}. We recommend professional authentication to ensure authenticity. Contact us for a detailed evaluation.`, 'warning');
+        }
+      }, 2000);
+    }
+
+    // Show message function
+    function showMessage(message, type) {
+      const messageDiv = document.createElement('div');
+      let bgColor = 'bg-blue-500';
+      let icon = 'fa-info-circle';
+      
+      switch(type) {
+        case 'success':
+          bgColor = 'bg-green-500';
+          icon = 'fa-check-circle';
+          break;
+        case 'warning':
+          bgColor = 'bg-yellow-500';
+          icon = 'fa-exclamation-triangle';
+          break;
+        case 'error':
+          bgColor = 'bg-red-500';
+          icon = 'fa-times-circle';
+          break;
+      }
+
+      messageDiv.className = `fixed top-20 right-6 ${bgColor} text-white px-6 py-4 shadow-lg z-50 max-w-md`;
+      messageDiv.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <i class="fas ${icon} text-xl mt-1"></i>
+          <div>
+            <p class="font-light text-sm">${message}</p>
+            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-xs underline mt-2">
+              Close
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        if (messageDiv.parentElement) {
+          messageDiv.remove();
+        }
+      }, 8000);
+    }
+
+    // Modal functions
+    function openModal() {
+      document.getElementById('verificationModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('verificationModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Get favorites
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count function
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      cartCountElements.forEach(element => {
+        element.textContent = count;
+      });
+    }
+
+    // Initialize authentication statistics
+    function initializeStats() {
+      const stats = [
+        { element: document.querySelector('.text-4xl'), target: 10000, suffix: '+' },
+        { element: document.querySelectorAll('.text-4xl')[1], target: 15, suffix: '' },
+        { element: document.querySelectorAll('.text-4xl')[2], target: 5, suffix: '' },
+        { element: document.querySelectorAll('.text-4xl')[3], target: 0, suffix: '' }
+      ];
+
+      stats.forEach((stat, index) => {
+        if (stat.element) {
+          animateCounter(stat.element, stat.target, stat.suffix, index * 200);
+        }
+      });
+    }
+
+    // Counter animation
+    function animateCounter(element, target, suffix, delay) {
+      setTimeout(() => {
+        let current = 0;
+        const increment = target / 50;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          element.textContent = Math.floor(current).toLocaleString() + suffix;
+        }, 50);
+      }, delay);
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCartCount();
+      updateFavoritesCount();
+      initializeStats();
+    });
+
+    // Handle window resize for mobile menu
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Handle escape key for modal
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+
+</html>
