@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Settings - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form styling */
+    .form-input {
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    .form-success {
+      border-color: #10b981 !important;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+    }
+
+    /* Tab styling */
+    .tab-button {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .tab-button:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+
+    .tab-button.active {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    /* Settings card styling */
+    .settings-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+    }
+
+    .settings-card:hover {
+      border-color: #000;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Avatar upload styling */
+    .avatar-container {
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .avatar-container:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .avatar-container:hover .avatar-overlay {
+      opacity: 1;
+    }
+
+    /* Toggle switch styling */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+      background-color: #000;
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+
+    /* Address card styling */
+    .address-card {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .address-card:hover {
+      border-color: #000;
+      transform: translateY(-2px);
+    }
+
+    .address-card.default {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    /* Notification styling */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #000;
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      animation: slideInRight 0.3s ease;
+    }
+
+    .notification.success {
+      background: #10b981;
+    }
+
+    .notification.error {
+      background: #ef4444;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Progress bar styling */
+    .progress-bar {
+      height: 4px;
+      background: #e5e7eb;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #000;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 2px solid #000;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .modal-content {
+        width: 95%;
+      }
+    }
+
+    /* Sidebar styling */
+    .sidebar {
+      position: sticky;
+      top: 2rem;
+      height: fit-content;
+    }
+
+    .sidebar-link {
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+
+    .sidebar-link:hover {
+      border-left-color: #000;
+      transform: translateX(4px);
+    }
+
+    .sidebar-link.active {
+      border-left-color: #000;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Security badge styling */
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .security-badge.strong {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .security-badge.medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .security-badge.weak {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown" id="accountDropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity" onclick="toggleAccountDropdown()">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content" id="accountDropdownContent">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+              <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <a href="login.html" class="text-gray-600 hover:text-black transition-colors">Account</a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Settings</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12 md:py-16 relative z-10">
+      <div class="text-center">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">ACCOUNT SETTINGS</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Manage your profile and preferences</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Account Settings Container -->
+  <div class="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+      <!-- Sidebar Navigation -->
+      <div class="lg:col-span-1">
+        <div class="sidebar bg-white border-2 border-black p-6">
+          <h3 class="text-lg font-light tracking-wider mb-6">ACCOUNT MENU</h3>
+          <nav class="space-y-2">
+            <button class="sidebar-link active w-full text-left px-4 py-3 text-sm font-light tracking-wider uppercase hover:bg-gray-50 transition-colors"
+               onclick="switchSection('profile')">
+              <i class="fas fa-user mr-3"></i>Profile
+            </button>
+            <button class="sidebar-link w-full text-left px-4 py-3 text-sm font-light tracking-wider uppercase hover:bg-gray-50 transition-colors"
+               onclick="switchSection('security')">
+              <i class="fas fa-shield-alt mr-3"></i>Security
+            </button>
+            <button class="sidebar-link w-full text-left px-4 py-3 text-sm font-light tracking-wider uppercase hover:bg-gray-50 transition-colors"
+               onclick="switchSection('addresses')">
+              <i class="fas fa-map-marker-alt mr-3"></i>Addresses
+            </button>
+            <button class="sidebar-link w-full text-left px-4 py-3 text-sm font-light tracking-wider uppercase hover:bg-gray-50 transition-colors"
+               onclick="switchSection('notifications')">
+              <i class="fas fa-bell mr-3"></i>Notifications
+            </button>
+            <button class="sidebar-link w-full text-left px-4 py-3 text-sm font-light tracking-wider uppercase hover:bg-gray-50 transition-colors"
+               onclick="switchSection('preferences')">
+              <i class="fas fa-cog mr-3"></i>Preferences
+            </button>
+            <button class="sidebar-link w-full text-left px-4 py-3 text-sm font-light tracking-wider uppercase hover:bg-gray-50 transition-colors"
+               onclick="switchSection('privacy')">
+              <i class="fas fa-lock mr-3"></i>Privacy
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="lg:col-span-3">
+
+        <!-- Profile Section -->
+        <div id="profileSection" class="settings-section">
+          <div class="bg-white border-2 border-black p-6 sm:p-8 mb-8 settings-card">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-2xl sm:text-3xl font-light tracking-wider">PROFILE INFORMATION</h2>
+              <span class="text-xs text-gray-500 font-light">Last updated: 2 days ago</span>
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-8 mb-8">
+              <div class="avatar-container w-24 h-24 sm:w-32 sm:h-32 bg-gray-200 rounded-full overflow-hidden relative"
+                   onclick="document.getElementById('avatarUpload').click()">
+                <img id="avatarImage" src="https://via.placeholder.com/150/000000/FFFFFF?text=JD" alt="Profile Picture" class="w-full h-full object-cover">
+                <div class="avatar-overlay">
+                  <i class="fas fa-camera text-white text-xl"></i>
+                </div>
+                <input type="file" id="avatarUpload" accept="image/*" style="display: none;" onchange="handleAvatarUpload(event)">
+              </div>
+              <div class="flex-1">
+                <h3 class="text-lg font-light tracking-wider mb-2">PROFILE PICTURE</h3>
+                <p class="text-gray-600 font-light text-sm mb-4">Upload a professional photo that represents you. JPG, PNG or GIF. Max size 5MB.</p>
+                <div class="flex space-x-3">
+                  <button onclick="document.getElementById('avatarUpload').click()" 
+                          class="bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                    Upload New
+                  </button>
+                  <button onclick="removeAvatar()" 
+                          class="bg-white text-black border-2 border-black px-4 py-2 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Profile Form -->
+            <form id="profileForm" class="space-y-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    First Name <span class="text-red-500">*</span>
+                  </label>
+                  <input type="text" id="firstName" name="firstName" value="John" required
+                    class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                </div>
+                <div>
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    Last Name <span class="text-red-500">*</span>
+                  </label>
+                  <input type="text" id="lastName" name="lastName" value="Doe" required
+                    class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Email Address <span class="text-red-500">*</span>
+                </label>
+                <input type="email" id="email" name="email" value="john.doe@example.com" required
+                  class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                <p class="text-xs text-gray-500 mt-2 font-light">Email changes require verification</p>
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Phone Number
+                </label>
+                <input type="tel" id="phone" name="phone" value="+1 (555) 123-4567"
+                  class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  Date of Birth
+                </label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" value="1990-01-01"
+                  class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+              </div>
+
+              <div>
+                <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                  About Me
+                </label>
+                <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..."
+                  class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light resize-none">Watch enthusiast and collector with a passion for Swiss timepieces.</textarea>
+              </div>
+
+              <div class="flex justify-end space-x-4">
+                <button type="button" onclick="resetProfileForm()"
+                  class="bg-white text-black border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+                  Reset
+                </button>
+                <button type="submit"
+                  class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Security Section -->
+        <div id="securitySection" class="settings-section hidden">
+          <div class="space-y-8">
+            
+            <!-- Password Settings -->
+            <div class="bg-white border-2 border-black p-6 sm:p-8 settings-card">
+              <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl sm:text-3xl font-light tracking-wider">PASSWORD & SECURITY</h2>
+                <span class="security-badge strong">Strong</span>
+              </div>
+
+              <form id="passwordForm" class="space-y-6">
+                <div>
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    Current Password <span class="text-red-500">*</span>
+                  </label>
+                  <input type="password" id="currentPassword" name="currentPassword" required
+                    class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                </div>
+
+                <div>
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    New Password <span class="text-red-500">*</span>
+                  </label>
+                  <input type="password" id="newPassword" name="newPassword" required
+                    class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                  <div class="mt-2">
+                    <div class="progress-bar">
+                      <div class="progress-fill" id="passwordStrength" style="width: 0%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1 font-light">
+                      Password must be at least 8 characters with uppercase, lowercase, number, and special character
+                    </p>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    Confirm New Password <span class="text-red-500">*</span>
+                  </label>
+                  <input type="password" id="confirmPassword" name="confirmPassword" required
+                    class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                </div>
+
+                <div class="flex justify-end">
+                  <button type="submit"
+                    class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                    Update Password
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Two-Factor Authentication -->
+            <div class="bg-white border-2 border-black p-6 sm:p-8 settings-card">
+              <div class="flex items-center justify-between mb-6">
+                <div>
+                  <h3 class="text-lg font-light tracking-wider mb-2">TWO-FACTOR AUTHENTICATION</h3>
+                  <p class="text-gray-600 font-light text-sm">Add an extra layer of security to your account</p>
+                </div>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="twoFactorToggle" onchange="toggleTwoFactor()">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <div id="twoFactorSetup" class="hidden">
+                <div class="bg-gray-50 border border-gray-200 p-4 mb-4">
+                  <h4 class="font-light text-black mb-2">Setup Instructions:</h4>
+                  <ol class="text-sm text-gray-600 space-y-1 font-light">
+                    <li>1. Download an authenticator app (Google Authenticator, Authy, etc.)</li>
+                    <li>2. Scan the QR code with your app</li>
+                    <li>3. Enter the verification code to complete setup</li>
+                  </ol>
+                </div>
+
+                <div class="flex justify-center mb-4">
+                  <div class="w-48 h-48 bg-gray-200 flex items-center justify-center">
+                    <i class="fas fa-qrcode text-6xl text-gray-400"></i>
+                  </div>
+                </div>
+
+                <div class="max-w-md mx-auto">
+                  <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                    Verification Code
+                  </label>
+                  <input type="text" id="twoFactorCode" maxlength="6" 
+                    class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light text-center">
+                  <button onclick="verifyTwoFactor()"
+                    class="w-full mt-4 bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                    Verify & Enable
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Login Sessions -->
+            <div class="bg-white border-2 border-black p-6 sm:p-8 settings-card">
+              <div class="flex items-center justify-between mb-6">
+                <h3 class="text-lg font-light tracking-wider">ACTIVE SESSIONS</h3>
+                <button onclick="logoutAllSessions()"
+                  class="bg-red-500 text-white px-4 py-2 hover:bg-red-600 transition-colors font-light text-sm tracking-wider uppercase">
+                  Logout All
+                </button>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex items-center justify-between p-4 border border-gray-200">
+                  <div class="flex items-center space-x-4">
+                    <i class="fas fa-desktop text-2xl text-gray-400"></i>
+                    <div>
+                      <h4 class="font-light text-black">Chrome on MacOS</h4>
+                      <p class="text-sm text-gray-600 font-light">New York, NY • Current session</p>
+                    </div>
+                  </div>
+                  <span class="text-xs text-green-600 font-light">Active</span>
+                </div>
+
+                <div class="flex items-center justify-between p-4 border border-gray-200">
+                  <div class="flex items-center space-x-4">
+                    <i class="fas fa-mobile-alt text-2xl text-gray-400"></i>
+                    <div>
+                      <h4 class="font-light text-black">Safari on iPhone</h4>
+                      <p class="text-sm text-gray-600 font-light">New York, NY • 2 hours ago</p>
+                    </div>
+                  </div>
+                  <button class="text-red-500 hover:text-red-700 text-sm font-light">
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Addresses Section -->
+        <div id="addressesSection" class="settings-section hidden">
+          <div class="bg-white border-2 border-black p-6 sm:p-8 settings-card">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-2xl sm:text-3xl font-light tracking-wider">SHIPPING ADDRESSES</h2>
+              <button onclick="addNewAddress()"
+                class="bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                <i class="fas fa-plus mr-2"></i>Add New
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="addressesList">
+              <!-- Address cards will be populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div id="notificationsSection" class="settings-section hidden">
+          <div class="bg-white border-2 border-black p-6 sm:p-8 settings-card">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-2xl sm:text-3xl font-light tracking-wider">NOTIFICATION PREFERENCES</h2>
+            </div>
+
+            <div class="space-y-8">
+              <!-- Email Notifications -->
+              <div>
+                <h3 class="text-lg font-light tracking-wider mb-4">EMAIL NOTIFICATIONS</h3>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Order Updates</h4>
+                      <p class="text-sm text-gray-600 font-light">Get notified about order status changes</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">New Products</h4>
+                      <p class="text-sm text-gray-600 font-light">Be the first to know about new arrivals</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Promotions & Sales</h4>
+                      <p class="text-sm text-gray-600 font-light">Exclusive deals and promotional offers</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Account Security</h4>
+                      <p class="text-sm text-gray-600 font-light">Important security alerts and updates</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SMS Notifications -->
+              <div>
+                <h3 class="text-lg font-light tracking-wider mb-4">SMS NOTIFICATIONS</h3>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Order Updates</h4>
+                      <p class="text-sm text-gray-600 font-light">SMS notifications for order status</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Security Alerts</h4>
+                      <p class="text-sm text-gray-600 font-light">Critical security notifications</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preferences Section -->
+        <div id="preferencesSection" class="settings-section hidden">
+          <div class="bg-white border-2 border-black p-6 sm:p-8 settings-card">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-2xl sm:text-3xl font-light tracking-wider">ACCOUNT PREFERENCES</h2>
+            </div>
+
+            <div class="space-y-8">
+              <!-- Language & Region -->
+              <div>
+                <h3 class="text-lg font-light tracking-wider mb-4">LANGUAGE & REGION</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                      Language
+                    </label>
+                    <select class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                      <option value="en">English</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
+                      <option value="de">German</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                      Currency
+                    </label>
+                    <select class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+                      <option value="usd">USD ($)</option>
+                      <option value="eur">EUR (€)</option>
+                      <option value="gbp">GBP (£)</option>
+                      <option value="cad">CAD ($)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Shopping Preferences -->
+              <div>
+                <h3 class="text-lg font-light tracking-wider mb-4">SHOPPING PREFERENCES</h3>
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Save Items to Wishlist</h4>
+                      <p class="text-sm text-gray-600 font-light">Automatically save viewed items</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Personalized Recommendations</h4>
+                      <p class="text-sm text-gray-600 font-light">Show products based on your interests</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4 class="font-light text-black">Quick Checkout</h4>
+                      <p class="text-sm text-gray-600 font-light">Enable one-click purchasing</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Privacy Section -->
+        <div id="privacySection" class="settings-section hidden">
+          <div class="space-y-8">
+            
+            <!-- Data & Privacy -->
+            <div class="bg-white border-2 border-black p-6 sm:p-8 settings-card">
+              <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl sm:text-3xl font-light tracking-wider">DATA & PRIVACY</h2>
+              </div>
+
+              <div class="space-y-6">
+                <div class="bg-gray-50 border border-gray-200 p-6">
+                  <h3 class="text-lg font-light tracking-wider mb-4">YOUR DATA</h3>
+                  <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                      <span class="font-light text-black">Download Your Data</span>
+                      <button onclick="downloadData()"
+                        class="bg-black text-white px-4 py-2 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+                        Download
+                      </button>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <span class="font-light text-black">Delete Account</span>
+                      <button onclick="deleteAccount()"
+                        class="bg-red-500 text-white px-4 py-2 hover:bg-red-600 transition-colors font-light text-sm tracking-wider uppercase">
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 class="text-lg font-light tracking-wider mb-4">PRIVACY SETTINGS</h3>
+                  <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h4 class="font-light text-black">Activity Tracking</h4>
+                        <p class="text-sm text-gray-600 font-light">Allow tracking for better recommendations</p>
+                      </div>
+                      <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                      </label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h4 class="font-light text-black">Data Sharing</h4>
+                        <p class="text-sm text-gray-600 font-light">Share anonymized data with partners</p>
+                      </div>
+                      <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                      </label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h4 class="font-light text-black">Marketing Cookies</h4>
+                        <p class="text-sm text-gray-600 font-light">Allow cookies for personalized ads</p>
+                      </div>
+                      <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Address Modal -->
+  <div class="modal" id="addressModal">
+    <div class="modal-content">
+      <div class="sticky top-0 bg-white p-6 border-b-2 border-black">
+        <div class="flex items-center justify-between">
+          <h2 class="text-xl font-light tracking-wider">ADD NEW ADDRESS</h2>
+          <button onclick="closeAddressModal()" class="p-2">
+            <i class="fas fa-times text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      <div class="p-6">
+        <form id="addressForm" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                First Name <span class="text-red-500">*</span>
+              </label>
+              <input type="text" name="firstName" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                Last Name <span class="text-red-500">*</span>
+              </label>
+              <input type="text" name="lastName" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Address Line 1 <span class="text-red-500">*</span>
+            </label>
+            <input type="text" name="address1" required
+              class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+          </div>
+
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Address Line 2
+            </label>
+            <input type="text" name="address2"
+              class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                City <span class="text-red-500">*</span>
+              </label>
+              <input type="text" name="city" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                State <span class="text-red-500">*</span>
+              </label>
+              <input type="text" name="state" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+            <div>
+              <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+                ZIP Code <span class="text-red-500">*</span>
+              </label>
+              <input type="text" name="zipCode" required
+                class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-light text-black mb-2 tracking-wider uppercase">
+              Country <span class="text-red-500">*</span>
+            </label>
+            <select name="country" required
+              class="form-input w-full px-4 py-3 border-2 border-gray-200 focus:border-black focus:outline-none font-light">
+              <option value="">Select Country</option>
+              <option value="US">United States</option>
+              <option value="CA">Canada</option>
+              <option value="GB">United Kingdom</option>
+              <option value="AU">Australia</option>
+            </select>
+          </div>
+
+          <div class="flex items-center space-x-2">
+            <input type="checkbox" name="isDefault" id="isDefault" class="w-4 h-4">
+            <label for="isDefault" class="text-sm font-light text-black">Set as default address</label>
+          </div>
+
+          <div class="flex justify-end space-x-4">
+            <button type="button" onclick="closeAddressModal()"
+              class="bg-white text-black border-2 border-black px-6 py-3 hover:bg-black hover:text-white transition-colors font-light text-sm tracking-wider uppercase">
+              Cancel
+            </button>
+            <button type="submit"
+              class="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors font-light text-sm tracking-wider uppercase">
+              Save Address
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mock data for addresses
+    const mockAddresses = [
+      {
+        id: 1,
+        firstName: 'John',
+        lastName: 'Doe',
+        address1: '123 Main Street',
+        address2: 'Apt 4B',
+        city: 'New York',
+        state: 'NY',
+        zipCode: '10001',
+        country: 'US',
+        isDefault: true
+      },
+      {
+        id: 2,
+        firstName: 'John',
+        lastName: 'Doe',
+        address1: '456 Oak Avenue',
+        address2: '',
+        city: 'Los Angeles',
+        state: 'CA',
+        zipCode: '90210',
+        country: 'US',
+        isDefault: false
+      }
+    ];
+
+    let addresses = [...mockAddresses];
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      initializePage();
+    });
+
+    function initializePage() {
+      loadAddresses();
+      setupFormHandlers();
+      setupPasswordStrengthChecker();
+      updateFavoritesCount();
+      updateCartCount();
+    }
+
+    // Section switching
+    function switchSection(sectionName) {
+      console.log('Switching to section:', sectionName); // Debug log
+      
+      // Hide all sections
+      document.querySelectorAll('.settings-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+
+      // Show selected section
+      const targetSection = document.getElementById(sectionName + 'Section');
+      if (targetSection) {
+        targetSection.classList.remove('hidden');
+        console.log('Section found and shown:', sectionName); // Debug log
+      } else {
+        console.error('Section not found:', sectionName + 'Section'); // Debug log
+      }
+
+      // Update sidebar active state
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      // Find the clicked link and make it active
+      const activeLink = document.querySelector(`[onclick="switchSection('${sectionName}')"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+        console.log('Active link set:', sectionName); // Debug log
+      }
+      
+      // Prevent default action
+      return false;
+    }
+
+    // Profile form handling
+    function setupFormHandlers() {
+      // Profile form
+      document.getElementById('profileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (validateProfileForm()) {
+          saveProfile();
+        }
+      });
+
+      // Password form
+      document.getElementById('passwordForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (validatePasswordForm()) {
+          updatePassword();
+        }
+      });
+
+      // Address form
+      document.getElementById('addressForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (validateAddressForm()) {
+          saveAddress();
+        }
+      });
+    }
+
+    // Profile validation and saving
+    function validateProfileForm() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!firstName || !lastName || !email) {
+        showNotification('Please fill in all required fields', 'error');
+        return false;
+      }
+
+      if (!isValidEmail(email)) {
+        showNotification('Please enter a valid email address', 'error');
+        return false;
+      }
+
+      return true;
+    }
+
+    function saveProfile() {
+      const formData = new FormData(document.getElementById('profileForm'));
+      const profileData = Object.fromEntries(formData);
+      
+      // Simulate API call
+      setTimeout(() => {
+        // Save to localStorage for demo
+        localStorage.setItem('userProfile', JSON.stringify(profileData));
+        showNotification('Profile updated successfully!', 'success');
+      }, 1000);
+    }
+
+    function resetProfileForm() {
+      document.getElementById('profileForm').reset();
+      // Reset to saved values
+      document.getElementById('firstName').value = 'John';
+      document.getElementById('lastName').value = 'Doe';
+      document.getElementById('email').value = 'john.doe@example.com';
+      document.getElementById('phone').value = '+1 (555) 123-4567';
+      document.getElementById('dateOfBirth').value = '1990-01-01';
+      document.getElementById('bio').value = 'Watch enthusiast and collector with a passion for Swiss timepieces.';
+    }
+
+    // Password handling
+    function setupPasswordStrengthChecker() {
+      const passwordInput = document.getElementById('newPassword');
+      const strengthBar = document.getElementById('passwordStrength');
+
+      passwordInput.addEventListener('input', function() {
+        const password = this.value;
+        const strength = calculatePasswordStrength(password);
+        updatePasswordStrength(strength);
+      });
+    }
+
+    function calculatePasswordStrength(password) {
+      let strength = 0;
+      
+      if (password.length >= 8) strength += 25;
+      if (password.match(/[a-z]/)) strength += 25;
+      if (password.match(/[A-Z]/)) strength += 25;
+      if (password.match(/[0-9]/)) strength += 12.5;
+      if (password.match(/[^A-Za-z0-9]/)) strength += 12.5;
+      
+      return Math.min(strength, 100);
+    }
+
+    function updatePasswordStrength(strength) {
+      const strengthBar = document.getElementById('passwordStrength');
+      strengthBar.style.width = strength + '%';
+      
+      if (strength < 50) {
+        strengthBar.style.background = '#ef4444';
+      } else if (strength < 80) {
+        strengthBar.style.background = '#f59e0b';
+      } else {
+        strengthBar.style.background = '#10b981';
+      }
+    }
+
+    function validatePasswordForm() {
+      const currentPassword = document.getElementById('currentPassword').value;
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (!currentPassword || !newPassword || !confirmPassword) {
+        showNotification('Please fill in all password fields', 'error');
+        return false;
+      }
+
+      if (newPassword !== confirmPassword) {
+        showNotification('New passwords do not match', 'error');
+        return false;
+      }
+
+      if (newPassword.length < 8) {
+        showNotification('Password must be at least 8 characters long', 'error');
+        return false;
+      }
+
+      return true;
+    }
+
+    function updatePassword() {
+      // Simulate API call
+      setTimeout(() => {
+        showNotification('Password updated successfully!', 'success');
+        document.getElementById('passwordForm').reset();
+        updatePasswordStrength(0);
+      }, 1000);
+    }
+
+    // Two-factor authentication
+    function toggleTwoFactor() {
+      const toggle = document.getElementById('twoFactorToggle');
+      const setup = document.getElementById('twoFactorSetup');
+      
+      if (toggle.checked) {
+        setup.classList.remove('hidden');
+      } else {
+        setup.classList.add('hidden');
+      }
+    }
+
+    function verifyTwoFactor() {
+      const code = document.getElementById('twoFactorCode').value;
+      
+      if (code.length !== 6) {
+        showNotification('Please enter a 6-digit verification code', 'error');
+        return;
+      }
+
+      // Simulate verification
+      setTimeout(() => {
+        showNotification('Two-factor authentication enabled successfully!', 'success');
+        document.getElementById('twoFactorSetup').classList.add('hidden');
+      }, 1000);
+    }
+
+    // Session management
+    function logoutAllSessions() {
+      if (confirm('Are you sure you want to logout from all devices?')) {
+        setTimeout(() => {
+          showNotification('Logged out from all sessions', 'success');
+        }, 500);
+      }
+    }
+
+    // Address management
+    function loadAddresses() {
+      const addressesList = document.getElementById('addressesList');
+      addressesList.innerHTML = addresses.map(address => createAddressCard(address)).join('');
+    }
+
+    function createAddressCard(address) {
+      return `
+        <div class="address-card ${address.isDefault ? 'default' : ''} p-6 bg-white border-2">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h4 class="font-light text-black mb-1">${address.firstName} ${address.lastName}</h4>
+              ${address.isDefault ? '<span class="text-xs text-green-600 font-light uppercase tracking-wider">Default</span>' : ''}
+            </div>
+            <div class="flex space-x-2">
+              <button onclick="editAddress(${address.id})" class="text-gray-500 hover:text-black">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button onclick="deleteAddress(${address.id})" class="text-gray-500 hover:text-red-500">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="text-sm text-gray-600 font-light space-y-1">
+            <p>${address.address1}</p>
+            ${address.address2 ? `<p>${address.address2}</p>` : ''}
+            <p>${address.city}, ${address.state} ${address.zipCode}</p>
+            <p>${address.country}</p>
+          </div>
+          
+          ${!address.isDefault ? `
+            <div class="mt-4">
+              <button onclick="setDefaultAddress(${address.id})" 
+                      class="text-xs text-black hover:text-gray-600 font-light uppercase tracking-wider">
+                Set as Default
+              </button>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function addNewAddress() {
+      document.getElementById('addressModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAddressModal() {
+      document.getElementById('addressModal').classList.remove('active');
+      document.getElementById('addressForm').reset();
+      document.body.style.overflow = '';
+    }
+
+    function validateAddressForm() {
+      const form = document.getElementById('addressForm');
+      const requiredFields = form.querySelectorAll('input[required], select[required]');
+      
+      for (let field of requiredFields) {
+        if (!field.value.trim()) {
+          showNotification('Please fill in all required fields', 'error');
+          return false;
+        }
+      }
+      
+      return true;
+    }
+
+    function saveAddress() {
+      const formData = new FormData(document.getElementById('addressForm'));
+      const addressData = Object.fromEntries(formData);
+      
+      // Add new address
+      const newAddress = {
+        id: addresses.length + 1,
+        ...addressData,
+        isDefault: formData.get('isDefault') === 'on'
+      };
+      
+      // If setting as default, update other addresses
+      if (newAddress.isDefault) {
+        addresses = addresses.map(addr => ({ ...addr, isDefault: false }));
+      }
+      
+      addresses.push(newAddress);
+      
+      // Update UI
+      loadAddresses();
+      closeAddressModal();
+      showNotification('Address added successfully!', 'success');
+    }
+
+    function editAddress(addressId) {
+      const address = addresses.find(a => a.id === addressId);
+      if (!address) return;
+      
+      // Fill form with address data
+      const form = document.getElementById('addressForm');
+      Object.keys(address).forEach(key => {
+        const field = form.querySelector(`[name="${key}"]`);
+        if (field) {
+          if (field.type === 'checkbox') {
+            field.checked = address[key];
+          } else {
+            field.value = address[key];
+          }
+        }
+      });
+      
+      // Show modal
+      document.getElementById('addressModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function deleteAddress(addressId) {
+      if (confirm('Are you sure you want to delete this address?')) {
+        addresses = addresses.filter(a => a.id !== addressId);
+        loadAddresses();
+        showNotification('Address deleted successfully!', 'success');
+      }
+    }
+
+    function setDefaultAddress(addressId) {
+      addresses = addresses.map(addr => ({
+        ...addr,
+        isDefault: addr.id === addressId
+      }));
+      loadAddresses();
+      showNotification('Default address updated!', 'success');
+    }
+
+    // Avatar handling
+    function handleAvatarUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        showNotification('Please select a valid image file', 'error');
+        return;
+      }
+      
+      // Validate file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        showNotification('Image size must be less than 5MB', 'error');
+        return;
+      }
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('avatarImage').src = e.target.result;
+        showNotification('Profile picture updated!', 'success');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeAvatar() {
+      document.getElementById('avatarImage').src = 'https://via.placeholder.com/150/000000/FFFFFF?text=JD';
+      showNotification('Profile picture removed!', 'success');
+    }
+
+    // Privacy actions
+    function downloadData() {
+      // Simulate data download
+      setTimeout(() => {
+        showNotification('Data download started! Check your email for the download link.', 'success');
+      }, 1000);
+    }
+
+    function deleteAccount() {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        if (confirm('This will permanently delete all your data. Are you absolutely sure?')) {
+          // Simulate account deletion
+          setTimeout(() => {
+            showNotification('Account deletion request submitted. You will receive a confirmation email.', 'success');
+          }, 1000);
+        }
+      }
+    }
+
+    // Utility functions
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function showNotification(message, type = 'success') {
+      const notification = document.createElement('div');
+      notification.className = `notification ${type}`;
+      notification.innerHTML = `
+        <div class="flex items-center space-x-2">
+          <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+          <span class="font-light">${message}</span>
+        </div>
+      `;
+      
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.remove();
+      }, 3000);
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Update favorites count
+    function updateFavoritesCount() {
+      const favorites = JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+      const count = favorites.length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('addressModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeAddressModal();
+      }
+    });
+
+    // Account dropdown functionality
+    function toggleAccountDropdown() {
+      const dropdown = document.getElementById('accountDropdown');
+      const dropdownContent = document.getElementById('accountDropdownContent');
+      
+      dropdown.classList.toggle('active');
+      
+      if (dropdown.classList.contains('active')) {
+        dropdownContent.style.display = 'block';
+      } else {
+        dropdownContent.style.display = 'none';
+      }
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('accountDropdown');
+      const dropdownButton = dropdown.querySelector('button');
+      
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove('active');
+        document.getElementById('accountDropdownContent').style.display = 'none';
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeAddressModal();
+        // Also close account dropdown on escape
+        const dropdown = document.getElementById('accountDropdown');
+        dropdown.classList.remove('active');
+        document.getElementById('accountDropdownContent').style.display = 'none';
+      }
+    });
