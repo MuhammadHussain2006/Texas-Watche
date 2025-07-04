@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partnerships - Wrist Watches</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="shortcut icon" href="./images/Wrist icon  png .png" id="fav-shortcut" type="image/x-icon">
+  <link rel="icon" href="./images/Wrist icon  png .png" id="fav-icon" type="image/x-icon">
+
+  <style>
+    /* Professional black & white theme */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    /* Hero gradient */
+    .hero-gradient {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 10px,
+          rgba(255, 255, 255, 0.03) 10px,
+          rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* Enhanced dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: white;
+      min-width: 220px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border: 1px solid #000;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 999;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    /* Navigation link styling */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Professional input styling */
+    .search-input {
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Enhanced card hover */
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid transparent;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      border-color: #000;
+    }
+
+    /* Partner logo styling */
+    .partner-logo {
+      transition: all 0.3s ease;
+      filter: grayscale(100%);
+      opacity: 0.7;
+    }
+
+    .partner-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    /* Partnership type card */
+    .partnership-card {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .partnership-card:hover {
+      border-color: #000;
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .partnership-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .partnership-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    /* Hero text animation */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text {
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Section animation */
+    .section-animation {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 0.8s ease forwards;
+    }
+
+    .section-animation:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .section-animation:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .section-animation:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .section-animation:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes slideInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Form animations */
+    .form-animation {
+      transition: all 0.3s ease;
+    }
+
+    .form-animation:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+    }
+
+    /* Success message animation */
+    .success-message {
+      animation: slideInRight 0.3s ease, fadeOut 0.3s ease 4.7s;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    }
+
+    /* Feature icon animation */
+    .feature-icon {
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    /* Benefit card styling */
+    .benefit-card {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .benefit-card:hover::after {
+      opacity: 1;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Statistics animation */
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: #000;
+      animation: countUp 2s ease-out;
+    }
+
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Partner modal */
+    .partner-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .partner-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .partner-modal-content {
+      background: white;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 2px solid #000;
+    }
+
+    /* Pulse animation for icons */
+    .pulse-icon {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    /* Partnership process styling */
+    .process-step {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .process-step:hover {
+      transform: translateY(-4px);
+    }
+
+    .process-step::before {
+      content: '';
+      position: absolute;
+      left: 2rem;
+      top: 4rem;
+      bottom: -2rem;
+      width: 2px;
+      background: #e5e7eb;
+    }
+
+    .process-step:last-child::before {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-menu {
+        display: none !important;
+      }
+
+      .partner-modal-content {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .process-step::before {
+        left: 1rem;
+      }
+    }
+
+    /* Custom scrollbar for modal */
+    .partner-modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .partner-modal-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    .partner-modal-content::-webkit-scrollbar-thumb {
+      background: #000;
+      border-radius: 4px;
+    }
+
+    /* Testimonial card styling */
+    .testimonial-card {
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 4rem;
+      color: #e5e7eb;
+      font-family: Georgia, serif;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- Top Header -->
+  <div class="bg-black text-white py-2 sm:py-3 px-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <i class="fas fa-shipping-fast hidden sm:inline"></i>
+        <span class="font-light tracking-wide truncate">Free Shipping • 30 Day Returns</span>
+      </div>
+      <div class="relative dropdown">
+        <button class="flex items-center space-x-1 sm:space-x-2 hover:opacity-80 transition-opacity">
+          <i class="fas fa-user-circle"></i>
+          <span class="hidden sm:inline">Account</span>
+          <i class="fas fa-chevron-down text-xs"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-sign-in-alt mr-3 text-gray-600"></i>Log In
+          </a>
+          <a href="createaccount.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-user-plus mr-3 text-gray-600"></i>Register
+          </a>
+          <a href="login.html"
+            class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors border-b border-gray-100">
+            <i class="fas fa-heart mr-3 text-gray-600"></i>My Account 
+          </a>
+          <a href="shoppingcart.html" class="block px-4 py-3 text-black hover:bg-gray-50 transition-colors">
+            <i class="fas fa-shopping-cart mr-3 text-gray-600"></i>Shopping Cart
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-white border-b-2 border-black sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:py-6">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex-1">
+          <a href="index.html" class="inline-block">
+            <!-- <h1 class="text-2xl sm:text-3xl md:text-4xl font-light text-black tracking-wide">TEXAS WATCHES</h1> -->
+             <img class="w-44" src="./images/wrist watch logo (1).png" alt="">
+            <p class="text-xs text-gray-600 mt-1 tracking-widest uppercase hidden sm:block">Luxury Timepieces Since 2020
+            </p>
+          </a>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex items-center space-x-3 sm:space-x-6">
+          <!-- Search - Desktop -->
+          <div class="relative hidden lg:block">
+            <input type="text" placeholder="Search collection..." id="searchInput"
+              class="search-input w-64 xl:w-80 px-4 py-2.5 pl-10 pr-4 border-2 border-black focus:outline-none">
+            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          </div>
+
+          <!-- Favorites -->
+          <a href="favorites.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="far fa-heart text-xl sm:text-2xl"></i>
+            <span
+              class="favorites-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Cart -->
+          <a href="shoppingcart.html" class="relative hover:opacity-70 transition-opacity">
+            <i class="fas fa-shopping-bag text-xl sm:text-2xl"></i>
+            <span
+              class="cart-count absolute -top-2 -right-2 bg-black text-white text-xs w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center font-light">0</span>
+          </a>
+
+          <!-- Mobile Menu -->
+          <button class="lg:hidden p-2" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars text-xl sm:text-2xl"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Search -->
+      <div class="lg:hidden mt-4">
+        <div class="relative">
+          <input type="text" placeholder="Search collection..." id="mobileSearchInput"
+            class="w-full px-4 py-2.5 pl-10 border-2 border-black focus:outline-none">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="bg-white border-b border-gray-200 hidden lg:block">
+    <div class="max-w-7xl mx-auto px-4">
+      <ul class="desktop-menu flex items-center justify-center space-x-8 xl:space-x-12 py-5">
+        <li><a href="index.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Home</a>
+        </li>
+        <li><a href="rolex.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Rolex</a>
+        </li>
+        <li><a href="omega.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Omega</a>
+        </li>
+        <li><a href="cartier.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Cartier</a>
+        </li>
+        <li><a href="patek-philippe.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Patek
+            Philippe</a></li>
+        <li><a href="breitling.html"
+            class="nav-link font-light text-sm tracking-widest uppercase hover:text-gray-600 transition-colors pb-2">Breitling</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="sticky top-0 bg-white p-4 border-b-2 border-black">
+      <div class="flex items-center justify-between">
+        <h2 class="text-xl font-light tracking-wider">MENU</h2>
+        <button onclick="toggleMobileMenu()" class="p-2">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+    </div>
+    <div class="p-4">
+      <ul class="space-y-4">
+        <li><a href="index.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Home</a></li>
+        <li><a href="rolex.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Rolex</a></li>
+        <li><a href="omega.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Omega</a></li>
+        <li><a href="cartier.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Cartier</a></li>
+        <li><a href="patek-philippe.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Patek Philippe</a></li>
+        <li><a href="breitling.html"
+            class="block font-light uppercase tracking-wider py-3 border-b border-gray-200">Breitling</a></li>
+      </ul>
+
+      <!-- Mobile Menu Actions -->
+      <div class="mt-8 space-y-3">
+        <a href="favorites.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">My Favorites</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full favorites-count">0</span>
+        </a>
+        <a href="shoppingcart.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Shopping Cart</span>
+          <span class="bg-black text-white px-3 py-1 text-xs rounded-full cart-count">0</span>
+        </a>
+        <a href="login.html" class="flex items-center justify-between py-3 border-b border-gray-200">
+          <span class="font-light">Sign In</span>
+          <i class="fas fa-arrow-right text-gray-400"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="bg-gray-50 py-3 sm:py-4 border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center space-x-2 text-xs sm:text-sm">
+        <a href="index.html" class="text-gray-600 hover:text-black transition-colors">
+          <i class="fas fa-home mr-1"></i>Home
+        </a>
+        <i class="fas fa-chevron-right text-gray-400 text-xs"></i>
+        <span class="text-black font-medium">Partnerships</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white relative">
+    <div class="max-w-7xl mx-auto px-4 py-12 sm:py-16 md:py-20 relative z-10">
+      <div class="text-center hero-text">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-widest mb-4">PARTNERSHIPS</h1>
+        <p class="text-sm sm:text-base md:text-lg lg:text-xl font-light mb-8 tracking-wide">Building the future of luxury timepieces together</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Statistics -->
+  <section class="py-8 sm:py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div class="text-center">
+          <div class="stat-number" data-target="50">50+</div>
+          <p class="text-gray-600 font-light text-sm tracking-wider uppercase">Brand Partners</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number" data-target="25">25+</div>
+          <p class="text-gray-600 font-light text-sm tracking-wider uppercase">Countries</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number" data-target="150">150+</div>
+          <p class="text-gray-600 font-light text-sm tracking-wider uppercase">Retail Partners</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number" data-target="5">5 Years</div>
+          <p class="text-gray-600 font-light text-sm tracking-wider uppercase">Partnership History</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Partners -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">OUR PARTNERS</h2>
+        <p class="text-gray-600 font-light">Trusted relationships with the world's finest luxury watch brands</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <!-- Brand Partners -->
+      <div class="section-animation mb-12">
+        <h3 class="text-xl sm:text-2xl font-light text-center mb-8 tracking-wider">LUXURY WATCH BRANDS</h3>
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8">
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-20 sm:h-24">
+            <img src="https://via.placeholder.com/120x40/000000/FFFFFF?text=ROLEX" alt="Rolex" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-20 sm:h-24">
+            <img src="https://via.placeholder.com/120x40/000000/FFFFFF?text=OMEGA" alt="Omega" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-20 sm:h-24">
+            <img src="https://via.placeholder.com/120x40/000000/FFFFFF?text=CARTIER" alt="Cartier" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-20 sm:h-24">
+            <img src="https://via.placeholder.com/120x40/000000/FFFFFF?text=PATEK" alt="Patek Philippe" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-20 sm:h-24">
+            <img src="https://via.placeholder.com/120x40/000000/FFFFFF?text=BREITLING" alt="Breitling" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-20 sm:h-24">
+            <img src="https://via.placeholder.com/120x40/000000/FFFFFF?text=TAG+HEUER" alt="Tag Heuer" class="max-w-full max-h-full">
+          </div>
+        </div>
+      </div>
+
+      <!-- Service Partners -->
+      <div class="section-animation">
+        <h3 class="text-xl sm:text-2xl font-light text-center mb-8 tracking-wider">SERVICE PARTNERS</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-16 sm:h-20">
+            <img src="https://via.placeholder.com/100x30/000000/FFFFFF?text=DHL" alt="DHL" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-16 sm:h-20">
+            <img src="https://via.placeholder.com/100x30/000000/FFFFFF?text=UPS" alt="UPS" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-16 sm:h-20">
+            <img src="https://via.placeholder.com/100x30/000000/FFFFFF?text=FedEx" alt="FedEx" class="max-w-full max-h-full">
+          </div>
+          <div class="partner-logo flex items-center justify-center p-4 bg-white border border-gray-200 h-16 sm:h-20">
+            <img src="https://via.placeholder.com/100x30/000000/FFFFFF?text=SWISS+AUTH" alt="Swiss Authentication" class="max-w-full max-h-full">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Types -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">PARTNERSHIP OPPORTUNITIES</h2>
+        <p class="text-gray-600 font-light">Explore collaboration opportunities with Texas Watches</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div class="partnership-card bg-white border-2 border-gray-200 p-6 sm:p-8 text-center">
+          <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-store text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">RETAIL PARTNERSHIPS</h3>
+          <p class="text-gray-600 font-light text-sm mb-6 leading-relaxed">
+            Join our network of authorized retailers and bring luxury timepieces to your customers with our comprehensive support program.
+          </p>
+          <ul class="text-left space-y-2 mb-6">
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Exclusive territory rights</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Marketing support</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Training programs</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Competitive pricing</span>
+            </li>
+          </ul>
+          <button onclick="openPartnerModal('retail')" class="bg-black text-white px-6 py-2 text-sm font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            Learn More
+          </button>
+        </div>
+
+        <div class="partnership-card bg-white border-2 border-gray-200 p-6 sm:p-8 text-center">
+          <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-globe text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">DISTRIBUTION PARTNERSHIPS</h3>
+          <p class="text-gray-600 font-light text-sm mb-6 leading-relaxed">
+            Expand your distribution network with our premium luxury timepiece collection and comprehensive logistics support.
+          </p>
+          <ul class="text-left space-y-2 mb-6">
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Regional distribution rights</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Inventory management</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Logistics support</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Volume discounts</span>
+            </li>
+          </ul>
+          <button onclick="openPartnerModal('distribution')" class="bg-black text-white px-6 py-2 text-sm font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            Learn More
+          </button>
+        </div>
+
+        <div class="partnership-card bg-white border-2 border-gray-200 p-6 sm:p-8 text-center">
+          <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-handshake text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">STRATEGIC ALLIANCES</h3>
+          <p class="text-gray-600 font-light text-sm mb-6 leading-relaxed">
+            Collaborate with us on innovative projects, technology development, and market expansion initiatives.
+          </p>
+          <ul class="text-left space-y-2 mb-6">
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Joint marketing campaigns</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Technology partnerships</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Co-branding opportunities</span>
+            </li>
+            <li class="flex items-center text-sm text-gray-600">
+              <i class="fas fa-check text-black mr-2"></i>
+              <span class="font-light">Market intelligence</span>
+            </li>
+          </ul>
+          <button onclick="openPartnerModal('strategic')" class="bg-black text-white px-6 py-2 text-sm font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Benefits -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">PARTNERSHIP BENEFITS</h2>
+        <p class="text-gray-600 font-light">Why choose Texas Watches as your luxury timepiece partner</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div class="benefit-card bg-white border-2 border-black p-6 sm:p-8 text-center">
+          <div class="feature-icon w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-certificate text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">AUTHENTICITY GUARANTEE</h3>
+          <p class="text-gray-600 font-light text-sm">100% authentic luxury timepieces with comprehensive authentication and certification program.</p>
+        </div>
+
+        <div class="benefit-card bg-white border-2 border-black p-6 sm:p-8 text-center">
+          <div class="feature-icon w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-shipping-fast text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">GLOBAL LOGISTICS</h3>
+          <p class="text-gray-600 font-light text-sm">Worldwide shipping network with secure, insured delivery to over 150 countries.</p>
+        </div>
+
+        <div class="benefit-card bg-white border-2 border-black p-6 sm:p-8 text-center">
+          <div class="feature-icon w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-users text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">DEDICATED SUPPORT</h3>
+          <p class="text-gray-600 font-light text-sm">Dedicated partnership managers and 24/7 support for all your business needs.</p>
+        </div>
+
+        <div class="benefit-card bg-white border-2 border-black p-6 sm:p-8 text-center">
+          <div class="feature-icon w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-chart-line text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">MARKET INSIGHTS</h3>
+          <p class="text-gray-600 font-light text-sm">Regular market analysis, trend reports, and business intelligence to drive your success.</p>
+        </div>
+
+        <div class="benefit-card bg-white border-2 border-black p-6 sm:p-8 text-center">
+          <div class="feature-icon w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">TRAINING PROGRAMS</h3>
+          <p class="text-gray-600 font-light text-sm">Comprehensive training on luxury timepieces, sales techniques, and customer service excellence.</p>
+        </div>
+
+        <div class="benefit-card bg-white border-2 border-black p-6 sm:p-8 text-center">
+          <div class="feature-icon w-16 h-16 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-medal text-white text-2xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-light tracking-wider mb-4">BRAND PRESTIGE</h3>
+          <p class="text-gray-600 font-light text-sm">Associate with a trusted luxury brand known for quality, authenticity, and exceptional service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Process -->
+  <section class="py-12 sm:py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">HOW TO BECOME A PARTNER</h2>
+        <p class="text-gray-600 font-light">Simple steps to join our partnership program</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation max-w-4xl mx-auto">
+        <div class="space-y-8">
+          <div class="process-step flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="font-light">1</span>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">INITIAL INQUIRY</h3>
+              <p class="text-gray-600 font-light">Submit your partnership application through our online form or contact our partnerships team directly.</p>
+            </div>
+          </div>
+
+          <div class="process-step flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="font-light">2</span>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">QUALIFICATION REVIEW</h3>
+              <p class="text-gray-600 font-light">Our team reviews your application, business credentials, and market presence to ensure mutual fit.</p>
+            </div>
+          </div>
+
+          <div class="process-step flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="font-light">3</span>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">PARTNERSHIP DISCUSSION</h3>
+              <p class="text-gray-600 font-light">Detailed discussion about partnership terms, expectations, and customized solutions for your business.</p>
+            </div>
+          </div>
+
+          <div class="process-step flex items-start space-x-4">
+            <div class="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center flex-shrink-0">
+              <span class="font-light">4</span>
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-light tracking-wider mb-2">AGREEMENT & ONBOARDING</h3>
+              <p class="text-gray-600 font-light">Finalize partnership agreement and begin comprehensive onboarding process with training and support.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Testimonials -->
+  <section class="py-12 sm:py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light text-black mb-2 sm:mb-4 tracking-wider">PARTNER TESTIMONIALS</h2>
+        <p class="text-gray-600 font-light">What our partners say about working with Texas Watches</p>
+        <div class="w-16 sm:w-20 h-px bg-black mx-auto mt-4"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div class="testimonial-card bg-white border-2 border-gray-200 p-6 sm:p-8 relative">
+          <p class="text-gray-700 font-light mb-6 leading-relaxed">
+            Texas Watches has been an exceptional partner. Their commitment to authenticity and customer service aligns perfectly with our luxury retail standards.
+          </p>
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-user text-white"></i>
+            </div>
+            <div>
+              <p class="font-light text-black">Sarah Johnson</p>
+              <p class="text-sm text-gray-600">CEO, Luxury Time Boutique</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white border-2 border-gray-200 p-6 sm:p-8 relative">
+          <p class="text-gray-700 font-light mb-6 leading-relaxed">
+            The support and training provided by Texas Watches transformed our watch department. Sales have increased by 300% since our partnership began.
+          </p>
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-user text-white"></i>
+            </div>
+            <div>
+              <p class="font-light text-black">Michael Chen</p>
+              <p class="text-sm text-gray-600">Director, Premium Watches Ltd</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card bg-white border-2 border-gray-200 p-6 sm:p-8 relative">
+          <p class="text-gray-700 font-light mb-6 leading-relaxed">
+            As a distributor, I appreciate their streamlined logistics and comprehensive market support. Texas Watches truly understands the luxury market.
+          </p>
+          <div class="flex items-center">
+            <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+              <i class="fas fa-user text-white"></i>
+            </div>
+            <div>
+              <p class="font-light text-black">David Rodriguez</p>
+              <p class="text-sm text-gray-600">Founder, Elite Watch Distribution</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Application -->
+  <section class="py-12 sm:py-16 bg-black text-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="section-animation text-center mb-8 sm:mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-light mb-4 sm:mb-6 tracking-wider">BECOME A PARTNER TODAY</h2>
+        <p class="text-gray-300 font-light mb-8">Ready to join our network of luxury timepiece partners?</p>
+        <div class="w-16 sm:w-20 h-px bg-white mx-auto"></div>
+      </div>
+
+      <div class="section-animation grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <!-- Partnership Form -->
+        <div>
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">PARTNERSHIP APPLICATION</h3>
+          <form id="partnershipForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-light text-white mb-2 tracking-wider uppercase">
+                  Company Name <span class="text-red-400">*</span>
+                </label>
+                <input type="text" id="companyName" name="companyName" required
+                  class="w-full px-4 py-3 bg-transparent border border-gray-500 text-white placeholder-gray-400 focus:border-white focus:outline-none form-animation font-light"
+                  placeholder="Your company name">
+              </div>
+              <div>
+                <label class="block text-sm font-light text-white mb-2 tracking-wider uppercase">
+                  Contact Person <span class="text-red-400">*</span>
+                </label>
+                <input type="text" id="contactPerson" name="contactPerson" required
+                  class="w-full px-4 py-3 bg-transparent border border-gray-500 text-white placeholder-gray-400 focus:border-white focus:outline-none form-animation font-light"
+                  placeholder="Your name">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-light text-white mb-2 tracking-wider uppercase">
+                  Email Address <span class="text-red-400">*</span>
+                </label>
+                <input type="email" id="partnerEmail" name="email" required
+                  class="w-full px-4 py-3 bg-transparent border border-gray-500 text-white placeholder-gray-400 focus:border-white focus:outline-none form-animation font-light"
+                  placeholder="your@email.com">
+              </div>
+              <div>
+                <label class="block text-sm font-light text-white mb-2 tracking-wider uppercase">
+                  Phone Number <span class="text-red-400">*</span>
+                </label>
+                <input type="tel" id="partnerPhone" name="phone" required
+                  class="w-full px-4 py-3 bg-transparent border border-gray-500 text-white placeholder-gray-400 focus:border-white focus:outline-none form-animation font-light"
+                  placeholder="+1 (555) 123-4567">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-light text-white mb-2 tracking-wider uppercase">
+                Partnership Type <span class="text-red-400">*</span>
+              </label>
+              <select id="partnershipType" name="partnershipType" required
+                class="w-full px-4 py-3 bg-black border border-gray-500 text-white focus:border-white focus:outline-none form-animation font-light">
+                <option value="" style="background-color: #000; color: #fff;">Select partnership type</option>
+                <option value="retail" style="background-color: #000; color: #fff;">Retail Partnership</option>
+                <option value="distribution" style="background-color: #000; color: #fff;">Distribution Partnership</option>
+                <option value="strategic" style="background-color: #000; color: #fff;">Strategic Alliance</option>
+                <option value="other" style="background-color: #000; color: #fff;">Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-light text-white mb-2 tracking-wider uppercase">
+                Business Description <span class="text-red-400">*</span>
+              </label>
+              <textarea id="businessDescription" name="businessDescription" required rows="4"
+                class="w-full px-4 py-3 bg-transparent border border-gray-500 text-white placeholder-gray-400 focus:border-white focus:outline-none form-animation resize-none font-light"
+                placeholder="Tell us about your business and partnership goals..."></textarea>
+            </div>
+
+            <button type="submit"
+              class="w-full bg-white text-black py-3 sm:py-4 px-6 hover:bg-gray-100 transition-colors font-light text-sm tracking-wider uppercase">
+              <i class="fas fa-paper-plane mr-2"></i>Submit Application
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div>
+          <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-6">PARTNERSHIP CONTACT</h3>
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0 pulse-icon">
+                <i class="fas fa-envelope text-black text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-light text-white mb-2 tracking-wider uppercase text-sm">EMAIL</h4>
+                <p class="text-gray-300 font-light">partnerships@texas-watches.com</p>
+                <p class="text-xs text-gray-400 font-light">Response within 24 hours</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0 pulse-icon">
+                <i class="fas fa-phone text-black text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-light text-white mb-2 tracking-wider uppercase text-sm">PHONE</h4>
+                <p class="text-gray-300 font-light">+1 (555) 839-2792</p>
+                <p class="text-xs text-gray-400 font-light">Monday - Friday, 9AM - 6PM CST</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0 pulse-icon">
+                <i class="fas fa-map-marker-alt text-black text-xl"></i>
+              </div>
+              <div>
+                <h4 class="font-light text-white mb-2 tracking-wider uppercase text-sm">ADDRESS</h4>
+                <p class="text-gray-300 font-light">1234 Luxury Drive<br>Dallas, TX 75201</p>
+                <p class="text-xs text-gray-400 font-light">Partnership headquarters</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 p-6 border border-gray-700">
+            <h4 class="font-light text-white mb-4 tracking-wider uppercase text-sm">PARTNERSHIP BENEFITS</h4>
+            <ul class="space-y-2">
+              <li class="flex items-center text-gray-300">
+                <i class="fas fa-check text-white mr-2"></i>
+                <span class="font-light text-sm">Exclusive territory protection</span>
+              </li>
+              <li class="flex items-center text-gray-300">
+                <i class="fas fa-check text-white mr-2"></i>
+                <span class="font-light text-sm">Comprehensive training program</span>
+              </li>
+              <li class="flex items-center text-gray-300">
+                <i class="fas fa-check text-white mr-2"></i>
+                <span class="font-light text-sm">Marketing and sales support</span>
+              </li>
+              <li class="flex items-center text-gray-300">
+                <i class="fas fa-check text-white mr-2"></i>
+                <span class="font-light text-sm">Competitive pricing structure</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Modal -->
+  <div class="partner-modal" id="partnerModal">
+    <div class="partner-modal-content">
+      <div class="sticky top-0 bg-white border-b-2 border-black p-6 flex items-center justify-between">
+        <h2 class="text-2xl font-light tracking-wider" id="modalPartnerTitle">Partnership Details</h2>
+        <button onclick="closePartnerModal()" class="p-2 hover:bg-gray-100 transition-colors">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
+      </div>
+      
+      <div class="p-6 sm:p-8" id="partnerContent">
+        <!-- Partner content will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand -->
+        <div class="sm:col-span-2 md:col-span-1">
+          <!-- <h3 class="text-xl sm:text-2xl font-light tracking-wider mb-4">TEXAS WATCHES</h3> -->
+           <img class="w-44 mb-10" src="images/wrist watch logo (1) WHITE new logo footer.png" alt="">
+          <p class="text-gray-400 font-light text-sm leading-relaxed mb-6">
+            Your premier destination for authentic luxury timepieces.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">Our Company</h4>
+          <ul class="space-y-2">
+            <li><a href="about.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">About Us</a></li>
+            <li><a href="shippingreturns.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shipping & Returns</a></li>
+            <li><a href="privacypolicy.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Privacy Policy</a></li>
+            <li><a href="terms&condition.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Terms & Condition</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">customer service</h4>
+          <ul class="space-y-2">
+            <li><a href="contactus.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Contact Us</a></li>
+            <li><a href="payment.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Payment</a></li>
+            <li><a href="sitemap.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Site Map</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">FAQ</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Account -->
+        <div>
+          <h4 class="text-sm font-light tracking-widest uppercase mb-4">My Account</h4>
+          <ul class="space-y-2">
+            <li><a href="login.html" class="text-gray-400 hover:text-white transition-colors text-sm font-light">Log In</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Account</a></li>
+            <li><a href="login.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">My Order</a></li>
+            <li><a href="shoppingcart.html"
+                class="text-gray-400 hover:text-white transition-colors text-sm font-light">Shopping Cart</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
+        <div class="flex justify-center space-x-4 sm:space-x-6 mb-4 sm:mb-6">
+          <i class="fab fa-cc-visa text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-mastercard text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-amex text-xl sm:text-2xl text-gray-400"></i>
+          <i class="fab fa-cc-paypal text-xl sm:text-2xl text-gray-400"></i>
+        </div>
+        <p class="text-gray-400 text-xs font-light">
+          © 2025 Wrist Watches. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Partnership details data
+    const partnershipDetails = {
+      retail: {
+        title: 'Retail Partnership Program',
+        content: `
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xl font-light tracking-wider mb-4">RETAIL PARTNERSHIP OVERVIEW</h3>
+              <p class="text-gray-700 font-light leading-relaxed mb-4">
+                Join our exclusive network of authorized luxury watch retailers and bring the finest timepieces to your customers. Our retail partnership program is designed to support independent watch retailers and luxury boutiques.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-light tracking-wider mb-3">PROGRAM BENEFITS</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Exclusive territory protection in your market</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Access to our complete luxury watch collection</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Competitive wholesale pricing structure</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Marketing materials and advertising support</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Professional training and certification programs</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-light tracking-wider mb-3">REQUIREMENTS</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Established retail presence with luxury focus</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Minimum annual sales commitment</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Dedicated watch display area in store</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Staff training completion within 30 days</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Brand representation standards compliance</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 p-6">
+              <h4 class="text-lg font-light tracking-wider mb-3">GETTING STARTED</h4>
+              <p class="text-gray-700 font-light text-sm mb-4">
+                Ready to become a Texas Watches authorized retailer? Our partnership team will guide you through the entire process, from initial application to grand opening support.
+              </p>
+              <div class="flex items-center space-x-4">
+                <button onclick="closePartnerModal(); document.getElementById('partnershipForm').scrollIntoView();" 
+                  class="bg-black text-white px-6 py-2 text-sm font-light tracking-wider uppercase hover:bg-gray-800 transition-colors">
+                  Apply Now
+                </button>
+                <a href="tel:+1-555-839-2792" class="text-black hover:text-gray-700 transition-colors font-light text-sm">
+                  Or call +1 (555) 839-2792
+                </a>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      distribution: {
+        title: 'Distribution Partnership Program',
+        content: `
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xl font-light tracking-wider mb-4">DISTRIBUTION PARTNERSHIP OVERVIEW</h3>
+              <p class="text-gray-700 font-light leading-relaxed mb-4">
+                Expand your distribution network with our premium luxury timepiece collection. Our distribution partnership program is designed for established distributors looking to add high-quality luxury watches to their portfolio.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-light tracking-wider mb-3">PROGRAM BENEFITS</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Regional or national distribution rights</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Volume-based pricing discounts</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Inventory management support</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Logistics and fulfillment assistance</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Market development resources</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-light tracking-wider mb-3">REQUIREMENTS</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Established distribution network</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Minimum order quantities</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Warehouse and logistics capabilities</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Financial stability and credit approval</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Market development plan</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 p-6">
+              <h4 class="text-lg font-light tracking-wider mb-3">DISTRIBUTION TERRITORIES</h4>
+              <p class="text-gray-700 font-light text-sm mb-4">
+                We offer distribution opportunities in various regions worldwide. Current openings include North America, Europe, Asia-Pacific, and emerging markets.
+              </p>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-3 bg-white border border-gray-200">
+                  <i class="fas fa-globe-americas text-2xl text-black mb-2"></i>
+                  <p class="text-xs font-light">North America</p>
+                </div>
+                <div class="p-3 bg-white border border-gray-200">
+                  <i class="fas fa-globe-europe text-2xl text-black mb-2"></i>
+                  <p class="text-xs font-light">Europe</p>
+                </div>
+                <div class="p-3 bg-white border border-gray-200">
+                  <i class="fas fa-globe-asia text-2xl text-black mb-2"></i>
+                  <p class="text-xs font-light">Asia-Pacific</p>
+                </div>
+                <div class="p-3 bg-white border border-gray-200">
+                  <i class="fas fa-globe text-2xl text-black mb-2"></i>
+                  <p class="text-xs font-light">Emerging Markets</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      },
+      strategic: {
+        title: 'Strategic Alliance Program',
+        content: `
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-xl font-light tracking-wider mb-4">STRATEGIC ALLIANCE OVERVIEW</h3>
+              <p class="text-gray-700 font-light leading-relaxed mb-4">
+                Partner with Texas Watches on innovative projects, technology development, and market expansion initiatives. Our strategic alliance program is designed for companies looking to collaborate on mutually beneficial projects.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="text-lg font-light tracking-wider mb-3">COLLABORATION AREAS</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Technology and innovation partnerships</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Co-marketing and promotional campaigns</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Joint product development initiatives</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Market research and intelligence sharing</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-check text-black mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Cross-industry collaborations</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 class="text-lg font-light tracking-wider mb-3">IDEAL PARTNERS</h4>
+                <ul class="space-y-2">
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Technology companies</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Luxury brands and retailers</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Financial services providers</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Authentication and security firms</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <i class="fas fa-arrow-right text-gray-500 mt-1"></i>
+                    <span class="text-gray-700 font-light text-sm">Logistics and shipping companies</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 p-6">
+              <h4 class="text-lg font-light tracking-wider mb-3">CURRENT INITIATIVES</h4>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 bg-white border border-gray-200">
+                  <h5 class="font-light text-black mb-2">Blockchain Authentication</h5>
+                  <p class="text-gray-700 font-light text-sm">Partnership opportunities in blockchain-based watch authentication and ownership tracking.</p>
+                </div>
+                <div class="p-4 bg-white border border-gray-200">
+                  <h5 class="font-light text-black mb-2">AI-Powered Analytics</h5>
+                  <p class="text-gray-700 font-light text-sm">Collaboration on AI-driven market analysis and customer behavior prediction.</p>
+                </div>
+                <div class="p-4 bg-white border border-gray-200">
+                  <h5 class="font-light text-black mb-2">Sustainable Packaging</h5>
+                  <p class="text-gray-700 font-light text-sm">Joint development of eco-friendly luxury packaging solutions.</p>
+                </div>
+                <div class="p-4 bg-white border border-gray-200">
+                  <h5 class="font-light text-black mb-2">Global Expansion</h5>
+                  <p class="text-gray-700 font-light text-sm">Strategic partnerships for entering new international markets.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      }
+    };
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+      const body = document.body;
+
+      mobileMenu.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Get favorites and cart
+    function getFavorites() {
+      return JSON.parse(localStorage.getItem('texasWatchesFavorites') || '[]');
+    }
+
+    function updateFavoritesCount() {
+      const count = getFavorites().length;
+      document.querySelectorAll('.favorites-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('texasWatchesCart') || '[]');
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.textContent = count;
+      });
+    }
+
+    // Open partner modal
+    function openPartnerModal(type) {
+      const details = partnershipDetails[type];
+      if (!details) return;
+
+      document.getElementById('modalPartnerTitle').textContent = details.title;
+      document.getElementById('partnerContent').innerHTML = details.content;
+      document.getElementById('partnerModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close partner modal
+    function closePartnerModal() {
+      document.getElementById('partnerModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Handle form submission
+    document.getElementById('partnershipForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (validatePartnershipForm()) {
+        submitPartnershipForm();
+      }
+    });
+
+    // Validate partnership form
+    function validatePartnershipForm() {
+      const requiredFields = ['companyName', 'contactPerson', 'partnerEmail', 'partnerPhone', 'partnershipType', 'businessDescription'];
+      let isValid = true;
+
+      // Clear previous errors
+      document.querySelectorAll('.form-error').forEach(el => {
+        el.classList.remove('form-error');
+      });
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.remove();
+      });
+
+      // Validate required fields
+      requiredFields.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (!field.value.trim()) {
+          field.classList.add('form-error');
+          showFieldError(field, 'This field is required');
+          isValid = false;
+        }
+      });
+
+      // Validate email
+      const email = document.getElementById('partnerEmail').value.trim();
+      if (email && !isValidEmail(email)) {
+        const field = document.getElementById('partnerEmail');
+        field.classList.add('form-error');
+        showFieldError(field, 'Please enter a valid email address');
+        isValid = false;
+      }
+
+      return isValid;
+    }
+
+    // Show field error
+    function showFieldError(field, message) {
+      const errorDiv = document.createElement('div');
+      errorDiv.className = 'error-message text-red-400 text-sm mt-1 font-light';
+      errorDiv.textContent = message;
+      field.parentNode.appendChild(errorDiv);
+    }
+
+    // Email validation
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    // Submit partnership form
+    function submitPartnershipForm() {
+      const formData = new FormData(document.getElementById('partnershipForm'));
+      const submitBtn = document.querySelector('#partnershipForm button[type="submit"]');
+
+      // Show loading state
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting Application...';
+      submitBtn.disabled = true;
+
+      // Simulate submission
+      setTimeout(() => {
+        // Create partnership application object
+        const applicationData = {
+          timestamp: new Date().toISOString(),
+          companyName: formData.get('companyName'),
+          contactPerson: formData.get('contactPerson'),
+          email: formData.get('email'),
+          phone: formData.get('phone'),
+          partnershipType: formData.get('partnershipType'),
+          businessDescription: formData.get('businessDescription'),
+          status: 'submitted'
+        };
+
+        // Save to localStorage
+        const existingApplications = JSON.parse(localStorage.getItem('texasWatchesPartnershipApplications') || '[]');
+        existingApplications.push(applicationData);
+        localStorage.setItem('texasWatchesPartnershipApplications', JSON.stringify(existingApplications));
+
+        console.log('Partnership application submitted:', applicationData);
+
+        // Show success message
+        showSuccessMessage('Thank you for your partnership application! Our team will review your submission and contact you within 2-3 business days to discuss next steps.');
+
+        // Reset form
+        document.getElementById('partnershipForm').reset();
+
+        // Reset button
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Submit Application';
+        submitBtn.disabled = false;
+      }, 2000);
+    }
+
+    // Show success message
+    function showSuccessMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'fixed top-6 right-6 bg-black text-white px-6 py-4 shadow-lg z-50 success-message max-w-md';
+      messageDiv.innerHTML = `
+        <div class="flex items-start space-x-3">
+          <i class="fas fa-check-circle text-xl mt-1"></i>
+          <span class="font-light">${message}</span>
+        </div>
+      `;
+
+      document.body.appendChild(messageDiv);
+
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('partnerModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePartnerModal();
+      }
+    });
+
+    // Handle escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('partnerModal').classList.contains('active')) {
+        closePartnerModal();
+      }
+    });
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+      updateFavoritesCount();
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 1024) {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('mobileMenuOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
