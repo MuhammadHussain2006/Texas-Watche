@@ -170,15 +170,16 @@
   },
   {
     "id": 14,
-    "name": "Rolex Air King 34mm Steel Black Dial Domed Bezel Mens Watch 14000",
-    "brand": "rolex",
-    "image": "./images/14.jpg",
-    "oldPrice": 3490,
-    "newPrice": 250,
+    "name": "Cartier Santos XL Chronograph Rose Gold Mens Watch WGSA0017 Box Card",
+    "brand": "cartier",
+    "image": "./images/Cartier Santos XL Chronograph Rose Gold display 01 img.jpg",
+    "oldPrice": 21690,
+    "newPrice": 350,
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Cartier Santos XL Chronograph Rose Gold 1 picture.jpg", "./images/Cartier Santos XL Chronograph Rose Gold 2 picture.jpg", "./images/Cartier Santos XL Chronograph Rose Gold 3 picture.jpg", "./images/Cartier Santos XL Chronograph Rose Gold 4 picture.jpg", "./images/Cartier Santos XL Chronograph Rose Gold 5 picture.jpg", "./images/Cartier Santos XL Chronograph Rose Gold 6 picture.jpg", "./images/Cartier Santos XL Chronograph Rose Gold 7 picture.jpg"]
   },
   {
     "id": 15,
