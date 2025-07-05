@@ -118,15 +118,16 @@
   },
   {
     "id": 10,
-    "name": "Omega Seamaster Planet Ocean XL Chrono Mens Watch 2218.50.00 Box Card",
-    "brand": "omega",
-    "image": "./images/10.jpg",
-    "oldPrice": 3490,
+    "name": "Rolex Air King 34 Salmon Dial Engine Turned Bezel Steel Mens Watch 14010",
+    "brand": "rolex",
+    "image": "./images/Rolex Air King 34 Salmon Dial display img 01.jpg",
+    "oldPrice": 4190,
     "newPrice": 250,
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Rolex Air King 34 Salmon Dial 1 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 2 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 3 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 4 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 5 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 6 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 7 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 8 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 9 picture.jpg", "./images/Rolex Air King 34 Salmon Dial 10 picture.jpg"]
   },
   {
     "id": 11,
