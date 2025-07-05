@@ -157,15 +157,16 @@
   },
   {
     "id": 13,
-    "name": "Rolex Datejust 36 Steel Rose Gold Black Diamond Dial Mens Watch 116231",
-    "brand": "rolex",
-    "image": "./images/13.jpg",
-    "oldPrice": 3490,
-    "newPrice": 330,
+    "name": "Cartier Tank Americaine Yellow Gold Automatic Mens Watch W2603156",
+    "brand": "cartier",
+    "image": "./images/Cartier Tank Americaine Yellow Gold display img 01.jpg",
+    "oldPrice": 8990,
+    "newPrice": 290,
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Cartier Tank Americaine Yellow Gold 1 picture.jpg", "./images/Cartier Tank Americaine Yellow Gold 2 picture.jpg", "./images/Cartier Tank Americaine Yellow Gold 3 picture.jpg", "./images/Cartier Tank Americaine Yellow Gold 4 picture.jpg", "./images/Cartier Tank Americaine Yellow Gold 5 picture.jpg", "./images/Cartier Tank Americaine Yellow Gold 6 picture.jpg", "./images/Cartier Tank Americaine Yellow Gold 7 picture.jpg", "./images/Cartier Tank Americaine Yellow Gold 8 picture.jpg"]
   },
   {
     "id": 14,
