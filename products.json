@@ -183,15 +183,16 @@
   },
   {
     "id": 15,
-    "name": "Rolex Air King 34 Salmon Dial Engine Turned Bezel Steel Mens Watch 14010",
-    "brand": "rolex",
-    "image": "./images/15.jpg",
-    "oldPrice": 3490,
-    "newPrice": 250,
+    "name": "Breitling Navitimer World GMT Blue Dial Steel Mens Watch A24322 Box Card",
+    "brand": "breitling",
+    "image": "./images/Breitling Navitimer World GMT Blue Dial display img 01.jpg",
+    "oldPrice": 5690,
+    "newPrice": 270,
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Breitling Navitimer World GMT Blue Dial picture 1.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 2.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 3.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 4.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 5.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 6.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 7.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 8.jpg", "./images/Breitling Navitimer World GMT Blue Dial picture 9.jpg"]
   },
   {
     "id": 16,
