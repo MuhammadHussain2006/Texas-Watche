@@ -196,15 +196,16 @@
   },
   {
     "id": 16,
-    "name": "Rolex Air King 34 Blue Dial Smooth Bezel Steel Mens Watch 14000",
-    "brand": "rolex",
-    "image": "./images/mainpage.jpg",
-    "oldPrice": 3490,
-    "newPrice": 250,
+    "name": "Patek Philippe Grand Complications White Gold Mens Watch 5320 Box Papers",
+    "brand": "patek-philippe",
+    "image": "./images/Patek Philippe Grand Complications White Gold display img 01.jpg",
+    "oldPrice": 75990,
+    "newPrice": 390,
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Patek Philippe Grand Complications White Gold picture 1.jpg", "./images/Patek Philippe Grand Complications White Gold picture 2.jpg", "./images/Patek Philippe Grand Complications White Gold picture 3.jpg", "./images/Patek Philippe Grand Complications White Gold picture 4.jpg", "./images/Patek Philippe Grand Complications White Gold picture 5.jpg", "./images/Patek Philippe Grand Complications White Gold picture 6.jpg", "./images/Patek Philippe Grand Complications White Gold picture 7.jpg"]
   },
   {
     "id": 17,
