@@ -105,15 +105,16 @@
   },
   {
     "id": 9,
-    "name": "Omega Seamaster Diver 300M Blue Dial Mens Watch 210.30.42.20.03.001 Box Card",
+    "name": "Omega Aqua Terra 41 Steel Rose Gold Mens Watch 220.20.41.21.02.001 Box Card",
     "brand": "omega",
-    "image": "./images/9.jpg",
-    "oldPrice": 3490,
-    "newPrice": 250,
+    "image": "./images/Omega Aqua Terra display img 01.jpg",
+    "oldPrice": 8590,
+    "newPrice": 290,
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Omega Aqua Terra 1 picture.jpg", "./images/Omega Aqua Terra 2 picture.jpg", "./images/Omega Aqua Terra 3 picture.jpg", "./images/Omega Aqua Terra 4 picture.jpg", "./images/Omega Aqua Terra 5 picture.jpg", "./images/Omega Aqua Terra 6 picture.jpg", "./images/Omega Aqua Terra 7 picture.jpg"]
   },
   {
     "id": 10,
