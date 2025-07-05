@@ -131,15 +131,16 @@
   },
   {
     "id": 11,
-    "name": "Omega Aqua Terra Steel Rose Gold Diamond Ladies Watch 231.25.39.21.55.001 Box Card",
-    "brand": "omega",
-    "image": "./images/11.jpg",
-    "oldPrice": 3490,
-    "newPrice": 330,
-    "category": "women",
+    "name": "Rolex Air King 34 Blue Dial Smooth Bezel Steel Mens Watch 14000",
+    "brand": "rolex",
+    "image": "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel display img 01.jpg",
+    "oldPrice": 4690,
+    "newPrice": 250,
+    "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 1 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 2 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 3 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 4 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 5 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 6 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 7 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 8 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 9 picture.jpg", "./images/Rolex Air King 34 Blue Dial Smooth Bezel Steel 10 picture.jpg"]
   },
   {
     "id": 12,
