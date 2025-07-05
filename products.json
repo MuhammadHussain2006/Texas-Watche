@@ -144,15 +144,16 @@
   },
   {
     "id": 12,
-    "name": "Omega Aqua Terra 41 Steel Rose Gold Mens Watch 220.20.41.21.02.001 Box Card",
-    "brand": "omega",
-    "image": "./images/12.jpg",
-    "oldPrice": 3490,
-    "newPrice": 290,
+    "name": "Cartier Rotonde Chronograph Silver Dial Steel Mens Watch WSRO0002",
+    "brand": "cartier",
+    "image": "./images/Cartier Rotonde Chronograph Silver Dial display img 01.jpg",
+    "oldPrice": 7190,
+    "newPrice": 270,
     "category": "men",
     "rating": 5,
     "isNew": true,
-    "page": "home"
+    "page": "home",
+    "images":["./images/Cartier Rotonde Chronograph Silver Dial 1 picture.jpg", "./images/Cartier Rotonde Chronograph Silver Dial 2 picture.jpg", "./images/Cartier Rotonde Chronograph Silver Dial 3 picture.jpg", "./images/Cartier Rotonde Chronograph Silver Dial 4 picture.jpg", "./images/Cartier Rotonde Chronograph Silver Dial 5 picture.jpg", "./images/Cartier Rotonde Chronograph Silver Dial 6 picture.jpg"]
   },
   {
     "id": 13,
